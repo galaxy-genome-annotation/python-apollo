@@ -26,6 +26,12 @@ data = wa.users.updateOrganismPermission(
 )
 ```
 
+## TODO
+
+- [ ] Testing (use erasche/webapollo2:latest)
+- [ ] Document methods
+    - [ ] Ensure methods behave properly
+
 ## License
 
 Available under the MIT License
