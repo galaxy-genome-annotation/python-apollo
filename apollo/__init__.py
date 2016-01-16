@@ -17,6 +17,8 @@ class WebApolloInstance(object):
         self.users = UsersClient(self)
         self.metrics = MetricsClient(self)
 
+        self.me = self.users.loadUsers(email=self.username)[0]
+
     def __str__(self):
         return '<WebApolloInstance at %s>' % self.apollo_url
 
