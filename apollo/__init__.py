@@ -735,6 +735,7 @@ class AnnotationsClient(Client):
         }
         data = self._update_data(data)
         return self.request('addAttribute', data)
+
     def getFeatures(self):
         data = self._update_data({})
         return self.request('getFeatures', data)
@@ -1610,6 +1611,7 @@ class fakeTrans(object):
         o = obj()
         o.email = self.un
         return o
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Test access to apollo server')
