@@ -34,7 +34,7 @@ userCache = TTLCache(
 )
 
 
-class WebApolloInstance(object):
+class ApolloInstance(object):
 
     def __init__(self, url, username, password):
         self.apollo_url = url
@@ -53,7 +53,7 @@ class WebApolloInstance(object):
         self.canned_values = CannedValuesClient(self)
 
     def __str__(self):
-        return '<WebApolloInstance at %s>' % self.apollo_url
+        return '<ApolloInstance at %s>' % self.apollo_url
 
     def require_user(self, email):
         """Require that the user has an account"""
@@ -94,7 +94,7 @@ def accessible_organisms(user, orgs):
 
 def galaxy_list_groups(trans, *args, **kwargs):
     email = trans.get_user().email
-    wa = WebApolloInstance(
+    wa = ApolloInstance(
         os.environ['GALAXY_WEBAPOLLO_URL'],
         os.environ['GALAXY_WEBAPOLLO_USER'],
         os.environ['GALAXY_WEBAPOLLO_PASSWORD']
@@ -141,7 +141,7 @@ def _galaxy_list_groups(wa, gx_user, *args, **kwargs):
 
 def galaxy_list_orgs(trans, *args, **kwargs):
     email = trans.get_user().email
-    wa = WebApolloInstance(
+    wa = ApolloInstance(
         os.environ['GALAXY_WEBAPOLLO_URL'],
         os.environ['GALAXY_WEBAPOLLO_USER'],
         os.environ['GALAXY_WEBAPOLLO_PASSWORD']
