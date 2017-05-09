@@ -2,10 +2,6 @@ import requests
 import json
 import os
 import collections
-try:
-    import StringIO as io
-except:
-    import io
 import logging
 import time
 import argparse
