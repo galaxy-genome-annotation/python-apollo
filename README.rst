@@ -37,7 +37,7 @@ History
 - 2.0
     - Galaxy Functions
     - TTL Cache to work around Galaxy's behaviour
-    - Status and Canned* Clients from @abretaud
+    - Status and Canned* Clients from [@abretaud](https://github.com/abretaud)
 - 1.0
     - Initial release
 
