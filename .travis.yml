@@ -15,7 +15,7 @@ deploy:
   on:
     tags: true
     distributions: sdist bdist_wheel
-    repo: erasche/python-apollo
+    repo: galaxy-genome-annotation/python-apollo
 notifications:
   webhooks:
     urls:
