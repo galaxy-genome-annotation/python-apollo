@@ -22,10 +22,10 @@ class OrganismsClient(Client):
         if species is not None:
             data['species'] = species
 
-        return self.request('addOrganism', data)
+        return self.post('addOrganism', data)
 
     def findAllOrganisms(self):
-        return self.request('findAllOrganisms', {})
+        return self.post('findAllOrganisms', {})
 
     def findOrganismByCn(self, cn):
         orgs = self.findAllOrganisms()
@@ -44,13 +44,13 @@ class OrganismsClient(Client):
             return orgs[0]
 
     def deleteOrganism(self, organismId):
-        return self.request('deleteOrganism', {'id': organismId})
+        return self.post('deleteOrganism', {'id': organismId})
 
     def deleteOrganismFeatures(self, organismId):
-        return self.request('deleteOrganismFeatures', {'id': organismId})
+        return self.post('deleteOrganismFeatures', {'id': organismId})
 
     def getSequencesForOrganism(self, commonName):
-        return self.request('getSequencesForOrganism', {'organism': commonName})
+        return self.post('getSequencesForOrganism', {'organism': commonName})
 
     def updateOrganismInfo(self, organismId, commonName, directory, blatdb=None, species=None, genus=None, public=False):
         data = {
@@ -67,4 +67,4 @@ class OrganismsClient(Client):
         if species is not None:
             data['species'] = species
 
-        return self.request('updateOrganismInfo', data)
+        return self.post('updateOrganismInfo', data)

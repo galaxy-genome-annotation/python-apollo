@@ -13,10 +13,10 @@ class CannedCommentsClient(Client):
             'metadata': metadata
         }
 
-        return self.request('createComment', data)
+        return self.post('createComment', data)
 
     def findAllComments(self):
-        return self.request('showComment', {})
+        return self.post('showComment', {})
 
     def findCommentByValue(self, value):
         comments = self.findAllComments()
@@ -43,12 +43,11 @@ class CannedCommentsClient(Client):
         if metadata is not None:
             data['metadata'] = metadata
 
-        return self.request('updateComment', data)
+        return self.post('updateComment', data)
 
     def deleteComment(self, id_number):
         data = {
             'id': id_number
         }
 
-        return self.request('deleteComment', data)
-
+        return self.post('deleteComment', data)

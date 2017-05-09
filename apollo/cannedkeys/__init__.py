@@ -13,10 +13,10 @@ class CannedKeysClient(Client):
             'metadata': metadata
         }
 
-        return self.request('createKey', data)
+        return self.post('createKey', data)
 
     def findAllKeys(self):
-        return self.request('showKey', {})
+        return self.post('showKey', {})
 
     def findKeyByValue(self, value):
         keys = self.findAllKeys()
@@ -43,12 +43,11 @@ class CannedKeysClient(Client):
         if metadata is not None:
             data['metadata'] = metadata
 
-        return self.request('updateKey', data)
+        return self.post('updateKey', data)
 
     def deleteKey(self, id_number):
         data = {
             'id': id_number
         }
 
-        return self.request('deleteKey', data)
-
+        return self.post('deleteKey', data)

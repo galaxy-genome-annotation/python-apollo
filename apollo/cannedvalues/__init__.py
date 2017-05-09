@@ -13,10 +13,10 @@ class CannedValuesClient(Client):
             'metadata': metadata
         }
 
-        return self.request('createValue', data)
+        return self.post('createValue', data)
 
     def findAllValues(self):
-        return self.request('showValue', {})
+        return self.post('showValue', {})
 
     def findValueByValue(self, value):
         values = self.findAllValues()
@@ -43,12 +43,11 @@ class CannedValuesClient(Client):
         if metadata is not None:
             data['metadata'] = metadata
 
-        return self.request('updateValue', data)
+        return self.post('updateValue', data)
 
     def deleteValue(self, id_number):
         data = {
             'id': id_number
         }
 
-        return self.request('deleteValue', data)
-
+        return self.post('deleteValue', data)

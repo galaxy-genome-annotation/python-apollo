@@ -110,5 +110,3 @@ def featuresToFeatureSchema(features):
         for x in _yieldFeatData([feature]):
             compiled.append(x)
     return compiled
-
-

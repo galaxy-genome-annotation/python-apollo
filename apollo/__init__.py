@@ -1,5 +1,4 @@
 import os
-import logging
 
 from cachetools import TTLCache
 from apollo.util import AssertUser
@@ -8,10 +7,6 @@ from apollo.exceptions import UnknownUserException
 from apollo import (annotations, cannedcomments, cannedkeys,
                     cannedvalues, groups, io, metrics, organisms,
                     status, users)
-
-import requests
-logging.getLogger("requests").setLevel(logging.CRITICAL)
-log = logging.getLogger()
 
 
 cache = TTLCache(

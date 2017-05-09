@@ -5,6 +5,7 @@ import json
 
 from apollo.client import Client
 
+
 def _fix_single_user(user):
     if 'organismPermissions' in user:
         org_perms = []
@@ -17,6 +18,7 @@ def _fix_single_user(user):
         user['permissions'] = json.loads(user['permissions'])
     return user
 
+
 def _fix_user(user):
     # Fix the stupid empty permissions that inflate the response
     # unneccessarily.
@@ -24,8 +26,8 @@ def _fix_user(user):
         data = [_fix_single_user(u) for u in user]
         # Remove empty
         # data = [
-            # x for x in data if
-            # ('permissions' in x and len(x['permissions']) != 0)
+        # x for x in data if
+        # ('permissions' in x and len(x['permissions']) != 0)
         # ]
         return data
     else:
@@ -82,7 +84,7 @@ class UsersClient(Client):
         return uop
 
     def update_organism_permissions(self, user, organism, administrate=False,
-                                 write=False, export=False, read=False):
+                                    write=False, export=False, read=False):
         """
         Update the permissions of a user on a specified organism
 
