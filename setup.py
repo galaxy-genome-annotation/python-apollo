@@ -17,7 +17,7 @@ setup(
     author="E Rasche",
     author_email="hxr@hx42.org",
     url='https://github.com/galaxy-genome-annotation/python-apollo',
-    packages=['apollo'],
+    packages=['apollo', 'biopython'],
     install_requires=['requests'],
     license="MIT",
     classifiers=[
