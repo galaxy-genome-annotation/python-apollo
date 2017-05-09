@@ -1,6 +1,6 @@
 import click
-from parsec.cli import pass_context, json_loads
-from parsec.decorators import bioblend_exception, dict_output
+from arrow.cli import pass_context, json_loads
+from arrow.decorators import apollo_exception, dict_output
 
 @click.command('addKey')
 @click.argument("key")

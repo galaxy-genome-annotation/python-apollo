@@ -1,0 +1,14 @@
+import click
+from arrow.cli import pass_context, json_loads
+from arrow.decorators import apollo_exception, dict_output
+
+@click.command('%(command_name)s')
+%(click_arguments)s
+%(click_options)s
+@pass_context
+@bioblend_exception
+@dict_output
+def cli(%(args_with_defaults)s):
+    """%(short_docstring)s
+    """%(empty_kwargs)s%(kwarg_updates)s
+    return %(wrapped_method)s(%(wrapped_method_args)s)
