@@ -4,21 +4,39 @@ Contains possible interactions with the Apollo Users Module
 import json
 
 from apollo.client import Client
-from apollo.objects import UserObj
 
 
 class UsersClient(Client):
     CLIENT_BASE = '/user/'
 
-    # Real one
-    # def getOrganismPermissionsForUser(self, user):
-    # data = {
-    # 'userId': user.userId,
-    # }
-    # return self.post('getOrganismPermissionsForUser', data)
+    def get_users(self):
+        res = self.post('loadUsers', {})
+        data = [self._fix_user_org_permissions(user) for user in res]
+        return data
 
-    # Utter frigging hack
-    def getOrganismPermissionsForUser(self, user):
+    def show_user(self, user):
+        """
+        Get a specific user
+
+        :type user: str
+        :param user: User Email
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+        return self._fix_user_org_permissions(self._loadUserById(user))
+
+    def _fix_user_org_permissions(self, user):
+        if 'organismPermissions' in user:
+            orgPerms = []
+            for org in user['organismPermissions']:
+                org['permissions'] = json.loads(org['permissions'])
+                if len(org['permissions']) > 0:
+                    orgPerms.append(org)
+            user['organismPermissions'] = orgPerms
+        return user
+
+    def get_organism_permissions(self, user):
         """
         Display a user's organism permissions
 
@@ -28,76 +46,166 @@ class UsersClient(Client):
         :rtype: dict
         :return: a dictionary containing user's organism permissions
         """
-        uop = self.loadUser(user).organismPermissions
-        for org in uop:
-            org['permissions'] = json.loads(org['permissions'])
+        uop = self.show_user(user)['organismPermissions']
         return uop
 
-    def updateOrganismPermission(self, user, organism, administrate=False,
+    def update_organism_permissions(self, user, organism, administrate=False,
                                  write=False, export=False, read=False):
+        """
+        Update the permissions of a user on a specified organism
+
+        :type user: str
+        :param user: User's email
+
+        :type organism: str
+        :param organism: organism common name
+
+        :type administrate: bool
+        :param administrate: Grants administrative privileges
+
+        :type write: bool
+        :param write: Grants write privileges
+
+        :type read: bool
+        :param read: Grants read privileges
+
+        :type export: bool
+        :param export: Grants export privileges
+
+        :rtype: dict
+        :return: a dictionary containing user's organism permissions
+        """
         data = {
-            'userId': user.userId,
+            'userId': user,
             'organism': organism,
             'ADMINISTRATE': administrate,
             'WRITE': write,
             'EXPORT': export,
             'READ': read,
         }
-        return self.post('updateOrganismPermission', data)
+        response = self.post('updateOrganismPermission', data)
+        response['permissions'] = json.loads(response['permissions'])
+        return response
 
-    def loadUser(self, user):
-        if isinstance(user, UserObj):
-            return self.loadUserById(user.userId)
-        else:
-            return self.loadUserById(user)
-
-    def loadUserById(self, userId):
-        res = self.post('loadUsers', {'userId': userId})
+    def _loadUserById(self, user_id):
+        res = self.post('loadUsers', {'userId': user_id})
         if isinstance(res, list):
             # We can only match one, right?
-            return UserObj(**res[0])
+            return res[0]
         else:
             return res
 
-    def loadUsers(self, email=None):
-        res = self.post('loadUsers', {})
-        data = [UserObj(**x) for x in res]
-        if email is not None:
-            data = [x for x in data if x.username == email]
+    def add_to_group(self, group, user):
+        """
+        Add a user to a group
 
-        return data
+        :type user: str
+        :param user: User's email
 
-    def addUserToGroup(self, group, user):
-        data = {'group': group.name, 'userId': user.userId}
+        :type group: str
+        :param group: Group name
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        data = {'group': group, 'user': user}
         return self.post('addUserToGroup', data)
 
-    def removeUserFromGroup(self, group, user):
-        data = {'group': group.name, 'userId': user.userId}
+    def remove_from_group(self, group, user):
+        """
+        Remove a user from a group
+
+        :type user: str
+        :param user: User's email
+
+        :type group: str
+        :param group: Group name
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        data = {'group': group, 'user': user}
         return self.post('removeUserFromGroup', data)
 
-    def createUser(self, email, firstName, lastName, newPassword, role="user", groups=None):
+    def create_user(self, email, first_name, last_name, password, role="user", metadata={}):
+        """
+        Create a new user
+
+        :type email: str
+        :param email: User's email
+
+        :type first_name: str
+        :param first_name: User's first name
+
+        :type last_name: str
+        :param last_name: User's last name
+
+        :type password: str
+        :param password: User's password
+
+        :type role: str
+        :param role: User's default role, one of "admin" or "user"
+
+        :type metadata: dict
+        :param metadata: User metadata
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
         data = {
-            'firstName': firstName,
-            'lastName': lastName,
+            'firstName': first_name,
+            'lastName': last_name,
             'email': email,
-            'role': role,
-            'groups': [] if groups is None else groups,
-            # 'availableGroups': [],
-            'newPassword': newPassword,
-            # 'organismPermissions': [],
+            'metadata': metadata,
+            'role': role.upper() if role else role,
+            'newPassword': password,
         }
-        return self.post('createUser', data)
+        response = self.post('createUser', data)
+        if len(response.keys()) == 0:
+            return self.show_user(email)
+        else:
+            # Error
+            return response
 
-    def deleteUser(self, user):
-        return self.post('deleteUser', {'userId': user.userId})
+    def delete_user(self, user):
+        """
+        Delete a user
 
-    def updateUser(self, user, email, firstName, lastName, newPassword):
+        :type user: str
+        :param user: User's email
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        return self.post('deleteUser', {'userToDelete': user})
+
+    def update_user(self, email, first_name, last_name, password, metadata={}):
+        """
+        Update an existing user
+
+        :type email: str
+        :param email: User's email
+
+        :type first_name: str
+        :param first_name: User's first name
+
+        :type last_name: str
+        :param last_name: User's last name
+
+        :type password: str
+        :param password: User's password
+
+        :type metadata: dict
+        :param metadata: User metadata
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
         data = {
-            'userId': user.userId,
             'email': email,
-            'firstName': firstName,
-            'lastName': lastName,
-            'newPassword': newPassword,
+            'firstName': first_name,
+            'lastName': last_name,
+            'newPassword': password,
+            'metadata': metadata,
         }
         return self.post('updateUser', data)
-

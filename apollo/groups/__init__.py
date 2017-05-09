@@ -2,7 +2,6 @@
 Contains possible interactions with the Apollo Groups
 """
 from apollo.client import Client
-from apollo.objects import GroupObj
 
 
 class GroupsClient(Client):
@@ -26,7 +25,7 @@ class GroupsClient(Client):
         res = self.request('loadGroups', {'groupId': groupId})
         if isinstance(res, list):
             # We can only match one, right?
-            return GroupObj(**res[0])
+            return res[0]
         else:
             return res
 
@@ -34,17 +33,16 @@ class GroupsClient(Client):
         res = self.request('loadGroups', {'name': name})
         if isinstance(res, list):
             # We can only match one, right?
-            return GroupObj(**res[0])
+            return res[0]
         else:
             return res
 
     def loadGroups(self, group=None):
         res = self.request('loadGroups', {})
-        data = [GroupObj(**x) for x in res]
         if group is not None:
-            data = [x for x in data if x.name == group]
+            res = [x for x in res if x.name == group]
 
-        return data
+        return res
 
     def deleteGroup(self, group):
         data = {

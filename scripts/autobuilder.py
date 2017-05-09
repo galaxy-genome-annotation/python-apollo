@@ -13,20 +13,7 @@ log = logging.getLogger()
 
 import apollo as bg
 IGNORE_LIST = [
-    'histories.download_dataset',
-    'histories.get_current_history',
-    'make_delete_request',
-    'make_get_request',
-    'make_post_request',
-    'make_put_request',
-    'set_max_get_retries',
-    'get_max_get_retries',
-    'set_get_retry_delay',
-    'get_retry_delay',
-    'set_retry_delay',
-    'max_get_retries',
-    'show_stderr',
-    'show_stdout',
+    'get', 'post'
 ]
 
 
