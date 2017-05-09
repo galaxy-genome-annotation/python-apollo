@@ -10,7 +10,7 @@ Welcome to Python-Apollo's documentation!
    :maxdepth: 2
 
    examples
-   modules
+   apollo
 
 
 Indices and tables
