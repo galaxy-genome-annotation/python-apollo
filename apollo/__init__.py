@@ -4,7 +4,7 @@ import json
 import logging
 import os
 
-from apollo.cache import TTLCache
+from cachetools import TTLCache
 from apollo.util import AssertUser
 from apollo.exceptions import UnknownUserException
 
