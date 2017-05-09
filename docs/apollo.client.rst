@@ -1,6 +1,11 @@
 apollo\.client package
 ======================
 
+.. automodule:: apollo.client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 
@@ -17,10 +22,3 @@ Subpackages
     apollo.client.status
     apollo.client.users
 
-Module contents
----------------
-
-.. automodule:: apollo.client
-    :members:
-    :undoc-members:
-    :show-inheritance:

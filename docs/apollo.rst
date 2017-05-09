@@ -1,9 +1,6 @@
 apollo package
 ==============
 
-Module contents
----------------
-
 .. automodule:: apollo
     :members:
     :undoc-members:
@@ -19,36 +16,10 @@ Subpackages
 Submodules
 ----------
 
-apollo\.cache module
---------------------
+.. toctree::
 
-.. automodule:: apollo.cache
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-apollo\.exceptions module
--------------------------
-
-.. automodule:: apollo.exceptions
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-apollo\.objects module
-----------------------
-
-.. automodule:: apollo.objects
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-apollo\.util module
--------------------
-
-.. automodule:: apollo.util
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   apollo.cache
+   apollo.exceptions
+   apollo.objects
+   apollo.util
 
