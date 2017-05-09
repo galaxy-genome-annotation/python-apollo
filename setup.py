@@ -16,7 +16,7 @@ setup(
     long_description=readme,
     author="E Rasche",
     author_email="hxr@hx42.org",
-    url='https://github.com/erasche/python-apollo',
+    url='https://github.com/galaxy-genome-annotation/python-apollo',
     packages=['apollo'],
     install_requires=['requests>=2.4.3'],
     license="MIT",
