@@ -24,3 +24,8 @@ def dict_output(wrapped, instance, args, kwargs):
     # TODO enhance
     output = wrapped(*args, **kwargs)
     print((json.dumps(output, indent=4)))
+
+@wrapt.decorator
+def text_output(wrapped, instance, args, kwargs):
+    # TODO enhance
+    print(wrapped(*args, **kwargs))

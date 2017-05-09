@@ -11,6 +11,7 @@ from arrow.decorators import apollo_exception, dict_output
 @click.option(
     "--role",
     help="User's default role, one of \"admin\" or \"user\"",
+    default="user",
     type=str
 )
 @click.option(

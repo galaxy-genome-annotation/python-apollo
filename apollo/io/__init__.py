@@ -7,9 +7,9 @@ from apollo.client import Client
 class IOClient(Client):
     CLIENT_BASE = '/IOService/'
 
-    def write(self, organism, sequences=[], export_type='FASTA',
+    def write(self, organism, export_type='FASTA',
               seq_type='peptide', export_format='text', output='text',
-              export_gff3_fasta=False):
+              export_gff3_fasta=False, sequences=[]):
         """
         Download or prepare a download for an organism
 
@@ -34,7 +34,7 @@ class IOClient(Client):
         :type export_gff3_fasta: bool
         :param export_gff3_fasta: Export reference sequence when exporting GFF3 annotations.
 
-        :rtype: dict
+        :rtype: text
         :return: a dictionary containing user information
         """
 
@@ -53,7 +53,7 @@ class IOClient(Client):
 
     def download(self, uuid, output_format='gzip'):
         """
-        Download pre-prepared data by UUID
+        [CURRENTLY BROKEN] Download pre-prepared data by UUID
 
         :type uuid: str
         :param uuid: Data UUID

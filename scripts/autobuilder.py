@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-
 import importlib
 import inspect
 import os
+import copy
 import re
 import glob
 import argparse
@@ -65,11 +65,13 @@ class ScriptBuilder(object):
         return self.templates[template] % opts
 
     @classmethod
-    def __click_option(cls, name='arg', helpstr='TODO', ptype=None):
+    def __click_option(cls, name='arg', helpstr='TODO', ptype=None, default=None):
         args = [
             '"--%s"' % name,
-            'help="%s"' % (helpstr.replace('"', '\\"') if helpstr else "")
+            'help="%s"' % (helpstr.replace('"', '\\"') if helpstr else ""),
         ]
+        if default:
+            args.append('default="%s"' % default)
         if ptype is not None:
             args.extend(ptype)
         return '@click.option(\n%s\n)\n' % (',\n'.join(['    ' + x for x in args]))
@@ -255,16 +257,19 @@ class ScriptBuilder(object):
 
             def process_arg(k, v, param_type, real_type):
                 log.debug("Processing %s=%s %s %s", k, v, param_type, real_type)
+                orig_v = copy.deepcopy(v)
                 # If v is not None, then it's a kwargs, otherwise an arg
                 if v is not None:
                     # Strings must be treated specially by removing their value
                     if v == '__None__':
                         v = 'None'
+                        orig_v = None
                     elif isinstance(v, str):
                         v = '"%s"' % v
 
                     if v == []:
                         v = None
+                        orig_v = None
                     # All other instances of V are fine, e.g. boolean=False or int=1000
 
                     # Register twice as the method invocation uses v=k
@@ -277,13 +282,14 @@ class ScriptBuilder(object):
                         # Add to signature, but NOT exec because we take care of that elsewhere.
                         method_signature_kwargs.append("%s=%s" % (k, v))
 
+                    # TODO: rtype -> dict_output / list_output / text_output
                     # TODO: refactor
                     try:
                         descstr = param_docs[k]['desc']
                     except KeyError:
                         print("Error finding %s in %s" % (k, candidate))
                         descstr = None
-                    data['click_options'] += self.__click_option(name=k, helpstr=descstr, ptype=param_type)
+                    data['click_options'] += self.__click_option(name=k, helpstr=descstr, ptype=param_type, default=orig_v)
                 else:
                     # Args, not kwargs
                     tk = k
