@@ -6,12 +6,32 @@ import json
 from apollo.client import Client
 
 
+def _fix_user(user):
+    # Fix the stupid empty permissions that inflate the response
+    # unneccessarily.
+    if 'organismPermissions' in user:
+        org_perms = []
+        for org in user['organismPermissions']:
+            org['permissions'] = json.loads(org['permissions'])
+            if len(org['permissions']) > 0:
+                org_perms.append(org)
+        user['organismPermissions'] = org_perms
+    return user
+
+
 class UsersClient(Client):
     CLIENT_BASE = '/user/'
 
+    def _handle_empty(self, user, response):
+        """Apollo likes to return empty user arrays, even when you REALLY
+        want a user response back... like creating a user."""
+        if len(response.keys()) == 0:
+            return self.show_user(user)
+        return response
+
     def get_users(self):
         res = self.post('loadUsers', {})
-        data = [self._fix_user_org_permissions(user) for user in res]
+        data = [_fix_user(user) for user in res]
         return data
 
     def show_user(self, user):
@@ -24,17 +44,10 @@ class UsersClient(Client):
         :rtype: dict
         :return: a dictionary containing user information
         """
-        return self._fix_user_org_permissions(self._loadUserById(user))
-
-    def _fix_user_org_permissions(self, user):
-        if 'organismPermissions' in user:
-            orgPerms = []
-            for org in user['organismPermissions']:
-                org['permissions'] = json.loads(org['permissions'])
-                if len(org['permissions']) > 0:
-                    orgPerms.append(org)
-            user['organismPermissions'] = orgPerms
-        return user
+        res = self.post('loadUsers', {'userId': user})
+        if isinstance(res, list):
+            res = res[0]
+        return _fix_user(res)
 
     def get_organism_permissions(self, user):
         """
@@ -86,14 +99,6 @@ class UsersClient(Client):
         response = self.post('updateOrganismPermission', data)
         response['permissions'] = json.loads(response['permissions'])
         return response
-
-    def _loadUserById(self, user_id):
-        res = self.post('loadUsers', {'userId': user_id})
-        if isinstance(res, list):
-            # We can only match one, right?
-            return res[0]
-        else:
-            return res
 
     def add_to_group(self, group, user):
         """
@@ -161,11 +166,7 @@ class UsersClient(Client):
             'newPassword': password,
         }
         response = self.post('createUser', data)
-        if len(response.keys()) == 0:
-            return self.show_user(email)
-        else:
-            # Error
-            return response
+        return self._handle_empty(email, response)
 
     def delete_user(self, user):
         """
@@ -199,7 +200,7 @@ class UsersClient(Client):
         :param metadata: User metadata
 
         :rtype: dict
-        :return: an empty dictionary
+        :return: a dictionary containing user information
         """
         data = {
             'email': email,
@@ -208,4 +209,5 @@ class UsersClient(Client):
             'newPassword': password,
             'metadata': metadata,
         }
-        return self.post('updateUser', data)
+        response = self.post('updateUser', data)
+        return self._handle_empty(email, response)

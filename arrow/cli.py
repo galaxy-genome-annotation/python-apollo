@@ -5,7 +5,7 @@ import click
 import json
 
 from .io import error
-from .config import read_global_config  # noqa, ditto
+from .config import read_global_config, global_config_path  # noqa, ditto
 from .apollo import get_apollo_instance
 from arrow import __version__  # noqa, ditto
 
@@ -86,9 +86,18 @@ class ArrowCLI(click.MultiCommand):
         # We pre-calculate this so it works more nicely within packaged
         # versions of arrow. Please feel free to fix this?
 
-        commands = ['annotations', 'cannedcomments', 'cannedkeys',
-                    'cannedvalues', 'groups', 'io', 'metrics',
-                    'organisms', 'status', 'users']
+        commands = [
+            # 'annotations',
+            # 'cannedcomments',
+            # 'cannedkeys',
+            # 'cannedvalues',
+            # 'groups',
+            # 'io',
+            # 'metrics',
+            # 'organisms',
+            # 'status',
+            'users'
+        ]
         return commands
 
     def get_command(self, ctx, name):
@@ -101,7 +110,7 @@ class ArrowCLI(click.MultiCommand):
               help='Enables verbose mode.')
 @click.option(
     "--apollo_instance",
-    help='name of apollo instance from ~/.planemo.yml',
+    help='name of apollo instance from %s' % global_config_path(),
     default='__default',
     required=True
 )
