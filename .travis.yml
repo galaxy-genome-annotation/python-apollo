@@ -1,0 +1,25 @@
+language: python
+python:
+- '2.7'
+- '3.5'
+install: pip install -r requirements.txt
+script:
+- pip install -U flake8
+- flake8 apollo --ignore=E501
+- python setup.py install
+deploy:
+  provider: pypi
+  user: erasche
+  password:
+    secure: iY/W7zplJWjQKH0PnBgoDqyNgJhB6RGU2NS1UTVax0NhdIbQDG/pvphw0sHU9T8Mi2kitNcX9+TBpjY+IPVFyLoPSaomVfR3dNCfL8St2AFKogZfMSqDHAQsO7hoUD+eM4m2LyIuslQfxoJMeDkzUysIdmtS/O0bdKWsDzz2Jq+GLDA0Vmz+KW8KIj9nCHb4qV2UMdlFmoCghBVfVq5JR3FB9jRW+/FCKEsc0lCVIlerXIMF2laMva/rPSqHIl1xcxaj6W4Z7ROT9SQ620FrmivsJ+qRtdImYXlUNab7xVUOQoZMfeN+4X/tYNk3fHP5uAH1rmdviCZwqjZ9Tp8koUuxuE/7NAKElqf11j6dzGd/9wVvClV+oj1dt6gkpOlxHksS2GmK6MV8py+XajmTVFNV8QcJmZebUyPLMYokuGvth6ARWNgdZYI3K9LFSCq0rMttrNmaG9SgrpaLkqfpl9WMwbJ7Tt0iAFkLXQ6Q2IQlJ4NBL7LA6yTG2WvfeQvnpSERsiPQ1ycntihOD+WyVaMFX1g6gUzeQrut18WrGsJPIs6702sJU/80Ll0+vlqIwE4LMNdIbLg/ngHLf8rGw2zNskFhLe78CE+Ejpl4Ue898wg7hKEPw+AjHSpw6xEypALPE5ytiC19pQN4Rln1Jbbq8a/NFOzSZMsnX6c2PyQ=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: erasche/python-apollo
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/dd56606ea08bece475e7
+    on_success: change
+    on_failure: always
+    on_start: never
