@@ -31,6 +31,16 @@ Examples
         read=True,
     )
 
+History
+-------
+
+- 2.0
+    - Galaxy Functions
+    - TTL Cache to work around Galaxy's behaviour
+    - Status and Canned* Clients from @abretaud
+- 1.0
+    - Initial release
+
 License
 -------
 
