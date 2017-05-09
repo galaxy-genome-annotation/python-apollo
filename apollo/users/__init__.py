@@ -1,6 +1,8 @@
 """
 Contains possible interactions with the Apollo Users Module
 """
+import json
+
 from apollo.client import Client
 from apollo.objects import UserObj
 
@@ -13,7 +15,7 @@ class UsersClient(Client):
     # data = {
     # 'userId': user.userId,
     # }
-    # return self.request('getOrganismPermissionsForUser', data)
+    # return self.post('getOrganismPermissionsForUser', data)
 
     # Utter frigging hack
     def getOrganismPermissionsForUser(self, user):
@@ -26,7 +28,10 @@ class UsersClient(Client):
         :rtype: dict
         :return: a dictionary containing user's organism permissions
         """
-        return self.loadUser(user).organismPermissions
+        uop = self.loadUser(user).organismPermissions
+        for org in uop:
+            org['permissions'] = json.loads(org['permissions'])
+        return uop
 
     def updateOrganismPermission(self, user, organism, administrate=False,
                                  write=False, export=False, read=False):
@@ -38,13 +43,16 @@ class UsersClient(Client):
             'EXPORT': export,
             'READ': read,
         }
-        return self.request('updateOrganismPermission', data)
+        return self.post('updateOrganismPermission', data)
 
     def loadUser(self, user):
-        return self.loadUserById(user.userId)
+        if isinstance(user, UserObj):
+            return self.loadUserById(user.userId)
+        else:
+            return self.loadUserById(user)
 
     def loadUserById(self, userId):
-        res = self.request('loadUsers', {'userId': userId})
+        res = self.post('loadUsers', {'userId': userId})
         if isinstance(res, list):
             # We can only match one, right?
             return UserObj(**res[0])
@@ -52,7 +60,7 @@ class UsersClient(Client):
             return res
 
     def loadUsers(self, email=None):
-        res = self.request('loadUsers', {})
+        res = self.post('loadUsers', {})
         data = [UserObj(**x) for x in res]
         if email is not None:
             data = [x for x in data if x.username == email]
@@ -61,11 +69,11 @@ class UsersClient(Client):
 
     def addUserToGroup(self, group, user):
         data = {'group': group.name, 'userId': user.userId}
-        return self.request('addUserToGroup', data)
+        return self.post('addUserToGroup', data)
 
     def removeUserFromGroup(self, group, user):
         data = {'group': group.name, 'userId': user.userId}
-        return self.request('removeUserFromGroup', data)
+        return self.post('removeUserFromGroup', data)
 
     def createUser(self, email, firstName, lastName, newPassword, role="user", groups=None):
         data = {
@@ -78,10 +86,10 @@ class UsersClient(Client):
             'newPassword': newPassword,
             # 'organismPermissions': [],
         }
-        return self.request('createUser', data)
+        return self.post('createUser', data)
 
     def deleteUser(self, user):
-        return self.request('deleteUser', {'userId': user.userId})
+        return self.post('deleteUser', {'userId': user.userId})
 
     def updateUser(self, user, email, firstName, lastName, newPassword):
         data = {
@@ -91,5 +99,5 @@ class UsersClient(Client):
             'lastName': lastName,
             'newPassword': newPassword,
         }
-        return self.request('updateUser', data)
+        return self.post('updateUser', data)
 
