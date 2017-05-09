@@ -10,7 +10,6 @@ import logging
 import time
 import argparse
 from abc import abstractmethod
-from BCBio import GFF
 from Bio import SeqIO
 logging.getLogger("requests").setLevel(logging.CRITICAL)
 log = logging.getLogger()
@@ -480,7 +479,6 @@ class WebApolloInstance(object):
         self.organisms = OrganismsClient(self)
         self.users = UsersClient(self)
         self.metrics = MetricsClient(self)
-        self.bio = RemoteRecord(self)
         self.status = StatusClient(self)
         self.canned_comments = CannedCommentsClient(self)
         self.canned_keys = CannedKeysClient(self)
@@ -1366,28 +1364,6 @@ class UsersClient(Client):
             'newPassword': newPassword,
         }
         return self.request('updateUser', data)
-
-
-class RemoteRecord(Client):
-    CLIENT_BASE = None
-
-    def ParseRecord(self, cn):
-        org = self._wa.organisms.findOrganismByCn(cn)
-        self._wa.annotations.setSequence(org['commonName'], org['id'])
-
-        data = io.StringIO(self._wa.io.write(
-            exportType='GFF3',
-            seqType='genomic',
-            exportAllSequences=False,
-            exportGff3Fasta=True,
-            output="text",
-            exportFormat="text",
-            sequences=cn,
-        ))
-        data.seek(0)
-
-        for record in GFF.parse(data):
-            yield WebApolloSeqRecord(record, self._wa)
 
 
 class WebApolloSeqRecord(object):

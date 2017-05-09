@@ -1,6 +1,10 @@
 Apollo API Library
 ==================
 
+.. image:: https://travis-ci.org/galaxy-genome-annotation/python-apollo.svg?branch=master
+    :target: https://travis-ci.org/galaxy-genome-annotation/python-apollo
+
+
 Apollo is a Python library for interacting with
 `WebApollo <https://github.com/gmod/apollo/>`__
 
