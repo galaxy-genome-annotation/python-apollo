@@ -12,10 +12,10 @@ class StatusClient(Client):
             'value': value
         }
 
-        return self.request('createStatus', data)
+        return self.post('createStatus', data)
 
     def findAllStatuses(self):
-        return self.request('showStatus', {})
+        return self.post('showStatus', {})
 
     def findStatusByValue(self, value):
         statuses = self.findAllStatuses()
@@ -39,12 +39,11 @@ class StatusClient(Client):
             'new_value': new_value
         }
 
-        return self.request('updateStatus', data)
+        return self.post('updateStatus', data)
 
     def deleteStatus(self, id_number):
         data = {
             'id': id_number
         }
 
-        return self.request('deleteStatus', data)
-
+        return self.post('deleteStatus', data)
