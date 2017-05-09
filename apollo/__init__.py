@@ -1,8 +1,5 @@
-import argparse
-import collections
-import json
-import logging
 import os
+import logging
 
 from cachetools import TTLCache
 from apollo.util import AssertUser
@@ -41,9 +38,9 @@ class ApolloInstance(object):
         self.users = groups.GroupsClient(self)
         self.metrics = io.IOClient(self)
         self.status = metrics.MetricsClient(self)
-        self.canned_comments = organisms.OrganismsClient(self)
-        self.canned_keys = status.StatusClient(self)
-        self.canned_values = users.UsersClient(self)
+        self.cannedcomments = organisms.OrganismsClient(self)
+        self.cannedkeys = status.StatusClient(self)
+        self.cannedvalues = users.UsersClient(self)
 
     def __str__(self):
         return '<ApolloInstance at %s>' % self.apollo_url
@@ -186,6 +183,7 @@ class fakeTrans(object):
 
 
 if __name__ == '__main__':
+    import argparse
     parser = argparse.ArgumentParser(description='Test access to apollo server')
     parser.add_argument('email', help='Email of user to test')
     parser.add_argument('--action', choices=['org', 'group'], default='org', help='Data set to test, fetch a list of groups or users known to the requesting user.')
