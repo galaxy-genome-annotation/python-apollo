@@ -8,7 +8,7 @@ from arrow.decorators import apollo_exception, dict_output
 
 
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(ctx, group, users):
     """Warning: Undocumented Method

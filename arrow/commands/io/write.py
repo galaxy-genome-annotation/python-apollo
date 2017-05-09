@@ -38,7 +38,7 @@ from arrow.decorators import apollo_exception, dict_output
 )
 
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(ctx, exportType="", seqType="", exportFormat="", sequences="", organism="", output="", exportAllSequences=False, exportGff3Fasta=False):
     """Warning: Undocumented Method

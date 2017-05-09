@@ -23,6 +23,6 @@ def get_instance(instance_name=None):
     return conf[instance_name]
 
 
-def get_galaxy_instance(instance_name=None):
+def get_apollo_instance(instance_name=None):
     conf = get_instance(instance_name=instance_name)
     return ApolloInstance(conf['url'], conf['username'], conf['password'])

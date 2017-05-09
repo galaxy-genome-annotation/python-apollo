@@ -32,15 +32,15 @@ class ApolloInstance(object):
         self.password = password
 
         self.annotations = annotations.AnnotationsClient(self)
-        self.groups = cannedcomments.CannedCommentsClient(self)
-        self.io = cannedkeys.CannedKeysClient(self)
-        self.organisms = cannedvalues.CannedValuesClient(self)
-        self.users = groups.GroupsClient(self)
-        self.metrics = io.IOClient(self)
-        self.status = metrics.MetricsClient(self)
-        self.cannedcomments = organisms.OrganismsClient(self)
-        self.cannedkeys = status.StatusClient(self)
-        self.cannedvalues = users.UsersClient(self)
+        self.cannedcomments = cannedcomments.CannedCommentsClient(self)
+        self.cannedkeys = cannedkeys.CannedKeysClient(self)
+        self.cannedvalues = cannedvalues.CannedValuesClient(self)
+        self.groups = groups.GroupsClient(self)
+        self.io = io.IOClient(self)
+        self.metrics = metrics.MetricsClient(self)
+        self.organisms = organisms.OrganismsClient(self)
+        self.status = status.StatusClient(self)
+        self.users = users.UsersClient(self)
 
     def __str__(self):
         return '<ApolloInstance at %s>' % self.apollo_url

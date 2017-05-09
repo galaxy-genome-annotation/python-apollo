@@ -6,7 +6,7 @@ from arrow.decorators import apollo_exception, dict_output
 %(click_arguments)s
 %(click_options)s
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(%(args_with_defaults)s):
     """%(short_docstring)s

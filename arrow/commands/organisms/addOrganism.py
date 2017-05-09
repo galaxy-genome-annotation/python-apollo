@@ -24,7 +24,7 @@ from arrow.decorators import apollo_exception, dict_output
 )
 
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(ctx, commonName, directory, blatdb="", species="", genus="", public=False):
     """Warning: Undocumented Method

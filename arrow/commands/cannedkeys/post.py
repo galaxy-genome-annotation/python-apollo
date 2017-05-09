@@ -16,7 +16,7 @@ from arrow.decorators import apollo_exception, dict_output
 )
 
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(ctx, client_method, data, post_params="", is_json=True):
     """

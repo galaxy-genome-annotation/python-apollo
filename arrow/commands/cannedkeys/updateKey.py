@@ -12,7 +12,7 @@ from arrow.decorators import apollo_exception, dict_output
 )
 
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(ctx, id_number, new_key, metadata=""):
     """Warning: Undocumented Method

@@ -17,6 +17,15 @@ class UsersClient(Client):
 
     # Utter frigging hack
     def getOrganismPermissionsForUser(self, user):
+        """
+        Display a user's organism permissions
+
+        :type user: str
+        :param user: User's email
+
+        :rtype: dict
+        :return: a dictionary containing user's organism permissions
+        """
         return self.loadUser(user).organismPermissions
 
     def updateOrganismPermission(self, user, organism, administrate=False,

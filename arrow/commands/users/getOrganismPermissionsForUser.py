@@ -3,13 +3,13 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import apollo_exception, dict_output
 
 @click.command('getOrganismPermissionsForUser')
-@click.argument("user")
+@click.argument("user", type=str)
 
 
 @pass_context
-@bioblend_exception
+@apollo_exception
 @dict_output
 def cli(ctx, user):
-    """Warning: Undocumented Method
+    """Display a user's organism permissions
     """
     return ctx.gi.users.getOrganismPermissionsForUser(user)

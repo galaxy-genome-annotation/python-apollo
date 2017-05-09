@@ -6,7 +6,7 @@ import json
 
 from .io import error
 from .config import read_global_config  # noqa, ditto
-from .galaxy import get_galaxy_instance, get_toolshed_instance
+from .apollo import get_apollo_instance
 from arrow import __version__  # noqa, ditto
 
 CONTEXT_SETTINGS = dict(auto_envvar_prefix='ARROW')
@@ -86,10 +86,9 @@ class ArrowCLI(click.MultiCommand):
         # We pre-calculate this so it works more nicely within packaged
         # versions of arrow. Please feel free to fix this?
 
-        commands = ['config', 'datasets', 'datatypes', 'folders', 'forms',
-                    'ftpfiles', 'genomes', 'groups', 'histories', 'jobs',
-                    'libraries', 'quotas', 'roles', 'tool', 'tool_data',
-                    'tools', 'toolshed', 'users', 'visual', 'workflows']
+        commands = ['annotations', 'cannedcomments', 'cannedkeys',
+                    'cannedvalues', 'groups', 'io', 'metrics',
+                    'organisms', 'status', 'users']
         return commands
 
     def get_command(self, ctx, name):
@@ -107,22 +106,17 @@ class ArrowCLI(click.MultiCommand):
     required=True
 )
 @pass_context
-def arrow(ctx, galaxy_instance, verbose):
+def arrow(ctx, apollo_instance, verbose):
     """Command line wrappers around Apollo functions. While this sounds
     unexciting, with arrow and jq you can easily build powerful command line
     scripts."""
     # We abuse this, knowing that calls to one will fail.
     try:
-        ctx.gi = get_galaxy_instance(galaxy_instance)
+        ctx.gi = get_apollo_instance(apollo_instance)
     except TypeError:
         pass
         # ctx.log("Could not access Galaxy instance configuration")
 
-    try:
-        ctx.ti = get_toolshed_instance(galaxy_instance)
-    except TypeError:
-        pass
-        # ctx.log("Could not access Toolshed instance configuration")
     ctx.verbose = verbose
 
 
