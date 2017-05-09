@@ -7,7 +7,7 @@ import re
 import glob
 import argparse
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger()
 
 
@@ -261,7 +261,7 @@ class ScriptBuilder(object):
                     if v == '__None__':
                         v = 'None'
                     elif isinstance(v, str):
-                        v = '""'
+                        v = '"%s"' % v
 
                     if v == []:
                         v = None

@@ -22,7 +22,7 @@ from arrow.decorators import apollo_exception, dict_output
 @pass_context
 @apollo_exception
 @dict_output
-def cli(ctx, email, first_name, last_name, password, role="", metadata={}):
+def cli(ctx, email, first_name, last_name, password, role="user", metadata={}):
     """Create a new user
     """
     return ctx.gi.users.create_user(email, first_name, last_name, password, role=role, metadata=metadata)

@@ -92,7 +92,7 @@ class ArrowCLI(click.MultiCommand):
             # 'cannedkeys',
             # 'cannedvalues',
             'groups',
-            # 'io',
+            'io',
             # 'metrics',
             # 'organisms',
             # 'status',
