@@ -8,16 +8,9 @@ from cachetools import TTLCache
 from apollo.util import AssertUser
 from apollo.exceptions import UnknownUserException
 
-from apollo.client.annotations import AnnotationsClient
-from apollo.client.cannedcomments import CannedCommentsClient
-from apollo.client.cannedkeys import CannedKeysClient
-from apollo.client.cannedvalues import CannedValuesClient
-from apollo.client.groups import GroupsClient
-from apollo.client.io import IOClient
-from apollo.client.metrics import MetricsClient
-from apollo.client.organisms import OrganismsClient
-from apollo.client.status import StatusClient
-from apollo.client.users import UsersClient
+from apollo import (annotations, cannedcomments, cannedkeys,
+                    cannedvalues, groups, io, metrics, organisms,
+                    status, users)
 
 import requests
 logging.getLogger("requests").setLevel(logging.CRITICAL)
@@ -41,34 +34,35 @@ class ApolloInstance(object):
         self.username = username
         self.password = password
 
-        self.annotations = AnnotationsClient(self)
-        self.groups = GroupsClient(self)
-        self.io = IOClient(self)
-        self.organisms = OrganismsClient(self)
-        self.users = UsersClient(self)
-        self.metrics = MetricsClient(self)
-        self.status = StatusClient(self)
-        self.canned_comments = CannedCommentsClient(self)
-        self.canned_keys = CannedKeysClient(self)
-        self.canned_values = CannedValuesClient(self)
+        self.annotations = annotations.AnnotationsClient(self)
+        self.groups = cannedcomments.CannedCommentsClient(self)
+        self.io = cannedkeys.CannedKeysClient(self)
+        self.organisms = cannedvalues.CannedValuesClient(self)
+        self.users = groups.GroupsClient(self)
+        self.metrics = io.IOClient(self)
+        self.status = metrics.MetricsClient(self)
+        self.canned_comments = organisms.OrganismsClient(self)
+        self.canned_keys = status.StatusClient(self)
+        self.canned_values = users.UsersClient(self)
 
     def __str__(self):
         return '<ApolloInstance at %s>' % self.apollo_url
 
-    def require_user(self, email):
-        """Require that the user has an account"""
-        cache_key = 'user-list'
-        try:
-            # Get the cached value
-            data = userCache[cache_key]
-        except KeyError:
-            # If we hit a key error above, indicating that
-            # we couldn't find the key, we'll simply re-request
-            # the data
-            data = self.users.loadUsers()
-            userCache[cache_key] = data
 
-        return AssertUser([x for x in data if x.username == email])
+def require_user(wa, email):
+    """Require that the user has an account"""
+    cache_key = 'user-list'
+    try:
+        # Get the cached value
+        data = userCache[cache_key]
+    except KeyError:
+        # If we hit a key error above, indicating that
+        # we couldn't find the key, we'll simply re-request
+        # the data
+        data = wa.users.loadUsers()
+        userCache[cache_key] = data
+
+    return AssertUser([x for x in data if x.username == email])
 
 
 def accessible_organisms(user, orgs):
