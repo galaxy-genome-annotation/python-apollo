@@ -2,7 +2,7 @@ import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import apollo_exception, dict_output
 
-@click.command('loadGroupByName')
+@click.command('create_group')
 @click.argument("name")
 
 
@@ -10,6 +10,6 @@ from arrow.decorators import apollo_exception, dict_output
 @apollo_exception
 @dict_output
 def cli(ctx, name):
-    """Warning: Undocumented Method
+    """Create a new group
     """
-    return ctx.gi.groups.loadGroupByName(name)
+    return ctx.gi.groups.create_group(name)

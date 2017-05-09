@@ -1,82 +1,163 @@
 """
 Contains possible interactions with the Apollo Groups
 """
+import json
+
 from apollo.client import Client
+from apollo.users import _fix_user as _fix_group
 
 
 class GroupsClient(Client):
     CLIENT_BASE = '/group/'
 
-    def createGroup(self, name):
+    def create_group(self, name):
+        """
+        Create a new group
+
+        :rtype: dict
+        :return: Group information dictionary
+        """
         data = {'name': name}
-        return self.request('createGroup', data)
+        return self.post('createGroup', data)
 
-    def getOrganismPermissionsForGroup(self, group):
+    def delete_group(self, group):
+        """
+        Delete a group
+
+        :type group: str
+        :param group: Group name
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
         data = {
-            'id': group.groupId,
-            'name': group.name,
+            'name': group,
         }
-        return self.request('getOrganismPermissionsForGroup', data)
+        return self.post('deleteGroup', data)
 
-    def loadGroup(self, group):
-        return self.loadGroupById(group.groupId)
+    def show_group(self, group_id):
+        """
+        Get information about a group
 
-    def loadGroupById(self, groupId):
-        res = self.request('loadGroups', {'groupId': groupId})
+        :type group: int
+        :param group: Group ID Number
+
+        :rtype: dict
+        :return: a dictionary containing group information
+        """
+        res = self.post('loadGroups', {'groupId': group_id})
         if isinstance(res, list):
-            # We can only match one, right?
-            return res[0]
+            return _fix_group(res[0])
         else:
-            return res
+            return _fix_group(res)
 
-    def loadGroupByName(self, name):
-        res = self.request('loadGroups', {'name': name})
-        if isinstance(res, list):
-            # We can only match one, right?
-            return res[0]
-        else:
-            return res
+    def get_groups(self):
+        """
+        Get all the groups
 
-    def loadGroups(self, group=None):
-        res = self.request('loadGroups', {})
-        if group is not None:
-            res = [x for x in res if x.name == group]
+        :rtype: list of dicts
+        :return: list of a dictionaries containing group information
+        """
+        res = self.post('loadGroups', {})
+        return [_fix_group(group) for group in res]
 
-        return res
+    def update_group(self, group_id, new_name):
+        """
+        Update the name of a group
 
-    def deleteGroup(self, group):
+        :type group: int
+        :param group: group ID number
+
+        :type new_name: str
+        :param new_name: New name for the group
+
+        :rtype: dict
+        :return: a dictionary containing group information
+        """
         data = {
-            'id': group.groupId,
-            'name': group.name,
+            'id': group_id,
+            'name': new_name,
         }
-        return self.request('deleteGroup', data)
+        try:
+            response = self.post('updateGroup', data)
+        except Exception as e:
+            pass
 
-    def updateGroup(self, group, newName):
-        # TODO: Sure would be nice if modifying ``group.name`` would invoke
-        # this?
+        # Apollo returns a 404 here for some unholy reason, despite actually
+        # renaming the group.
+        response = self.post('loadGroups', {'groupId': group_id})[0]
+        return _fix_group(response)
+
+    def get_organism_permissions(self, group):
+        """
+        Get the group's organism permissions
+
+        :type group: str
+        :param group: group name
+
+        :rtype: list
+        :return: a list containing organism permissions (if any)
+        """
         data = {
-            'id': group.groupId,
-            'name': newName,
+            'name': group,
         }
-        return self.request('updateGroup', data)
+        response = _fix_group(self.post('getOrganismPermissionsForGroup', data))
+        return response
 
-    def updateOrganismPermission(self, group, organismName,
-                                 administrate=False, write=False, read=False,
-                                 export=False):
+    def update_organism_permissions(self, group, organism_name,
+                                    administrate=False, write=False,
+                                    read=False, export=False):
+        """
+        Update the group's permissions on an organism
+
+        :type group: str
+        :param group: group name
+
+        :type organism_name: str
+        :param organism_name: Organism name
+
+        :type administrate: bool
+        :param administrate: Should the group have administrate privileges
+
+        :type read: bool
+        :param read: Should the group have read privileges
+
+        :type write: bool
+        :param write: Should the group have write privileges
+
+        :type export: bool
+        :param export: Should the group have export privileges
+
+        :rtype: list
+        :return: list of group organism permissions
+        """
         data = {
-            'groupId': group.groupId,
-            'organism': organismName,
+            'name': group,
+            'organism': organism_name,
             'ADMINISTRATE': administrate,
             'WRITE': write,
             'EXPORT': export,
             'READ': read,
         }
-        return self.request('updateOrganismPermission', data)
+        response = self.post('updateOrganismPermission', data)
+        response['permissions'] = json.loads(response['permissions'])
+        return response
 
-    def updateMembership(self, group, users):
+    def update_membership(self, group_id, users=[]):
+        """
+        [CURRENTLY_BROKEN] Update the group's membership
+
+        :type group_id: int
+        :param group_id: Group ID Number
+
+        :type users: list of str
+        :param users: List of emails
+
+        :rtype: dict
+        :return: dictionary of group information
+        """
         data = {
-            'groupId': group.groupId,
-            'user': [user.email for user in users]
+            'groupId': group_id,
+            'user': users,
         }
-        return self.request('updateMembership', data)
-
+        return _fix_group(self.post('updateMembership', data))

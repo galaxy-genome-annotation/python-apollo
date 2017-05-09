@@ -91,7 +91,7 @@ class ArrowCLI(click.MultiCommand):
             # 'cannedcomments',
             # 'cannedkeys',
             # 'cannedvalues',
-            # 'groups',
+            'groups',
             # 'io',
             # 'metrics',
             # 'organisms',

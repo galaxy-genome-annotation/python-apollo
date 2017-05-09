@@ -5,10 +5,7 @@ import json
 
 from apollo.client import Client
 
-
-def _fix_user(user):
-    # Fix the stupid empty permissions that inflate the response
-    # unneccessarily.
+def _fix_single_user(user):
     if 'organismPermissions' in user:
         org_perms = []
         for org in user['organismPermissions']:
@@ -16,7 +13,23 @@ def _fix_user(user):
             if len(org['permissions']) > 0:
                 org_perms.append(org)
         user['organismPermissions'] = org_perms
+    elif 'permissions' in user:
+        user['permissions'] = json.loads(user['permissions'])
     return user
+
+def _fix_user(user):
+    # Fix the stupid empty permissions that inflate the response
+    # unneccessarily.
+    if isinstance(user, list):
+        data = [_fix_single_user(u) for u in user]
+        # Remove empty
+        # data = [
+            # x for x in data if
+            # ('permissions' in x and len(x['permissions']) != 0)
+        # ]
+        return data
+    else:
+        return _fix_single_user(user)
 
 
 class UsersClient(Client):
