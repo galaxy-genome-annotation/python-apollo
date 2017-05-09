@@ -9,6 +9,6 @@ from arrow.decorators import apollo_exception, dict_output
 @apollo_exception
 @dict_output
 def cli(ctx):
-    """Warning: Undocumented Method
+    """Get all users known to this Apollo instance
     """
     return ctx.gi.users.get_users()

@@ -30,6 +30,12 @@ class UsersClient(Client):
         return response
 
     def get_users(self):
+        """
+        Get all users known to this Apollo instance
+
+        :rtype: list of dicts
+        :return: list of user info dictionaries
+        """
         res = self.post('loadUsers', {})
         data = [_fix_user(user) for user in res]
         return data
