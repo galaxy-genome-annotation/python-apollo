@@ -15,16 +15,16 @@ This section is auto-generated from the help text for the arrow command
 
 Create a new group
 
-Output:
-
- Group information dictionary
-    
 
 **Output**::
 
 
-    
-           Group information dictionary
+Create a new group
+
+Output:
+
+Group information dictionary
+   
     
 **Options**::
 
@@ -46,16 +46,16 @@ This section is auto-generated from the help text for the arrow command
 
 Delete a group
 
-Output:
-
- an empty dictionary
-    
 
 **Output**::
 
 
-    
-           an empty dictionary
+Delete a group
+
+Output:
+
+an empty dictionary
+   
     
 **Options**::
 
@@ -77,16 +77,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get all the groups
 
-Output:
-
- list of a dictionaries containing group information
-    
 
 **Output**::
 
 
-    
-           list of a dictionaries containing group information
+Get all the groups
+
+Output:
+
+list of a dictionaries containing group information
+   
     
 **Options**::
 
@@ -108,16 +108,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get the group's organism permissions
 
-Output:
-
- a list containing organism permissions (if any)
-    
 
 **Output**::
 
 
-    
-           a list containing organism permissions (if any)
+Get the group's organism permissions
+
+Output:
+
+a list containing organism permissions (if any)
+   
     
 **Options**::
 
@@ -139,16 +139,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get information about a group
 
-Output:
-
- a dictionary containing group information
-    
 
 **Output**::
 
 
-    
-           a dictionary containing group information
+Get information about a group
+
+Output:
+
+a dictionary containing group information
+   
     
 **Options**::
 
@@ -171,16 +171,16 @@ This section is auto-generated from the help text for the arrow command
 
 Update the name of a group
 
-Output:
-
- a dictionary containing group information
-    
 
 **Output**::
 
 
-    
-           a dictionary containing group information
+Update the name of a group
+
+Output:
+
+a dictionary containing group information
+   
     
 **Options**::
 
@@ -203,16 +203,16 @@ This section is auto-generated from the help text for the arrow command
 
 [CURRENTLY_BROKEN] Update the group's membership
 
-Output:
-
- dictionary of group information
-    
 
 **Output**::
 
 
-    
-           dictionary of group information
+[CURRENTLY_BROKEN] Update the group's membership
+
+Output:
+
+dictionary of group information
+   
     
 **Options**::
 
@@ -235,16 +235,16 @@ This section is auto-generated from the help text for the arrow command
 
 Update the group's permissions on an organism
 
-Output:
-
- list of group organism permissions
-    
 
 **Output**::
 
 
-    
-           list of group organism permissions
+Update the group's permissions on an organism
+
+Output:
+
+list of group organism permissions
+   
     
 **Options**::
 

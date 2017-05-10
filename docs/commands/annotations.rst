@@ -15,16 +15,16 @@ This section is auto-generated from the help text for the arrow command
 
 Add an attribute to a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Add an attribute to a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -48,16 +48,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set a feature's description
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set a feature's description
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -82,16 +82,16 @@ This section is auto-generated from the help text for the arrow command
 
 Add a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Add a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -116,16 +116,16 @@ This section is auto-generated from the help text for the arrow command
 
 [UNTESTED] Add a transcript to a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+[UNTESTED] Add a transcript to a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -152,16 +152,16 @@ This section is auto-generated from the help text for the arrow command
 
 Delete an attribute from a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Delete an attribute from a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -185,16 +185,16 @@ This section is auto-generated from the help text for the arrow command
 
 Delete a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Delete a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -218,16 +218,16 @@ This section is auto-generated from the help text for the arrow command
 
 [UNTESTED] Delete a specific feature alteration
 
-Output:
-
- A list of sequence alterations(?)
-    
 
 **Output**::
 
 
-    
-           A list of sequence alterations(?)
+[UNTESTED] Delete a specific feature alteration
+
+Output:
+
+A list of sequence alterations(?)
+   
     
 **Options**::
 
@@ -251,16 +251,16 @@ This section is auto-generated from the help text for the arrow command
 
 Duplicate a transcripte
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Duplicate a transcripte
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -284,16 +284,16 @@ This section is auto-generated from the help text for the arrow command
 
 Flip the strand of a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Flip the strand of a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -317,16 +317,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get a feature's comments
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Get a feature's comments
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -350,16 +350,16 @@ This section is auto-generated from the help text for the arrow command
 
 [CURRENTLY BROKEN] Get the sequence of a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+[CURRENTLY BROKEN] Get the sequence of a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -383,16 +383,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get the features for an organism / sequence
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Get the features for an organism / sequence
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -416,16 +416,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get the GFF3 associated with a feature
 
-Output:
-
- GFF3 text content
-    
 
 **Output**::
 
 
-    
-           GFF3 text content
+Get the GFF3 associated with a feature
+
+Output:
+
+GFF3 text content
+   
     
 **Options**::
 
@@ -449,42 +449,32 @@ This section is auto-generated from the help text for the arrow command
 
 Get the search tools available
 
-Output:
-
- dictionary containing the search tools and their metadata. E.g.::
-        {
-            "sequence_search_tools": {
-                "blat_prot": {
-                    "name": "Blat protein",
-                    "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineProteinToNucleotide",
-                    "params": "",
-                    "search_exe": "/usr/local/bin/blat"
-                },
-                "blat_nuc": {
-                    "name": "Blat nucleotide",
-                    "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineNucleotideToNucleotide",
-                    "params": "",
-                    "search_exe": "/usr/local/bin/blat"
-                }
-            }
-        }
-    
 
 **Output**::
 
 
-    
-           dictionary containing the search tools and their metadata. E.g.::
-           {                 "sequence_search_tools": {
-           "blat_prot": {                         "name": "Blat protein",
-           "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLinePr
-           oteinToNucleotide",                         "params": "",
-           "search_exe": "/usr/local/bin/blat"                     },
-           "blat_nuc": {                         "name": "Blat nucleotide",
-           "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineNu
-           cleotideToNucleotide",                         "params": "",
-           "search_exe": "/usr/local/bin/blat"                     }
-           }             }
+Get the search tools available
+
+Output:
+
+dictionary containing the search tools and their metadata. E.g.::
+       {
+           "sequence_search_tools": {
+               "blat_prot": {
+                   "name": "Blat protein",
+                   "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineProteinToNucleotide",
+                   "params": "",
+                   "search_exe": "/usr/local/bin/blat"
+               },
+               "blat_nuc": {
+                   "name": "Blat nucleotide",
+                   "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineNucleotideToNucleotide",
+                   "params": "",
+                   "search_exe": "/usr/local/bin/blat"
+               }
+           }
+       }
+   
     
 **Options**::
 
@@ -506,16 +496,16 @@ This section is auto-generated from the help text for the arrow command
 
 [UNTESTED] Get all of the sequence's alterations
 
-Output:
-
- A list of sequence alterations(?)
-    
 
 **Output**::
 
 
-    
-           A list of sequence alterations(?)
+[UNTESTED] Get all of the sequence's alterations
+
+Output:
+
+A list of sequence alterations(?)
+   
     
 **Options**::
 
@@ -539,16 +529,16 @@ This section is auto-generated from the help text for the arrow command
 
 Merge two exons
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Merge two exons
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -572,16 +562,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set the boundaries of a genomic feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set the boundaries of a genomic feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -605,16 +595,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set a feature's description
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set a feature's description
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -638,16 +628,16 @@ This section is auto-generated from the help text for the arrow command
 
 Automatically pick the longest ORF in a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Automatically pick the longest ORF in a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -671,16 +661,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set a feature's name
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set a feature's name
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -704,16 +694,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set the feature to read through the first encountered stop codon
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set the feature to read through the first encountered stop codon
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -737,16 +727,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
 
-Output:
-
- None
-    
 
 **Output**::
 
 
-    
-           None
+Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
+
+Output:
+
+None
+   
     
 **Options**::
 
@@ -768,16 +758,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set a feature's description
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set a feature's description
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -801,16 +791,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set a feature's description
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set a feature's description
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -834,16 +824,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set a feature's end
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set a feature's end
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -867,16 +857,16 @@ This section is auto-generated from the help text for the arrow command
 
 Set the translation start of a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Set the translation start of a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 
@@ -900,16 +890,16 @@ This section is auto-generated from the help text for the arrow command
 
 Delete an attribute from a feature
 
-Output:
-
- A standard apollo feature dictionary ({"features": [{...}]})
-    
 
 **Output**::
 
 
-    
-           A standard apollo feature dictionary ({"features": [{...}]})
+Delete an attribute from a feature
+
+Output:
+
+A standard apollo feature dictionary ({"features": [{...}]})
+   
     
 **Options**::
 

@@ -15,16 +15,16 @@ This section is auto-generated from the help text for the arrow command
 
 TODO: Undocumented
 
-Output:
-
- ???
-    
 
 **Output**::
 
 
-    
-           ???
+TODO: Undocumented
+
+Output:
+
+???
+   
     
 **Options**::
 
@@ -46,16 +46,16 @@ This section is auto-generated from the help text for the arrow command
 
 TODO: Undocumented
 
-Output:
-
- ???
-    
 
 **Output**::
 
 
-    
-           ???
+TODO: Undocumented
+
+Output:
+
+???
+   
     
 **Options**::
 
@@ -77,16 +77,16 @@ This section is auto-generated from the help text for the arrow command
 
 TODO: Undocumented
 
-Output:
-
- ???
-    
 
 **Output**::
 
 
-    
-           ???
+TODO: Undocumented
+
+Output:
+
+???
+   
     
 **Options**::
 
@@ -108,16 +108,16 @@ This section is auto-generated from the help text for the arrow command
 
 TODO: Undocumented
 
-Output:
-
- ???
-    
 
 **Output**::
 
 
-    
-           ???
+TODO: Undocumented
+
+Output:
+
+???
+   
     
 **Options**::
 
@@ -139,16 +139,16 @@ This section is auto-generated from the help text for the arrow command
 
 TODO: Undocumented
 
-Output:
-
- ???
-    
 
 **Output**::
 
 
-    
-           ???
+TODO: Undocumented
+
+Output:
+
+???
+   
     
 **Options**::
 
@@ -170,16 +170,16 @@ This section is auto-generated from the help text for the arrow command
 
 TODO: Undocumented
 
-Output:
-
- ???
-    
 
 **Output**::
 
 
-    
-           ???
+TODO: Undocumented
+
+Output:
+
+???
+   
     
 **Options**::
 

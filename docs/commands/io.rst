@@ -15,16 +15,16 @@ This section is auto-generated from the help text for the arrow command
 
 [CURRENTLY BROKEN] Download pre-prepared data by UUID
 
-Output:
-
- a dictionary
-    
 
 **Output**::
 
 
-    
-           a dictionary
+[CURRENTLY BROKEN] Download pre-prepared data by UUID
+
+Output:
+
+a dictionary
+   
     
 **Options**::
 
@@ -75,16 +75,16 @@ This section is auto-generated from the help text for the arrow command
 
 Prepare a download for an organism
 
-Output:
-
- a dictionary containing download information
-    
 
 **Output**::
 
 
-    
-           a dictionary containing download information
+Prepare a download for an organism
+
+Output:
+
+a dictionary containing download information
+   
     
 **Options**::
 
@@ -112,16 +112,16 @@ This section is auto-generated from the help text for the arrow command
 
 Download or prepare a download for an organism
 
-Output:
-
- the exported data
-    
 
 **Output**::
 
 
-    
-           the exported data
+Download or prepare a download for an organism
+
+Output:
+
+the exported data
+   
     
 **Options**::
 

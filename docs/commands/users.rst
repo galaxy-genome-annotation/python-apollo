@@ -15,16 +15,16 @@ This section is auto-generated from the help text for the arrow command
 
 Add a user to a group
 
-Output:
-
- an empty dictionary
-    
 
 **Output**::
 
 
-    
-           an empty dictionary
+Add a user to a group
+
+Output:
+
+an empty dictionary
+   
     
 **Options**::
 
@@ -46,16 +46,16 @@ This section is auto-generated from the help text for the arrow command
 
 Create a new user
 
-Output:
-
- an empty dictionary
-    
 
 **Output**::
 
 
-    
-           an empty dictionary
+Create a new user
+
+Output:
+
+an empty dictionary
+   
     
 **Options**::
 
@@ -79,16 +79,16 @@ This section is auto-generated from the help text for the arrow command
 
 Delete a user
 
-Output:
-
- an empty dictionary
-    
 
 **Output**::
 
 
-    
-           an empty dictionary
+Delete a user
+
+Output:
+
+an empty dictionary
+   
     
 **Options**::
 
@@ -110,16 +110,16 @@ This section is auto-generated from the help text for the arrow command
 
 Display a user's organism permissions
 
-Output:
-
- a dictionary containing user's organism permissions
-    
 
 **Output**::
 
 
-    
-           a dictionary containing user's organism permissions
+Display a user's organism permissions
+
+Output:
+
+a dictionary containing user's organism permissions
+   
     
 **Options**::
 
@@ -141,16 +141,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get all users known to this Apollo instance
 
-Output:
-
- list of user info dictionaries
-    
 
 **Output**::
 
 
-    
-           list of user info dictionaries
+Get all users known to this Apollo instance
+
+Output:
+
+list of user info dictionaries
+   
     
 **Options**::
 
@@ -172,16 +172,16 @@ This section is auto-generated from the help text for the arrow command
 
 Remove a user from a group
 
-Output:
-
- an empty dictionary
-    
 
 **Output**::
 
 
-    
-           an empty dictionary
+Remove a user from a group
+
+Output:
+
+an empty dictionary
+   
     
 **Options**::
 
@@ -203,16 +203,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get a specific user
 
-Output:
-
- a dictionary containing user information
-    
 
 **Output**::
 
 
-    
-           a dictionary containing user information
+Get a specific user
+
+Output:
+
+a dictionary containing user information
+   
     
 **Options**::
 
@@ -234,16 +234,16 @@ This section is auto-generated from the help text for the arrow command
 
 Update the permissions of a user on a specified organism
 
-Output:
-
- a dictionary containing user's organism permissions
-    
 
 **Output**::
 
 
-    
-           a dictionary containing user's organism permissions
+Update the permissions of a user on a specified organism
+
+Output:
+
+a dictionary containing user's organism permissions
+   
     
 **Options**::
 
@@ -269,16 +269,16 @@ This section is auto-generated from the help text for the arrow command
 
 Update an existing user
 
-Output:
-
- a dictionary containing user information
-    
 
 **Output**::
 
 
-    
-           a dictionary containing user information
+Update an existing user
+
+Output:
+
+a dictionary containing user information
+   
     
 **Options**::
 

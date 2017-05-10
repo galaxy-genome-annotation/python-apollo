@@ -39,16 +39,16 @@ This section is auto-generated from the help text for the arrow command
 
 Add an organism
 
-Output:
-
- a dictionary with information about the new organism
-    
 
 **Output**::
 
 
-    
-           a dictionary with information about the new organism
+Add an organism
+
+Output:
+
+a dictionary with information about the new organism
+   
     
 **Options**::
 
@@ -114,16 +114,16 @@ This section is auto-generated from the help text for the arrow command
 
 Remove features of an organism
 
-Output:
-
- an empty dictionary
-    
 
 **Output**::
 
 
-    
-           an empty dictionary
+Remove features of an organism
+
+Output:
+
+an empty dictionary
+   
     
 **Options**::
 
@@ -145,16 +145,16 @@ This section is auto-generated from the help text for the arrow command
 
 Delete an organim
 
-Output:
-
- A list of all remaining organisms
-    
 
 **Output**::
 
 
-    
-           A list of all remaining organisms
+Delete an organim
+
+Output:
+
+A list of all remaining organisms
+   
     
 **Options**::
 
@@ -256,16 +256,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get all organisms
 
-Output:
-
- Organisms information
-    
 
 **Output**::
 
 
-    
-           Organisms information
+Get all organisms
+
+Output:
+
+Organisms information
+   
     
 **Options**::
 
@@ -289,16 +289,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get the sequences for an organism
 
-Output:
-
- The set of sequences associated with an organism
-    
 
 **Output**::
 
 
-    
-           The set of sequences associated with an organism
+Get the sequences for an organism
+
+Output:
+
+The set of sequences associated with an organism
+   
     
 **Options**::
 
@@ -320,16 +320,16 @@ This section is auto-generated from the help text for the arrow command
 
 Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
 
-Output:
-
- a dictionary containing the organism's information
-    
 
 **Output**::
 
 
-    
-           a dictionary containing the organism's information
+Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
+
+Output:
+
+a dictionary containing the organism's information
+   
     
 **Options**::
 
@@ -375,16 +375,16 @@ This section is auto-generated from the help text for the arrow command
 
 Update an organism
 
-Output:
-
- a dictionary with information about the new organism
-    
 
 **Output**::
 
 
-    
-           a dictionary with information about the new organism
+Update an organism
+
+Output:
+
+a dictionary with information about the new organism
+   
     
 **Options**::
 

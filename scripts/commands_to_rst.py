@@ -57,12 +57,18 @@ for command in list_cmds():
         function = command_obj.callback
         raw_rst = function.__doc__
 
-        def clean_rst_line(line):
-            if line.startswith("    "):
-                return line[4:]
+        def clean_rst_line(line, remove=4):
+            if line.startswith(" " * remove):
+                return line[remove:]
             else:
                 return line
         clean_rst = "\n".join(map(clean_rst_line, raw_rst.split("\n")))
+        if 'Output:' in clean_rst:
+            output_rst = clean_rst[clean_rst.index('Output:') + len('Output:'):].lstrip('\n')
+            clean_rst = clean_rst[0:clean_rst.index('Output:')]
+            output_rst = "\n".join([clean_rst_line(x, remove=5) for x in raw_rst.split("\n")])
+        else:
+            output_rst = ""
 
         result = runner.invoke(arrow_cli, [command, subcommand, "--help"])
         output = result.output
@@ -70,6 +76,7 @@ for command in list_cmds():
         new_lines = []
         help_lines = False
         option_lines = False
+        output_lines = False
 
         for line in lines:
             if line.startswith("Usage: "):
@@ -77,16 +84,23 @@ for command in list_cmds():
                 new_lines.append("\n**Help**\n")
                 new_lines.append(clean_rst)
                 help_lines = True
+                option_lines = False
+                output_lines = False
             elif line.startswith("Options:"):
                 help_lines = False
-                new_lines.append("**Options**::\n\n")
                 option_lines = True
+                output_lines = False
+                new_lines.append("**Options**::\n\n")
             elif line.strip().startswith("Output:"):
                 help_lines = False
+                option_lines = False
+                output_lines = True
                 new_lines.append("**Output**::\n\n")
-                option_lines = True
+                new_lines.append(output_rst)
             elif option_lines:
                 new_lines.append("    %s" % line)
+            elif output_lines:
+                pass
         text = COMMAND_TEMPLATE.safe_substitute(
             command=command,
             subcommand=subcommand,
