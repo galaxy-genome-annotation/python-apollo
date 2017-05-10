@@ -47,6 +47,7 @@ This will:
 Alternatively you can:
 
 .. code-block:: shell
+
     $ arrow users get_users | \
         jq '.[] | select(.username | contains("@tamu.edu")) | .username' | \
         paste -s -d',' | \
