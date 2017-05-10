@@ -39,6 +39,22 @@ Examples
         read=True,
     )
 
+Or with the new Arrow client:
+
+.. code-block:: shell
+
+    $ arrow groups create_group university
+    {
+        "publicGroup": false,
+        "class": "org.bbop.apollo.UserGroup",
+        "name": "university",
+        "users": null,
+        "id": 558319
+    }
+    $ arrow users get_users | \
+        jq '.[] | select(.username | contains("@tamu.edu")) | .username' | \
+        xargs -n1 arrow users add_to_group university
+
 History
 -------
 

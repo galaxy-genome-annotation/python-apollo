@@ -33,7 +33,7 @@ Now, let's find all users from a certain domain and add them to this group of "u
 
 .. code-block:: shell
 
-    arrow users get_users | \
+    $ arrow users get_users | \
         jq '.[] | select(.username | contains("@tamu.edu")) | .username' | \
         xargs -n1 arrow users add_to_group university
 
