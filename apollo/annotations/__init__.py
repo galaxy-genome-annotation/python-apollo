@@ -2,7 +2,6 @@
 Contains possible interactions with the Apollo's Annotations
 """
 from apollo.client import Client
-import collections
 
 
 class AnnotationsClient(Client):
