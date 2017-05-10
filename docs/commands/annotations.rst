@@ -363,7 +363,9 @@ Get the search tools available
 **Output**
 
 
-dictionary containing the search tools and their metadata. E.g.::
+dictionary containing the search tools and their metadata.
+     For example::
+
        {
            "sequence_search_tools": {
                "blat_prot": {

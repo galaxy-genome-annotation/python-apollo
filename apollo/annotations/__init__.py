@@ -735,7 +735,9 @@ class AnnotationsClient(Client):
         Get the search tools available
 
         :rtype: dict
-        :return: dictionary containing the search tools and their metadata. E.g.::
+        :return: dictionary containing the search tools and their metadata.
+          For example::
+
             {
                 "sequence_search_tools": {
                     "blat_prot": {
