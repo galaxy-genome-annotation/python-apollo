@@ -11,7 +11,9 @@ Welcome to Python-Apollo's documentation!
 
    apollo
    api_examples
+
    arrow
+   commands
 
 
 Indices and tables

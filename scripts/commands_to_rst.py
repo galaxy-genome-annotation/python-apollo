@@ -9,17 +9,17 @@ from click.testing import CliRunner
 project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, project_dir)
 
-from parsec.cli import list_cmds, list_subcmds
-from parsec import cli
+from arrow.cli import list_cmds, list_subcmds
+from arrow import cli
 
-parsec_cli = cli.parsec
+arrow_cli = cli.arrow
 runner = CliRunner()
 
 COMMAND_TEMPLATE = Template('''
 ``${subcommand}`` command
 ${module_underline}
 
-This section is auto-generated from the help text for the parsec command
+This section is auto-generated from the help text for the arrow command
 ``${command}``.
 
 ${command_help}
@@ -29,9 +29,9 @@ COMMANDS_TEMPLATE = """========
 Commands
 ========
 
-parsec is a set of wrappers for BioBlend's API. It builds a set of small,
+arrow is a set of wrappers for BioBlend's API. It builds a set of small,
 useful utilities for talking to Galaxy servers. Each utility is implemented as
-a subcommand of ``parsec``. This section of the documentation
+a subcommand of ``arrow``. This section of the documentation
 describes these commands.
 
 .. toctree::
@@ -64,7 +64,7 @@ for command in list_cmds():
                 return line
         clean_rst = "\n".join(map(clean_rst_line, raw_rst.split("\n")))
 
-        result = runner.invoke(parsec_cli, [command, subcommand, "--help"])
+        result = runner.invoke(arrow_cli, [command, subcommand, "--help"])
         output = result.output
         lines = output.split("\n")
         new_lines = []
