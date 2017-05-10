@@ -1,30 +1,6 @@
 organisms
 =========
 
-``addOrganism`` command
------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms addOrganism``.
-
-**Usage**::
-
-    arrow organisms addOrganism [OPTIONS] COMMONNAME DIRECTORY
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --blatdb TEXT
-      --species TEXT
-      --genus TEXT
-      --public TEXT
-      -h, --help      Show this message and exit.
-    
-
 ``add_organism`` command
 ------------------------
 
@@ -58,46 +34,6 @@ a dictionary with information about the new organism
       --species TEXT  Species
       --public        User's email
       -h, --help      Show this message and exit.
-    
-
-``deleteOrganism`` command
---------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms deleteOrganism``.
-
-**Usage**::
-
-    arrow organisms deleteOrganism [OPTIONS] ORGANISMID
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      -h, --help  Show this message and exit.
-    
-
-``deleteOrganismFeatures`` command
-----------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms deleteOrganismFeatures``.
-
-**Usage**::
-
-    arrow organisms deleteOrganismFeatures [OPTIONS] ORGANISMID
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      -h, --help  Show this message and exit.
     
 
 ``delete_features`` command
@@ -156,86 +92,6 @@ Output:
 A list of all remaining organisms
    
     
-**Options**::
-
-
-      -h, --help  Show this message and exit.
-    
-
-``findAllOrganisms`` command
-----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms findAllOrganisms``.
-
-**Usage**::
-
-    arrow organisms findAllOrganisms [OPTIONS]
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      -h, --help  Show this message and exit.
-    
-
-``findOrganismByCn`` command
-----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms findOrganismByCn``.
-
-**Usage**::
-
-    arrow organisms findOrganismByCn [OPTIONS] CN
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      -h, --help  Show this message and exit.
-    
-
-``findOrganismById`` command
-----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms findOrganismById``.
-
-**Usage**::
-
-    arrow organisms findOrganismById [OPTIONS] ID_NUMBER
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      -h, --help  Show this message and exit.
-    
-
-``getSequencesForOrganism`` command
------------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms getSequencesForOrganism``.
-
-**Usage**::
-
-    arrow organisms getSequencesForOrganism [OPTIONS] COMMONNAME
-
-**Help**
-
-Warning: Undocumented Method
-
 **Options**::
 
 
@@ -335,30 +191,6 @@ a dictionary containing the organism's information
 
 
       -h, --help  Show this message and exit.
-    
-
-``updateOrganismInfo`` command
-------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms updateOrganismInfo``.
-
-**Usage**::
-
-    arrow organisms updateOrganismInfo [OPTIONS] ORGANISM_ID COMMON_NAME
-
-**Help**
-
-Update an organism
-
-**Options**::
-
-
-      --blatdb TEXT   Server-side Blat directory for the organism
-      --species TEXT  Species
-      --genus TEXT    Genus
-      --public        User's email
-      -h, --help      Show this message and exit.
     
 
 ``update_organism`` command
