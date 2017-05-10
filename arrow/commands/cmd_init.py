@@ -38,12 +38,12 @@ def cli(ctx, url=None, api_key=None, admin=False, **kwds):
     while True:
         apollo_url= click.prompt("Please entry your Apollo's URL")
         apollo_username = click.prompt("Please entry your Apollo Username")
-        apollo_password = click.prompt("Please entry your Apollo Password")
+        apollo_password = click.prompt("Please entry your Apollo Password", hide_input=True)
         info("Testing connection...")
         try:
             ai = ApolloInstance(apollo_url, apollo_username, apollo_password)
             try:
-                ai.metrics.getServerMetrics()
+                ai.metrics.get()
                 # Ok, success
                 info("Ok! Everything looks good.")
                 break
