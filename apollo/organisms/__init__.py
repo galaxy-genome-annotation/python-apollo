@@ -149,8 +149,8 @@ class OrganismsClient(Client):
         :type organism_id: str
         :param organism_id: Organism ID Number
 
-        :rtype: dict
-        :return: an empty dictionary
+        :rtype: list
+        :return: A list of all remaining organisms
         """
         return self.post('deleteOrganism', {'id': organism_id})
 
