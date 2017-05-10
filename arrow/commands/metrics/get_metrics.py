@@ -2,7 +2,7 @@ import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import apollo_exception, dict_output
 
-@click.command('getServerMetrics')
+@click.command('get_metrics')
 
 
 @pass_context
@@ -10,5 +10,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx):
     """Get all server metrics
+
+Output:
+
+     A dictionary with all of the server timing / metrics
+        
     """
-    return ctx.gi.metrics.getServerMetrics()
+    return ctx.gi.metrics.get_metrics()

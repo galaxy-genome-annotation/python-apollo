@@ -1,20 +1,31 @@
 metrics
 =======
 
-``getServerMetrics`` command
-----------------------------
+``get_metrics`` command
+-----------------------
 
 This section is auto-generated from the help text for the arrow command
-``metrics getServerMetrics``.
+``metrics get_metrics``.
 
 **Usage**::
 
-    arrow metrics getServerMetrics [OPTIONS]
+    arrow metrics get_metrics [OPTIONS]
 
 **Help**
 
 Get all server metrics
 
+
+**Output**::
+
+
+Get all server metrics
+
+Output:
+
+A dictionary with all of the server timing / metrics
+   
+    
 **Options**::
 
 

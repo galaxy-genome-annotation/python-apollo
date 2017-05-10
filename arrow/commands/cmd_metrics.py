@@ -1,5 +1,5 @@
 import click
-from arrow.commands.metrics.getServerMetrics import cli as func0
+from arrow.commands.metrics.get_metrics import cli as func0
 
 @click.group()
 def cli():
