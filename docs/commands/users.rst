@@ -5,7 +5,7 @@ users
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users add_to_group``.
 
 **Usage**::
 
@@ -25,7 +25,7 @@ Add a user to a group
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users create_user``.
 
 **Usage**::
 
@@ -47,7 +47,7 @@ Create a new user
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users delete_user``.
 
 **Usage**::
 
@@ -67,7 +67,7 @@ Delete a user
 ------------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users get_organism_permissions``.
 
 **Usage**::
 
@@ -87,7 +87,7 @@ Display a user's organism permissions
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users get_users``.
 
 **Usage**::
 
@@ -107,7 +107,7 @@ Get all users known to this Apollo instance
 -----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users remove_from_group``.
 
 **Usage**::
 
@@ -127,7 +127,7 @@ Remove a user from a group
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users show_user``.
 
 **Usage**::
 
@@ -147,7 +147,7 @@ Get a specific user
 ---------------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users update_organism_permissions``.
 
 **Usage**::
 
@@ -171,7 +171,7 @@ Update the permissions of a user on a specified organism
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``users``.
+``users update_user``.
 
 **Usage**::
 

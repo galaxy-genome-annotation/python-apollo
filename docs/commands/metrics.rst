@@ -5,7 +5,7 @@ metrics
 ----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``metrics``.
+``metrics getServerMetrics``.
 
 **Usage**::
 

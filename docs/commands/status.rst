@@ -5,7 +5,7 @@ status
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``status``.
+``status addStatus``.
 
 **Usage**::
 
@@ -25,7 +25,7 @@ Warning: Undocumented Method
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``status``.
+``status deleteStatus``.
 
 **Usage**::
 
@@ -45,7 +45,7 @@ Warning: Undocumented Method
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``status``.
+``status findAllStatuses``.
 
 **Usage**::
 
@@ -65,7 +65,7 @@ Warning: Undocumented Method
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``status``.
+``status findStatusById``.
 
 **Usage**::
 
@@ -85,7 +85,7 @@ Warning: Undocumented Method
 -----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``status``.
+``status findStatusByValue``.
 
 **Usage**::
 
@@ -105,7 +105,7 @@ Warning: Undocumented Method
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``status``.
+``status updateStatus``.
 
 **Usage**::
 

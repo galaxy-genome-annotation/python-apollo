@@ -5,7 +5,7 @@ cannedkeys
 ------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedkeys``.
+``cannedkeys addKey``.
 
 **Usage**::
 
@@ -26,7 +26,7 @@ Warning: Undocumented Method
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedkeys``.
+``cannedkeys deleteKey``.
 
 **Usage**::
 
@@ -46,7 +46,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedkeys``.
+``cannedkeys findAllKeys``.
 
 **Usage**::
 
@@ -66,7 +66,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedkeys``.
+``cannedkeys findKeyById``.
 
 **Usage**::
 
@@ -86,7 +86,7 @@ Warning: Undocumented Method
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedkeys``.
+``cannedkeys findKeyByValue``.
 
 **Usage**::
 
@@ -106,7 +106,7 @@ Warning: Undocumented Method
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedkeys``.
+``cannedkeys updateKey``.
 
 **Usage**::
 

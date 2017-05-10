@@ -5,7 +5,7 @@ io
 --------------------
 
 This section is auto-generated from the help text for the arrow command
-``io``.
+``io download``.
 
 **Usage**::
 
@@ -26,7 +26,7 @@ This section is auto-generated from the help text for the arrow command
 -----------------
 
 This section is auto-generated from the help text for the arrow command
-``io``.
+``io write``.
 
 **Usage**::
 

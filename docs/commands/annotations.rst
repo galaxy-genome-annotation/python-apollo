@@ -5,7 +5,7 @@ annotations
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations addAttributes``.
 
 **Usage**::
 
@@ -25,7 +25,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations addComments``.
 
 **Usage**::
 
@@ -45,7 +45,7 @@ Warning: Undocumented Method
 ----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations addFeature``.
 
 **Usage**::
 
@@ -66,7 +66,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations addTranscript``.
 
 **Usage**::
 
@@ -87,7 +87,7 @@ Warning: Undocumented Method
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations deleteAttribute``.
 
 **Usage**::
 
@@ -107,7 +107,7 @@ Warning: Undocumented Method
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations deleteFeatures``.
 
 **Usage**::
 
@@ -127,7 +127,7 @@ Warning: Undocumented Method
 ------------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations deleteSequenceAlteration``.
 
 **Usage**::
 
@@ -147,7 +147,7 @@ Warning: Undocumented Method
 -------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations duplicateTranscript``.
 
 **Usage**::
 
@@ -167,7 +167,7 @@ Warning: Undocumented Method
 ----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations flipStrand``.
 
 **Usage**::
 
@@ -187,7 +187,7 @@ Warning: Undocumented Method
 -----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getCannedComments``.
 
 **Usage**::
 
@@ -207,7 +207,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getComments``.
 
 **Usage**::
 
@@ -227,7 +227,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getFeatures``.
 
 **Usage**::
 
@@ -247,7 +247,7 @@ Warning: Undocumented Method
 -------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getGff3``.
 
 **Usage**::
 
@@ -267,7 +267,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getSequence``.
 
 **Usage**::
 
@@ -287,7 +287,7 @@ Warning: Undocumented Method
 ----------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getSequenceAlterations``.
 
 **Usage**::
 
@@ -307,7 +307,7 @@ Warning: Undocumented Method
 ----------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations getSequenceSearchTools``.
 
 **Usage**::
 
@@ -327,7 +327,7 @@ Warning: Undocumented Method
 ----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations mergeExons``.
 
 **Usage**::
 
@@ -347,7 +347,7 @@ Warning: Undocumented Method
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations searchSequence``.
 
 **Usage**::
 
@@ -367,7 +367,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setBoundaries``.
 
 **Usage**::
 
@@ -387,7 +387,7 @@ Warning: Undocumented Method
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setDescription``.
 
 **Usage**::
 
@@ -407,7 +407,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setLongestOrf``.
 
 **Usage**::
 
@@ -427,7 +427,7 @@ Warning: Undocumented Method
 -------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setName``.
 
 **Usage**::
 
@@ -447,7 +447,7 @@ Warning: Undocumented Method
 --------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setNames``.
 
 **Usage**::
 
@@ -467,7 +467,7 @@ Warning: Undocumented Method
 -----------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setReadthroughStopCodon``.
 
 **Usage**::
 
@@ -487,7 +487,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setSequence``.
 
 **Usage**::
 
@@ -507,7 +507,7 @@ Warning: Undocumented Method
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setStatus``.
 
 **Usage**::
 
@@ -527,7 +527,7 @@ Warning: Undocumented Method
 ---------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setSymbol``.
 
 **Usage**::
 
@@ -547,7 +547,7 @@ Warning: Undocumented Method
 -----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setTranslationEnd``.
 
 **Usage**::
 
@@ -567,7 +567,7 @@ Warning: Undocumented Method
 -------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations``.
+``annotations setTranslationStart``.
 
 **Usage**::
 

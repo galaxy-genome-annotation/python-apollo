@@ -5,7 +5,7 @@ cannedcomments
 ----------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedcomments``.
+``cannedcomments addComment``.
 
 **Usage**::
 
@@ -26,7 +26,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedcomments``.
+``cannedcomments deleteComment``.
 
 **Usage**::
 
@@ -46,7 +46,7 @@ Warning: Undocumented Method
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedcomments``.
+``cannedcomments findAllComments``.
 
 **Usage**::
 
@@ -66,7 +66,7 @@ Warning: Undocumented Method
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedcomments``.
+``cannedcomments findCommentById``.
 
 **Usage**::
 
@@ -86,7 +86,7 @@ Warning: Undocumented Method
 ------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedcomments``.
+``cannedcomments findCommentByValue``.
 
 **Usage**::
 
@@ -106,7 +106,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedcomments``.
+``cannedcomments updateComment``.
 
 **Usage**::
 

@@ -5,7 +5,7 @@ groups
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups create_group``.
 
 **Usage**::
 
@@ -25,7 +25,7 @@ Create a new group
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups delete_group``.
 
 **Usage**::
 
@@ -45,7 +45,7 @@ Delete a group
 ----------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups get_groups``.
 
 **Usage**::
 
@@ -65,7 +65,7 @@ Get all the groups
 ------------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups get_organism_permissions``.
 
 **Usage**::
 
@@ -85,7 +85,7 @@ Get the group's organism permissions
 ----------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups show_group``.
 
 **Usage**::
 
@@ -106,7 +106,7 @@ Get information about a group
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups update_group``.
 
 **Usage**::
 
@@ -127,7 +127,7 @@ Update the name of a group
 -----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups update_membership``.
 
 **Usage**::
 
@@ -148,7 +148,7 @@ This section is auto-generated from the help text for the arrow command
 ---------------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``groups``.
+``groups update_organism_permissions``.
 
 **Usage**::
 

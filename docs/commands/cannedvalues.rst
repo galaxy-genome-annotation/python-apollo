@@ -5,7 +5,7 @@ cannedvalues
 --------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedvalues``.
+``cannedvalues addValue``.
 
 **Usage**::
 
@@ -26,7 +26,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedvalues``.
+``cannedvalues deleteValue``.
 
 **Usage**::
 
@@ -46,7 +46,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedvalues``.
+``cannedvalues findAllValues``.
 
 **Usage**::
 
@@ -66,7 +66,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedvalues``.
+``cannedvalues findValueById``.
 
 **Usage**::
 
@@ -86,7 +86,7 @@ Warning: Undocumented Method
 ----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedvalues``.
+``cannedvalues findValueByValue``.
 
 **Usage**::
 
@@ -106,7 +106,7 @@ Warning: Undocumented Method
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``cannedvalues``.
+``cannedvalues updateValue``.
 
 **Usage**::
 

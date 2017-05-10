@@ -5,7 +5,7 @@ organisms
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms addOrganism``.
 
 **Usage**::
 
@@ -29,7 +29,7 @@ Warning: Undocumented Method
 ------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms add_organism``.
 
 **Usage**::
 
@@ -53,7 +53,7 @@ Add an organism
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms deleteOrganism``.
 
 **Usage**::
 
@@ -73,7 +73,7 @@ Warning: Undocumented Method
 ----------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms deleteOrganismFeatures``.
 
 **Usage**::
 
@@ -93,7 +93,7 @@ Warning: Undocumented Method
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms delete_features``.
 
 **Usage**::
 
@@ -113,7 +113,7 @@ Remove features of an organism
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms delete_organism``.
 
 **Usage**::
 
@@ -133,7 +133,7 @@ Delete an organim
 ----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms findAllOrganisms``.
 
 **Usage**::
 
@@ -153,7 +153,7 @@ Warning: Undocumented Method
 ----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms findOrganismByCn``.
 
 **Usage**::
 
@@ -173,7 +173,7 @@ Warning: Undocumented Method
 ----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms findOrganismById``.
 
 **Usage**::
 
@@ -193,7 +193,7 @@ Warning: Undocumented Method
 -----------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms getSequencesForOrganism``.
 
 **Usage**::
 
@@ -213,7 +213,7 @@ Warning: Undocumented Method
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms get_organisms``.
 
 **Usage**::
 
@@ -235,7 +235,7 @@ Get all organisms
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms get_sequences``.
 
 **Usage**::
 
@@ -255,7 +255,7 @@ Get the sequences for an organism
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms show_organism``.
 
 **Usage**::
 
@@ -275,7 +275,7 @@ Get information about a specific organism. Due to the lack of an API, this call 
 ------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms updateOrganismInfo``.
 
 **Usage**::
 
@@ -299,7 +299,7 @@ Update an organism
 ---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``organisms``.
+``organisms update_organism``.
 
 **Usage**::
 
