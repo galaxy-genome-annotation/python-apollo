@@ -1,7 +1,8 @@
-apollo\.objects module
+apollo\.status package
 ======================
 
-.. automodule:: apollo.objects
+.. automodule:: apollo.status
     :members:
     :undoc-members:
     :show-inheritance:
+

@@ -31,8 +31,9 @@ Examples
     time.sleep(1)
 
     # Then add yourself to permission list
-    data = wa.users.updateOrganismPermission(
-        wa.me, "Yeast",
+    data = wa.users.update_organism_permissions(
+        "jane.doe@fqdn.edu",
+        "Yeast",
         write=True,
         export=True,
         read=True,
@@ -41,6 +42,11 @@ Examples
 History
 -------
 
+- 3.0 [WIP]
+    - "Arrow" CLI utility
+    - More pythonic API and many workarounds for Apollo bugs or oddities
+    - Complete package restructure
+    - Nearly all functions renamed
 - 2.0
     - Galaxy Functions
     - TTL Cache to work around Galaxy's behaviour

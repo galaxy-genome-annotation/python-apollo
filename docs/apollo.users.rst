@@ -1,7 +1,8 @@
-apollo\.client module
+apollo\.users package
 =====================
 
-.. automodule:: apollo.client
+.. automodule:: apollo.users
     :members:
     :undoc-members:
     :show-inheritance:
+

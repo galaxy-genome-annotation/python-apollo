@@ -1,7 +1,7 @@
-apollo\.client\.groups package
+apollo\.cannedcomments package
 ==============================
 
-.. automodule:: apollo.client.groups
+.. automodule:: apollo.cannedcomments
     :members:
     :undoc-members:
     :show-inheritance:

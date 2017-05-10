@@ -1,7 +1,7 @@
-apollo\.client\.io package
+apollo\.cannedkeys package
 ==========================
 
-.. automodule:: apollo.client.io
+.. automodule:: apollo.cannedkeys
     :members:
     :undoc-members:
     :show-inheritance:

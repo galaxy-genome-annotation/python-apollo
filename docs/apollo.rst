@@ -11,14 +11,23 @@ Subpackages
 
 .. toctree::
 
-    apollo.client
+    apollo.annotations
+    apollo.cannedcomments
+    apollo.cannedkeys
+    apollo.cannedvalues
+    apollo.groups
+    apollo.io
+    apollo.metrics
+    apollo.organisms
+    apollo.status
+    apollo.users
 
 Submodules
 ----------
 
 .. toctree::
 
+   apollo.client
    apollo.exceptions
-   apollo.objects
    apollo.util
 
