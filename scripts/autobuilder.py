@@ -36,12 +36,12 @@ PARAM_TRANSLATION = {
         'is_flag=True',
     ],
     'list': [
-        'type=str', # TODO
-        'multiple=True',
+        'type=str',
+        'callback=_arg_split',
     ],
     'list of str': [
-        'type=str', # TODO
-        'multiple=True',
+        'type=str',
+        'callback=_arg_split',
     ],
     'file': [
         'type=click.File(\'rb+\')'
