@@ -16,7 +16,7 @@ This section is auto-generated from the help text for the arrow command
 Add an attribute to a feature
 
 
-**Output**::
+**Output**
 
 
 Add an attribute to a feature
@@ -49,7 +49,7 @@ This section is auto-generated from the help text for the arrow command
 Set a feature's description
 
 
-**Output**::
+**Output**
 
 
 Set a feature's description
@@ -83,7 +83,7 @@ This section is auto-generated from the help text for the arrow command
 Add a feature
 
 
-**Output**::
+**Output**
 
 
 Add a feature
@@ -117,7 +117,7 @@ This section is auto-generated from the help text for the arrow command
 [UNTESTED] Add a transcript to a feature
 
 
-**Output**::
+**Output**
 
 
 [UNTESTED] Add a transcript to a feature
@@ -153,7 +153,7 @@ This section is auto-generated from the help text for the arrow command
 Delete an attribute from a feature
 
 
-**Output**::
+**Output**
 
 
 Delete an attribute from a feature
@@ -186,7 +186,7 @@ This section is auto-generated from the help text for the arrow command
 Delete a feature
 
 
-**Output**::
+**Output**
 
 
 Delete a feature
@@ -219,7 +219,7 @@ This section is auto-generated from the help text for the arrow command
 [UNTESTED] Delete a specific feature alteration
 
 
-**Output**::
+**Output**
 
 
 [UNTESTED] Delete a specific feature alteration
@@ -252,7 +252,7 @@ This section is auto-generated from the help text for the arrow command
 Duplicate a transcripte
 
 
-**Output**::
+**Output**
 
 
 Duplicate a transcripte
@@ -285,7 +285,7 @@ This section is auto-generated from the help text for the arrow command
 Flip the strand of a feature
 
 
-**Output**::
+**Output**
 
 
 Flip the strand of a feature
@@ -318,7 +318,7 @@ This section is auto-generated from the help text for the arrow command
 Get a feature's comments
 
 
-**Output**::
+**Output**
 
 
 Get a feature's comments
@@ -351,7 +351,7 @@ This section is auto-generated from the help text for the arrow command
 [CURRENTLY BROKEN] Get the sequence of a feature
 
 
-**Output**::
+**Output**
 
 
 [CURRENTLY BROKEN] Get the sequence of a feature
@@ -384,7 +384,7 @@ This section is auto-generated from the help text for the arrow command
 Get the features for an organism / sequence
 
 
-**Output**::
+**Output**
 
 
 Get the features for an organism / sequence
@@ -417,7 +417,7 @@ This section is auto-generated from the help text for the arrow command
 Get the GFF3 associated with a feature
 
 
-**Output**::
+**Output**
 
 
 Get the GFF3 associated with a feature
@@ -450,7 +450,7 @@ This section is auto-generated from the help text for the arrow command
 Get the search tools available
 
 
-**Output**::
+**Output**
 
 
 Get the search tools available
@@ -497,7 +497,7 @@ This section is auto-generated from the help text for the arrow command
 [UNTESTED] Get all of the sequence's alterations
 
 
-**Output**::
+**Output**
 
 
 [UNTESTED] Get all of the sequence's alterations
@@ -530,7 +530,7 @@ This section is auto-generated from the help text for the arrow command
 Merge two exons
 
 
-**Output**::
+**Output**
 
 
 Merge two exons
@@ -563,7 +563,7 @@ This section is auto-generated from the help text for the arrow command
 Set the boundaries of a genomic feature
 
 
-**Output**::
+**Output**
 
 
 Set the boundaries of a genomic feature
@@ -596,7 +596,7 @@ This section is auto-generated from the help text for the arrow command
 Set a feature's description
 
 
-**Output**::
+**Output**
 
 
 Set a feature's description
@@ -629,7 +629,7 @@ This section is auto-generated from the help text for the arrow command
 Automatically pick the longest ORF in a feature
 
 
-**Output**::
+**Output**
 
 
 Automatically pick the longest ORF in a feature
@@ -662,7 +662,7 @@ This section is auto-generated from the help text for the arrow command
 Set a feature's name
 
 
-**Output**::
+**Output**
 
 
 Set a feature's name
@@ -695,7 +695,7 @@ This section is auto-generated from the help text for the arrow command
 Set the feature to read through the first encountered stop codon
 
 
-**Output**::
+**Output**
 
 
 Set the feature to read through the first encountered stop codon
@@ -728,7 +728,7 @@ This section is auto-generated from the help text for the arrow command
 Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
 
 
-**Output**::
+**Output**
 
 
 Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
@@ -759,7 +759,7 @@ This section is auto-generated from the help text for the arrow command
 Set a feature's description
 
 
-**Output**::
+**Output**
 
 
 Set a feature's description
@@ -792,7 +792,7 @@ This section is auto-generated from the help text for the arrow command
 Set a feature's description
 
 
-**Output**::
+**Output**
 
 
 Set a feature's description
@@ -825,7 +825,7 @@ This section is auto-generated from the help text for the arrow command
 Set a feature's end
 
 
-**Output**::
+**Output**
 
 
 Set a feature's end
@@ -858,7 +858,7 @@ This section is auto-generated from the help text for the arrow command
 Set the translation start of a feature
 
 
-**Output**::
+**Output**
 
 
 Set the translation start of a feature
@@ -891,7 +891,7 @@ This section is auto-generated from the help text for the arrow command
 Delete an attribute from a feature
 
 
-**Output**::
+**Output**
 
 
 Delete an attribute from a feature

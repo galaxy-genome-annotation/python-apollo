@@ -16,7 +16,7 @@ This section is auto-generated from the help text for the arrow command
 Create a new group
 
 
-**Output**::
+**Output**
 
 
 Create a new group
@@ -47,7 +47,7 @@ This section is auto-generated from the help text for the arrow command
 Delete a group
 
 
-**Output**::
+**Output**
 
 
 Delete a group
@@ -78,7 +78,7 @@ This section is auto-generated from the help text for the arrow command
 Get all the groups
 
 
-**Output**::
+**Output**
 
 
 Get all the groups
@@ -109,7 +109,7 @@ This section is auto-generated from the help text for the arrow command
 Get the group's organism permissions
 
 
-**Output**::
+**Output**
 
 
 Get the group's organism permissions
@@ -140,7 +140,7 @@ This section is auto-generated from the help text for the arrow command
 Get information about a group
 
 
-**Output**::
+**Output**
 
 
 Get information about a group
@@ -172,7 +172,7 @@ This section is auto-generated from the help text for the arrow command
 Update the name of a group
 
 
-**Output**::
+**Output**
 
 
 Update the name of a group
@@ -204,7 +204,7 @@ This section is auto-generated from the help text for the arrow command
 Update the group's membership
 
 
-**Output**::
+**Output**
 
 
 Update the group's membership
@@ -236,7 +236,7 @@ This section is auto-generated from the help text for the arrow command
 Update the group's permissions on an organism
 
 
-**Output**::
+**Output**
 
 
 Update the group's permissions on an organism

@@ -16,7 +16,7 @@ This section is auto-generated from the help text for the arrow command
 [CURRENTLY BROKEN] Download pre-prepared data by UUID
 
 
-**Output**::
+**Output**
 
 
 [CURRENTLY BROKEN] Download pre-prepared data by UUID
@@ -49,7 +49,7 @@ This section is auto-generated from the help text for the arrow command
 Prepare a download for an organism
 
 
-**Output**::
+**Output**
 
 
 Prepare a download for an organism
@@ -87,7 +87,7 @@ This section is auto-generated from the help text for the arrow command
 Download or prepare a download for an organism
 
 
-**Output**::
+**Output**
 
 
 Download or prepare a download for an organism

@@ -16,7 +16,7 @@ This section is auto-generated from the help text for the arrow command
 Add an organism
 
 
-**Output**::
+**Output**
 
 
 Add an organism
@@ -51,7 +51,7 @@ This section is auto-generated from the help text for the arrow command
 Remove features of an organism
 
 
-**Output**::
+**Output**
 
 
 Remove features of an organism
@@ -82,7 +82,7 @@ This section is auto-generated from the help text for the arrow command
 Delete an organim
 
 
-**Output**::
+**Output**
 
 
 Delete an organim
@@ -113,7 +113,7 @@ This section is auto-generated from the help text for the arrow command
 Get all organisms
 
 
-**Output**::
+**Output**
 
 
 Get all organisms
@@ -146,7 +146,7 @@ This section is auto-generated from the help text for the arrow command
 Get the sequences for an organism
 
 
-**Output**::
+**Output**
 
 
 Get the sequences for an organism
@@ -177,7 +177,7 @@ This section is auto-generated from the help text for the arrow command
 Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
 
 
-**Output**::
+**Output**
 
 
 Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
@@ -208,7 +208,7 @@ This section is auto-generated from the help text for the arrow command
 Update an organism
 
 
-**Output**::
+**Output**
 
 
 Update an organism

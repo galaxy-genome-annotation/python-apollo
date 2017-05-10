@@ -95,7 +95,7 @@ for command in list_cmds():
                 help_lines = False
                 option_lines = False
                 output_lines = True
-                new_lines.append("**Output**::\n\n")
+                new_lines.append("**Output**\n\n")
                 new_lines.append(output_rst)
             elif option_lines:
                 new_lines.append("    %s" % line)

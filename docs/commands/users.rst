@@ -16,7 +16,7 @@ This section is auto-generated from the help text for the arrow command
 Add a user to a group
 
 
-**Output**::
+**Output**
 
 
 Add a user to a group
@@ -47,7 +47,7 @@ This section is auto-generated from the help text for the arrow command
 Create a new user
 
 
-**Output**::
+**Output**
 
 
 Create a new user
@@ -81,7 +81,7 @@ This section is auto-generated from the help text for the arrow command
 Delete a user
 
 
-**Output**::
+**Output**
 
 
 Delete a user
@@ -112,7 +112,7 @@ This section is auto-generated from the help text for the arrow command
 Display a user's organism permissions
 
 
-**Output**::
+**Output**
 
 
 Display a user's organism permissions
@@ -143,7 +143,7 @@ This section is auto-generated from the help text for the arrow command
 Get all users known to this Apollo instance
 
 
-**Output**::
+**Output**
 
 
 Get all users known to this Apollo instance
@@ -174,7 +174,7 @@ This section is auto-generated from the help text for the arrow command
 Remove a user from a group
 
 
-**Output**::
+**Output**
 
 
 Remove a user from a group
@@ -205,7 +205,7 @@ This section is auto-generated from the help text for the arrow command
 Get a specific user
 
 
-**Output**::
+**Output**
 
 
 Get a specific user
@@ -236,7 +236,7 @@ This section is auto-generated from the help text for the arrow command
 Update the permissions of a user on a specified organism
 
 
-**Output**::
+**Output**
 
 
 Update the permissions of a user on a specified organism
@@ -271,7 +271,7 @@ This section is auto-generated from the help text for the arrow command
 Update an existing user
 
 
-**Output**::
+**Output**
 
 
 Update an existing user

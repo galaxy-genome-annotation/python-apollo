@@ -16,7 +16,7 @@ This section is auto-generated from the help text for the arrow command
 Get all server metrics
 
 
-**Output**::
+**Output**
 
 
 Get all server metrics
