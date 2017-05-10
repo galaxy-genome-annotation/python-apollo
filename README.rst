@@ -58,7 +58,7 @@ Or with the new Arrow client:
 History
 -------
 
-- 3.0 [WIP]
+- 3.0
     - "Arrow" CLI utility
     - More pythonic API and many workarounds for Apollo bugs or oddities
     - Complete package restructure
