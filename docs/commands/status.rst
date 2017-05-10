@@ -1,11 +1,12 @@
 status
 ======
 
+This section is auto-generated from the help text for the arrow command
+``status``.
+
+
 ``addStatus`` command
 ---------------------
-
-This section is auto-generated from the help text for the arrow command
-``status addStatus``.
 
 **Usage**::
 
@@ -31,9 +32,6 @@ TODO: Undocumented
 ``deleteStatus`` command
 ------------------------
 
-This section is auto-generated from the help text for the arrow command
-``status deleteStatus``.
-
 **Usage**::
 
     arrow status deleteStatus [OPTIONS] ID_NUMBER
@@ -57,9 +55,6 @@ TODO: Undocumented
 
 ``findAllStatuses`` command
 ---------------------------
-
-This section is auto-generated from the help text for the arrow command
-``status findAllStatuses``.
 
 **Usage**::
 
@@ -85,9 +80,6 @@ TODO: Undocumented
 ``findStatusById`` command
 --------------------------
 
-This section is auto-generated from the help text for the arrow command
-``status findStatusById``.
-
 **Usage**::
 
     arrow status findStatusById [OPTIONS] ID_NUMBER
@@ -112,9 +104,6 @@ TODO: Undocumented
 ``findStatusByValue`` command
 -----------------------------
 
-This section is auto-generated from the help text for the arrow command
-``status findStatusByValue``.
-
 **Usage**::
 
     arrow status findStatusByValue [OPTIONS] VALUE
@@ -138,9 +127,6 @@ TODO: Undocumented
 
 ``updateStatus`` command
 ------------------------
-
-This section is auto-generated from the help text for the arrow command
-``status updateStatus``.
 
 **Usage**::
 

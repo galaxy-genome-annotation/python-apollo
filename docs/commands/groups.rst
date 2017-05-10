@@ -1,11 +1,12 @@
 groups
 ======
 
+This section is auto-generated from the help text for the arrow command
+``groups``.
+
+
 ``create_group`` command
 ------------------------
-
-This section is auto-generated from the help text for the arrow command
-``groups create_group``.
 
 **Usage**::
 
@@ -31,9 +32,6 @@ Group information dictionary
 ``delete_group`` command
 ------------------------
 
-This section is auto-generated from the help text for the arrow command
-``groups delete_group``.
-
 **Usage**::
 
     arrow groups delete_group [OPTIONS] GROUP
@@ -57,9 +55,6 @@ an empty dictionary
 
 ``get_groups`` command
 ----------------------
-
-This section is auto-generated from the help text for the arrow command
-``groups get_groups``.
 
 **Usage**::
 
@@ -85,9 +80,6 @@ list of a dictionaries containing group information
 ``get_organism_permissions`` command
 ------------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``groups get_organism_permissions``.
-
 **Usage**::
 
     arrow groups get_organism_permissions [OPTIONS] GROUP
@@ -111,9 +103,6 @@ a list containing organism permissions (if any)
 
 ``show_group`` command
 ----------------------
-
-This section is auto-generated from the help text for the arrow command
-``groups show_group``.
 
 **Usage**::
 
@@ -140,9 +129,6 @@ a dictionary containing group information
 ``update_group`` command
 ------------------------
 
-This section is auto-generated from the help text for the arrow command
-``groups update_group``.
-
 **Usage**::
 
     arrow groups update_group [OPTIONS] GROUP_ID NEW_NAME
@@ -168,9 +154,6 @@ a dictionary containing group information
 ``update_membership`` command
 -----------------------------
 
-This section is auto-generated from the help text for the arrow command
-``groups update_membership``.
-
 **Usage**::
 
     arrow groups update_membership [OPTIONS] GROUP_ID
@@ -195,9 +178,6 @@ dictionary of group information
 
 ``update_organism_permissions`` command
 ---------------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``groups update_organism_permissions``.
 
 **Usage**::
 

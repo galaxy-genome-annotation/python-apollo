@@ -1,11 +1,12 @@
 cannedkeys
 ==========
 
+This section is auto-generated from the help text for the arrow command
+``cannedkeys``.
+
+
 ``addKey`` command
 ------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedkeys addKey``.
 
 **Usage**::
 
@@ -32,9 +33,6 @@ TODO: Undocumented
 ``deleteKey`` command
 ---------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedkeys deleteKey``.
-
 **Usage**::
 
     arrow cannedkeys deleteKey [OPTIONS] ID_NUMBER
@@ -58,9 +56,6 @@ TODO: Undocumented
 
 ``findAllKeys`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedkeys findAllKeys``.
 
 **Usage**::
 
@@ -86,9 +81,6 @@ TODO: Undocumented
 ``findKeyById`` command
 -----------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedkeys findKeyById``.
-
 **Usage**::
 
     arrow cannedkeys findKeyById [OPTIONS] ID_NUMBER
@@ -113,9 +105,6 @@ TODO: Undocumented
 ``findKeyByValue`` command
 --------------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedkeys findKeyByValue``.
-
 **Usage**::
 
     arrow cannedkeys findKeyByValue [OPTIONS] VALUE
@@ -139,9 +128,6 @@ TODO: Undocumented
 
 ``updateKey`` command
 ---------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedkeys updateKey``.
 
 **Usage**::
 

@@ -1,11 +1,12 @@
 annotations
 ===========
 
+This section is auto-generated from the help text for the arrow command
+``annotations``.
+
+
 ``add_attribute`` command
 -------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations add_attribute``.
 
 **Usage**::
 
@@ -32,9 +33,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``add_comment`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations add_comment``.
 
 **Usage**::
 
@@ -63,9 +61,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``add_feature`` command
 -----------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations add_feature``.
-
 **Usage**::
 
     arrow annotations add_feature [OPTIONS]
@@ -92,9 +87,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``add_transcript`` command
 --------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations add_transcript``.
 
 **Usage**::
 
@@ -125,9 +117,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``delete_attribute`` command
 ----------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations delete_attribute``.
-
 **Usage**::
 
     arrow annotations delete_attribute [OPTIONS] FEATURE_ID ATTRIBUTE_KEY
@@ -153,9 +142,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``delete_feature`` command
 --------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations delete_feature``.
 
 **Usage**::
 
@@ -183,9 +169,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``delete_sequence_alteration`` command
 --------------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations delete_sequence_alteration``.
-
 **Usage**::
 
     arrow annotations delete_sequence_alteration [OPTIONS] FEATURE_ID
@@ -211,9 +194,6 @@ A list of sequence alterations(?)
 
 ``duplicate_transcript`` command
 --------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations duplicate_transcript``.
 
 **Usage**::
 
@@ -241,9 +221,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``flip_strand`` command
 -----------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations flip_strand``.
-
 **Usage**::
 
     arrow annotations flip_strand [OPTIONS] FEATURE_ID
@@ -269,9 +246,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``get_comments`` command
 ------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations get_comments``.
 
 **Usage**::
 
@@ -299,9 +273,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``get_feature_sequence`` command
 --------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations get_feature_sequence``.
-
 **Usage**::
 
     arrow annotations get_feature_sequence [OPTIONS] FEATURE_ID
@@ -327,9 +298,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``get_features`` command
 ------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations get_features``.
 
 **Usage**::
 
@@ -357,9 +325,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``get_gff3`` command
 --------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations get_gff3``.
-
 **Usage**::
 
     arrow annotations get_gff3 [OPTIONS] FEATURE_ID
@@ -385,9 +350,6 @@ GFF3 text content
 
 ``get_search_tools`` command
 ----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations get_search_tools``.
 
 **Usage**::
 
@@ -429,9 +391,6 @@ dictionary containing the search tools and their metadata. E.g.::
 ``get_sequence_alterations`` command
 ------------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations get_sequence_alterations``.
-
 **Usage**::
 
     arrow annotations get_sequence_alterations [OPTIONS]
@@ -457,9 +416,6 @@ A list of sequence alterations(?)
 
 ``merge_exons`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations merge_exons``.
 
 **Usage**::
 
@@ -487,9 +443,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``set_boundaries`` command
 --------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations set_boundaries``.
-
 **Usage**::
 
     arrow annotations set_boundaries [OPTIONS] FEATURE_ID START END
@@ -515,9 +468,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``set_description`` command
 ---------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations set_description``.
 
 **Usage**::
 
@@ -545,9 +495,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``set_longest_orf`` command
 ---------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations set_longest_orf``.
-
 **Usage**::
 
     arrow annotations set_longest_orf [OPTIONS] FEATURE_ID
@@ -573,9 +520,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``set_name`` command
 --------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations set_name``.
 
 **Usage**::
 
@@ -603,9 +547,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``set_readthrough_stop_codon`` command
 --------------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations set_readthrough_stop_codon``.
-
 **Usage**::
 
     arrow annotations set_readthrough_stop_codon [OPTIONS] FEATURE_ID
@@ -632,9 +573,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``set_sequence`` command
 ------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations set_sequence``.
-
 **Usage**::
 
     arrow annotations set_sequence [OPTIONS] ORGANISM SEQUENCE
@@ -658,9 +596,6 @@ None
 
 ``set_status`` command
 ----------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations set_status``.
 
 **Usage**::
 
@@ -688,9 +623,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``set_symbol`` command
 ----------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations set_symbol``.
-
 **Usage**::
 
     arrow annotations set_symbol [OPTIONS] FEATURE_ID SYMBOL
@@ -716,9 +648,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``set_translation_end`` command
 -------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations set_translation_end``.
 
 **Usage**::
 
@@ -746,9 +675,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 ``set_translation_start`` command
 ---------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``annotations set_translation_start``.
-
 **Usage**::
 
     arrow annotations set_translation_start [OPTIONS] FEATURE_ID START
@@ -774,9 +700,6 @@ A standard apollo feature dictionary ({"features": [{...}]})
 
 ``update_attribute`` command
 ----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations update_attribute``.
 
 **Usage**::
 

@@ -1,11 +1,12 @@
 io
 ==
 
+This section is auto-generated from the help text for the arrow command
+``io``.
+
+
 ``download`` command
 --------------------
-
-This section is auto-generated from the help text for the arrow command
-``io download``.
 
 **Usage**::
 
@@ -32,9 +33,6 @@ a dictionary
 
 ``write_downloadable`` command
 ------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``io write_downloadable``.
 
 **Usage**::
 
@@ -66,9 +64,6 @@ a dictionary containing download information
 
 ``write_text`` command
 ----------------------
-
-This section is auto-generated from the help text for the arrow command
-``io write_text``.
 
 **Usage**::
 

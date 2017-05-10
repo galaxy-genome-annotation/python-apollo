@@ -1,11 +1,12 @@
 users
 =====
 
+This section is auto-generated from the help text for the arrow command
+``users``.
+
+
 ``add_to_group`` command
 ------------------------
-
-This section is auto-generated from the help text for the arrow command
-``users add_to_group``.
 
 **Usage**::
 
@@ -30,9 +31,6 @@ an empty dictionary
 
 ``create_user`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``users create_user``.
 
 **Usage**::
 
@@ -61,9 +59,6 @@ an empty dictionary
 ``delete_user`` command
 -----------------------
 
-This section is auto-generated from the help text for the arrow command
-``users delete_user``.
-
 **Usage**::
 
     arrow users delete_user [OPTIONS] USER
@@ -87,9 +82,6 @@ an empty dictionary
 
 ``get_organism_permissions`` command
 ------------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``users get_organism_permissions``.
 
 **Usage**::
 
@@ -115,9 +107,6 @@ a dictionary containing user's organism permissions
 ``get_users`` command
 ---------------------
 
-This section is auto-generated from the help text for the arrow command
-``users get_users``.
-
 **Usage**::
 
     arrow users get_users [OPTIONS]
@@ -141,9 +130,6 @@ list of user info dictionaries
 
 ``remove_from_group`` command
 -----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``users remove_from_group``.
 
 **Usage**::
 
@@ -169,9 +155,6 @@ an empty dictionary
 ``show_user`` command
 ---------------------
 
-This section is auto-generated from the help text for the arrow command
-``users show_user``.
-
 **Usage**::
 
     arrow users show_user [OPTIONS] USER
@@ -195,9 +178,6 @@ a dictionary containing user information
 
 ``update_organism_permissions`` command
 ---------------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``users update_organism_permissions``.
 
 **Usage**::
 
@@ -226,9 +206,6 @@ a dictionary containing user's organism permissions
 
 ``update_user`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``users update_user``.
 
 **Usage**::
 

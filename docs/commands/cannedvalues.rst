@@ -1,11 +1,12 @@
 cannedvalues
 ============
 
+This section is auto-generated from the help text for the arrow command
+``cannedvalues``.
+
+
 ``addValue`` command
 --------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedvalues addValue``.
 
 **Usage**::
 
@@ -32,9 +33,6 @@ TODO: Undocumented
 ``deleteValue`` command
 -----------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedvalues deleteValue``.
-
 **Usage**::
 
     arrow cannedvalues deleteValue [OPTIONS] ID_NUMBER
@@ -58,9 +56,6 @@ TODO: Undocumented
 
 ``findAllValues`` command
 -------------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedvalues findAllValues``.
 
 **Usage**::
 
@@ -86,9 +81,6 @@ TODO: Undocumented
 ``findValueById`` command
 -------------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedvalues findValueById``.
-
 **Usage**::
 
     arrow cannedvalues findValueById [OPTIONS] ID_NUMBER
@@ -113,9 +105,6 @@ TODO: Undocumented
 ``findValueByValue`` command
 ----------------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedvalues findValueByValue``.
-
 **Usage**::
 
     arrow cannedvalues findValueByValue [OPTIONS] VALUE
@@ -139,9 +128,6 @@ TODO: Undocumented
 
 ``updateValue`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedvalues updateValue``.
 
 **Usage**::
 

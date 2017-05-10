@@ -1,11 +1,12 @@
 cannedcomments
 ==============
 
+This section is auto-generated from the help text for the arrow command
+``cannedcomments``.
+
+
 ``addComment`` command
 ----------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedcomments addComment``.
 
 **Usage**::
 
@@ -32,9 +33,6 @@ TODO: Undocumented
 ``deleteComment`` command
 -------------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedcomments deleteComment``.
-
 **Usage**::
 
     arrow cannedcomments deleteComment [OPTIONS] ID_NUMBER
@@ -58,9 +56,6 @@ TODO: Undocumented
 
 ``findAllComments`` command
 ---------------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedcomments findAllComments``.
 
 **Usage**::
 
@@ -86,9 +81,6 @@ TODO: Undocumented
 ``findCommentById`` command
 ---------------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedcomments findCommentById``.
-
 **Usage**::
 
     arrow cannedcomments findCommentById [OPTIONS] ID_NUMBER
@@ -113,9 +105,6 @@ TODO: Undocumented
 ``findCommentByValue`` command
 ------------------------------
 
-This section is auto-generated from the help text for the arrow command
-``cannedcomments findCommentByValue``.
-
 **Usage**::
 
     arrow cannedcomments findCommentByValue [OPTIONS] VALUE
@@ -139,9 +128,6 @@ TODO: Undocumented
 
 ``updateComment`` command
 -------------------------
-
-This section is auto-generated from the help text for the arrow command
-``cannedcomments updateComment``.
 
 **Usage**::
 

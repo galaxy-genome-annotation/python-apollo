@@ -1,11 +1,12 @@
 organisms
 =========
 
+This section is auto-generated from the help text for the arrow command
+``organisms``.
+
+
 ``add_organism`` command
 ------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms add_organism``.
 
 **Usage**::
 
@@ -35,9 +36,6 @@ a dictionary with information about the new organism
 ``delete_features`` command
 ---------------------------
 
-This section is auto-generated from the help text for the arrow command
-``organisms delete_features``.
-
 **Usage**::
 
     arrow organisms delete_features [OPTIONS] ORGANISM_ID
@@ -62,9 +60,6 @@ an empty dictionary
 ``delete_organism`` command
 ---------------------------
 
-This section is auto-generated from the help text for the arrow command
-``organisms delete_organism``.
-
 **Usage**::
 
     arrow organisms delete_organism [OPTIONS] ORGANISM_ID
@@ -88,9 +83,6 @@ A list of all remaining organisms
 
 ``get_organisms`` command
 -------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms get_organisms``.
 
 **Usage**::
 
@@ -118,9 +110,6 @@ Organisms information
 ``get_sequences`` command
 -------------------------
 
-This section is auto-generated from the help text for the arrow command
-``organisms get_sequences``.
-
 **Usage**::
 
     arrow organisms get_sequences [OPTIONS] ORGANISM_ID
@@ -145,9 +134,6 @@ The set of sequences associated with an organism
 ``show_organism`` command
 -------------------------
 
-This section is auto-generated from the help text for the arrow command
-``organisms show_organism``.
-
 **Usage**::
 
     arrow organisms show_organism [OPTIONS] ORGANISM_ID
@@ -171,9 +157,6 @@ a dictionary containing the organism's information
 
 ``update_organism`` command
 ---------------------------
-
-This section is auto-generated from the help text for the arrow command
-``organisms update_organism``.
 
 **Usage**::
 

@@ -1,11 +1,12 @@
 metrics
 =======
 
+This section is auto-generated from the help text for the arrow command
+``metrics``.
+
+
 ``get_metrics`` command
 -----------------------
-
-This section is auto-generated from the help text for the arrow command
-``metrics get_metrics``.
 
 **Usage**::
 

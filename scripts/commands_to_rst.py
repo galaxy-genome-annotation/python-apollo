@@ -19,9 +19,6 @@ COMMAND_TEMPLATE = Template('''
 ``${subcommand}`` command
 ${module_underline}
 
-This section is auto-generated from the help text for the arrow command
-``${command} ${subcommand}``.
-
 ${command_help}
 ''')
 
@@ -50,6 +47,13 @@ for command in list_cmds():
     parent_doc_handle = open(os.path.join(command_doc_dir, command + ".rst"), "w")
     parent_doc_handle.write('%s\n' % command)
     parent_doc_handle.write('%s\n' % ('=' * len(command)))
+    parent_doc_handle.write(Template("""
+This section is auto-generated from the help text for the arrow command
+``${command}``.
+
+""").safe_substitute(command=command))
+
+
     for subcommand in list_subcmds(command):
 
         command_obj = cli.name_to_command(command, subcommand)
