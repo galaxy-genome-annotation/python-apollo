@@ -51,9 +51,15 @@ Or with the new Arrow client:
         "users": null,
         "id": 558319
     }
+    # THEN
     $ arrow users get_users | \
         jq '.[] | select(.username | contains("@tamu.edu")) | .username' | \
         xargs -n1 arrow users add_to_group university
+    # OR
+    $ arrow users get_users | \
+        jq '.[] | select(.username | contains("@tamu.edu")) | .username' | \
+        paste -s -d',' | \
+        xargs arrow group update_membership 558319 --users
 
 History
 -------
