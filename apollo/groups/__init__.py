@@ -80,7 +80,7 @@ class GroupsClient(Client):
         }
         try:
             response = self.post('updateGroup', data)
-        except Exception as e:
+        except Exception:
             pass
 
         # Apollo returns a 404 here for some unholy reason, despite actually
