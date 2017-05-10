@@ -7,7 +7,7 @@ from apollo.client import Client
 class MetricsClient(Client):
     CLIENT_BASE = '/metrics/'
 
-    def get(self):
+    def get_metrics(self):
         """
         Get all server metrics
 

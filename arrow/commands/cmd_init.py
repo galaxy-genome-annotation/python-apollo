@@ -43,7 +43,7 @@ def cli(ctx, url=None, api_key=None, admin=False, **kwds):
         try:
             ai = ApolloInstance(apollo_url, apollo_username, apollo_password)
             try:
-                ai.metrics.get()
+                ai.metrics.get_metrics()
                 # Ok, success
                 info("Ok! Everything looks good.")
                 break
