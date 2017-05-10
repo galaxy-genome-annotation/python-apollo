@@ -9,8 +9,9 @@ Welcome to Python-Apollo's documentation!
 .. toctree::
    :maxdepth: 2
 
-   examples
    apollo
+   api_examples
+   arrow
 
 
 Indices and tables
