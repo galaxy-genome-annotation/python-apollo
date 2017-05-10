@@ -9,18 +9,21 @@ from arrow.decorators import apollo_exception, str_output
     "--export_type",
     help="Export type. Choices: FASTA, GFF3",
     default="FASTA",
+    show_default=True,
     type=str
 )
 @click.option(
     "--seq_type",
     help="Export selection. Choices: peptide, cds, cdna, genomic",
     default="peptide",
+    show_default=True,
     type=str
 )
 @click.option(
     "--export_format",
     help="Export format, either gzip or text",
     default="text",
+    show_default=True,
     type=str
 )
 @click.option(

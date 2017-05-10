@@ -73,6 +73,7 @@ class ScriptBuilder(object):
         ]
         if default:
             args.append('default="%s"' % default)
+            args.append('show_default=True')
         if ptype is not None:
             args.extend(ptype)
         return '@click.option(\n%s\n)\n' % (',\n'.join(['    ' + x for x in args]))

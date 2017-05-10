@@ -201,13 +201,13 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-[CURRENTLY_BROKEN] Update the group's membership
+Update the group's membership
 
 
 **Output**::
 
 
-[CURRENTLY_BROKEN] Update the group's membership
+Update the group's membership
 
 Output:
 

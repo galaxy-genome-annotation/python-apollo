@@ -60,7 +60,8 @@ an empty dictionary
 **Options**::
 
 
-      --role TEXT      User's default role, one of "admin" or "user"
+      --role TEXT      User's default role, one of "admin" or "user"  [default:
+                       user]
       --metadata TEXT  User metadata
       -h, --help       Show this message and exit.
     

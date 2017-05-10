@@ -9,6 +9,7 @@ from arrow.decorators import apollo_exception, dict_output
     "--output_format",
     help="Output format of the data, either \"gzip\" or \"text\"",
     default="gzip",
+    show_default=True,
     type=str
 )
 

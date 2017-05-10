@@ -16,7 +16,7 @@ from arrow.decorators import apollo_exception, dict_output
 @apollo_exception
 @dict_output
 def cli(ctx, group_id, users=None):
-    """[CURRENTLY_BROKEN] Update the group's membership
+    """Update the group's membership
 
 Output:
 

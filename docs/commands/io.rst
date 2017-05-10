@@ -30,6 +30,7 @@ a dictionary
 
 
       --output_format TEXT  Output format of the data, either "gzip" or "text"
+                            [default: gzip]
       -h, --help            Show this message and exit.
     
 
@@ -89,9 +90,10 @@ a dictionary containing download information
 **Options**::
 
 
-      --export_type TEXT    Export type. Choices: FASTA, GFF3
+      --export_type TEXT    Export type. Choices: FASTA, GFF3  [default: FASTA]
       --seq_type TEXT       Export selection. Choices: peptide, cds, cdna, genomic
-      --export_format TEXT  Export format, either gzip or text
+                            [default: peptide]
+      --export_format TEXT  Export format, either gzip or text  [default: text]
       --export_gff3_fasta   Export reference sequence when exporting GFF3
                             annotations.
       --sequences TEXT      Names of references sequences to add (default is all)
@@ -126,9 +128,10 @@ the exported data
 **Options**::
 
 
-      --export_type TEXT    Export type. Choices: FASTA, GFF3
+      --export_type TEXT    Export type. Choices: FASTA, GFF3  [default: FASTA]
       --seq_type TEXT       Export selection. Choices: peptide, cds, cdna, genomic
-      --export_format TEXT  Export format, either gzip or text
+                            [default: peptide]
+      --export_format TEXT  Export format, either gzip or text  [default: text]
       --export_gff3_fasta   Export reference sequence when exporting GFF3
                             annotations.
       --sequences TEXT      Names of references sequences to add (default is all)
