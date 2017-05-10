@@ -8,6 +8,12 @@ class CannedValuesClient(Client):
     CLIENT_BASE = '/cannedValue/'
 
     def addValue(self, value, metadata=""):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         data = {
             'value': value,
             'metadata': metadata
@@ -16,9 +22,21 @@ class CannedValuesClient(Client):
         return self.post('createValue', data)
 
     def findAllValues(self):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         return self.post('showValue', {})
 
     def findValueByValue(self, value):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         values = self.findAllValues()
         values = [x for x in values if x['label'] == value]
         if len(values) == 0:
@@ -27,6 +45,12 @@ class CannedValuesClient(Client):
             return values[0]
 
     def findValueById(self, id_number):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         values = self.findAllValues()
         values = [x for x in values if str(x['id']) == str(id_number)]
         if len(values) == 0:
@@ -35,6 +59,12 @@ class CannedValuesClient(Client):
             return values[0]
 
     def updateValue(self, id_number, new_value, metadata=None):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         data = {
             'id': id_number,
             'new_value': new_value
@@ -46,6 +76,12 @@ class CannedValuesClient(Client):
         return self.post('updateValue', data)
 
     def deleteValue(self, id_number):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         data = {
             'id': id_number
         }

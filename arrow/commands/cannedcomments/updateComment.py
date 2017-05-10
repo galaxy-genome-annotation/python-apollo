@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output
+from arrow.decorators import apollo_exception, dict_output, list_output, str_output
 
 @click.command('updateComment')
 @click.argument("id_number")
@@ -15,6 +15,6 @@ from arrow.decorators import apollo_exception, dict_output
 @apollo_exception
 @dict_output
 def cli(ctx, id_number, new_value, metadata=""):
-    """Warning: Undocumented Method
+    """TODO: Undocumented
     """
     return ctx.gi.cannedcomments.updateComment(id_number, new_value, metadata=metadata)

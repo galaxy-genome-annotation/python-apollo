@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output
+from arrow.decorators import apollo_exception, dict_output, list_output, str_output
 
 @click.command('set_sequence')
 @click.argument("organism", type=str)
@@ -9,7 +9,7 @@ from arrow.decorators import apollo_exception, dict_output
 
 @pass_context
 @apollo_exception
-@dict_output
+@None_output
 def cli(ctx, organism, sequence):
     """Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
     """

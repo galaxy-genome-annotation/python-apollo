@@ -8,6 +8,12 @@ class CannedKeysClient(Client):
     CLIENT_BASE = '/cannedKey/'
 
     def addKey(self, key, metadata=""):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         data = {
             'key': key,
             'metadata': metadata
@@ -16,9 +22,21 @@ class CannedKeysClient(Client):
         return self.post('createKey', data)
 
     def findAllKeys(self):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         return self.post('showKey', {})
 
     def findKeyByValue(self, value):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         keys = self.findAllKeys()
         keys = [x for x in keys if x['label'] == value]
         if len(keys) == 0:
@@ -27,6 +45,12 @@ class CannedKeysClient(Client):
             return keys[0]
 
     def findKeyById(self, id_number):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         keys = self.findAllKeys()
         keys = [x for x in keys if str(x['id']) == str(id_number)]
         if len(keys) == 0:
@@ -35,6 +59,12 @@ class CannedKeysClient(Client):
             return keys[0]
 
     def updateKey(self, id_number, new_key, metadata=None):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         data = {
             'id': id_number,
             'new_key': new_key
@@ -46,6 +76,12 @@ class CannedKeysClient(Client):
         return self.post('updateKey', data)
 
     def deleteKey(self, id_number):
+        """
+        TODO: Undocumented
+
+        :rtype: dict
+        :return: ???
+        """
         data = {
             'id': id_number
         }

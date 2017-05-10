@@ -1,8 +1,8 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output
+from arrow.decorators import apollo_exception, dict_output, list_output, str_output
 
-@click.command('write')
+@click.command('write_text')
 @click.argument("organism", type=str)
 
 @click.option(
@@ -24,12 +24,6 @@ from arrow.decorators import apollo_exception, dict_output
     type=str
 )
 @click.option(
-    "--output",
-    help="Export destination, either file or \"text\" (i.e. response)",
-    default="text",
-    type=str
-)
-@click.option(
     "--export_gff3_fasta",
     help="Export reference sequence when exporting GFF3 annotations.",
     is_flag=True
@@ -42,8 +36,8 @@ from arrow.decorators import apollo_exception, dict_output
 
 @pass_context
 @apollo_exception
-@dict_output
-def cli(ctx, organism, export_type="FASTA", seq_type="peptide", export_format="text", output="text", export_gff3_fasta=False, sequences=None):
+@str_output
+def cli(ctx, organism, export_type="FASTA", seq_type="peptide", export_format="text", export_gff3_fasta=False, sequences=None):
     """Download or prepare a download for an organism
     """
-    return ctx.gi.io.write(organism, export_type=export_type, seq_type=seq_type, export_format=export_format, output=output, export_gff3_fasta=export_gff3_fasta, sequences=sequences)
+    return ctx.gi.io.write_text(organism, export_type=export_type, seq_type=seq_type, export_format=export_format, export_gff3_fasta=export_gff3_fasta, sequences=sequences)

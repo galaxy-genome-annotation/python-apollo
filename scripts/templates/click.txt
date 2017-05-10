@@ -1,13 +1,13 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output
+from arrow.decorators import apollo_exception, dict_output, list_output, str_output
 
 @click.command('%(command_name)s')
 %(click_arguments)s
 %(click_options)s
 @pass_context
 @apollo_exception
-@dict_output
+@%(output_format)s_output
 def cli(%(args_with_defaults)s):
     """%(short_docstring)s
     """%(empty_kwargs)s%(kwarg_updates)s

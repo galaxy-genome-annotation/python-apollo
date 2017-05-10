@@ -46,6 +46,7 @@ PARAM_TRANSLATION = {
     'file': [
         'type=click.File(\'rb+\')'
     ],
+    'None': [],
 }
 
 class ScriptBuilder(object):
@@ -236,12 +237,19 @@ class ScriptBuilder(object):
             sections = [x for x in argdoc.split("\n\n")]
             sections = [re.sub('\s+', ' ', x.strip()) for x in sections if x != '']
             paramre = re.compile(":type (?P<param_name>[^:]+): (?P<param_type>[^:]+) :param (?P<param_name2>[^:]+): (?P<desc>.+)")
+            returnre = re.compile(":rtype: (?P<param_type>[^:]+) :return: (?P<desc>.+)")
             for subsec in sections:
                 m = paramre.match(subsec)
                 if m:
                     assert m.group('param_name') == m.group('param_name2')
                     param_docs[m.group('param_name')] = {'type': m.group('param_type'),
                                                             'desc': m.group('desc')}
+                m = returnre.match(subsec)
+                if m:
+                    param_docs['__return__'] = {
+                        'type': m.group('param_type'),
+                        'desc': m.group('desc'),
+                    }
 
         argspec = list(self.pair_arguments(func))
         data['kwarg_updates'] = ''
@@ -282,7 +290,6 @@ class ScriptBuilder(object):
                         # Add to signature, but NOT exec because we take care of that elsewhere.
                         method_signature_kwargs.append("%s=%s" % (k, v))
 
-                    # TODO: rtype -> dict_output / list_output / text_output
                     # TODO: refactor
                     try:
                         descstr = param_docs[k]['desc']
@@ -302,16 +309,20 @@ class ScriptBuilder(object):
 
             argspec_keys = [x[0] for x in argspec]
             for k, v in argspec:
+                if k == '__return__':
+                    continue
                 try:
                     param_type = self.parameter_translation(param_docs[k]['type'])
                     real_type = param_docs[k]['type']
-                except Exception as e:
+                except Exception:
                     param_type = []
                     real_type = None
                 process_arg(k, v, param_type, real_type)
 
             had_weird_kwargs = False
             for k in sorted(param_docs.keys()):
+                if k == '__return__':
+                    continue
                 # Ignore things we've seen before
                 if k in argspec_keys:
                     continue
@@ -339,6 +350,14 @@ class ScriptBuilder(object):
                 data['wrapped_method_args'] += ', **kwargs'
                 data['empty_kwargs'] = '\n    kwargs = {}\n'
 
+        # TODO: rtype -> dict_output / list_output / text_output
+        # __return__ must be in param_docs or it's a documentation BUG.
+        if '__return__' not in param_docs:
+            raise Exception("%s is not documented with a return type" % candidate)
+        data['output_format'] = param_docs['__return__']['type']
+        # We allow "list of dicts" and other such silliness.
+        if ' ' in data['output_format']:
+            data['output_format'] = data['output_format'][0:data['output_format'].index(' ')]
 
         # My function is more effective until can figure out docstring
         data['short_docstring'] = self.important_doc(argdoc)

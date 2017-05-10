@@ -28,6 +28,9 @@ class AnnotationsClient(Client):
 
         :type sequence: str
         :param sequence: Sequence Name
+
+        :rtype: None
+        :return: None
         """
         self._extra_data = {
             'sequence': sequence,
