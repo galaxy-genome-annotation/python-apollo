@@ -2,13 +2,13 @@ import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import apollo_exception, dict_output
 
-@click.command('getSequenceSearchTools')
+@click.command('get_search_tools')
 
 
 @pass_context
 @apollo_exception
 @dict_output
 def cli(ctx):
-    """Warning: Undocumented Method
+    """Get the search tools available
     """
-    return ctx.gi.annotations.getSequenceSearchTools()
+    return ctx.gi.annotations.get_search_tools()

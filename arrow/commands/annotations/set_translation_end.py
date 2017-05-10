@@ -1,0 +1,26 @@
+import click
+from arrow.cli import pass_context, json_loads
+from arrow.decorators import apollo_exception, dict_output
+
+@click.command('set_translation_end')
+@click.argument("feature_id", type=str)
+@click.argument("end", type=int)
+
+@click.option(
+    "--organism",
+    help="Organism Common Name",
+    type=str
+)
+@click.option(
+    "--sequence",
+    help="Sequence Name",
+    type=str
+)
+
+@pass_context
+@apollo_exception
+@dict_output
+def cli(ctx, feature_id, end, organism="", sequence=""):
+    """Set a feature's end
+    """
+    return ctx.gi.annotations.set_translation_end(feature_id, end, organism=organism, sequence=sequence)
