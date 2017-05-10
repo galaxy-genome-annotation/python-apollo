@@ -9,7 +9,7 @@ except ImportError:
 
 readme = open('README.rst').read()
 subpackages = [x.replace('/', '.') for x in glob.glob('arrow/commands/*') if not x.endswith('.py')] + \
-    [x.replace('/', '.') for x in glob.glob('apollo/*') if not x.endswith('.py')]
+    [x.replace('/', '.') for x in glob.glob('apollo/*') if not x.endswith('.py')] + ['arrow.commands']
 
 setup(
     name="apollo",
