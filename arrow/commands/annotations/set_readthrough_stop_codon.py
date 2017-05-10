@@ -21,5 +21,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, feature_id, organism="", sequence=""):
     """Set the feature to read through the first encountered stop codon
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.set_readthrough_stop_codon(feature_id, organism=organism, sequence=sequence)

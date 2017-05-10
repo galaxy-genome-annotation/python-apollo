@@ -23,5 +23,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, feature_id, attribute_key, attribute_value, organism="", sequence=""):
     """Add an attribute to a feature
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.add_attribute(feature_id, attribute_key, attribute_value, organism=organism, sequence=sequence)

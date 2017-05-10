@@ -15,10 +15,21 @@ This section is auto-generated from the help text for the arrow command
 
 Add a user to a group
 
+Output:
+
+ an empty dictionary
+    
+
+**Output**::
+
+
+    
+           an empty dictionary
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``create_user`` command
@@ -35,12 +46,23 @@ This section is auto-generated from the help text for the arrow command
 
 Create a new user
 
+Output:
+
+ an empty dictionary
+    
+
+**Output**::
+
+
+    
+           an empty dictionary
+    
 **Options**::
 
 
       --role TEXT      User's default role, one of "admin" or "user"
       --metadata TEXT  User metadata
-      --help           Show this message and exit.
+      -h, --help       Show this message and exit.
     
 
 ``delete_user`` command
@@ -57,10 +79,21 @@ This section is auto-generated from the help text for the arrow command
 
 Delete a user
 
+Output:
+
+ an empty dictionary
+    
+
+**Output**::
+
+
+    
+           an empty dictionary
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``get_organism_permissions`` command
@@ -77,10 +110,21 @@ This section is auto-generated from the help text for the arrow command
 
 Display a user's organism permissions
 
+Output:
+
+ a dictionary containing user's organism permissions
+    
+
+**Output**::
+
+
+    
+           a dictionary containing user's organism permissions
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``get_users`` command
@@ -97,10 +141,21 @@ This section is auto-generated from the help text for the arrow command
 
 Get all users known to this Apollo instance
 
+Output:
+
+ list of user info dictionaries
+    
+
+**Output**::
+
+
+    
+           list of user info dictionaries
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``remove_from_group`` command
@@ -117,10 +172,21 @@ This section is auto-generated from the help text for the arrow command
 
 Remove a user from a group
 
+Output:
+
+ an empty dictionary
+    
+
+**Output**::
+
+
+    
+           an empty dictionary
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``show_user`` command
@@ -137,10 +203,21 @@ This section is auto-generated from the help text for the arrow command
 
 Get a specific user
 
+Output:
+
+ a dictionary containing user information
+    
+
+**Output**::
+
+
+    
+           a dictionary containing user information
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``update_organism_permissions`` command
@@ -157,6 +234,17 @@ This section is auto-generated from the help text for the arrow command
 
 Update the permissions of a user on a specified organism
 
+Output:
+
+ a dictionary containing user's organism permissions
+    
+
+**Output**::
+
+
+    
+           a dictionary containing user's organism permissions
+    
 **Options**::
 
 
@@ -164,7 +252,7 @@ Update the permissions of a user on a specified organism
       --write         Grants write privileges
       --export        Grants export privileges
       --read          Grants read privileges
-      --help          Show this message and exit.
+      -h, --help      Show this message and exit.
     
 
 ``update_user`` command
@@ -181,9 +269,20 @@ This section is auto-generated from the help text for the arrow command
 
 Update an existing user
 
+Output:
+
+ a dictionary containing user information
+    
+
+**Output**::
+
+
+    
+           a dictionary containing user information
+    
 **Options**::
 
 
       --metadata TEXT  User metadata
-      --help           Show this message and exit.
+      -h, --help       Show this message and exit.
     

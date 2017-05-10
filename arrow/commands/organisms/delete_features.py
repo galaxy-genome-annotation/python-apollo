@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, organism_id):
     """Remove features of an organism
+
+Output:
+
+     an empty dictionary
+        
     """
     return ctx.gi.organisms.delete_features(organism_id)

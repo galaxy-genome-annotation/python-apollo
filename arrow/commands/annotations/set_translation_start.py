@@ -22,5 +22,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, feature_id, start, organism="", sequence=""):
     """Set the translation start of a feature
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.set_translation_start(feature_id, start, organism=organism, sequence=sequence)

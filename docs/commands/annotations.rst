@@ -1,584 +1,920 @@
 annotations
 ===========
 
-``addAttributes`` command
+``add_attribute`` command
 -------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations addAttributes``.
+``annotations add_attribute``.
 
 **Usage**::
 
-    arrow annotations addAttributes [OPTIONS] FEATURE_ID ATTRIBUTES
+    arrow annotations add_attribute [OPTIONS] FEATURE_ID ATTRIBUTE_KEY
 
 **Help**
 
-Warning: Undocumented Method
+Add an attribute to a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``addComments`` command
+``add_comment`` command
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations addComments``.
+``annotations add_comment``.
 
 **Usage**::
 
-    arrow annotations addComments [OPTIONS] FEATURE_ID COMMENTS
+    arrow annotations add_comment [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+Set a feature's description
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --comments TEXT  Feature comments
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``addFeature`` command
-----------------------
+``add_feature`` command
+-----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations addFeature``.
+``annotations add_feature``.
 
 **Usage**::
 
-    arrow annotations addFeature [OPTIONS] FEATURE
+    arrow annotations add_feature [OPTIONS]
 
 **Help**
 
-Warning: Undocumented Method
+Add a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --trustme TEXT
-      --help          Show this message and exit.
+      --feature TEXT   Feature information
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``addTranscript`` command
--------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations addTranscript``.
-
-**Usage**::
-
-    arrow annotations addTranscript [OPTIONS] TRANSCRIPT
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --trustme TEXT
-      --help          Show this message and exit.
-    
-
-``deleteAttribute`` command
----------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations deleteAttribute``.
-
-**Usage**::
-
-    arrow annotations deleteAttribute [OPTIONS] FEATURE_ID KEY VALUE
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``deleteFeatures`` command
+``add_transcript`` command
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations deleteFeatures``.
+``annotations add_transcript``.
 
 **Usage**::
 
-    arrow annotations deleteFeatures [OPTIONS] UNIQUENAMES
+    arrow annotations add_transcript [OPTIONS]
 
 **Help**
 
-Warning: Undocumented Method
+[UNTESTED] Add a transcript to a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --transcript TEXT   Transcript data
+      --suppress_history  Suppress the history of this operation
+      --suppress_events   Suppress instant update of the user interface
+      --organism TEXT     Organism Common Name
+      --sequence TEXT     Sequence Name
+      -h, --help          Show this message and exit.
     
 
-``deleteSequenceAlteration`` command
-------------------------------------
+``delete_attribute`` command
+----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations deleteSequenceAlteration``.
+``annotations delete_attribute``.
 
 **Usage**::
 
-    arrow annotations deleteSequenceAlteration [OPTIONS] UNIQUENAME
+    arrow annotations delete_attribute [OPTIONS] FEATURE_ID ATTRIBUTE_KEY
 
 **Help**
 
-Warning: Undocumented Method
+Delete an attribute from a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``duplicateTranscript`` command
--------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations duplicateTranscript``.
-
-**Usage**::
-
-    arrow annotations duplicateTranscript [OPTIONS] TRANSCRIPTID
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``flipStrand`` command
-----------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations flipStrand``.
-
-**Usage**::
-
-    arrow annotations flipStrand [OPTIONS] UNIQUENAMES
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getCannedComments`` command
------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getCannedComments``.
-
-**Usage**::
-
-    arrow annotations getCannedComments [OPTIONS]
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getComments`` command
------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getComments``.
-
-**Usage**::
-
-    arrow annotations getComments [OPTIONS] FEATURE_ID
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getFeatures`` command
------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getFeatures``.
-
-**Usage**::
-
-    arrow annotations getFeatures [OPTIONS]
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getGff3`` command
--------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getGff3``.
-
-**Usage**::
-
-    arrow annotations getGff3 [OPTIONS] UNIQUENAMES
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getSequence`` command
------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getSequence``.
-
-**Usage**::
-
-    arrow annotations getSequence [OPTIONS] UNIQUENAME
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getSequenceAlterations`` command
-----------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getSequenceAlterations``.
-
-**Usage**::
-
-    arrow annotations getSequenceAlterations [OPTIONS]
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``getSequenceSearchTools`` command
-----------------------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations getSequenceSearchTools``.
-
-**Usage**::
-
-    arrow annotations getSequenceSearchTools [OPTIONS]
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``mergeExons`` command
-----------------------
-
-This section is auto-generated from the help text for the arrow command
-``annotations mergeExons``.
-
-**Usage**::
-
-    arrow annotations mergeExons [OPTIONS] EXONA EXONB
-
-**Help**
-
-Warning: Undocumented Method
-
-**Options**::
-
-
-      --help  Show this message and exit.
-    
-
-``searchSequence`` command
+``delete_feature`` command
 --------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations searchSequence``.
+``annotations delete_feature``.
 
 **Usage**::
 
-    arrow annotations searchSequence [OPTIONS] SEARCHTOOL SEQUENCE DATABASE
+    arrow annotations delete_feature [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+Delete a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setBoundaries`` command
--------------------------
+``delete_sequence_alteration`` command
+--------------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setBoundaries``.
+``annotations delete_sequence_alteration``.
 
 **Usage**::
 
-    arrow annotations setBoundaries [OPTIONS] UNIQUENAME START END
+    arrow annotations delete_sequence_alteration [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+[UNTESTED] Delete a specific feature alteration
 
+Output:
+
+ A list of sequence alterations(?)
+    
+
+**Output**::
+
+
+    
+           A list of sequence alterations(?)
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setDescription`` command
---------------------------
+``duplicate_transcript`` command
+--------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setDescription``.
+``annotations duplicate_transcript``.
 
 **Usage**::
 
-    arrow annotations setDescription [OPTIONS] FEATUREDESCRIPTIONS
+    arrow annotations duplicate_transcript [OPTIONS] TRANSCRIPT_ID
 
 **Help**
 
-Warning: Undocumented Method
+Duplicate a transcripte
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setLongestOrf`` command
--------------------------
+``flip_strand`` command
+-----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setLongestOrf``.
+``annotations flip_strand``.
 
 **Usage**::
 
-    arrow annotations setLongestOrf [OPTIONS] UNIQUENAME
+    arrow annotations flip_strand [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+Flip the strand of a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setName`` command
--------------------
+``get_comments`` command
+------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setName``.
+``annotations get_comments``.
 
 **Usage**::
 
-    arrow annotations setName [OPTIONS] UNIQUENAME NAME
+    arrow annotations get_comments [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+Get a feature's comments
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setNames`` command
+``get_feature_sequence`` command
+--------------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations get_feature_sequence``.
+
+**Usage**::
+
+    arrow annotations get_feature_sequence [OPTIONS] FEATURE_ID
+
+**Help**
+
+[CURRENTLY BROKEN] Get the sequence of a feature
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``get_features`` command
+------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations get_features``.
+
+**Usage**::
+
+    arrow annotations get_features [OPTIONS]
+
+**Help**
+
+Get the features for an organism / sequence
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``get_gff3`` command
 --------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setNames``.
+``annotations get_gff3``.
 
 **Usage**::
 
-    arrow annotations setNames [OPTIONS] FEATURES
+    arrow annotations get_gff3 [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+Get the GFF3 associated with a feature
 
+Output:
+
+ GFF3 text content
+    
+
+**Output**::
+
+
+    
+           GFF3 text content
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setReadthroughStopCodon`` command
------------------------------------
+``get_search_tools`` command
+----------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setReadthroughStopCodon``.
+``annotations get_search_tools``.
 
 **Usage**::
 
-    arrow annotations setReadthroughStopCodon [OPTIONS] UNIQUENAME
+    arrow annotations get_search_tools [OPTIONS]
 
 **Help**
 
-Warning: Undocumented Method
+Get the search tools available
 
+Output:
+
+ dictionary containing the search tools and their metadata. E.g.::
+        {
+            "sequence_search_tools": {
+                "blat_prot": {
+                    "name": "Blat protein",
+                    "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineProteinToNucleotide",
+                    "params": "",
+                    "search_exe": "/usr/local/bin/blat"
+                },
+                "blat_nuc": {
+                    "name": "Blat nucleotide",
+                    "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineNucleotideToNucleotide",
+                    "params": "",
+                    "search_exe": "/usr/local/bin/blat"
+                }
+            }
+        }
+    
+
+**Output**::
+
+
+    
+           dictionary containing the search tools and their metadata. E.g.::
+           {                 "sequence_search_tools": {
+           "blat_prot": {                         "name": "Blat protein",
+           "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLinePr
+           oteinToNucleotide",                         "params": "",
+           "search_exe": "/usr/local/bin/blat"                     },
+           "blat_nuc": {                         "name": "Blat nucleotide",
+           "search_class": "org.bbop.apollo.sequence.search.blat.BlatCommandLineNu
+           cleotideToNucleotide",                         "params": "",
+           "search_exe": "/usr/local/bin/blat"                     }
+           }             }
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
-``setSequence`` command
+``get_sequence_alterations`` command
+------------------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations get_sequence_alterations``.
+
+**Usage**::
+
+    arrow annotations get_sequence_alterations [OPTIONS]
+
+**Help**
+
+[UNTESTED] Get all of the sequence's alterations
+
+Output:
+
+ A list of sequence alterations(?)
+    
+
+**Output**::
+
+
+    
+           A list of sequence alterations(?)
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``merge_exons`` command
 -----------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setSequence``.
+``annotations merge_exons``.
 
 **Usage**::
 
-    arrow annotations setSequence [OPTIONS] SEQUENCE ORGANISM
+    arrow annotations merge_exons [OPTIONS] EXON_A EXON_B
 
 **Help**
 
-Warning: Undocumented Method
+Merge two exons
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setStatus`` command
----------------------
+``set_boundaries`` command
+--------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setStatus``.
+``annotations set_boundaries``.
 
 **Usage**::
 
-    arrow annotations setStatus [OPTIONS] STATUSES
+    arrow annotations set_boundaries [OPTIONS] FEATURE_ID START END
 
 **Help**
 
-Warning: Undocumented Method
+Set the boundaries of a genomic feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setSymbol`` command
----------------------
+``set_description`` command
+---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setSymbol``.
+``annotations set_description``.
 
 **Usage**::
 
-    arrow annotations setSymbol [OPTIONS] SYMBOLS
+    arrow annotations set_description [OPTIONS] FEATURE_ID DESCRIPTION
 
 **Help**
 
-Warning: Undocumented Method
+Set a feature's description
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setTranslationEnd`` command
------------------------------
+``set_longest_orf`` command
+---------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setTranslationEnd``.
+``annotations set_longest_orf``.
 
 **Usage**::
 
-    arrow annotations setTranslationEnd [OPTIONS] UNIQUENAME END
+    arrow annotations set_longest_orf [OPTIONS] FEATURE_ID
 
 **Help**
 
-Warning: Undocumented Method
+Automatically pick the longest ORF in a feature
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     
 
-``setTranslationStart`` command
+``set_name`` command
+--------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations set_name``.
+
+**Usage**::
+
+    arrow annotations set_name [OPTIONS] FEATURE_ID NAME
+
+**Help**
+
+Set a feature's name
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``set_readthrough_stop_codon`` command
+--------------------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations set_readthrough_stop_codon``.
+
+**Usage**::
+
+    arrow annotations set_readthrough_stop_codon [OPTIONS] FEATURE_ID
+
+**Help**
+
+Set the feature to read through the first encountered stop codon
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``set_sequence`` command
+------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations set_sequence``.
+
+**Usage**::
+
+    arrow annotations set_sequence [OPTIONS] ORGANISM SEQUENCE
+
+**Help**
+
+Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
+
+Output:
+
+ None
+    
+
+**Output**::
+
+
+    
+           None
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``set_status`` command
+----------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations set_status``.
+
+**Usage**::
+
+    arrow annotations set_status [OPTIONS] FEATURE_ID STATUS
+
+**Help**
+
+Set a feature's description
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``set_symbol`` command
+----------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations set_symbol``.
+
+**Usage**::
+
+    arrow annotations set_symbol [OPTIONS] FEATURE_ID SYMBOL
+
+**Help**
+
+Set a feature's description
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``set_translation_end`` command
 -------------------------------
 
 This section is auto-generated from the help text for the arrow command
-``annotations setTranslationStart``.
+``annotations set_translation_end``.
 
 **Usage**::
 
-    arrow annotations setTranslationStart [OPTIONS] UNIQUENAME START
+    arrow annotations set_translation_end [OPTIONS] FEATURE_ID END
 
 **Help**
 
-Warning: Undocumented Method
+Set a feature's end
 
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``set_translation_start`` command
+---------------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations set_translation_start``.
+
+**Usage**::
+
+    arrow annotations set_translation_start [OPTIONS] FEATURE_ID START
+
+**Help**
+
+Set the translation start of a feature
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``update_attribute`` command
+----------------------------
+
+This section is auto-generated from the help text for the arrow command
+``annotations update_attribute``.
+
+**Usage**::
+
+    arrow annotations update_attribute [OPTIONS] FEATURE_ID ATTRIBUTE_KEY
+
+**Help**
+
+Delete an attribute from a feature
+
+Output:
+
+ A standard apollo feature dictionary ({"features": [{...}]})
+    
+
+**Output**::
+
+
+    
+           A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
     

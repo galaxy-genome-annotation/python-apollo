@@ -9,7 +9,7 @@ from .config import read_global_config, global_config_path  # noqa, ditto
 from .apollo import get_apollo_instance
 from arrow import __version__  # noqa, ditto
 
-CONTEXT_SETTINGS = dict(auto_envvar_prefix='ARROW')
+CONTEXT_SETTINGS = dict(auto_envvar_prefix='ARROW', help_option_names=['-h', '--help'])
 
 
 class Context(object):

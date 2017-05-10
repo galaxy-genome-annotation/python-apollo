@@ -12,5 +12,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, group, user):
     """Add a user to a group
+
+Output:
+
+     an empty dictionary
+        
     """
     return ctx.gi.users.add_to_group(group, user)

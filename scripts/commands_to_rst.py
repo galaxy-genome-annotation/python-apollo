@@ -81,6 +81,10 @@ for command in list_cmds():
                 help_lines = False
                 new_lines.append("**Options**::\n\n")
                 option_lines = True
+            elif line.strip().startswith("Output:"):
+                help_lines = False
+                new_lines.append("**Output**::\n\n")
+                option_lines = True
             elif option_lines:
                 new_lines.append("    %s" % line)
         text = COMMAND_TEMPLATE.safe_substitute(

@@ -32,5 +32,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, user, organism, administrate=False, write=False, export=False, read=False):
     """Update the permissions of a user on a specified organism
+
+Output:
+
+     a dictionary containing user's organism permissions
+        
     """
     return ctx.gi.users.update_organism_permissions(user, organism, administrate=administrate, write=write, export=export, read=read)

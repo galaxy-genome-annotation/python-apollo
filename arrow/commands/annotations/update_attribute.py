@@ -24,5 +24,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, feature_id, attribute_key, old_value, new_value, organism="", sequence=""):
     """Delete an attribute from a feature
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.update_attribute(feature_id, attribute_key, old_value, new_value, organism=organism, sequence=sequence)

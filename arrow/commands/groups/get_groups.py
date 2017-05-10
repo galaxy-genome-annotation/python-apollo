@@ -10,5 +10,10 @@ from arrow.decorators import apollo_exception, list_output
 @list_output
 def cli(ctx):
     """Get all the groups
+
+Output:
+
+     list of a dictionaries containing group information
+        
     """
     return ctx.gi.groups.get_groups()

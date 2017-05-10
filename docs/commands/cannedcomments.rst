@@ -13,13 +13,24 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
       --metadata TEXT
-      --help           Show this message and exit.
+      -h, --help       Show this message and exit.
     
 
 ``deleteComment`` command
@@ -34,12 +45,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findAllComments`` command
@@ -54,12 +76,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findCommentById`` command
@@ -74,12 +107,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findCommentByValue`` command
@@ -94,12 +138,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``updateComment`` command
@@ -114,11 +169,22 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
       --metadata TEXT
-      --help           Show this message and exit.
+      -h, --help       Show this message and exit.
     

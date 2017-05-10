@@ -32,5 +32,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False):
     """Add an organism
+
+Output:
+
+     a dictionary with information about the new organism
+        
     """
     return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public)

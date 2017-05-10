@@ -16,6 +16,11 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, group_id, group=None):
     """Get information about a group
+
+Output:
+
+     a dictionary containing group information
+        
     """
     kwargs = {}
 

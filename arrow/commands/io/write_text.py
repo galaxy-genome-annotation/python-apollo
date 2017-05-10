@@ -39,5 +39,10 @@ from arrow.decorators import apollo_exception, str_output
 @str_output
 def cli(ctx, organism, export_type="FASTA", seq_type="peptide", export_format="text", export_gff3_fasta=False, sequences=None):
     """Download or prepare a download for an organism
+
+Output:
+
+     the exported data
+        
     """
     return ctx.gi.io.write_text(organism, export_type=export_type, seq_type=seq_type, export_format=export_format, export_gff3_fasta=export_gff3_fasta, sequences=sequences)

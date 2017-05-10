@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, name):
     """Create a new group
+
+Output:
+
+     Group information dictionary
+        
     """
     return ctx.gi.groups.create_group(name)

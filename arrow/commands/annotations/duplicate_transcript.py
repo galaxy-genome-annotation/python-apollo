@@ -21,5 +21,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, transcript_id, organism="", sequence=""):
     """Duplicate a transcripte
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.duplicate_transcript(transcript_id, organism=organism, sequence=sequence)

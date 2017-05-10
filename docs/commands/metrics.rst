@@ -18,5 +18,5 @@ Get all server metrics
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     

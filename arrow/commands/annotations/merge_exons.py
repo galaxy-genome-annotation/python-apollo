@@ -22,5 +22,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, exon_a, exon_b, organism="", sequence=""):
     """Merge two exons
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.merge_exons(exon_a, exon_b, organism=organism, sequence=sequence)

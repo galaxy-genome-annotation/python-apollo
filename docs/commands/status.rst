@@ -13,12 +13,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``deleteStatus`` command
@@ -33,12 +44,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findAllStatuses`` command
@@ -53,12 +75,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findStatusById`` command
@@ -73,12 +106,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findStatusByValue`` command
@@ -93,12 +137,23 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``updateStatus`` command
@@ -113,10 +168,21 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Warning: Undocumented Method
+TODO: Undocumented
 
+Output:
+
+ ???
+    
+
+**Output**::
+
+
+    
+           ???
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     

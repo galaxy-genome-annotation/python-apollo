@@ -21,5 +21,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, feature_id, organism="", sequence=""):
     """Automatically pick the longest ORF in a feature
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.set_longest_orf(feature_id, organism=organism, sequence=sequence)

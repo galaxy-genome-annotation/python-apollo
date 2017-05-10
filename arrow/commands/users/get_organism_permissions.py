@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, user):
     """Display a user's organism permissions
+
+Output:
+
+     a dictionary containing user's organism permissions
+        
     """
     return ctx.gi.users.get_organism_permissions(user)

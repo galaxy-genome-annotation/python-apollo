@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, user):
     """Get a specific user
+
+Output:
+
+     a dictionary containing user information
+        
     """
     return ctx.gi.users.show_user(user)

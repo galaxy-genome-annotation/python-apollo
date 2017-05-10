@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, value):
     """TODO: Undocumented
+
+Output:
+
+     ???
+        
     """
     return ctx.gi.status.findStatusByValue(value)

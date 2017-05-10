@@ -244,11 +244,12 @@ class ScriptBuilder(object):
                     assert m.group('param_name') == m.group('param_name2')
                     param_docs[m.group('param_name')] = {'type': m.group('param_type'),
                                                             'desc': m.group('desc')}
+
                 m = returnre.match(subsec)
                 if m:
                     param_docs['__return__'] = {
                         'type': m.group('param_type'),
-                        'desc': m.group('desc'),
+                        'desc': argdoc[argdoc.index(':return:') + len(':return:'):],
                     }
 
         argspec = list(self.pair_arguments(func))
@@ -358,6 +359,7 @@ class ScriptBuilder(object):
         # We allow "list of dicts" and other such silliness.
         if ' ' in data['output_format']:
             data['output_format'] = data['output_format'][0:data['output_format'].index(' ')]
+        data['output_documentation'] = param_docs['__return__']['desc']
 
         # My function is more effective until can figure out docstring
         data['short_docstring'] = self.important_doc(argdoc)

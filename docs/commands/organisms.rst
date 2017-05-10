@@ -22,7 +22,7 @@ Warning: Undocumented Method
       --species TEXT
       --genus TEXT
       --public TEXT
-      --help          Show this message and exit.
+      -h, --help      Show this message and exit.
     
 
 ``add_organism`` command
@@ -39,6 +39,17 @@ This section is auto-generated from the help text for the arrow command
 
 Add an organism
 
+Output:
+
+ a dictionary with information about the new organism
+    
+
+**Output**::
+
+
+    
+           a dictionary with information about the new organism
+    
 **Options**::
 
 
@@ -46,7 +57,7 @@ Add an organism
       --genus TEXT    Genus
       --species TEXT  Species
       --public        User's email
-      --help          Show this message and exit.
+      -h, --help      Show this message and exit.
     
 
 ``deleteOrganism`` command
@@ -66,7 +77,7 @@ Warning: Undocumented Method
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``deleteOrganismFeatures`` command
@@ -86,7 +97,7 @@ Warning: Undocumented Method
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``delete_features`` command
@@ -103,10 +114,21 @@ This section is auto-generated from the help text for the arrow command
 
 Remove features of an organism
 
+Output:
+
+ an empty dictionary
+    
+
+**Output**::
+
+
+    
+           an empty dictionary
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``delete_organism`` command
@@ -123,10 +145,21 @@ This section is auto-generated from the help text for the arrow command
 
 Delete an organim
 
+Output:
+
+ A list of all remaining organisms
+    
+
+**Output**::
+
+
+    
+           A list of all remaining organisms
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findAllOrganisms`` command
@@ -146,7 +179,7 @@ Warning: Undocumented Method
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findOrganismByCn`` command
@@ -166,7 +199,7 @@ Warning: Undocumented Method
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``findOrganismById`` command
@@ -186,7 +219,7 @@ Warning: Undocumented Method
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``getSequencesForOrganism`` command
@@ -206,7 +239,7 @@ Warning: Undocumented Method
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``get_organisms`` command
@@ -223,12 +256,23 @@ This section is auto-generated from the help text for the arrow command
 
 Get all organisms
 
+Output:
+
+ Organisms information
+    
+
+**Output**::
+
+
+    
+           Organisms information
+    
 **Options**::
 
 
       --common_name TEXT
       --cn TEXT           Optionally filter on common name
-      --help              Show this message and exit.
+      -h, --help          Show this message and exit.
     
 
 ``get_sequences`` command
@@ -245,10 +289,21 @@ This section is auto-generated from the help text for the arrow command
 
 Get the sequences for an organism
 
+Output:
+
+ The set of sequences associated with an organism
+    
+
+**Output**::
+
+
+    
+           The set of sequences associated with an organism
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``show_organism`` command
@@ -265,10 +320,21 @@ This section is auto-generated from the help text for the arrow command
 
 Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
 
+Output:
+
+ a dictionary containing the organism's information
+    
+
+**Output**::
+
+
+    
+           a dictionary containing the organism's information
+    
 **Options**::
 
 
-      --help  Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``updateOrganismInfo`` command
@@ -292,7 +358,7 @@ Update an organism
       --species TEXT  Species
       --genus TEXT    Genus
       --public        User's email
-      --help          Show this message and exit.
+      -h, --help      Show this message and exit.
     
 
 ``update_organism`` command
@@ -309,6 +375,17 @@ This section is auto-generated from the help text for the arrow command
 
 Update an organism
 
+Output:
+
+ a dictionary with information about the new organism
+    
+
+**Output**::
+
+
+    
+           a dictionary with information about the new organism
+    
 **Options**::
 
 
@@ -316,5 +393,5 @@ Update an organism
       --species TEXT  Species
       --genus TEXT    Genus
       --public        User's email
-      --help          Show this message and exit.
+      -h, --help      Show this message and exit.
     

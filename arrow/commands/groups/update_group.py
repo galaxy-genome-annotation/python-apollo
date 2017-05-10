@@ -17,6 +17,11 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, group_id, new_name, group=None):
     """Update the name of a group
+
+Output:
+
+     a dictionary containing group information
+        
     """
     kwargs = {}
 

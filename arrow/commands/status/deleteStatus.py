@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, id_number):
     """TODO: Undocumented
+
+Output:
+
+     ???
+        
     """
     return ctx.gi.status.deleteStatus(id_number)

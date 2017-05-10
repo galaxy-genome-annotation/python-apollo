@@ -35,5 +35,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, transcript={}, suppress_history=False, suppress_events=False, organism="", sequence=""):
     """[UNTESTED] Add a transcript to a feature
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.add_transcript(transcript=transcript, suppress_history=suppress_history, suppress_events=suppress_events, organism=organism, sequence=sequence)

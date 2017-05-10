@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, list_output
 @list_output
 def cli(ctx, group):
     """Get the group's organism permissions
+
+Output:
+
+     a list containing organism permissions (if any)
+        
     """
     return ctx.gi.groups.get_organism_permissions(group)

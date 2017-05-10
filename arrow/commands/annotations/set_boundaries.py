@@ -23,5 +23,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, feature_id, start, end, organism="", sequence=""):
     """Set the boundaries of a genomic feature
+
+Output:
+
+     A standard apollo feature dictionary ({"features": [{...}]})
+        
     """
     return ctx.gi.annotations.set_boundaries(feature_id, start, end, organism=organism, sequence=sequence)

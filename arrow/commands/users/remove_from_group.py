@@ -12,5 +12,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, group, user):
     """Remove a user from a group
+
+Output:
+
+     an empty dictionary
+        
     """
     return ctx.gi.users.remove_from_group(group, user)

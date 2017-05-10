@@ -21,5 +21,10 @@ from arrow.decorators import apollo_exception, str_output
 @str_output
 def cli(ctx, feature_id, organism="", sequence=""):
     """Get the GFF3 associated with a feature
+
+Output:
+
+     GFF3 text content
+        
     """
     return ctx.gi.annotations.get_gff3(feature_id, organism=organism, sequence=sequence)

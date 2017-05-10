@@ -15,11 +15,22 @@ This section is auto-generated from the help text for the arrow command
 
 [CURRENTLY BROKEN] Download pre-prepared data by UUID
 
+Output:
+
+ a dictionary
+    
+
+**Output**::
+
+
+    
+           a dictionary
+    
 **Options**::
 
 
       --output_format TEXT  Output format of the data, either "gzip" or "text"
-      --help                Show this message and exit.
+      -h, --help            Show this message and exit.
     
 
 ``write`` command
@@ -47,5 +58,79 @@ Download or prepare a download for an organism
       --export_gff3_fasta   Export reference sequence when exporting GFF3
                             annotations.
       --sequences TEXT      Names of references sequences to add (default is all)
-      --help                Show this message and exit.
+      -h, --help            Show this message and exit.
+    
+
+``write_downloadable`` command
+------------------------------
+
+This section is auto-generated from the help text for the arrow command
+``io write_downloadable``.
+
+**Usage**::
+
+    arrow io write_downloadable [OPTIONS] ORGANISM
+
+**Help**
+
+Prepare a download for an organism
+
+Output:
+
+ a dictionary containing download information
+    
+
+**Output**::
+
+
+    
+           a dictionary containing download information
+    
+**Options**::
+
+
+      --export_type TEXT    Export type. Choices: FASTA, GFF3
+      --seq_type TEXT       Export selection. Choices: peptide, cds, cdna, genomic
+      --export_format TEXT  Export format, either gzip or text
+      --export_gff3_fasta   Export reference sequence when exporting GFF3
+                            annotations.
+      --sequences TEXT      Names of references sequences to add (default is all)
+      -h, --help            Show this message and exit.
+    
+
+``write_text`` command
+----------------------
+
+This section is auto-generated from the help text for the arrow command
+``io write_text``.
+
+**Usage**::
+
+    arrow io write_text [OPTIONS] ORGANISM
+
+**Help**
+
+Download or prepare a download for an organism
+
+Output:
+
+ the exported data
+    
+
+**Output**::
+
+
+    
+           the exported data
+    
+**Options**::
+
+
+      --export_type TEXT    Export type. Choices: FASTA, GFF3
+      --seq_type TEXT       Export selection. Choices: peptide, cds, cdna, genomic
+      --export_format TEXT  Export format, either gzip or text
+      --export_gff3_fasta   Export reference sequence when exporting GFF3
+                            annotations.
+      --sequences TEXT      Names of references sequences to add (default is all)
+      -h, --help            Show this message and exit.
     

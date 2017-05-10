@@ -19,5 +19,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, email, first_name, last_name, password, metadata={}):
     """Update an existing user
+
+Output:
+
+     a dictionary containing user information
+        
     """
     return ctx.gi.users.update_user(email, first_name, last_name, password, metadata=metadata)

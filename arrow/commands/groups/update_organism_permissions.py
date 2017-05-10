@@ -32,5 +32,10 @@ from arrow.decorators import apollo_exception, list_output
 @list_output
 def cli(ctx, group, organism_name, administrate=False, write=False, read=False, export=False):
     """Update the group's permissions on an organism
+
+Output:
+
+     list of group organism permissions
+        
     """
     return ctx.gi.groups.update_organism_permissions(group, organism_name, administrate=administrate, write=write, read=read, export=export)

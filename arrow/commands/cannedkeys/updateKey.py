@@ -16,5 +16,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, id_number, new_key, metadata=""):
     """TODO: Undocumented
+
+Output:
+
+     ???
+        
     """
     return ctx.gi.cannedkeys.updateKey(id_number, new_key, metadata=metadata)

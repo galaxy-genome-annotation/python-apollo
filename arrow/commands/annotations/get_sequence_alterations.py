@@ -20,5 +20,10 @@ from arrow.decorators import apollo_exception, list_output
 @list_output
 def cli(ctx, organism="", sequence=""):
     """[UNTESTED] Get all of the sequence's alterations
+
+Output:
+
+     A list of sequence alterations(?)
+        
     """
     return ctx.gi.annotations.get_sequence_alterations(organism=organism, sequence=sequence)

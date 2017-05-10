@@ -11,5 +11,10 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, group):
     """Delete a group
+
+Output:
+
+     an empty dictionary
+        
     """
     return ctx.gi.groups.delete_group(group)

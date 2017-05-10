@@ -19,6 +19,11 @@ from arrow.decorators import apollo_exception, dict_output
 @dict_output
 def cli(ctx, common_name="", cn=None):
     """Get all organisms
+
+Output:
+
+     Organisms information
+        
     """
     kwargs = {}
     if cn and len(cn) > 0:
