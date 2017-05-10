@@ -19,10 +19,6 @@ Create a new group
 **Output**
 
 
-Create a new group
-
-Output:
-
 Group information dictionary
    
     
@@ -49,10 +45,6 @@ Delete a group
 
 **Output**
 
-
-Delete a group
-
-Output:
 
 an empty dictionary
    
@@ -81,10 +73,6 @@ Get all the groups
 **Output**
 
 
-Get all the groups
-
-Output:
-
 list of a dictionaries containing group information
    
     
@@ -112,10 +100,6 @@ Get the group's organism permissions
 **Output**
 
 
-Get the group's organism permissions
-
-Output:
-
 a list containing organism permissions (if any)
    
     
@@ -142,10 +126,6 @@ Get information about a group
 
 **Output**
 
-
-Get information about a group
-
-Output:
 
 a dictionary containing group information
    
@@ -175,10 +155,6 @@ Update the name of a group
 **Output**
 
 
-Update the name of a group
-
-Output:
-
 a dictionary containing group information
    
     
@@ -207,10 +183,6 @@ Update the group's membership
 **Output**
 
 
-Update the group's membership
-
-Output:
-
 dictionary of group information
    
     
@@ -238,10 +210,6 @@ Update the group's permissions on an organism
 
 **Output**
 
-
-Update the group's permissions on an organism
-
-Output:
 
 list of group organism permissions
    

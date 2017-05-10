@@ -96,7 +96,8 @@ for command in list_cmds():
                 option_lines = False
                 output_lines = True
                 new_lines.append("**Output**\n\n")
-                new_lines.append(output_rst)
+                # I thought we already did this??
+                new_lines.append(output_rst[output_rst.index('Output:') + len('Output:'):].lstrip('\n'))
             elif option_lines:
                 new_lines.append("    %s" % line)
             elif output_lines:

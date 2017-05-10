@@ -19,10 +19,6 @@ Add an organism
 **Output**
 
 
-Add an organism
-
-Output:
-
 a dictionary with information about the new organism
    
     
@@ -54,10 +50,6 @@ Remove features of an organism
 **Output**
 
 
-Remove features of an organism
-
-Output:
-
 an empty dictionary
    
     
@@ -85,10 +77,6 @@ Delete an organim
 **Output**
 
 
-Delete an organim
-
-Output:
-
 A list of all remaining organisms
    
     
@@ -115,10 +103,6 @@ Get all organisms
 
 **Output**
 
-
-Get all organisms
-
-Output:
 
 Organisms information
    
@@ -149,10 +133,6 @@ Get the sequences for an organism
 **Output**
 
 
-Get the sequences for an organism
-
-Output:
-
 The set of sequences associated with an organism
    
     
@@ -180,10 +160,6 @@ Get information about a specific organism. Due to the lack of an API, this call 
 **Output**
 
 
-Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
-
-Output:
-
 a dictionary containing the organism's information
    
     
@@ -210,10 +186,6 @@ Update an organism
 
 **Output**
 
-
-Update an organism
-
-Output:
 
 a dictionary with information about the new organism
    

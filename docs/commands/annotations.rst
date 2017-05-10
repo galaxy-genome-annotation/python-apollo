@@ -19,10 +19,6 @@ Add an attribute to a feature
 **Output**
 
 
-Add an attribute to a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -51,10 +47,6 @@ Set a feature's description
 
 **Output**
 
-
-Set a feature's description
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -86,10 +78,6 @@ Add a feature
 **Output**
 
 
-Add a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -119,10 +107,6 @@ This section is auto-generated from the help text for the arrow command
 
 **Output**
 
-
-[UNTESTED] Add a transcript to a feature
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -156,10 +140,6 @@ Delete an attribute from a feature
 **Output**
 
 
-Delete an attribute from a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -188,10 +168,6 @@ Delete a feature
 
 **Output**
 
-
-Delete a feature
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -222,10 +198,6 @@ This section is auto-generated from the help text for the arrow command
 **Output**
 
 
-[UNTESTED] Delete a specific feature alteration
-
-Output:
-
 A list of sequence alterations(?)
    
     
@@ -254,10 +226,6 @@ Duplicate a transcripte
 
 **Output**
 
-
-Duplicate a transcripte
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -288,10 +256,6 @@ Flip the strand of a feature
 **Output**
 
 
-Flip the strand of a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -320,10 +284,6 @@ Get a feature's comments
 
 **Output**
 
-
-Get a feature's comments
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -354,10 +314,6 @@ This section is auto-generated from the help text for the arrow command
 **Output**
 
 
-[CURRENTLY BROKEN] Get the sequence of a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -386,10 +342,6 @@ Get the features for an organism / sequence
 
 **Output**
 
-
-Get the features for an organism / sequence
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -420,10 +372,6 @@ Get the GFF3 associated with a feature
 **Output**
 
 
-Get the GFF3 associated with a feature
-
-Output:
-
 GFF3 text content
    
     
@@ -452,10 +400,6 @@ Get the search tools available
 
 **Output**
 
-
-Get the search tools available
-
-Output:
 
 dictionary containing the search tools and their metadata. E.g.::
        {
@@ -500,10 +444,6 @@ This section is auto-generated from the help text for the arrow command
 **Output**
 
 
-[UNTESTED] Get all of the sequence's alterations
-
-Output:
-
 A list of sequence alterations(?)
    
     
@@ -532,10 +472,6 @@ Merge two exons
 
 **Output**
 
-
-Merge two exons
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -566,10 +502,6 @@ Set the boundaries of a genomic feature
 **Output**
 
 
-Set the boundaries of a genomic feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -598,10 +530,6 @@ Set a feature's description
 
 **Output**
 
-
-Set a feature's description
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -632,10 +560,6 @@ Automatically pick the longest ORF in a feature
 **Output**
 
 
-Automatically pick the longest ORF in a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -664,10 +588,6 @@ Set a feature's name
 
 **Output**
 
-
-Set a feature's name
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -698,10 +618,6 @@ Set the feature to read through the first encountered stop codon
 **Output**
 
 
-Set the feature to read through the first encountered stop codon
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -731,10 +647,6 @@ Set the sequence for subsequent requests. Mostly used in client scripts to avoid
 **Output**
 
 
-Set the sequence for subsequent requests. Mostly used in client scripts to avoid passing the sequence and organism on every function call.
-
-Output:
-
 None
    
     
@@ -761,10 +673,6 @@ Set a feature's description
 
 **Output**
 
-
-Set a feature's description
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -795,10 +703,6 @@ Set a feature's description
 **Output**
 
 
-Set a feature's description
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -827,10 +731,6 @@ Set a feature's end
 
 **Output**
 
-
-Set a feature's end
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    
@@ -861,10 +761,6 @@ Set the translation start of a feature
 **Output**
 
 
-Set the translation start of a feature
-
-Output:
-
 A standard apollo feature dictionary ({"features": [{...}]})
    
     
@@ -893,10 +789,6 @@ Delete an attribute from a feature
 
 **Output**
 
-
-Delete an attribute from a feature
-
-Output:
 
 A standard apollo feature dictionary ({"features": [{...}]})
    

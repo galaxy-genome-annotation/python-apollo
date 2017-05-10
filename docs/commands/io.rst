@@ -19,10 +19,6 @@ This section is auto-generated from the help text for the arrow command
 **Output**
 
 
-[CURRENTLY BROKEN] Download pre-prepared data by UUID
-
-Output:
-
 a dictionary
    
     
@@ -51,10 +47,6 @@ Prepare a download for an organism
 
 **Output**
 
-
-Prepare a download for an organism
-
-Output:
 
 a dictionary containing download information
    
@@ -89,10 +81,6 @@ Download or prepare a download for an organism
 
 **Output**
 
-
-Download or prepare a download for an organism
-
-Output:
 
 the exported data
    

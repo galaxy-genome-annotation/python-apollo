@@ -19,10 +19,6 @@ Get all server metrics
 **Output**
 
 
-Get all server metrics
-
-Output:
-
 A dictionary with all of the server timing / metrics
    
     

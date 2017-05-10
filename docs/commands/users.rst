@@ -19,10 +19,6 @@ Add a user to a group
 **Output**
 
 
-Add a user to a group
-
-Output:
-
 an empty dictionary
    
     
@@ -49,10 +45,6 @@ Create a new user
 
 **Output**
 
-
-Create a new user
-
-Output:
 
 an empty dictionary
    
@@ -84,10 +76,6 @@ Delete a user
 **Output**
 
 
-Delete a user
-
-Output:
-
 an empty dictionary
    
     
@@ -114,10 +102,6 @@ Display a user's organism permissions
 
 **Output**
 
-
-Display a user's organism permissions
-
-Output:
 
 a dictionary containing user's organism permissions
    
@@ -146,10 +130,6 @@ Get all users known to this Apollo instance
 **Output**
 
 
-Get all users known to this Apollo instance
-
-Output:
-
 list of user info dictionaries
    
     
@@ -176,10 +156,6 @@ Remove a user from a group
 
 **Output**
 
-
-Remove a user from a group
-
-Output:
 
 an empty dictionary
    
@@ -208,10 +184,6 @@ Get a specific user
 **Output**
 
 
-Get a specific user
-
-Output:
-
 a dictionary containing user information
    
     
@@ -238,10 +210,6 @@ Update the permissions of a user on a specified organism
 
 **Output**
 
-
-Update the permissions of a user on a specified organism
-
-Output:
 
 a dictionary containing user's organism permissions
    
@@ -273,10 +241,6 @@ Update an existing user
 
 **Output**
 
-
-Update an existing user
-
-Output:
 
 a dictionary containing user information
    
