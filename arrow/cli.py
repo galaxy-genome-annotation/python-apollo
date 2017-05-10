@@ -87,6 +87,7 @@ class ArrowCLI(click.MultiCommand):
         # versions of arrow. Please feel free to fix this?
 
         commands = [
+            'init',
             'annotations',
             # 'cannedcomments',
             # 'cannedkeys',
