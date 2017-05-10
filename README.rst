@@ -19,7 +19,7 @@ Examples
     from apollo import WebApolloInstance
     wa = WebApolloInstance('https://fqdn/apollo', 'jane.doe@fqdn.edu', 'password')
 
-    orgs = wa.organisms.addOrganism(
+    orgs = wa.organisms.add_organism(
         "Yeast",
         "/path/to/jbrowse/data",
         genus='Saccharomyces',
