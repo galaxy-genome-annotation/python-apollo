@@ -44,3 +44,16 @@ This will:
 3. Return all of the username attributes for those matching users
 4. For every user, run ``arrow users add_to_group university <user_id>``
 
+Alternatively you can:
+
+.. code-block:: shell
+    $ arrow users get_users | \
+        jq '.[] | select(.username | contains("@tamu.edu")) | .username' | \
+        paste -s -d',' | \
+        xargs arrow group update_membership 558319 --users
+
+1. fetch all of the users
+2. select those whose username (their email) contains "@tamu.edu"
+3. Return all of the username attributes for those matching users
+4. Paste them together with a comma separator
+5. Do a single batch update of group membership with the new users
