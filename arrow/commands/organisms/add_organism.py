@@ -2,8 +2,7 @@ import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import apollo_exception, dict_output
 
-@click.command('updateOrganismInfo')
-@click.argument("organism_id", type=str)
+@click.command('add_organism')
 @click.argument("common_name", type=str)
 @click.argument("directory", type=str)
 
@@ -13,13 +12,13 @@ from arrow.decorators import apollo_exception, dict_output
     type=str
 )
 @click.option(
-    "--species",
-    help="Species",
+    "--genus",
+    help="Genus",
     type=str
 )
 @click.option(
-    "--genus",
-    help="Genus",
+    "--species",
+    help="Species",
     type=str
 )
 @click.option(
@@ -31,7 +30,7 @@ from arrow.decorators import apollo_exception, dict_output
 @pass_context
 @apollo_exception
 @dict_output
-def cli(ctx, organism_id, common_name, directory, blatdb="", species="", genus="", public=False):
-    """Update an organism
+def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False):
+    """Add an organism
     """
-    return ctx.gi.organisms.updateOrganismInfo(organism_id, common_name, directory, blatdb=blatdb, species=species, genus=genus, public=public)
+    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public)

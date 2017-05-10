@@ -94,7 +94,7 @@ class ArrowCLI(click.MultiCommand):
             'groups',
             'io',
             'metrics',
-            # 'organisms',
+            'organisms',
             # 'status',
             'users'
         ]
