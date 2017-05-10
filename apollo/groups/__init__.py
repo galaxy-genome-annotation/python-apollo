@@ -145,7 +145,7 @@ class GroupsClient(Client):
 
     def update_membership(self, group_id, users=[]):
         """
-        [CURRENTLY_BROKEN] Update the group's membership
+        Update the group's membership
 
         :type group_id: int
         :param group_id: Group ID Number
@@ -158,6 +158,6 @@ class GroupsClient(Client):
         """
         data = {
             'groupId': group_id,
-            'user': users,
+            'users': users,
         }
         return _fix_group(self.post('updateMembership', data))
