@@ -20,12 +20,22 @@ def apollo_exception(wrapped, instance, args, kwargs):
 
 
 @wrapt.decorator
-def dict_output(wrapped, instance, args, kwargs):
-    # TODO enhance
+def list_output(wrapped, instance, args, kwargs):
     output = wrapped(*args, **kwargs)
     print((json.dumps(output, indent=4)))
 
+
 @wrapt.decorator
-def text_output(wrapped, instance, args, kwargs):
-    # TODO enhance
+def dict_output(wrapped, instance, args, kwargs):
+    output = wrapped(*args, **kwargs)
+    print((json.dumps(output, indent=4)))
+
+
+@wrapt.decorator
+def str_output(wrapped, instance, args, kwargs):
+    print(wrapped(*args, **kwargs))
+
+
+@wrapt.decorator
+def None_output(wrapped, instance, args, kwargs):
     print(wrapped(*args, **kwargs))
