@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger()
 
 
+PROJECT_NAME = 'arrow'
 import apollo as bg
 IGNORE_LIST = [
     'get', 'post'
@@ -36,12 +37,12 @@ PARAM_TRANSLATION = {
         'is_flag=True',
     ],
     'list': [
-        'type=str',
-        'callback=_arg_split',
+        'type=str', # TODO
+        'multiple=True',
     ],
     'list of str': [
-        'type=str',
-        'callback=_arg_split',
+        'type=str', # TODO
+        'multiple=True',
     ],
     'file': [
         'type=click.File(\'rb+\')'
@@ -199,14 +200,14 @@ class ScriptBuilder(object):
                 continue
             self.orig(module, sm, ssm, f)
         # Write module __init__
-        with open(os.path.join('arrow', 'commands', module, '__init__.py'), 'w') as handle:
+        with open(os.path.join(PROJECT_NAME, 'commands', module, '__init__.py'), 'w') as handle:
             pass
 
-        with open(os.path.join('arrow', 'commands', 'cmd_%s.py' % module), 'w') as handle:
+        with open(os.path.join(PROJECT_NAME, 'commands', 'cmd_%s.py' % module), 'w') as handle:
             handle.write('import click\n')
             # for function:
-            files = list(glob.glob("arrow/commands/%s/*.py" % module))
-            files = [f for f in files if "__init__.py" not in f]
+            files = list(glob.glob(PROJECT_NAME + "/commands/%s/*.py" % module))
+            files = sorted([f for f in files if "__init__.py" not in f])
             for idx, path in enumerate(files):
                 fn = path.replace('/', '.')[0:-3]
                 handle.write('from %s import cli as func%s\n' % (fn, idx))
@@ -245,7 +246,6 @@ class ScriptBuilder(object):
                     assert m.group('param_name') == m.group('param_name2')
                     param_docs[m.group('param_name')] = {'type': m.group('param_type'),
                                                             'desc': m.group('desc')}
-
                 m = returnre.match(subsec)
                 if m:
                     param_docs['__return__'] = {
@@ -370,8 +370,9 @@ class ScriptBuilder(object):
         # Generate a command name, prefix everything with auto_ to identify the
         # automatically generated stuff
         cmd_name = '%s.py' % function_name
-        cmd_path = os.path.join('arrow', 'commands', module_name, cmd_name)
-
+        cmd_path = os.path.join(PROJECT_NAME, 'commands', module_name, cmd_name)
+        if not os.path.exists(os.path.join(PROJECT_NAME, 'commands', module_name)):
+            os.makedirs(os.path.join(PROJECT_NAME, 'commands', module_name))
         # Save file
         with open(cmd_path, 'w') as handle:
             handle.write(self.template('click', data))

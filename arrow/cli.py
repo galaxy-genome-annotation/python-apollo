@@ -110,9 +110,11 @@ class ArrowCLI(click.MultiCommand):
 @click.option('-v', '--verbose', is_flag=True,
               help='Enables verbose mode.')
 @click.option(
+    "-a",
     "--apollo_instance",
     help='name of apollo instance from %s' % global_config_path(),
     default='__default',
+    show_default=True,
     required=True
 )
 @pass_context

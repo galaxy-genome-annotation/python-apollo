@@ -9,7 +9,7 @@ from arrow.decorators import apollo_exception, dict_output, _arg_split
     "--users",
     help="List of emails",
     type=str,
-    callback=_arg_split
+    multiple=True
 )
 
 @pass_context

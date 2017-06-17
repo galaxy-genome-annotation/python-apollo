@@ -1,10 +1,10 @@
 import click
-from arrow.commands.cannedkeys.findKeyByValue import cli as func0
-from arrow.commands.cannedkeys.findAllKeys import cli as func1
-from arrow.commands.cannedkeys.findKeyById import cli as func2
-from arrow.commands.cannedkeys.deleteKey import cli as func3
-from arrow.commands.cannedkeys.updateKey import cli as func4
-from arrow.commands.cannedkeys.addKey import cli as func5
+from arrow.commands.cannedkeys.addKey import cli as func0
+from arrow.commands.cannedkeys.deleteKey import cli as func1
+from arrow.commands.cannedkeys.findAllKeys import cli as func2
+from arrow.commands.cannedkeys.findKeyById import cli as func3
+from arrow.commands.cannedkeys.findKeyByValue import cli as func4
+from arrow.commands.cannedkeys.updateKey import cli as func5
 
 @click.group()
 def cli():

@@ -1,10 +1,10 @@
 import click
-from arrow.commands.cannedcomments.findCommentByValue import cli as func0
-from arrow.commands.cannedcomments.updateComment import cli as func1
-from arrow.commands.cannedcomments.addComment import cli as func2
-from arrow.commands.cannedcomments.findAllComments import cli as func3
-from arrow.commands.cannedcomments.deleteComment import cli as func4
-from arrow.commands.cannedcomments.findCommentById import cli as func5
+from arrow.commands.cannedcomments.addComment import cli as func0
+from arrow.commands.cannedcomments.deleteComment import cli as func1
+from arrow.commands.cannedcomments.findAllComments import cli as func2
+from arrow.commands.cannedcomments.findCommentById import cli as func3
+from arrow.commands.cannedcomments.findCommentByValue import cli as func4
+from arrow.commands.cannedcomments.updateComment import cli as func5
 
 @click.group()
 def cli():

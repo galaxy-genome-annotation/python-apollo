@@ -1,13 +1,13 @@
 import click
-from arrow.commands.users.get_users import cli as func0
-from arrow.commands.users.delete_user import cli as func1
-from arrow.commands.users.update_organism_permissions import cli as func2
-from arrow.commands.users.remove_from_group import cli as func3
-from arrow.commands.users.update_user import cli as func4
-from arrow.commands.users.show_user import cli as func5
-from arrow.commands.users.get_organism_permissions import cli as func6
-from arrow.commands.users.add_to_group import cli as func7
-from arrow.commands.users.create_user import cli as func8
+from arrow.commands.users.add_to_group import cli as func0
+from arrow.commands.users.create_user import cli as func1
+from arrow.commands.users.delete_user import cli as func2
+from arrow.commands.users.get_organism_permissions import cli as func3
+from arrow.commands.users.get_users import cli as func4
+from arrow.commands.users.remove_from_group import cli as func5
+from arrow.commands.users.show_user import cli as func6
+from arrow.commands.users.update_organism_permissions import cli as func7
+from arrow.commands.users.update_user import cli as func8
 
 @click.group()
 def cli():
