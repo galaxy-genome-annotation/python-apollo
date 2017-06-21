@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, str_output, _arg_split
+from arrow.decorators import custom_exception, str_output, _arg_split
 
 @click.command('write_text')
 @click.argument("organism", type=str)
@@ -38,7 +38,7 @@ from arrow.decorators import apollo_exception, str_output, _arg_split
 )
 
 @pass_context
-@apollo_exception
+@custom_exception
 @str_output
 def cli(ctx, organism, export_type="FASTA", seq_type="peptide", export_format="text", export_gff3_fasta=False, sequences=None):
     """Download or prepare a download for an organism

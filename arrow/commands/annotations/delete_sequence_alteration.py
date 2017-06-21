@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, list_output, _arg_split
+from arrow.decorators import custom_exception, list_output, _arg_split
 
 @click.command('delete_sequence_alteration')
 @click.argument("feature_id")
@@ -17,7 +17,7 @@ from arrow.decorators import apollo_exception, list_output, _arg_split
 )
 
 @pass_context
-@apollo_exception
+@custom_exception
 @list_output
 def cli(ctx, feature_id, organism="", sequence=""):
     """[UNTESTED] Delete a specific feature alteration

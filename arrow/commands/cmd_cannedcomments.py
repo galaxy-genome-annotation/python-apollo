@@ -8,7 +8,7 @@ from arrow.commands.cannedcomments.updateComment import cli as func5
 
 @click.group()
 def cli():
-	pass
+    pass
 
 cli.add_command(func0)
 cli.add_command(func1)

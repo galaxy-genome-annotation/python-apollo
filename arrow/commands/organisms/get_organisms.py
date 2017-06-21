@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output, _arg_split
+from arrow.decorators import custom_exception, dict_output, _arg_split
 
 @click.command('get_organisms')
 
@@ -15,7 +15,7 @@ from arrow.decorators import apollo_exception, dict_output, _arg_split
 )
 
 @pass_context
-@apollo_exception
+@custom_exception
 @dict_output
 def cli(ctx, common_name="", cn=None):
     """Get all organisms

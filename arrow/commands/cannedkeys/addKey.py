@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output, _arg_split
+from arrow.decorators import custom_exception, dict_output, _arg_split
 
 @click.command('addKey')
 @click.argument("key")
@@ -11,7 +11,7 @@ from arrow.decorators import apollo_exception, dict_output, _arg_split
 )
 
 @pass_context
-@apollo_exception
+@custom_exception
 @dict_output
 def cli(ctx, key, metadata=""):
     """TODO: Undocumented

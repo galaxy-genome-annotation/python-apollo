@@ -1,6 +1,6 @@
 import click
 from arrow.cli import pass_context, json_loads
-from arrow.decorators import apollo_exception, dict_output, _arg_split
+from arrow.decorators import custom_exception, dict_output, _arg_split
 
 @click.command('download')
 @click.argument("uuid", type=str)
@@ -14,7 +14,7 @@ from arrow.decorators import apollo_exception, dict_output, _arg_split
 )
 
 @pass_context
-@apollo_exception
+@custom_exception
 @dict_output
 def cli(ctx, uuid, output_format="gzip"):
     """[CURRENTLY BROKEN] Download pre-prepared data by UUID

@@ -29,7 +29,7 @@ from arrow.commands.annotations.update_attribute import cli as func26
 
 @click.group()
 def cli():
-	pass
+    pass
 
 cli.add_command(func0)
 cli.add_command(func1)
