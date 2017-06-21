@@ -1,0 +1,20 @@
+project_name: arrow
+strict: true
+module:
+    base_module: apollo
+    instance_cls: "<class 'apollo.ApolloInstance'>"
+    instance_func: ApolloInstance
+    instance_args:
+        - "http://localhost:8080"
+        - "jane@example.com"
+        - "password"
+
+    ignore:
+        top_attrs:
+            - client
+            - apollo_url
+            - username
+            - password
+        funcs:
+            - get
+            - post
