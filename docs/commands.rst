@@ -2,10 +2,11 @@
 Commands
 ========
 
-arrow is a set of wrappers for BioBlend's API. It builds a set of small,
-useful utilities for talking to Galaxy servers. Each utility is implemented as
+Arrow is a set of wrappers for Apollo's API. It builds a set of small,
+useful utilities for talking to Apollo servers. Each utility is implemented as
 a subcommand of ``arrow``. This section of the documentation
 describes these commands.
+
 
 .. toctree::
    :maxdepth: 0
