@@ -64,6 +64,8 @@ Or with the new Arrow client:
 History
 -------
 
+- 3.0.1
+    - Patch a bug discovered in io.write, thanks Morgan!
 - 3.0
     - "Arrow" CLI utility
     - More pythonic API and many workarounds for Apollo bugs or oddities
