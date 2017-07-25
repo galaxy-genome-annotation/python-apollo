@@ -114,26 +114,18 @@ class OrganismsClient(Client):
         orgs = self.post('findAllOrganisms', {'organism': common_name})
         return orgs
 
-    def show_organism(self, organism_id):
+    def show_organism(self, common_name):
         """
-        Get information about a specific organism. Due to the lack of an API,
-        this call requires fetching the entire list of organisms and iterating
-        through. If you find this painfully slow, please submit a bug report
-        upstream.
+        Get information about a specific organism.
 
-        :type organism_id: str
-        :param organism_id: Organism ID Number
+        :type cn: str
+        :param cn: Organism Common Name
 
         :rtype: dict
         :return: a dictionary containing the organism's information
         """
-        orgs = self.get_organisms()
-        orgs = [x for x in orgs if str(x['id']) == str(organism_id)]
-
-        if len(orgs) == 0:
-            raise Exception("Unknown ID")
-        else:
-            return orgs[0]
+        orgs = self.get_organisms(common_name=common_name)
+        return orgs
 
     def delete_organism(self, organism_id):
         """
