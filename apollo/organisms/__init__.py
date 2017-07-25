@@ -111,15 +111,8 @@ class OrganismsClient(Client):
         :rtype: dict
         :return: Organisms information
         """
-        orgs = self.post('findAllOrganisms', {})
-        if common_name:
-            orgs = [x for x in orgs if x['commonName'] == common_name]
-            if len(orgs) == 0:
-                raise Exception("Unknown common name")
-            else:
-                return orgs[0]
-        else:
-            return orgs
+        orgs = self.post('findAllOrganisms', {'organism': common_name})
+        return orgs
 
     def show_organism(self, organism_id):
         """
