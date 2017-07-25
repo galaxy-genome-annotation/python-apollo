@@ -108,8 +108,8 @@ class OrganismsClient(Client):
         :type cn: str
         :param cn: Optionally filter on common name
 
-        :rtype: dict
-        :return: Organisms information
+        :rtype: list
+        :return: Organism information
         """
         orgs = self.post('findAllOrganisms', {'organism': common_name})
         return orgs
