@@ -96,7 +96,7 @@ Get all organisms
 **Output**
 
 
-Organisms information
+Organism information
    
     
 **Options**::

@@ -46,5 +46,6 @@ def cli(ctx, organism, export_type="FASTA", seq_type="peptide", export_format="t
 Output:
 
      the exported data
+        
     """
     return ctx.gi.io.write_text(organism, export_type=export_type, seq_type=seq_type, export_format=export_format, export_gff3_fasta=export_gff3_fasta, sequences=sequences)
