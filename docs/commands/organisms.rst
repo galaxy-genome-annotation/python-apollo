@@ -136,11 +136,11 @@ The set of sequences associated with an organism
 
 **Usage**::
 
-    arrow organisms show_organism [OPTIONS] ORGANISM_ID
+    arrow organisms show_organism [OPTIONS] COMMON_NAME
 
 **Help**
 
-Get information about a specific organism. Due to the lack of an API, this call requires fetching the entire list of organisms and iterating through. If you find this painfully slow, please submit a bug report upstream.
+Get information about a specific organism.
 
 
 **Output**

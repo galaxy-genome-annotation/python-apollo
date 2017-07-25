@@ -118,8 +118,8 @@ class OrganismsClient(Client):
         """
         Get information about a specific organism.
 
-        :type cn: str
-        :param cn: Organism Common Name
+        :type common_name: str
+        :param common_name: Organism Common Name
 
         :rtype: dict
         :return: a dictionary containing the organism's information
