@@ -64,6 +64,8 @@ Or with the new Arrow client:
 History
 -------
 
+- 3.0.3
+    - findAllOrganisms works correctly, client side filtering no longer necessary.
 - 3.0.2
     - Patch a bug discovered in io.write, thanks Morgan!
 - 3.0
