@@ -6,7 +6,7 @@ from apollo.exceptions import UnknownUserException
 
 from apollo import (annotations, cannedcomments, cannedkeys,
                     cannedvalues, groups, io, metrics, organisms,
-                    status, users)
+                    status, users, remote)
 
 
 cache = TTLCache(
@@ -36,6 +36,7 @@ class ApolloInstance(object):
         self.organisms = organisms.OrganismsClient(self)
         self.status = status.StatusClient(self)
         self.users = users.UsersClient(self)
+        self.remote = remote.RemoteClient(self)
 
     def __str__(self):
         return '<ApolloInstance at %s>' % self.apollo_url

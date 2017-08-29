@@ -97,7 +97,8 @@ class ArrowCLI(click.MultiCommand):
             'metrics',
             'organisms',
             # 'status',
-            'users'
+            'users',
+            'remote'
         ]
         return commands
 

@@ -1,0 +1,39 @@
+remote
+======
+
+This section is auto-generated from the help text for the arrow command
+``remote``.
+
+
+``add_organism`` command
+------------------------
+
+**Usage**::
+
+    arrow remote add_organism [OPTIONS] COMMON_NAME ORGANISM_DATA
+
+**Help**
+
+Add an organism using the remote organism API
+
+
+**Output**
+
+
+a dictionary with information about the new organism
+   
+    
+**Options**::
+
+
+      --blatdb TEXT                   Server-side Blat directory for the organism
+      --genus TEXT                    Genus
+      --species TEXT                  Species
+      --public                        should the organism be public
+      --non_default_translation_table INTEGER
+                                      The translation table number for the organism
+                                      (if different than that of the server's
+                                      default)
+      --metadata TEXT                 JSON formatted arbitrary metadata
+      -h, --help                      Show this message and exit.
+    
