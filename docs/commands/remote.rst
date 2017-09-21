@@ -38,6 +38,30 @@ a dictionary with information about the new organism
       -h, --help                      Show this message and exit.
     
 
+``add_track`` command
+---------------------
+
+**Usage**::
+
+    arrow remote add_track [OPTIONS] ORGANISM_ID TRACK_DATA TRACK_CONFIG
+
+**Help**
+
+Adds a tarball containing track data to an existing organism.
+
+
+**Output**
+
+
+a dictionary with information about all tracks on the organism
+   
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``add_track_file`` command
 --------------------------
 
@@ -62,6 +86,30 @@ a dictionary with information about all tracks on the organism
       -h, --help  Show this message and exit.
     
 
+``delete_organism`` command
+---------------------------
+
+**Usage**::
+
+    arrow remote delete_organism [OPTIONS] ORGANISM_ID
+
+**Help**
+
+Remove an organism completely.
+
+
+**Output**
+
+
+a dictionary with information about the deleted organism
+   
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``delete_track`` command
 ------------------------
 
@@ -78,6 +126,30 @@ Remove a track from an organism
 
 
 a dictionary with information about the deleted track
+   
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``update_track`` command
+------------------------
+
+**Usage**::
+
+    arrow remote update_track [OPTIONS] ORGANISM_ID TRACK_CONFIG
+
+**Help**
+
+TODO: Broken? Update the configuration of a track that has already been added to the organism. Will not update data for the track.
+
+
+**Output**
+
+
+a dictionary with information about all tracks on the organism
    
     
 **Options**::

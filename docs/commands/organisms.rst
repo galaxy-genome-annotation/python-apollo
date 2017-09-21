@@ -155,6 +155,30 @@ a dictionary containing the organism's information
       -h, --help  Show this message and exit.
     
 
+``update_metadata`` command
+---------------------------
+
+**Usage**::
+
+    arrow organisms update_metadata [OPTIONS] ORGANISM_ID METADATA
+
+**Help**
+
+Update the metadata for an existing organism.
+
+
+**Output**
+
+
+The set of sequences associated with an organism
+   
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``update_organism`` command
 ---------------------------
 

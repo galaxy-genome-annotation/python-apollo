@@ -78,7 +78,24 @@ class RemoteClient(Client):
         response = self.post('addOrganismWithSequence', list(data.items()), files={'organismData': organism_data}, autoconvert_to_json=False)
         return [x for x in response if x['commonName'] == common_name]
 
-    def add_track_file(self, organism_id, track_data, track_config):
+    def delete_organism(self, organism_id):
+        """
+        Remove an organism completely.
+
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
+        :rtype: dict
+        :return: a dictionary with information about the deleted organism
+        """
+        data = {
+            'organism': organism_id,
+        }
+
+        response = self.post('deleteOrganismWithSequence', data)
+        return response
+
+    def add_track(self, organism_id, track_data, track_config):
         """
         Adds a tarball containing track data to an existing organism.
 
@@ -126,6 +143,40 @@ class RemoteClient(Client):
 
         response = self.post('addTrackToOrganism', list(data.items()), files={'trackData': track_data}, autoconvert_to_json=False)
         return response
+
+    def update_track(self, organism_id, track_config):
+        """
+        TODO: Broken?
+        Update the configuration of a track that has already been added to the
+        organism. Will not update data for the track.
+
+        And an example of the track_config supplied::
+
+            {
+                "key": "Some human-readable name",
+                "label": "my-cool-track",
+                "storeClass": "JBrowse/Store/SeqFeature/NCList",
+                "type": "FeatureTrack",
+                "urlTemplate": "tracks/testing2/{refseq}/trackData.json"
+            }
+
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
+        :type track_config: dict
+        :param track_config: Track configuration
+
+        :rtype: dict
+        :return: a dictionary with information about all tracks on the organism
+        """
+        data = {
+            'organism': organism_id,
+            'trackConfig': json.dumps(track_config),
+        }
+
+        response = self.post('updateTrackForOrganism', data)
+        return response
+
 
     def delete_track(self, organism_id, track_label):
         """

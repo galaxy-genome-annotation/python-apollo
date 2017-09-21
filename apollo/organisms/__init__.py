@@ -162,3 +162,18 @@ class OrganismsClient(Client):
         :return: The set of sequences associated with an organism
         """
         return self.post('getSequencesForOrganism', {'organism': organism_id})
+
+    def update_metadata(self, organism_id, metadata):
+        """
+        Update the metadata for an existing organism.
+
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
+        :type metadata: str
+        :param metadata: Organism metadata. (Recommendation: use a structured format like JSON)
+
+        :rtype: dict
+        :return: An empty, useless dictionary
+        """
+        return self.post('updateOrganismMetadata', {'id': organism_id, 'metadata': metadata})
