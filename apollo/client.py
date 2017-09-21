@@ -26,7 +26,6 @@ class Client(object):
         if post_params is None:
             post_params = {}
 
-
         if isinstance(data, dict):
             data.update({
                 'username': self._wa.username,

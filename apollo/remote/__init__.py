@@ -177,7 +177,6 @@ class RemoteClient(Client):
         response = self.post('updateTrackForOrganism', data)
         return response
 
-
     def delete_track(self, organism_id, track_label):
         """
         Remove a track from an organism
