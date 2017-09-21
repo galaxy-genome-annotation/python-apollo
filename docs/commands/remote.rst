@@ -14,7 +14,7 @@ This section is auto-generated from the help text for the arrow command
 
 **Help**
 
-Add an organism using the remote organism API
+Add an organism using the remote organism API.
 
 
 **Output**
@@ -36,4 +36,52 @@ a dictionary with information about the new organism
                                       default)
       --metadata TEXT                 JSON formatted arbitrary metadata
       -h, --help                      Show this message and exit.
+    
+
+``add_track_file`` command
+--------------------------
+
+**Usage**::
+
+    arrow remote add_track_file [OPTIONS] ORGANISM_ID TRACK_DATA TRACK_CONFIG
+
+**Help**
+
+Adds a tarball containing track data to an existing organism.
+
+
+**Output**
+
+
+a dictionary with information about all tracks on the organism
+   
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``delete_track`` command
+------------------------
+
+**Usage**::
+
+    arrow remote delete_track [OPTIONS] ORGANISM_ID TRACK_LABEL
+
+**Help**
+
+Remove a track from an organism
+
+
+**Output**
+
+
+a dictionary with information about the deleted track
+   
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
     

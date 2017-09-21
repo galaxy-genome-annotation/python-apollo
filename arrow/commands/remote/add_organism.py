@@ -41,7 +41,7 @@ from arrow.decorators import custom_exception, dict_output, _arg_split
 @custom_exception
 @dict_output
 def cli(ctx, common_name, organism_data, blatdb="", genus="", species="", public="", non_default_translation_table="", metadata=""):
-    """Add an organism using the remote organism API
+    """Add an organism using the remote organism API.
 
 Output:
 
