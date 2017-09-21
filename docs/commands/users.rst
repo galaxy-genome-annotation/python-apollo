@@ -20,8 +20,7 @@ Add a user to a group
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -44,8 +43,7 @@ Create a new user
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -71,8 +69,7 @@ Delete a user
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -95,8 +92,7 @@ Display a user's organism permissions
 **Output**
 
 
-a dictionary containing user's organism permissions
-   
+    a dictionary containing user's organism permissions
     
 **Options**::
 
@@ -119,8 +115,7 @@ Get all users known to this Apollo instance
 **Output**
 
 
-list of user info dictionaries
-   
+    list of user info dictionaries
     
 **Options**::
 
@@ -143,8 +138,7 @@ Remove a user from a group
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -167,8 +161,7 @@ Get a specific user
 **Output**
 
 
-a dictionary containing user information
-   
+    a dictionary containing user information
     
 **Options**::
 
@@ -191,8 +184,7 @@ Update the permissions of a user on a specified organism
 **Output**
 
 
-a dictionary containing user's organism permissions
-   
+    a dictionary containing user's organism permissions
     
 **Options**::
 
@@ -219,8 +211,7 @@ Update an existing user
 **Output**
 
 
-a dictionary containing user information
-   
+    a dictionary containing user information
     
 **Options**::
 

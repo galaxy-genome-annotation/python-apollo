@@ -1,10 +1,10 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('add_comment')
 @click.argument("feature_id", type=str)
-
 @click.option(
     "--comments",
     help="Feature comments",
@@ -21,7 +21,6 @@ from arrow.decorators import custom_exception, dict_output, _arg_split
     help="Sequence Name",
     type=str
 )
-
 @pass_context
 @custom_exception
 @dict_output
@@ -30,7 +29,6 @@ def cli(ctx, feature_id, comments=None, organism="", sequence=""):
 
 Output:
 
-     A standard apollo feature dictionary ({"features": [{...}]})
-        
+    A standard apollo feature dictionary ({"features": [{...}]})
     """
     return ctx.gi.annotations.add_comment(feature_id, comments=comments, organism=organism, sequence=sequence)

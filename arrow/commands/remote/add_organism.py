@@ -1,11 +1,11 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('add_organism')
 @click.argument("common_name", type=str)
 @click.argument("organism_data", type=click.File('rb+'))
-
 @click.option(
     "--blatdb",
     help="Server-side Blat directory for the organism",
@@ -36,7 +36,6 @@ from arrow.decorators import custom_exception, dict_output, _arg_split
     help="JSON formatted arbitrary metadata",
     type=str
 )
-
 @pass_context
 @custom_exception
 @dict_output
@@ -45,7 +44,6 @@ def cli(ctx, common_name, organism_data, blatdb="", genus="", species="", public
 
 Output:
 
-     a dictionary with information about the new organism
-        
+    a dictionary with information about the new organism
     """
     return ctx.gi.remote.add_organism(common_name, organism_data, blatdb=blatdb, genus=genus, species=species, public=public, non_default_translation_table=non_default_translation_table, metadata=metadata)

@@ -20,8 +20,7 @@ Add an organism using the remote organism API.
 **Output**
 
 
-a dictionary with information about the new organism
-   
+    a dictionary with information about the new organism
     
 **Options**::
 
@@ -53,8 +52,7 @@ Adds a tarball containing track data to an existing organism.
 **Output**
 
 
-a dictionary with information about all tracks on the organism
-   
+    a dictionary with information about all tracks on the organism
     
 **Options**::
 
@@ -101,8 +99,7 @@ Remove an organism completely.
 **Output**
 
 
-a dictionary with information about the deleted organism
-   
+    a dictionary with information about the deleted organism
     
 **Options**::
 
@@ -125,8 +122,7 @@ Remove a track from an organism
 **Output**
 
 
-a dictionary with information about the deleted track
-   
+    a dictionary with information about the deleted track
     
 **Options**::
 
@@ -149,8 +145,7 @@ TODO: Broken? Update the configuration of a track that has already been added to
 **Output**
 
 
-a dictionary with information about all tracks on the organism
-   
+    a dictionary with information about all tracks on the organism
     
 **Options**::
 

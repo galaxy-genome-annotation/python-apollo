@@ -1,16 +1,15 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('show_group')
 @click.argument("group_id")
-
 @click.option(
     "--group",
     help="Group ID Number",
     type=int
 )
-
 @pass_context
 @custom_exception
 @dict_output
@@ -19,8 +18,7 @@ def cli(ctx, group_id, group=None):
 
 Output:
 
-     a dictionary containing group information
-        
+    a dictionary containing group information
     """
     kwargs = {}
 

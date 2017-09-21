@@ -1,10 +1,9 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('get_metrics')
-
-
 @pass_context
 @custom_exception
 @dict_output
@@ -13,7 +12,6 @@ def cli(ctx):
 
 Output:
 
-     A dictionary with all of the server timing / metrics
-        
+    A dictionary with all of the server timing / metrics
     """
     return ctx.gi.metrics.get_metrics()
