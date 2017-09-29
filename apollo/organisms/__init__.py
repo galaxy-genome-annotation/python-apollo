@@ -105,8 +105,8 @@ class OrganismsClient(Client):
         """
         Get all organisms
 
-        :type cn: str
-        :param cn: Optionally filter on common name
+        :type common_name: str
+        :param common_name: Optionally filter on common name
 
         :rtype: list
         :return: Organism information

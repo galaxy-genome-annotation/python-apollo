@@ -102,8 +102,7 @@ Organism information
 **Options**::
 
 
-      --common_name TEXT
-      --cn TEXT           Optionally filter on common name
+      --common_name TEXT  Optionally filter on common name
       -h, --help          Show this message and exit.
     
 

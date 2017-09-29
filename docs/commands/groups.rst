@@ -122,8 +122,7 @@ a dictionary containing group information
 **Options**::
 
 
-      --group INTEGER  Group ID Number
-      -h, --help       Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``update_group`` command
@@ -147,8 +146,7 @@ a dictionary containing group information
 **Options**::
 
 
-      --group INTEGER  group ID number
-      -h, --help       Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``update_membership`` command

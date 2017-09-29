@@ -3,7 +3,7 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, dict_output, _arg_split
 
 @click.command('create_group')
-@click.argument("name")
+@click.argument("name", type=str)
 
 
 @pass_context

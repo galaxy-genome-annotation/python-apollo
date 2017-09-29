@@ -2,19 +2,19 @@ import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, dict_output, _arg_split
 
-@click.command('deleteStatus')
-@click.argument("id_number")
+@click.command('add_status')
+@click.argument("status", type=str)
 
 
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, id_number):
-    """TODO: Undocumented
+def cli(ctx, status):
+    """Add a status value
 
 Output:
 
-     ???
+     A dictionnary containing status description
         
     """
-    return ctx.gi.status.deleteStatus(id_number)
+    return ctx.gi.status.add_status(status)

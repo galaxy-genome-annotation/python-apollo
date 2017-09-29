@@ -3,7 +3,7 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, list_output, _arg_split
 
 @click.command('delete_sequence_alteration')
-@click.argument("feature_id")
+@click.argument("feature_id", type=str)
 
 @click.option(
     "--organism",

@@ -7,76 +7,77 @@ from apollo.client import Client
 class StatusClient(Client):
     CLIENT_BASE = '/availableStatus/'
 
-    def addStatus(self, value):
+    def add_status(self, status):
         """
-        TODO: Undocumented
+        Add a status value
+
+        :type status: str
+        :param status: New status new
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing status description
         """
         data = {
-            'value': value
+            'value': status
         }
 
         return self.post('createStatus', data)
 
-    def findAllStatuses(self):
+    def get_statuses(self):
         """
-        TODO: Undocumented
+        Get all statuses available in this Apollo instance
 
-        :rtype: dict
-        :return: ???
+        :rtype: list of dicts
+        :return: list of status info dictionaries
         """
         return self.post('showStatus', {})
 
-    def findStatusByValue(self, value):
+    def show_status(self, status):
         """
-        TODO: Undocumented
+        Get a specific status
+
+        :type status: str
+        :param status: Status to show
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing status description
         """
-        statuses = self.findAllStatuses()
-        statuses = [x for x in statuses if x['value'] == value]
+        statuses = self.get_statuses()
+        statuses = [x for x in statuses if x['value'] == status]
         if len(statuses) == 0:
             raise Exception("Unknown status value")
         else:
             return statuses[0]
 
-    def findStatusById(self, id_number):
+    def update_status(self, old_value, new_value):
         """
-        TODO: Undocumented
+        Update a status name
+
+        :type old_value: str
+        :param old_value: Name of the status to update
+
+        :type new_value: str
+        :param new_value: The new status name
 
         :rtype: dict
-        :return: ???
-        """
-        statuses = self.findAllStatuses()
-        statuses = [x for x in statuses if str(x['id']) == str(id_number)]
-        if len(statuses) == 0:
-            raise Exception("Unknown ID")
-        else:
-            return statuses[0]
-
-    def updateStatus(self, id_number, new_value):
-        """
-        TODO: Undocumented
-
-        :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
-            'id': id_number,
+            'old_value': old_value,
             'new_value': new_value
         }
 
         return self.post('updateStatus', data)
 
-    def deleteStatus(self, id_number):
+    def delete_status(self, status):
         """
-        TODO: Undocumented
+        Delete a status
+
+        :type status: str
+        :param status: Name of the status to delete
 
         :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number
