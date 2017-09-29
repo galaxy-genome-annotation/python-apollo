@@ -12,7 +12,7 @@ class StatusClient(Client):
         Add a status value
 
         :type status: str
-        :param status: New status new
+        :param status: New status
 
         :rtype: dict
         :return: A dictionnary containing status description

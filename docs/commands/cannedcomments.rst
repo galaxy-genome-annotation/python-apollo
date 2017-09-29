@@ -5,47 +5,47 @@ This section is auto-generated from the help text for the arrow command
 ``cannedcomments``.
 
 
-``addComment`` command
-----------------------
+``add_comment`` command
+-----------------------
 
 **Usage**::
 
-    arrow cannedcomments addComment [OPTIONS] COMMENT
+    arrow cannedcomments add_comment [OPTIONS] COMMENT
 
 **Help**
 
-TODO: Undocumented
+Add a canned comment
 
 
 **Output**
 
 
-???
+A dictionnary containing canned comment description
    
     
 **Options**::
 
 
-      --metadata TEXT
+      --metadata TEXT  Optional metadata
       -h, --help       Show this message and exit.
     
 
-``deleteComment`` command
--------------------------
+``delete_comment`` command
+--------------------------
 
 **Usage**::
 
-    arrow cannedcomments deleteComment [OPTIONS] ID_NUMBER
+    arrow cannedcomments delete_comment [OPTIONS] ID_NUMBER
 
 **Help**
 
-TODO: Undocumented
+Update a canned comment
 
 
 **Output**
 
 
-???
+an empty dictionary
    
     
 **Options**::
@@ -54,22 +54,22 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findAllComments`` command
----------------------------
+``get_comments`` command
+------------------------
 
 **Usage**::
 
-    arrow cannedcomments findAllComments [OPTIONS]
+    arrow cannedcomments get_comments [OPTIONS]
 
 **Help**
 
-TODO: Undocumented
+Get all canned comments available in this Apollo instance
 
 
 **Output**
 
 
-???
+list of canned comment info dictionaries
    
     
 **Options**::
@@ -78,22 +78,22 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findCommentById`` command
----------------------------
+``show_comment`` command
+------------------------
 
 **Usage**::
 
-    arrow cannedcomments findCommentById [OPTIONS] ID_NUMBER
+    arrow cannedcomments show_comment [OPTIONS] VALUE
 
 **Help**
 
-TODO: Undocumented
+Get a specific canned comment
 
 
 **Output**
 
 
-???
+A dictionnary containing canned comment description
    
     
 **Options**::
@@ -102,51 +102,27 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findCommentByValue`` command
-------------------------------
+``update_comment`` command
+--------------------------
 
 **Usage**::
 
-    arrow cannedcomments findCommentByValue [OPTIONS] VALUE
+    arrow cannedcomments update_comment [OPTIONS] ID_NUMBER NEW_VALUE
 
 **Help**
 
-TODO: Undocumented
+Update a canned comment
 
 
 **Output**
 
 
-???
+an empty dictionary
    
     
 **Options**::
 
 
-      -h, --help  Show this message and exit.
-    
-
-``updateComment`` command
--------------------------
-
-**Usage**::
-
-    arrow cannedcomments updateComment [OPTIONS] ID_NUMBER NEW_VALUE
-
-**Help**
-
-TODO: Undocumented
-
-
-**Output**
-
-
-???
-   
-    
-**Options**::
-
-
-      --metadata TEXT
+      --metadata TEXT  Optional metadata
       -h, --help       Show this message and exit.
     
