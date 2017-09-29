@@ -80,7 +80,7 @@ class StatusClient(Client):
         :return: an empty dictionary
         """
         data = {
-            'id': id_number
+            'name': status
         }
 
         return self.post('deleteStatus', data)
