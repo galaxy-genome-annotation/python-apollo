@@ -1,12 +1,11 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('update_group')
 @click.argument("group_id", type=int)
 @click.argument("new_name", type=str)
-
-
 @pass_context
 @custom_exception
 @dict_output
@@ -15,7 +14,6 @@ def cli(ctx, group_id, new_name):
 
 Output:
 
-     a dictionary containing group information
-        
+    a dictionary containing group information
     """
     return ctx.gi.groups.update_group(group_id, new_name)

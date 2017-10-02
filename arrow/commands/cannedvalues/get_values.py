@@ -1,10 +1,9 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, list_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, list_output
+
 
 @click.command('get_values')
-
-
 @pass_context
 @custom_exception
 @list_output
@@ -13,7 +12,6 @@ def cli(ctx):
 
 Output:
 
-     list of canned value info dictionaries
-        
+    list of canned value info dictionaries
     """
     return ctx.gi.cannedvalues.get_values()

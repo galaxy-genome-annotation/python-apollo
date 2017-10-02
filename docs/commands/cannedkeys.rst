@@ -20,8 +20,7 @@ Add a canned key
 **Output**
 
 
-A dictionnary containing canned key description
-   
+    A dictionnary containing canned key description
     
 **Options**::
 
@@ -45,8 +44,7 @@ Update a canned key
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -69,8 +67,7 @@ Get all canned keys available in this Apollo instance
 **Output**
 
 
-list of canned key info dictionaries
-   
+    list of canned key info dictionaries
     
 **Options**::
 
@@ -93,8 +90,7 @@ Get a specific canned key
 **Output**
 
 
-A dictionnary containing canned key description
-   
+    A dictionnary containing canned key description
     
 **Options**::
 
@@ -117,8 +113,7 @@ Update a canned key
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 

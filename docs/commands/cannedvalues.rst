@@ -20,8 +20,7 @@ Add a canned value
 **Output**
 
 
-A dictionnary containing canned value description
-   
+    A dictionnary containing canned value description
     
 **Options**::
 
@@ -45,8 +44,7 @@ Update a canned value
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -69,8 +67,7 @@ Get all canned values available in this Apollo instance
 **Output**
 
 
-list of canned value info dictionaries
-   
+    list of canned value info dictionaries
     
 **Options**::
 
@@ -93,8 +90,7 @@ Get a specific canned value
 **Output**
 
 
-A dictionnary containing canned value description
-   
+    A dictionnary containing canned value description
     
 **Options**::
 
@@ -117,8 +113,7 @@ Update a canned value
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 

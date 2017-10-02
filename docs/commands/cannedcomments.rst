@@ -20,8 +20,7 @@ Add a canned comment
 **Output**
 
 
-A dictionnary containing canned comment description
-   
+    A dictionnary containing canned comment description
     
 **Options**::
 
@@ -45,8 +44,7 @@ Update a canned comment
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -69,8 +67,7 @@ Get all canned comments available in this Apollo instance
 **Output**
 
 
-list of canned comment info dictionaries
-   
+    list of canned comment info dictionaries
     
 **Options**::
 
@@ -93,8 +90,7 @@ Get a specific canned comment
 **Output**
 
 
-A dictionnary containing canned comment description
-   
+    A dictionnary containing canned comment description
     
 **Options**::
 
@@ -117,8 +113,7 @@ Update a canned comment
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 

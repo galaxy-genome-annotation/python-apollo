@@ -1,11 +1,10 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('add_status')
 @click.argument("status", type=str)
-
-
 @pass_context
 @custom_exception
 @dict_output
@@ -14,7 +13,6 @@ def cli(ctx, status):
 
 Output:
 
-     A dictionnary containing status description
-        
+    A dictionnary containing status description
     """
     return ctx.gi.status.add_status(status)

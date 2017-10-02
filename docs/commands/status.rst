@@ -20,8 +20,7 @@ Add a status value
 **Output**
 
 
-A dictionnary containing status description
-   
+    A dictionnary containing status description
     
 **Options**::
 
@@ -34,7 +33,7 @@ A dictionnary containing status description
 
 **Usage**::
 
-    arrow status delete_status [OPTIONS] STATUS
+    arrow status delete_status [OPTIONS] ID_NUMBER
 
 **Help**
 
@@ -44,8 +43,7 @@ Delete a status
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -68,8 +66,7 @@ Get all statuses available in this Apollo instance
 **Output**
 
 
-list of status info dictionaries
-   
+    list of status info dictionaries
     
 **Options**::
 
@@ -92,8 +89,7 @@ Get a specific status
 **Output**
 
 
-A dictionnary containing status description
-   
+    A dictionnary containing status description
     
 **Options**::
 
@@ -106,7 +102,7 @@ A dictionnary containing status description
 
 **Usage**::
 
-    arrow status update_status [OPTIONS] OLD_VALUE NEW_VALUE
+    arrow status update_status [OPTIONS] ID_NUMBER NEW_VALUE
 
 **Help**
 
@@ -116,8 +112,7 @@ Update a status name
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 

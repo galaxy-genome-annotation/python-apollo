@@ -8,9 +8,11 @@ from arrow.commands.groups.update_group import cli as func5
 from arrow.commands.groups.update_membership import cli as func6
 from arrow.commands.groups.update_organism_permissions import cli as func7
 
+
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(func0)
 cli.add_command(func1)

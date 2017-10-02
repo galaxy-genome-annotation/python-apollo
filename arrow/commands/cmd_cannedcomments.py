@@ -5,9 +5,11 @@ from arrow.commands.cannedcomments.get_comments import cli as func2
 from arrow.commands.cannedcomments.show_comment import cli as func3
 from arrow.commands.cannedcomments.update_comment import cli as func4
 
+
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(func0)
 cli.add_command(func1)

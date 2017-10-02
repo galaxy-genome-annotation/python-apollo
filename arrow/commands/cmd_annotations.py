@@ -27,9 +27,11 @@ from arrow.commands.annotations.set_translation_end import cli as func24
 from arrow.commands.annotations.set_translation_start import cli as func25
 from arrow.commands.annotations.update_attribute import cli as func26
 
+
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(func0)
 cli.add_command(func1)

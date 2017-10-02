@@ -5,9 +5,11 @@ from arrow.commands.cannedkeys.get_keys import cli as func2
 from arrow.commands.cannedkeys.show_key import cli as func3
 from arrow.commands.cannedkeys.update_key import cli as func4
 
+
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(func0)
 cli.add_command(func1)
