@@ -3,13 +3,13 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, dict_output, _arg_split
 
 @click.command('delete_status')
-@click.argument("status", type=str)
+@click.argument("id_number", type=int)
 
 
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, status):
+def cli(ctx, id_number):
     """Delete a status
 
 Output:
@@ -17,4 +17,4 @@ Output:
      an empty dictionary
         
     """
-    return ctx.gi.status.delete_status(status)
+    return ctx.gi.status.delete_status(id_number)

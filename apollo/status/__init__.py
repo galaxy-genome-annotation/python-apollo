@@ -49,12 +49,12 @@ class StatusClient(Client):
         else:
             return statuses[0]
 
-    def update_status(self, old_value, new_value):
+    def update_status(self, id_number, new_value):
         """
         Update a status name
 
-        :type old_value: str
-        :param old_value: Name of the status to update
+        :type id_number: int
+        :param id_number: status ID number
 
         :type new_value: str
         :param new_value: The new status name
@@ -63,24 +63,24 @@ class StatusClient(Client):
         :return: an empty dictionary
         """
         data = {
-            'old_value': old_value,
+            'id': id_number,
             'new_value': new_value
         }
 
         return self.post('updateStatus', data)
 
-    def delete_status(self, status):
+    def delete_status(self, id_number):
         """
         Delete a status
 
-        :type status: str
-        :param status: Name of the status to delete
+        :type id_number: int
+        :param id_number: status ID number
 
         :rtype: dict
         :return: an empty dictionary
         """
         data = {
-            'value': status
+            'id': id_number,
         }
 
         return self.post('deleteStatus', data)
