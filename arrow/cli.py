@@ -89,14 +89,14 @@ class ArrowCLI(click.MultiCommand):
         commands = [
             'init',
             'annotations',
-            # 'cannedcomments',
-            # 'cannedkeys',
-            # 'cannedvalues',
+            'cannedcomments',
+            'cannedkeys',
+            'cannedvalues',
             'groups',
             'io',
             'metrics',
             'organisms',
-            # 'status',
+            'status',
             'users'
         ]
         return commands
