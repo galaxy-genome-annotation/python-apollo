@@ -7,12 +7,18 @@ from apollo.client import Client
 class CannedKeysClient(Client):
     CLIENT_BASE = '/cannedKey/'
 
-    def addKey(self, key, metadata=""):
+    def add_key(self, key, metadata=""):
         """
-        TODO: Undocumented
+        Add a canned key
+
+        :type key: str
+        :param key: New canned key
+
+        :type metadata: str
+        :param metadata: Optional metadata
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing canned key description
         """
         data = {
             'key': key,
@@ -21,49 +27,47 @@ class CannedKeysClient(Client):
 
         return self.post('createKey', data)
 
-    def findAllKeys(self):
+    def get_keys(self):
         """
-        TODO: Undocumented
+        Get all canned keys available in this Apollo instance
 
-        :rtype: dict
-        :return: ???
+        :rtype: list of dicts
+        :return: list of canned key info dictionaries
         """
         return self.post('showKey', {})
 
-    def findKeyByValue(self, value):
+    def show_key(self, value):
         """
-        TODO: Undocumented
+        Get a specific canned key
+
+        :type value: str
+        :param value: Canned key to show
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing canned key description
         """
-        keys = self.findAllKeys()
+        keys = self.get_keys()
         keys = [x for x in keys if x['label'] == value]
         if len(keys) == 0:
             raise Exception("Unknown key")
         else:
             return keys[0]
 
-    def findKeyById(self, id_number):
+    def update_key(self, id_number, new_key, metadata=None):
         """
-        TODO: Undocumented
+        Update a canned key
+
+        :type id_number: int
+        :param id_number: canned key ID number
+
+        :type new_key: str
+        :param new_key: New canned key value
+
+        :type metadata: str
+        :param metadata: Optional metadata
 
         :rtype: dict
-        :return: ???
-        """
-        keys = self.findAllKeys()
-        keys = [x for x in keys if str(x['id']) == str(id_number)]
-        if len(keys) == 0:
-            raise Exception("Unknown ID")
-        else:
-            return keys[0]
-
-    def updateKey(self, id_number, new_key, metadata=None):
-        """
-        TODO: Undocumented
-
-        :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number,
@@ -75,12 +79,15 @@ class CannedKeysClient(Client):
 
         return self.post('updateKey', data)
 
-    def deleteKey(self, id_number):
+    def delete_key(self, id_number):
         """
-        TODO: Undocumented
+        Update a canned key
+
+        :type id_number: int
+        :param id_number: canned key ID number
 
         :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number

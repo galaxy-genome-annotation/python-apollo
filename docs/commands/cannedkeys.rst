@@ -5,48 +5,46 @@ This section is auto-generated from the help text for the arrow command
 ``cannedkeys``.
 
 
-``addKey`` command
-------------------
+``add_key`` command
+-------------------
 
 **Usage**::
 
-    arrow cannedkeys addKey [OPTIONS] KEY
+    arrow cannedkeys add_key [OPTIONS] KEY
 
 **Help**
 
-TODO: Undocumented
+Add a canned key
 
 
 **Output**
 
 
-???
-   
+    A dictionnary containing canned key description
     
 **Options**::
 
 
-      --metadata TEXT
+      --metadata TEXT  Optional metadata
       -h, --help       Show this message and exit.
     
 
-``deleteKey`` command
----------------------
+``delete_key`` command
+----------------------
 
 **Usage**::
 
-    arrow cannedkeys deleteKey [OPTIONS] ID_NUMBER
+    arrow cannedkeys delete_key [OPTIONS] ID_NUMBER
 
 **Help**
 
-TODO: Undocumented
+Update a canned key
 
 
 **Output**
 
 
-???
-   
+    an empty dictionary
     
 **Options**::
 
@@ -54,23 +52,22 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findAllKeys`` command
------------------------
+``get_keys`` command
+--------------------
 
 **Usage**::
 
-    arrow cannedkeys findAllKeys [OPTIONS]
+    arrow cannedkeys get_keys [OPTIONS]
 
 **Help**
 
-TODO: Undocumented
+Get all canned keys available in this Apollo instance
 
 
 **Output**
 
 
-???
-   
+    list of canned key info dictionaries
     
 **Options**::
 
@@ -78,23 +75,22 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findKeyById`` command
------------------------
+``show_key`` command
+--------------------
 
 **Usage**::
 
-    arrow cannedkeys findKeyById [OPTIONS] ID_NUMBER
+    arrow cannedkeys show_key [OPTIONS] VALUE
 
 **Help**
 
-TODO: Undocumented
+Get a specific canned key
 
 
 **Output**
 
 
-???
-   
+    A dictionnary containing canned key description
     
 **Options**::
 
@@ -102,51 +98,26 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findKeyByValue`` command
---------------------------
+``update_key`` command
+----------------------
 
 **Usage**::
 
-    arrow cannedkeys findKeyByValue [OPTIONS] VALUE
+    arrow cannedkeys update_key [OPTIONS] ID_NUMBER NEW_KEY
 
 **Help**
 
-TODO: Undocumented
+Update a canned key
 
 
 **Output**
 
 
-???
-   
+    an empty dictionary
     
 **Options**::
 
 
-      -h, --help  Show this message and exit.
-    
-
-``updateKey`` command
----------------------
-
-**Usage**::
-
-    arrow cannedkeys updateKey [OPTIONS] ID_NUMBER NEW_KEY
-
-**Help**
-
-TODO: Undocumented
-
-
-**Output**
-
-
-???
-   
-    
-**Options**::
-
-
-      --metadata TEXT
+      --metadata TEXT  Optional metadata
       -h, --help       Show this message and exit.
     

@@ -7,12 +7,18 @@ from apollo.client import Client
 class CannedValuesClient(Client):
     CLIENT_BASE = '/cannedValue/'
 
-    def addValue(self, value, metadata=""):
+    def add_value(self, value, metadata=""):
         """
-        TODO: Undocumented
+        Add a canned value
+
+        :type value: str
+        :param value: New canned value
+
+        :type metadata: str
+        :param metadata: Optional metadata
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing canned value description
         """
         data = {
             'value': value,
@@ -21,49 +27,47 @@ class CannedValuesClient(Client):
 
         return self.post('createValue', data)
 
-    def findAllValues(self):
+    def get_values(self):
         """
-        TODO: Undocumented
+        Get all canned values available in this Apollo instance
 
-        :rtype: dict
-        :return: ???
+        :rtype: list of dicts
+        :return: list of canned value info dictionaries
         """
         return self.post('showValue', {})
 
-    def findValueByValue(self, value):
+    def show_value(self, value):
         """
-        TODO: Undocumented
+        Get a specific canned value
+
+        :type value: str
+        :param value: Canned value to show
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing canned value description
         """
-        values = self.findAllValues()
+        values = self.get_values()
         values = [x for x in values if x['label'] == value]
         if len(values) == 0:
             raise Exception("Unknown value")
         else:
             return values[0]
 
-    def findValueById(self, id_number):
+    def update_value(self, id_number, new_value, metadata=None):
         """
-        TODO: Undocumented
+        Update a canned value
+
+        :type id_number: int
+        :param id_number: canned value ID number
+
+        :type new_value: str
+        :param new_value: New canned value value
+
+        :type metadata: str
+        :param metadata: Optional metadata
 
         :rtype: dict
-        :return: ???
-        """
-        values = self.findAllValues()
-        values = [x for x in values if str(x['id']) == str(id_number)]
-        if len(values) == 0:
-            raise Exception("Unknown ID")
-        else:
-            return values[0]
-
-    def updateValue(self, id_number, new_value, metadata=None):
-        """
-        TODO: Undocumented
-
-        :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number,
@@ -75,12 +79,15 @@ class CannedValuesClient(Client):
 
         return self.post('updateValue', data)
 
-    def deleteValue(self, id_number):
+    def delete_value(self, id_number):
         """
-        TODO: Undocumented
+        Update a canned value
+
+        :type id_number: int
+        :param id_number: canned value ID number
 
         :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number

@@ -1,10 +1,10 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, list_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, list_output
+
 
 @click.command('delete_sequence_alteration')
-@click.argument("feature_id")
-
+@click.argument("feature_id", type=str)
 @click.option(
     "--organism",
     help="Organism Common Name",
@@ -15,7 +15,6 @@ from arrow.decorators import custom_exception, list_output, _arg_split
     help="Sequence Name",
     type=str
 )
-
 @pass_context
 @custom_exception
 @list_output
@@ -24,7 +23,6 @@ def cli(ctx, feature_id, organism="", sequence=""):
 
 Output:
 
-     A list of sequence alterations(?)
-        
+    A list of sequence alterations(?)
     """
     return ctx.gi.annotations.delete_sequence_alteration(feature_id, organism=organism, sequence=sequence)

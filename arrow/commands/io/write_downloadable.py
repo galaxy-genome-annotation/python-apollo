@@ -1,10 +1,10 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('write_downloadable')
 @click.argument("organism", type=str)
-
 @click.option(
     "--export_type",
     help="Export type. Choices: FASTA, GFF3",
@@ -36,7 +36,6 @@ from arrow.decorators import custom_exception, dict_output, _arg_split
     help="Names of references sequences to add (default is all)",
     type=str
 )
-
 @pass_context
 @custom_exception
 @dict_output
@@ -45,7 +44,6 @@ def cli(ctx, organism, export_type="FASTA", seq_type="peptide", export_format="t
 
 Output:
 
-     a dictionary containing download information
-        
+    a dictionary containing download information
     """
     return ctx.gi.io.write_downloadable(organism, export_type=export_type, seq_type=seq_type, export_format=export_format, export_gff3_fasta=export_gff3_fasta, sequences=sequences)

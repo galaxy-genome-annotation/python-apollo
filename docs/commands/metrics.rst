@@ -20,8 +20,7 @@ Get all server metrics
 **Output**
 
 
-A dictionary with all of the server timing / metrics
-   
+    A dictionary with all of the server timing / metrics
     
 **Options**::
 

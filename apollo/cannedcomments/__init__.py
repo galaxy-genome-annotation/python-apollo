@@ -7,12 +7,18 @@ from apollo.client import Client
 class CannedCommentsClient(Client):
     CLIENT_BASE = '/cannedComment/'
 
-    def addComment(self, comment, metadata=""):
+    def add_comment(self, comment, metadata=""):
         """
-        TODO: Undocumented
+        Add a canned comment
+
+        :type comment: str
+        :param comment: New canned comment
+
+        :type metadata: str
+        :param metadata: Optional metadata
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing canned comment description
         """
         data = {
             'comment': comment,
@@ -21,49 +27,47 @@ class CannedCommentsClient(Client):
 
         return self.post('createComment', data)
 
-    def findAllComments(self):
+    def get_comments(self):
         """
-        TODO: Undocumented
+        Get all canned comments available in this Apollo instance
 
-        :rtype: dict
-        :return: ???
+        :rtype: list of dicts
+        :return: list of canned comment info dictionaries
         """
         return self.post('showComment', {})
 
-    def findCommentByValue(self, value):
+    def show_comment(self, value):
         """
-        TODO: Undocumented
+        Get a specific canned comment
+
+        :type value: str
+        :param value: Canned comment to show
 
         :rtype: dict
-        :return: ???
+        :return: A dictionnary containing canned comment description
         """
-        comments = self.findAllComments()
+        comments = self.get_comments()
         comments = [x for x in comments if x['comment'] == value]
         if len(comments) == 0:
             raise Exception("Unknown comment")
         else:
             return comments[0]
 
-    def findCommentById(self, id_number):
+    def update_comment(self, id_number, new_value, metadata=None):
         """
-        TODO: Undocumented
+        Update a canned comment
+
+        :type id_number: int
+        :param id_number: canned comment ID number
+
+        :type new_value: str
+        :param new_value: New canned comment value
+
+        :type metadata: str
+        :param metadata: Optional metadata
 
         :rtype: dict
-        :return: ???
-        """
-        comments = self.findAllComments()
-        comments = [x for x in comments if str(x['id']) == str(id_number)]
-        if len(comments) == 0:
-            raise Exception("Unknown ID")
-        else:
-            return comments[0]
-
-    def updateComment(self, id_number, new_value, metadata=None):
-        """
-        TODO: Undocumented
-
-        :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number,
@@ -75,12 +79,15 @@ class CannedCommentsClient(Client):
 
         return self.post('updateComment', data)
 
-    def deleteComment(self, id_number):
+    def delete_comment(self, id_number):
         """
-        TODO: Undocumented
+        Update a canned comment
+
+        :type id_number: int
+        :param id_number: canned comment ID number
 
         :rtype: dict
-        :return: ???
+        :return: an empty dictionary
         """
         data = {
             'id': id_number

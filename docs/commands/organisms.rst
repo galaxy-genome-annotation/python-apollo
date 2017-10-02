@@ -20,8 +20,7 @@ Add an organism
 **Output**
 
 
-a dictionary with information about the new organism
-   
+    a dictionary with information about the new organism
     
 **Options**::
 
@@ -48,8 +47,7 @@ Remove features of an organism
 **Output**
 
 
-an empty dictionary
-   
+    an empty dictionary
     
 **Options**::
 
@@ -72,8 +70,7 @@ Delete an organim
 **Output**
 
 
-A list of all remaining organisms
-   
+    A list of all remaining organisms
     
 **Options**::
 
@@ -96,14 +93,12 @@ Get all organisms
 **Output**
 
 
-Organism information
-   
+    Organism information
     
 **Options**::
 
 
-      --common_name TEXT
-      --cn TEXT           Optionally filter on common name
+      --common_name TEXT  Optionally filter on common name
       -h, --help          Show this message and exit.
     
 
@@ -122,8 +117,7 @@ Get the sequences for an organism
 **Output**
 
 
-The set of sequences associated with an organism
-   
+    The set of sequences associated with an organism
     
 **Options**::
 
@@ -146,8 +140,7 @@ Get information about a specific organism.
 **Output**
 
 
-a dictionary containing the organism's information
-   
+    a dictionary containing the organism's information
     
 **Options**::
 
@@ -170,8 +163,7 @@ Update an organism
 **Output**
 
 
-a dictionary with information about the new organism
-   
+    a dictionary with information about the new organism
     
 **Options**::
 
