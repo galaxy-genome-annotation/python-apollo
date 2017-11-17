@@ -13,10 +13,10 @@ subpackages = [x.replace('/', '.') for x in glob.glob('arrow/commands/*') if not
 
 setup(
     name="apollo",
-    version='3.0.3',
+    version='3.0.4',
     description="WebApollo API library",
     long_description=readme,
-    author="E Rasche",
+    author="E. Rasche",
     author_email="hxr@hx42.org",
     url='https://github.com/galaxy-genome-annotation/python-apollo',
     packages=['apollo', 'arrow'] + subpackages,
