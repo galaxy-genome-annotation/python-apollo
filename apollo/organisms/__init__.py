@@ -149,7 +149,7 @@ class OrganismsClient(Client):
         :rtype: dict
         :return: an empty dictionary
         """
-        return self.post('deleteOrganismFeatures', {'id': organism_id})
+        return self.post('deleteOrganismFeatures', {'organism': organism_id})
 
     def get_sequences(self, organism_id):
         """
