@@ -42,3 +42,6 @@ docs/_build
 
 # Python virtualenv
 .venv
+
+# test harness
+test_harness.py

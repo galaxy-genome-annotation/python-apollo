@@ -3,11 +3,8 @@ from apollo.exceptions import APIErrorResponseException
 def raise_error_decorator(fn):
   def wrapper(*args, **kwargs):
     r = fn(*args, **kwargs)
-    print(r)
-    print(type(r))
     if type(r) is dict and "error" in r:
-      print("ZOMG")
-      raise APIErrorResponseException("Apollo Error in function \"%s\": %s" %
+      raise APIErrorResponseException("Apollo Error in function \"%s\":\n\t-%s" %
                 (fn.__name__, r["error"]))
     return r
   return wrapper
