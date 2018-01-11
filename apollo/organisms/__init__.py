@@ -2,11 +2,13 @@
 Contains possible interactions with the Apollo Organisms Module
 """
 from apollo.client import Client
+from apollo.decorators import raise_error_decorator
 
 
 class OrganismsClient(Client):
     CLIENT_BASE = '/organism/'
 
+    @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
                      species=None, public=False):
         """
@@ -49,6 +51,8 @@ class OrganismsClient(Client):
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
         # EVERY organism. LMAO.
+        if type(response) is not list:
+            return response
         return [x for x in response if x['commonName'] == common_name][0]
 
     def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False):
