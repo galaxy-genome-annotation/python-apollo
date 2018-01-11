@@ -7,9 +7,11 @@ from arrow.commands.organisms.get_sequences import cli as func4
 from arrow.commands.organisms.show_organism import cli as func5
 from arrow.commands.organisms.update_organism import cli as func6
 
+
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(func0)
 cli.add_command(func1)

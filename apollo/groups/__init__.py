@@ -14,6 +14,9 @@ class GroupsClient(Client):
         """
         Create a new group
 
+        :type name: str
+        :param name: Group name
+
         :rtype: dict
         :return: Group information dictionary
         """
@@ -39,8 +42,8 @@ class GroupsClient(Client):
         """
         Get information about a group
 
-        :type group: int
-        :param group: Group ID Number
+        :type group_id: int
+        :param group_id: Group ID Number
 
         :rtype: dict
         :return: a dictionary containing group information
@@ -65,8 +68,8 @@ class GroupsClient(Client):
         """
         Update the name of a group
 
-        :type group: int
-        :param group: group ID number
+        :type group_id: int
+        :param group_id: group ID number
 
         :type new_name: str
         :param new_name: New name for the group

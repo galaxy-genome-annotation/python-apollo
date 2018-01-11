@@ -5,48 +5,46 @@ This section is auto-generated from the help text for the arrow command
 ``cannedvalues``.
 
 
-``addValue`` command
---------------------
+``add_value`` command
+---------------------
 
 **Usage**::
 
-    arrow cannedvalues addValue [OPTIONS] VALUE
+    arrow cannedvalues add_value [OPTIONS] VALUE
 
 **Help**
 
-TODO: Undocumented
+Add a canned value
 
 
 **Output**
 
 
-???
-   
+    A dictionnary containing canned value description
     
 **Options**::
 
 
-      --metadata TEXT
+      --metadata TEXT  Optional metadata
       -h, --help       Show this message and exit.
     
 
-``deleteValue`` command
------------------------
+``delete_value`` command
+------------------------
 
 **Usage**::
 
-    arrow cannedvalues deleteValue [OPTIONS] ID_NUMBER
+    arrow cannedvalues delete_value [OPTIONS] ID_NUMBER
 
 **Help**
 
-TODO: Undocumented
+Update a canned value
 
 
 **Output**
 
 
-???
-   
+    an empty dictionary
     
 **Options**::
 
@@ -54,23 +52,22 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findAllValues`` command
--------------------------
+``get_values`` command
+----------------------
 
 **Usage**::
 
-    arrow cannedvalues findAllValues [OPTIONS]
+    arrow cannedvalues get_values [OPTIONS]
 
 **Help**
 
-TODO: Undocumented
+Get all canned values available in this Apollo instance
 
 
 **Output**
 
 
-???
-   
+    list of canned value info dictionaries
     
 **Options**::
 
@@ -78,23 +75,22 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findValueById`` command
--------------------------
+``show_value`` command
+----------------------
 
 **Usage**::
 
-    arrow cannedvalues findValueById [OPTIONS] ID_NUMBER
+    arrow cannedvalues show_value [OPTIONS] VALUE
 
 **Help**
 
-TODO: Undocumented
+Get a specific canned value
 
 
 **Output**
 
 
-???
-   
+    A dictionnary containing canned value description
     
 **Options**::
 
@@ -102,51 +98,26 @@ TODO: Undocumented
       -h, --help  Show this message and exit.
     
 
-``findValueByValue`` command
-----------------------------
+``update_value`` command
+------------------------
 
 **Usage**::
 
-    arrow cannedvalues findValueByValue [OPTIONS] VALUE
+    arrow cannedvalues update_value [OPTIONS] ID_NUMBER NEW_VALUE
 
 **Help**
 
-TODO: Undocumented
+Update a canned value
 
 
 **Output**
 
 
-???
-   
+    an empty dictionary
     
 **Options**::
 
 
-      -h, --help  Show this message and exit.
-    
-
-``updateValue`` command
------------------------
-
-**Usage**::
-
-    arrow cannedvalues updateValue [OPTIONS] ID_NUMBER NEW_VALUE
-
-**Help**
-
-TODO: Undocumented
-
-
-**Output**
-
-
-???
-   
-    
-**Options**::
-
-
-      --metadata TEXT
+      --metadata TEXT  Optional metadata
       -h, --help       Show this message and exit.
     

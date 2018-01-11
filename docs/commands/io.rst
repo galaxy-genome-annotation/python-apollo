@@ -20,8 +20,7 @@ This section is auto-generated from the help text for the arrow command
 **Output**
 
 
-a dictionary
-   
+    a dictionary
     
 **Options**::
 
@@ -46,8 +45,7 @@ Prepare a download for an organism
 **Output**
 
 
-a dictionary containing download information
-   
+    a dictionary containing download information
     
 **Options**::
 
@@ -77,8 +75,7 @@ Download or prepare a download for an organism
 **Output**
 
 
-the exported data
-   
+    the exported data
     
 **Options**::
 

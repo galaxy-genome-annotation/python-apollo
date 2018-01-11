@@ -108,8 +108,8 @@ class OrganismsClient(Client):
         """
         Get all organisms
 
-        :type cn: str
-        :param cn: Optionally filter on common name
+        :type common_name: str
+        :param common_name: Optionally filter on common name
 
         :rtype: list
         :return: Organism information
@@ -152,7 +152,7 @@ class OrganismsClient(Client):
         :rtype: dict
         :return: an empty dictionary
         """
-        return self.post('deleteOrganismFeatures', {'id': organism_id})
+        return self.post('deleteOrganismFeatures', {'organism': organism_id})
 
     def get_sequences(self, organism_id):
         """

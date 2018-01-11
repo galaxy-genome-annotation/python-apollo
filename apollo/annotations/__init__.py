@@ -633,6 +633,9 @@ class AnnotationsClient(Client):
         """
         [UNTESTED] Delete a specific feature alteration
 
+        :type feature_id: str
+        :param feature_id: Feature UUID
+
         :type organism: str
         :param organism: Organism Common Name
 
