@@ -4,6 +4,7 @@ Contains possible interactions with the Apollo Organisms Module
 from apollo.client import Client
 from apollo.decorators import raise_error_decorator
 
+
 class OrganismsClient(Client):
     CLIENT_BASE = '/organism/'
 
