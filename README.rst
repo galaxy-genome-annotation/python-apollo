@@ -64,6 +64,8 @@ Or with the new Arrow client:
 History
 -------
 
+- 3.0.4
+    - `Fixed bug <https://github.com/galaxy-genome-annotation/python-apollo/issues/4>`__ in deleteFeatures (Thanks `@NeillGibson <https://github.com/NeillGibson>`__)
 - 3.0.3
     - findAllOrganisms works correctly, client side filtering no longer necessary.
 - 3.0.2
@@ -76,7 +78,7 @@ History
 - 2.0
     - Galaxy Functions
     - TTL Cache to work around Galaxy's behaviour
-    - Status and Canned* Clients from [@abretaud](https://github.com/abretaud)
+    - Status and Canned* Clients from `@abretaud <https://github.com/abretaud>`__
 - 1.0
     - Initial release
 

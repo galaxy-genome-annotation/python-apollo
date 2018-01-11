@@ -9,9 +9,11 @@ from arrow.commands.users.show_user import cli as func6
 from arrow.commands.users.update_organism_permissions import cli as func7
 from arrow.commands.users.update_user import cli as func8
 
+
 @click.group()
 def cli():
     pass
+
 
 cli.add_command(func0)
 cli.add_command(func1)

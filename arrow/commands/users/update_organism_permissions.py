@@ -1,11 +1,11 @@
 import click
-from arrow.cli import pass_context, json_loads
-from arrow.decorators import custom_exception, dict_output, _arg_split
+from arrow.cli import pass_context
+from arrow.decorators import custom_exception, dict_output
+
 
 @click.command('update_organism_permissions')
 @click.argument("user", type=str)
 @click.argument("organism", type=str)
-
 @click.option(
     "--administrate",
     help="Grants administrative privileges",
@@ -26,7 +26,6 @@ from arrow.decorators import custom_exception, dict_output, _arg_split
     help="Grants read privileges",
     is_flag=True
 )
-
 @pass_context
 @custom_exception
 @dict_output
@@ -35,7 +34,6 @@ def cli(ctx, user, organism, administrate=False, write=False, export=False, read
 
 Output:
 
-     a dictionary containing user's organism permissions
-        
+    a dictionary containing user's organism permissions
     """
     return ctx.gi.users.update_organism_permissions(user, organism, administrate=administrate, write=write, export=export, read=read)

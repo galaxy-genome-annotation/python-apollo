@@ -20,8 +20,7 @@ Add an attribute to a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -46,8 +45,7 @@ Set a feature's description
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -73,8 +71,7 @@ Add a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -100,8 +97,7 @@ A standard apollo feature dictionary ({"features": [{...}]})
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -129,8 +125,7 @@ Delete an attribute from a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -155,8 +150,7 @@ Delete a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -181,8 +175,7 @@ A standard apollo feature dictionary ({"features": [{...}]})
 **Output**
 
 
-A list of sequence alterations(?)
-   
+    A list of sequence alterations(?)
     
 **Options**::
 
@@ -207,8 +200,7 @@ Duplicate a transcripte
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -233,8 +225,7 @@ Flip the strand of a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -259,8 +250,7 @@ Get a feature's comments
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -285,8 +275,7 @@ A standard apollo feature dictionary ({"features": [{...}]})
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -311,8 +300,7 @@ Get the features for an organism / sequence
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -337,8 +325,7 @@ Get the GFF3 associated with a feature
 **Output**
 
 
-GFF3 text content
-   
+    GFF3 text content
     
 **Options**::
 
@@ -363,7 +350,7 @@ Get the search tools available
 **Output**
 
 
-dictionary containing the search tools and their metadata.
+    dictionary containing the search tools and their metadata.
      For example::
 
        {
@@ -382,7 +369,6 @@ dictionary containing the search tools and their metadata.
                }
            }
        }
-   
     
 **Options**::
 
@@ -405,8 +391,7 @@ dictionary containing the search tools and their metadata.
 **Output**
 
 
-A list of sequence alterations(?)
-   
+    A list of sequence alterations(?)
     
 **Options**::
 
@@ -431,8 +416,7 @@ Merge two exons
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -457,8 +441,7 @@ Set the boundaries of a genomic feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -483,8 +466,7 @@ Set a feature's description
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -509,8 +491,7 @@ Automatically pick the longest ORF in a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -535,8 +516,7 @@ Set a feature's name
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -561,8 +541,7 @@ Set the feature to read through the first encountered stop codon
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -587,8 +566,7 @@ Set the sequence for subsequent requests. Mostly used in client scripts to avoid
 **Output**
 
 
-None
-   
+    None
     
 **Options**::
 
@@ -611,8 +589,7 @@ Set a feature's description
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -637,8 +614,7 @@ Set a feature's description
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -663,8 +639,7 @@ Set a feature's end
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -689,8 +664,7 @@ Set the translation start of a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
@@ -715,8 +689,7 @@ Delete an attribute from a feature
 **Output**
 
 
-A standard apollo feature dictionary ({"features": [{...}]})
-   
+    A standard apollo feature dictionary ({"features": [{...}]})
     
 **Options**::
 
