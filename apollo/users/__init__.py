@@ -4,6 +4,7 @@ Contains possible interactions with the Apollo Users Module
 import json
 
 from apollo.client import Client
+from apollo.decorators import raise_error_decorator
 
 
 def _fix_single_user(user):
@@ -83,6 +84,7 @@ class UsersClient(Client):
         uop = self.show_user(user)['organismPermissions']
         return uop
 
+    @raise_error_decorator
     def update_organism_permissions(self, user, organism, administrate=False,
                                     write=False, export=False, read=False):
         """
@@ -110,7 +112,7 @@ class UsersClient(Client):
         :return: a dictionary containing user's organism permissions
         """
         data = {
-            'userId': user,
+            'user': user,
             'organism': organism,
             'ADMINISTRATE': administrate,
             'WRITE': write,
@@ -118,7 +120,8 @@ class UsersClient(Client):
             'READ': read,
         }
         response = self.post('updateOrganismPermission', data)
-        response['permissions'] = json.loads(response['permissions'])
+        if 'permissions' in response:
+            response['permissions'] = json.loads(response['permissions'])
         return response
 
     def add_to_group(self, group, user):
