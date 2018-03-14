@@ -7,7 +7,6 @@ from shlex import quote
 log = logging.getLogger()
 
 
-
 class Client(object):
     """
     Base client class implementing methods to make requests to the server
