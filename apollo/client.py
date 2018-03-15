@@ -2,6 +2,9 @@
 """
 import json
 import requests
+import logging
+from shlex import quote
+log = logging.getLogger()
 
 
 class Client(object):
@@ -34,6 +37,12 @@ class Client(object):
             'username': self._wa.username,
             'password': self._wa.password,
         })
+
+        curl_command = ['curl', url]
+        for (k, v) in headers.items():
+            curl_command += ['-H', quote('%s: %s' % (k, v))]
+        curl_command += ['-d', quote(json.dumps(data))]
+        log.info(' '.join(curl_command))
 
         resp = requests.post(url, data=json.dumps(data),
                              headers=headers, verify=self.__verify,

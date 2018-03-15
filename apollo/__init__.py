@@ -1,4 +1,5 @@
 import os
+import logging
 
 from cachetools import TTLCache
 from apollo.util import AssertUser
@@ -17,6 +18,10 @@ userCache = TTLCache(
     10,  # Up to 2 items
     60  # 1 minute cache life
 )
+
+
+def set_logging_level(level):
+    logging.basicConfig(level=getattr(logging, level.upper()))
 
 
 class ApolloInstance(object):
