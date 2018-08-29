@@ -3,7 +3,12 @@
 import json
 import requests
 import logging
-from shlex import quote
+
+try:
+    from shlex import quote
+except ImportError:
+    from pipes import quote
+
 log = logging.getLogger()
 
 
