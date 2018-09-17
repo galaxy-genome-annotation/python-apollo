@@ -16,8 +16,8 @@ Examples
 
 .. code:: python
 
-    from apollo import WebApolloInstance
-    wa = WebApolloInstance('https://fqdn/apollo', 'jane.doe@fqdn.edu', 'password')
+    from apollo import ApolloInstance
+    wa = ApolloInstance('https://fqdn/apollo', 'jane.doe@fqdn.edu', 'password')
 
     orgs = wa.organisms.add_organism(
         "Yeast",
@@ -93,4 +93,3 @@ Support
 -------
 
 This material is based upon work supported by the National Science Foundation under Grant Number (Award 1565146)
-
