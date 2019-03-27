@@ -9,7 +9,7 @@ class IOClient(Client):
 
     def write_downloadable(self, organism, export_type='FASTA',
                            seq_type='peptide', export_format='text',
-                           export_gff3_fasta=False, sequences=[]):
+                           export_gff3_fasta=False, sequences=[], region=None):
         """
         Prepare a download for an organism
 
@@ -20,7 +20,7 @@ class IOClient(Client):
         :param sequences: Names of references sequences to add (default is all)
 
         :type export_type: str
-        :param export_type: Export type. Choices: FASTA, GFF3
+        :param export_type: Export type. Choices: FASTA, GFF3, VCF
 
         :type seq_type: str
         :param seq_type: Export selection. Choices: peptide, cds, cdna, genomic
@@ -31,9 +31,18 @@ class IOClient(Client):
         :type export_gff3_fasta: bool
         :param export_gff3_fasta: Export reference sequence when exporting GFF3 annotations.
 
+        :type region: str
+        :param region: Region to export in form sequence:min..max e.g., chr3:1001..1034
+
         :rtype: dict
         :return: a dictionary containing download information
         """
+
+        if export_format.lower() not in ('gzip', 'text'):
+            raise Exception("export_format must be one of file, text")
+
+        if export_type.lower() not in ('fasta', 'gff3', 'vcf'):
+            raise Exception("export_type must be one of FASTA, GFF3, VCF")
 
         data = {
             'type': export_type,
@@ -46,13 +55,16 @@ class IOClient(Client):
             'exportGff3Fasta': export_gff3_fasta,
         }
 
+        if region:
+            data['region'] = region
+
         return self.post('write', data)
 
     def write_text(self, organism, export_type='FASTA', seq_type='peptide',
                    export_format='text', export_gff3_fasta=False,
-                   sequences=[]):
+                   sequences=[], region=None):
         """
-        Download or prepare a download for an organism
+        [DEPRECATED, use write_downloadable] Download or prepare a download for an organism
 
         :type organism: str
         :param organism: organism common name
@@ -61,7 +73,7 @@ class IOClient(Client):
         :param sequences: Names of references sequences to add (default is all)
 
         :type export_type: str
-        :param export_type: Export type. Choices: FASTA, GFF3
+        :param export_type: Export type. Choices: FASTA, GFF3, VCF
 
         :type seq_type: str
         :param seq_type: Export selection. Choices: peptide, cds, cdna, genomic
@@ -72,28 +84,20 @@ class IOClient(Client):
         :type export_gff3_fasta: bool
         :param export_gff3_fasta: Export reference sequence when exporting GFF3 annotations.
 
+        :type region: str
+        :param region: Region to export in form sequence:min..max e.g., chr3:1001..1034
+
         :rtype: str
         :return: the exported data
         """
-        if sequences is None:
-            sequences = []
 
-        data = {
-            'type': export_type,
-            'seqType': seq_type,
-            'format': export_format,
-            'sequences': sequences,
-            'organism': organism,
-            'output': 'text',
-            'exportAllSequences': True if not sequences else len(sequences) == 0,
-            'exportGff3Fasta': export_gff3_fasta,
-        }
-
-        return self.post('write', data, is_json=False)
+        return self.write_downloadable(organism, export_type, seq_type,
+                                       export_format, export_gff3_fasta,
+                                       sequences, region)
 
     def download(self, uuid, output_format='gzip'):
         """
-        [CURRENTLY BROKEN] Download pre-prepared data by UUID
+        Download pre-prepared data by UUID
 
         :type uuid: str
         :param uuid: Data UUID
@@ -101,15 +105,15 @@ class IOClient(Client):
         :type output_format: str
         :param output_format: Output format of the data, either "gzip" or "text"
 
-        :rtype: dict
-        :return: a dictionary
+        :rtype: str
+        :return: The downloaded content
         """
 
         if output_format.lower() not in ('gzip', 'text'):
-            raise Exception("outputFormat must be one of file, text")
+            raise Exception("output_format must be one of file, text")
 
         data = {
             'format': output_format,
             'uuid': uuid,
         }
-        return self.post('write', data)
+        return self.get('download', get_params=data, is_json=False)
