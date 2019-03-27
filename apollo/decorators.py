@@ -1,7 +1,10 @@
+from functools import wraps
+
 from apollo.exceptions import APIErrorResponseException
 
 
 def raise_error_decorator(fn):
+    @wraps(fn)
     def wrapper(*args, **kwargs):
         r = fn(*args, **kwargs)
         if type(r) is dict and "error" in r:
