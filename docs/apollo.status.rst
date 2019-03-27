@@ -1,5 +1,5 @@
-apollo\.status package
-======================
+apollo.status package
+=====================
 
 .. automodule:: apollo.status
     :members:

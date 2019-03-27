@@ -1,5 +1,5 @@
-apollo\.groups package
-======================
+apollo.groups package
+=====================
 
 .. automodule:: apollo.groups
     :members:

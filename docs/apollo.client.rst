@@ -1,5 +1,5 @@
-apollo\.client module
-=====================
+apollo.client module
+====================
 
 .. automodule:: apollo.client
     :members:

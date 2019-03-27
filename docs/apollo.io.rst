@@ -1,5 +1,5 @@
-apollo\.io package
-==================
+apollo.io package
+=================
 
 .. automodule:: apollo.io
     :members:

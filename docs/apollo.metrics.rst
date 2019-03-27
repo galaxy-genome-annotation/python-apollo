@@ -1,5 +1,5 @@
-apollo\.metrics package
-=======================
+apollo.metrics package
+======================
 
 .. automodule:: apollo.metrics
     :members:

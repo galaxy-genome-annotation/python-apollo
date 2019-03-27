@@ -1,5 +1,5 @@
-apollo\.util module
-===================
+apollo.util module
+==================
 
 .. automodule:: apollo.util
     :members:

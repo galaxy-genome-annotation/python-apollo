@@ -1,5 +1,5 @@
-apollo\.cannedcomments package
-==============================
+apollo.cannedcomments package
+=============================
 
 .. automodule:: apollo.cannedcomments
     :members:

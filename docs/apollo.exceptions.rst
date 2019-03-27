@@ -1,5 +1,5 @@
-apollo\.exceptions module
-=========================
+apollo.exceptions module
+========================
 
 .. automodule:: apollo.exceptions
     :members:

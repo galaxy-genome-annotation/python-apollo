@@ -1,5 +1,5 @@
-apollo\.cannedvalues package
-============================
+apollo.cannedvalues package
+===========================
 
 .. automodule:: apollo.cannedvalues
     :members:

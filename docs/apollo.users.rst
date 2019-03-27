@@ -1,5 +1,5 @@
-apollo\.users package
-=====================
+apollo.users package
+====================
 
 .. automodule:: apollo.users
     :members:

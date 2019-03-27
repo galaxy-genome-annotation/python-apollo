@@ -1,8 +1,7 @@
-apollo.organisms package
+apollo.decorators module
 ========================
 
-.. automodule:: apollo.organisms
+.. automodule:: apollo.decorators
     :members:
     :undoc-members:
     :show-inheritance:
-

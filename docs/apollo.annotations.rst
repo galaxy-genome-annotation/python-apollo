@@ -1,5 +1,5 @@
-apollo\.annotations package
-===========================
+apollo.annotations package
+==========================
 
 .. automodule:: apollo.annotations
     :members:

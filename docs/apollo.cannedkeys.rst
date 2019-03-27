@@ -1,5 +1,5 @@
-apollo\.cannedkeys package
-==========================
+apollo.cannedkeys package
+=========================
 
 .. automodule:: apollo.cannedkeys
     :members:
