@@ -1,10 +1,13 @@
 from __future__ import absolute_import
 from __future__ import print_function
+
 import json
-import wrapt
-from .io import error
 import sys
 import traceback
+
+import wrapt
+
+from .io import error
 
 
 @wrapt.decorator
