@@ -49,6 +49,9 @@ class UsersClient(Client):
         """
         Get all users known to this Apollo instance
 
+        :type omit_empty_organisms: bool
+        :param omit_empty_organisms: Will omit users having no access to any organism
+
         :rtype: list of dicts
         :return: list of user info dictionaries
         """
