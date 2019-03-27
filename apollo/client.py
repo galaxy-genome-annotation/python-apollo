@@ -1,8 +1,9 @@
 """Base apollo client
 """
 import json
-import requests
 import logging
+
+import requests
 try:
     from shlex import quote
 except ImportError:
@@ -63,7 +64,7 @@ class Client(object):
         raise Exception("Unexpected response from apollo %s: %s" %
                         (resp.status_code, resp.text))
 
-    def get(self, client_method, get_params):
+    def get(self, client_method, get_params, is_json=True):
         """Make a GET request"""
         url = self._wa.apollo_url + self.CLIENT_BASE + client_method
         headers = {}
@@ -72,8 +73,11 @@ class Client(object):
                                 verify=self.__verify, params=get_params,
                                 **self._request_args)
         if response.status_code == 200:
-            data = response.json()
-            return self._scrub_data(data)
+            if is_json:
+                data = response.json()
+                return self._scrub_data(data)
+            else:
+                return response.text
         # @see self.body for HTTP response body
         raise Exception("Unexpected response from apollo %s: %s" %
                         (response.status_code, response.text))
