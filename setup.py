@@ -16,7 +16,7 @@ setup(
     version='3.1',
     description="Apollo API library",
     long_description=readme,
-    author="E. Rasche",
+    author="Helena Rasche;Anthony Bretaudeau",
     author_email="hxr@hx42.org",
     url='https://github.com/galaxy-genome-annotation/python-apollo',
     packages=['apollo', 'arrow'] + subpackages,
