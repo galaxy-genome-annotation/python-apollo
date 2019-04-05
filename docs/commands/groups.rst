@@ -51,6 +51,52 @@ Delete a group
       -h, --help  Show this message and exit.
     
 
+``get_group_admin`` command
+---------------------------
+
+**Usage**::
+
+    arrow groups get_group_admin [OPTIONS] GROUP
+
+**Help**
+
+Get the group's admins
+
+
+**Output**
+
+
+    a list containing group admins
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``get_group_creator`` command
+-----------------------------
+
+**Usage**::
+
+    arrow groups get_group_creator [OPTIONS] GROUP
+
+**Help**
+
+Get the group's creator
+
+
+**Output**
+
+
+    creator userId
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``get_groups`` command
 ----------------------
 
@@ -141,6 +187,30 @@ Update the name of a group
 
 
       -h, --help  Show this message and exit.
+    
+
+``update_group_admin`` command
+------------------------------
+
+**Usage**::
+
+    arrow groups update_group_admin [OPTIONS] GROUP_ID
+
+**Help**
+
+Update the group's admins
+
+
+**Output**
+
+
+    dictionary of group information
+    
+**Options**::
+
+
+      --users TEXT  List of emails
+      -h, --help    Show this message and exit.
     
 
 ``update_membership`` command

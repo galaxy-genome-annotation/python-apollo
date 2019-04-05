@@ -166,3 +166,15 @@ class OrganismsClient(Client):
         :return: The set of sequences associated with an organism
         """
         return self.post('getSequencesForOrganism', {'organism': organism_id})
+
+    def get_organism_creator(self, organism_id):
+        """
+        Get the creator of an organism
+
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+        return self.post('getOrganismCreator', {'organism': organism_id})

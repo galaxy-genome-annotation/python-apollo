@@ -164,3 +164,54 @@ class GroupsClient(Client):
             'users': users,
         }
         return _fix_group(self.post('updateMembership', data))
+
+    def update_group_admin(self, group_id, users=[]):
+        """
+        Update the group's admins
+
+        :type group_id: int
+        :param group_id: Group ID Number
+
+        :type users: list of str
+        :param users: List of emails
+
+        :rtype: dict
+        :return: dictionary of group information
+        """
+        data = {
+            'groupId': group_id,
+            'users': users,
+        }
+        return _fix_group(self.post('updateGroupAdmin', data))
+
+    def get_group_admin(self, group):
+        """
+        Get the group's admins
+
+        :type group: str
+        :param group: group name
+
+        :rtype: list
+        :return: a list containing group admins
+        """
+        data = {
+            'name': group,
+        }
+        response = _fix_group(self.post('getGroupAdmin', data))
+        return response
+
+    def get_group_creator(self, group):
+        """
+        Get the group's creator
+
+        :type group: str
+        :param group: group name
+
+        :rtype: list
+        :return: creator userId
+        """
+        data = {
+            'name': group,
+        }
+        response = _fix_group(self.post('getGroupCreator', data))
+        return response

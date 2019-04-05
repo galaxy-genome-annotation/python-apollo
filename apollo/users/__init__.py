@@ -42,17 +42,27 @@ class UsersClient(Client):
         """Apollo likes to return empty user arrays, even when you REALLY
         want a user response back... like creating a user."""
         if len(response.keys()) == 0:
-            return self.show_user(user)
+            response = self.show_user(user)
+
+            # And sometimes show_user can return nothing. Ask again...
+            if len(response) == 0:
+                response = self.show_user(user)
         return response
 
-    def get_users(self):
+    def get_users(self, omit_empty_organisms=False):
         """
         Get all users known to this Apollo instance
+
+        :type omit_empty_organisms: bool
+        :param omit_empty_organisms: Will omit users having no access to any organism
 
         :rtype: list of dicts
         :return: list of user info dictionaries
         """
-        res = self.post('loadUsers', {})
+        payload = {}
+        if omit_empty_organisms:
+            payload['omitEmptyOrganisms'] = omit_empty_organisms
+        res = self.post('loadUsers', payload)
         data = [_fix_user(user) for user in res]
         return data
 
@@ -67,7 +77,7 @@ class UsersClient(Client):
         :return: a dictionary containing user information
         """
         res = self.post('loadUsers', {'userId': user})
-        if isinstance(res, list):
+        if isinstance(res, list) and len(res) > 0:
             res = res[0]
         return _fix_user(res)
 
@@ -235,3 +245,39 @@ class UsersClient(Client):
         }
         response = self.post('updateUser', data)
         return self._handle_empty(email, response)
+
+    def get_user_creator(self, user):
+        """
+        Get the creator of a user
+
+        :type user: str
+        :param user: User Email
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+        return self.post('getUserCreator', {'email': user})
+
+    def activate_user(self, user):
+        """
+        Activate a user
+
+        :type user: str
+        :param user: User's email
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        return self.post('activateUser', {'userToActivate': user})
+
+    def inactivate_user(self, user):
+        """
+        Activate a user
+
+        :type user: str
+        :param user: User's email
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        return self.post('inactivateUser', {'userToDelete': user})

@@ -104,8 +104,8 @@ def featuresToFeatureSchema(features):
     compiled = []
     for feature in features:
         # if feature.type != 'gene':
-            # log.warn("Not able to handle %s features just yet...", feature.type)
-            # continue
+        #     log.warn("Not able to handle %s features just yet...", feature.type)
+        #     continue
 
         for x in _yieldFeatData([feature]):
             compiled.append(x)

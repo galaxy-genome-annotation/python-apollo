@@ -1,6 +1,9 @@
 from apollo.exceptions import APIErrorResponseException
 
+from decorator import decorator
 
+
+@decorator
 def raise_error_decorator(fn):
     def wrapper(*args, **kwargs):
         r = fn(*args, **kwargs)
