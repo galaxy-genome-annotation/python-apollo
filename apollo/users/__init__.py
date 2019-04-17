@@ -2,6 +2,7 @@
 Contains possible interactions with the Apollo Users Module
 """
 import json
+import time
 
 from apollo.client import Client
 from apollo.decorators import raise_error_decorator
@@ -41,12 +42,14 @@ class UsersClient(Client):
     def _handle_empty(self, user, response):
         """Apollo likes to return empty user arrays, even when you REALLY
         want a user response back... like creating a user."""
-        if len(response.keys()) == 0:
+        found_response = len(response.keys()) > 0
+        retries = 0
+        while not found_response and retries < 10:
             response = self.show_user(user)
-
-            # And sometimes show_user can return nothing. Ask again...
-            if len(response) == 0:
-                response = self.show_user(user)
+            found_response = len(response) >= 0 and response != []
+            if not found_response and retries > 1:
+                time.sleep(1)
+            retries += 1
         return response
 
     def get_users(self, omit_empty_organisms=False):
