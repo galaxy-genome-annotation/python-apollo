@@ -15,11 +15,14 @@ class GroupsClient(Client):
         Create a new group
 
         :type name: str
-        :param name: Group name
+        :param name: Group name (or a list of groups to create)
 
         :rtype: dict
         :return: Group information dictionary
         """
+        if isinstance(name, list):
+            name = ','.join(name)
+
         data = {'name': name}
         return self.post('createGroup', data)
 
@@ -28,11 +31,14 @@ class GroupsClient(Client):
         Delete a group
 
         :type group: str
-        :param group: Group name
+        :param group: Group name (or a list of groups to delete)
 
         :rtype: dict
         :return: an empty dictionary
         """
+        if isinstance(group, list):
+            group = ','.join(group)
+
         data = {
             'name': group,
         }
@@ -146,7 +152,7 @@ class GroupsClient(Client):
         response['permissions'] = json.loads(response['permissions'])
         return response
 
-    def update_membership(self, group_id, users=[]):
+    def update_membership(self, group_id=None, users=[], memberships=[]):
         """
         Update the group's membership
 
@@ -156,13 +162,25 @@ class GroupsClient(Client):
         :type users: list of str
         :param users: List of emails
 
+        :type memberships: list
+        :param memberships: Bulk memberships to update of the form: [ {groupId: <groupId>,users: ["user1", "user2", "user3"]}, {groupId:<another-groupId>, users: ["user2", "user8"]} (users and groupId will be ignored)
+
         :rtype: dict
         :return: dictionary of group information
         """
-        data = {
-            'groupId': group_id,
-            'users': users,
-        }
+
+        if not group_id and not memberships:
+            raise Exception("group_id+users or memberships is required")
+        elif len(memberships) > 0:
+            data = {
+                'memberships': memberships
+            }
+        else:
+            data = {
+                'groupId': group_id,
+                'users': users,
+            }
+
         return _fix_group(self.post('updateMembership', data))
 
     def update_group_admin(self, group_id, users=[]):
