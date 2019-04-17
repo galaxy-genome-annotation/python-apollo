@@ -23,4 +23,4 @@ def read_global_config():
         return DEFAULT_CONFIG
 
     with open(config_path) as f:
-        return yaml.load(f, Loader=yaml.safe_load)
+        return yaml.safe_load(f)
