@@ -69,6 +69,7 @@ History
     - Added get_creator for user, group and organisms
     - Added omitEmptyOrganisms to get_users
     - Added support for group admins
+    - Added support for bulk group creation/deletion
     - Repaired GFF3/Fasta downloading
 - 3.0.4
     - `Fixed bug <https://github.com/galaxy-genome-annotation/python-apollo/issues/4>`__ in deleteFeatures (Thanks `@NeillGibson <https://github.com/NeillGibson>`__)
