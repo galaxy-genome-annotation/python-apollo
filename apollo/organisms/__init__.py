@@ -21,7 +21,7 @@ class OrganismsClient(Client):
         :param directory: Server-side directory
 
         :type blatdb: str
-        :param blatdb: Server-side Blat directory for the organism
+        :param blatdb: Server-side path to 2bit index of the genome for Blat
 
         :type genus: str
         :param genus: Genus

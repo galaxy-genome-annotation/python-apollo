@@ -2,6 +2,7 @@
 Contains possible interactions with the Apollo Organisms Module
 """
 import json
+
 from apollo.client import Client
 
 
@@ -42,7 +43,7 @@ class RemoteClient(Client):
         :param genus: Genus
 
         :type blatdb: str
-        :param blatdb: Server-side Blat directory for the organism
+        :param blatdb: Server-side path to 2bit index of the genome for Blat
 
         :type public: bool
         :param public: should the organism be public
