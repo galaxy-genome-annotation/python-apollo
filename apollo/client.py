@@ -1,7 +1,14 @@
 """Base apollo client
 """
 import json
+import logging
+
 import requests
+try:
+    from shlex import quote
+except ImportError:
+    from pipes import quote
+log = logging.getLogger()
 
 
 class Client(object):
@@ -45,6 +52,12 @@ class Client(object):
         else:
             headers = {}
 
+        curl_command = ['curl', url]
+        for (k, v) in headers.items():
+            curl_command += ['-H', quote('%s: %s' % (k, v))]
+        curl_command += ['-d', quote(json.dumps(data))]
+        log.info(' '.join(curl_command))
+
         resp = requests.post(url, data=data, headers=headers, verify=self.__verify,
                              params=post_params, allow_redirects=False,
                              files=files, **self._request_args)
@@ -60,7 +73,7 @@ class Client(object):
         raise Exception("Unexpected response from apollo %s: %s" %
                         (resp.status_code, resp.text))
 
-    def get(self, client_method, get_params):
+    def get(self, client_method, get_params, is_json=True):
         """Make a GET request"""
         url = self._wa.apollo_url + self.CLIENT_BASE + client_method
         headers = {}
@@ -69,8 +82,11 @@ class Client(object):
                                 verify=self.__verify, params=get_params,
                                 **self._request_args)
         if response.status_code == 200:
-            data = response.json()
-            return self._scrub_data(data)
+            if is_json:
+                data = response.json()
+                return self._scrub_data(data)
+            else:
+                return response.text
         # @see self.body for HTTP response body
         raise Exception("Unexpected response from apollo %s: %s" %
                         (response.status_code, response.text))

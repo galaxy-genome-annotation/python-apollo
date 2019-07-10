@@ -338,6 +338,134 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('deleteAttribute', data)
 
+    def add_dbxref(self, feature_id, db, accession, organism=None, sequence=None):
+        """
+        Add a dbxref to a feature
+
+        :type feature_id: str
+        :param feature_id: Feature UUID
+
+        :type db: str
+        :param db: DB Name (e.g. PMID)
+
+        :type accession: str
+        :param accession: Accession Value
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        This seems to show two attributes being added, but it behaves like those two are one.
+
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
+        """
+        data = {
+            'features': [
+                {
+                    'uniquename': feature_id,
+                    'dbxrefs': [
+                        {
+                            'db': db,
+                            'accession': accession,
+                        }
+                    ]
+                }
+            ]
+        }
+        data = self._update_data(data, organism, sequence)
+        return self.post('addDbxref', data)
+
+    def delete_dbxref(self, feature_id, db, accession, organism=None, sequence=None):
+        """
+        Delete a dbxref from a feature
+
+        :type feature_id: str
+        :param feature_id: Feature UUID
+
+        :type db: str
+        :param db: DB Name (e.g. PMID)
+
+        :type accession: str
+        :param accession: Accession Value
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
+        """
+        data = {
+            'features': [
+                {
+                    'uniquename': feature_id,
+                    'dbxrefs': [
+                        {
+                            'db': db,
+                            'accession': accession,
+                        }
+                    ]
+                }
+            ]
+        }
+        data = self._update_data(data, organism, sequence)
+        return self.post('deleteDbxref', data)
+
+    def update_dbxref(self, feature_id, old_db, old_accession, new_db, new_accession, organism=None, sequence=None):
+        """
+        Delete a dbxref from a feature
+
+        :type feature_id: str
+        :param feature_id: Feature UUID
+
+        :type old_db: str
+        :param old_db: Old DB Name (e.g. PMID)
+
+        :type old_accession: str
+        :param old_accession: Old accession Value
+
+        :type new_db: str
+        :param new_db: New DB Name (e.g. PMID)
+
+        :type new_accession: str
+        :param new_accession: New accession Value
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
+        """
+        data = {
+            'features': [
+                {
+                    'uniquename': feature_id,
+                    'old_dbxrefs': [
+                        {
+                            'db': old_db,
+                            'accession': old_accession,
+                        }
+                    ],
+                    'new_dbxrefs': [
+                        {
+                            'db': new_db,
+                            'accession': new_accession,
+                        }
+                    ]
+                }
+            ]
+        }
+        data = self._update_data(data, organism, sequence)
+        return self.post('deleteDbxref', data)
+
     def get_features(self, organism=None, sequence=None):
         """
         Get the features for an organism / sequence
@@ -632,6 +760,9 @@ class AnnotationsClient(Client):
     def delete_sequence_alteration(self, feature_id, organism=None, sequence=None):
         """
         [UNTESTED] Delete a specific feature alteration
+
+        :type feature_id: str
+        :param feature_id: Feature UUID
 
         :type organism: str
         :param organism: Organism Common Name

@@ -1,7 +1,12 @@
 from __future__ import absolute_import
 from __future__ import print_function
+
 import json
+import sys
+import traceback
+
 import wrapt
+
 from .io import error
 
 
@@ -16,7 +21,12 @@ def custom_exception(wrapped, instance, args, kwargs):
             except json.decoder.JSONDecodeError:
                 error(str(e))
         else:
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            error(''.join(lines))
             error(str(e))
+            ctx = args[0]
+            ctx.exit(1)
 
 
 @wrapt.decorator

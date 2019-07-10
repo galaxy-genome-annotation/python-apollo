@@ -51,6 +51,52 @@ Delete a group
       -h, --help  Show this message and exit.
     
 
+``get_group_admin`` command
+---------------------------
+
+**Usage**::
+
+    arrow groups get_group_admin [OPTIONS] GROUP
+
+**Help**
+
+Get the group's admins
+
+
+**Output**
+
+
+    a list containing group admins
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``get_group_creator`` command
+-----------------------------
+
+**Usage**::
+
+    arrow groups get_group_creator [OPTIONS] GROUP
+
+**Help**
+
+Get the group's creator
+
+
+**Output**
+
+
+    creator userId
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``get_groups`` command
 ----------------------
 
@@ -117,8 +163,7 @@ Get information about a group
 **Options**::
 
 
-      --group INTEGER  Group ID Number
-      -h, --help       Show this message and exit.
+      -h, --help  Show this message and exit.
     
 
 ``update_group`` command
@@ -141,8 +186,31 @@ Update the name of a group
 **Options**::
 
 
-      --group INTEGER  group ID number
-      -h, --help       Show this message and exit.
+      -h, --help  Show this message and exit.
+    
+
+``update_group_admin`` command
+------------------------------
+
+**Usage**::
+
+    arrow groups update_group_admin [OPTIONS] GROUP_ID
+
+**Help**
+
+Update the group's admins
+
+
+**Output**
+
+
+    dictionary of group information
+    
+**Options**::
+
+
+      --users TEXT  List of emails
+      -h, --help    Show this message and exit.
     
 
 ``update_membership`` command
@@ -150,7 +218,7 @@ Update the name of a group
 
 **Usage**::
 
-    arrow groups update_membership [OPTIONS] GROUP_ID
+    arrow groups update_membership [OPTIONS]
 
 **Help**
 
@@ -165,8 +233,13 @@ Update the group's membership
 **Options**::
 
 
-      --users TEXT  List of emails
-      -h, --help    Show this message and exit.
+      --group_id INTEGER  Group ID Number
+      --users TEXT        List of emails
+      --memberships TEXT  Bulk memberships to update of the form: [ {groupId:
+                          <groupId>,users: ["user1", "user2", "user3"]},
+                          {groupId:<another-groupId>, users: ["user2", "user8"]}
+                          (users and groupId will be ignored)
+      -h, --help          Show this message and exit.
     
 
 ``update_organism_permissions`` command

@@ -2,11 +2,13 @@
 Contains possible interactions with the Apollo Organisms Module
 """
 from apollo.client import Client
+from apollo.decorators import raise_error_decorator
 
 
 class OrganismsClient(Client):
     CLIENT_BASE = '/organism/'
 
+    @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
                      species=None, public=False):
         """
@@ -49,6 +51,8 @@ class OrganismsClient(Client):
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
         # EVERY organism. LMAO.
+        if type(response) is not list:
+            return response
         return [x for x in response if x['commonName'] == common_name][0]
 
     def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False):
@@ -105,8 +109,8 @@ class OrganismsClient(Client):
         """
         Get all organisms
 
-        :type cn: str
-        :param cn: Optionally filter on common name
+        :type common_name: str
+        :param common_name: Optionally filter on common name
 
         :rtype: list
         :return: Organism information
@@ -149,7 +153,7 @@ class OrganismsClient(Client):
         :rtype: dict
         :return: an empty dictionary
         """
-        return self.post('deleteOrganismFeatures', {'id': organism_id})
+        return self.post('deleteOrganismFeatures', {'organism': organism_id})
 
     def get_sequences(self, organism_id):
         """
@@ -163,12 +167,21 @@ class OrganismsClient(Client):
         """
         return self.post('getSequencesForOrganism', {'organism': organism_id})
 
-    def update_metadata(self, organism_id, metadata):
+    def get_organism_creator(self, organism_id):
         """
-        Update the metadata for an existing organism.
+        Get the creator of an organism
 
         :type organism_id: str
         :param organism_id: Organism ID Number
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+        return self.post('getOrganismCreator', {'organism': organism_id})
+
+    def update_metadata(self, organism_id, metadata):
+        """
+        Update the metadata for an existing organism.
 
         :type metadata: str
         :param metadata: Organism metadata. (Recommendation: use a structured format like JSON)

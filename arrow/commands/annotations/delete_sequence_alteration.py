@@ -1,10 +1,10 @@
 import click
-from arrow.cli import pass_context
+from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, list_output
 
 
 @click.command('delete_sequence_alteration')
-@click.argument("feature_id")
+@click.argument("feature_id", type=str)
 @click.option(
     "--organism",
     help="Organism Common Name",

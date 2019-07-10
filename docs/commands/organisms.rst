@@ -78,6 +78,29 @@ Delete an organim
       -h, --help  Show this message and exit.
     
 
+``get_organism_creator`` command
+--------------------------------
+
+**Usage**::
+
+    arrow organisms get_organism_creator [OPTIONS] ORGANISM_ID
+
+**Help**
+
+Get the creator of an organism
+
+
+**Output**
+
+
+    a dictionary containing user information
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``get_organisms`` command
 -------------------------
 
@@ -98,8 +121,7 @@ Get all organisms
 **Options**::
 
 
-      --common_name TEXT
-      --cn TEXT           Optionally filter on common name
+      --common_name TEXT  Optionally filter on common name
       -h, --help          Show this message and exit.
     
 

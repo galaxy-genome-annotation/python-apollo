@@ -5,6 +5,29 @@ This section is auto-generated from the help text for the arrow command
 ``users``.
 
 
+``activate_user`` command
+-------------------------
+
+**Usage**::
+
+    arrow users activate_user [OPTIONS] USER
+
+**Help**
+
+Activate a user
+
+
+**Output**
+
+
+    an empty dictionary
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``add_to_group`` command
 ------------------------
 
@@ -100,6 +123,29 @@ Display a user's organism permissions
       -h, --help  Show this message and exit.
     
 
+``get_user_creator`` command
+----------------------------
+
+**Usage**::
+
+    arrow users get_user_creator [OPTIONS] USER
+
+**Help**
+
+Get the creator of a user
+
+
+**Output**
+
+
+    a dictionary containing user information
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``get_users`` command
 ---------------------
 
@@ -116,6 +162,30 @@ Get all users known to this Apollo instance
 
 
     list of user info dictionaries
+    
+**Options**::
+
+
+      --omit_empty_organisms  Will omit users having no access to any organism
+      -h, --help              Show this message and exit.
+    
+
+``inactivate_user`` command
+---------------------------
+
+**Usage**::
+
+    arrow users inactivate_user [OPTIONS] USER
+
+**Help**
+
+Activate a user
+
+
+**Output**
+
+
+    an empty dictionary
     
 **Options**::
 

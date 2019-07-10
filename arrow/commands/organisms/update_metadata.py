@@ -1,10 +1,10 @@
 import click
-from arrow.cli import pass_context
+from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, dict_output
 
 
 @click.command('update_metadata')
-@click.argument("organism_id", type=str)
+@click.argument("organism_id")
 @click.argument("metadata", type=str)
 @pass_context
 @custom_exception

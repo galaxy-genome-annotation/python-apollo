@@ -7,6 +7,7 @@ import json
 from .io import error
 from .config import read_global_config, global_config_path  # noqa, ditto
 from .apollo import get_apollo_instance
+from apollo import set_logging_level
 from arrow import __version__  # noqa, ditto
 
 CONTEXT_SETTINGS = dict(auto_envvar_prefix='ARROW', help_option_names=['-h', '--help'])
@@ -35,6 +36,10 @@ class Context(object):
         """Logs a message to stderr only if verbose is enabled."""
         if self.verbose:
             self.log(msg, *args)
+
+    def exit(self, exit_code):
+        self.vlog("Exiting arrow with exit code [%d]" % exit_code)
+        sys.exit(exit_code)
 
 
 pass_context = click.make_pass_decorator(Context, ensure=True)
@@ -89,14 +94,14 @@ class ArrowCLI(click.MultiCommand):
         commands = [
             'init',
             'annotations',
-            # 'cannedcomments',
-            # 'cannedkeys',
-            # 'cannedvalues',
+            'cannedcomments',
+            'cannedkeys',
+            'cannedvalues',
             'groups',
             'io',
             'metrics',
             'organisms',
-            # 'status',
+            'status',
             'users',
             'remote'
         ]
@@ -118,11 +123,21 @@ class ArrowCLI(click.MultiCommand):
     show_default=True,
     required=True
 )
+@click.option(
+    "-l",
+    "--log-level",
+    help='Logging level',
+    type=click.Choice(['debug', 'info', 'warn', 'error', 'critical']),
+    default='warn',
+    show_default=True,
+)
 @pass_context
-def arrow(ctx, apollo_instance, verbose):
+def arrow(ctx, apollo_instance, verbose, log_level):
     """Command line wrappers around Apollo functions. While this sounds
     unexciting, with arrow and jq you can easily build powerful command line
     scripts."""
+    set_logging_level(log_level)
+
     # We abuse this, knowing that calls to one will fail.
     try:
         ctx.gi = get_apollo_instance(apollo_instance)
