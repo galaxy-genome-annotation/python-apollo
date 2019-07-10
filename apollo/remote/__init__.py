@@ -16,22 +16,21 @@ class RemoteClient(Client):
 
         The recommended structure for the genome data tarball is as follows::
 
-            data/
-            data/names/
-            data/names/root.json
-            data/seq/
-            data/seq/fba/
-            data/seq/fba/da8/
-            data/seq/fba/da8/f3/
-            data/seq/fba/da8/f3/Mijalis-0.txt
-            data/seq/fba/da8/f3/Mijalis-1.txt
-            data/seq/fba/da8/f3/Mijalis-2.txt
-            data/seq/fba/da8/f3/Mijalis-3.txt
-            data/seq/fba/da8/f3/Mijalis-4.txt
-            data/seq/refSeqs.json
-            data/tracks/
-            data/trackList.json
-            data/tracks.conf
+            names/
+            names/root.json
+            seq/
+            seq/fba/
+            seq/fba/da8/
+            seq/fba/da8/f3/
+            seq/fba/da8/f3/Mijalis-0.txt
+            seq/fba/da8/f3/Mijalis-1.txt
+            seq/fba/da8/f3/Mijalis-2.txt
+            seq/fba/da8/f3/Mijalis-3.txt
+            seq/fba/da8/f3/Mijalis-4.txt
+            seq/refSeqs.json
+            tracks/
+            trackList.json
+            tracks.conf
 
         The genome name / hashed directories below the seq folder will
         obviously be specific to your orgnaism.
@@ -77,6 +76,9 @@ class RemoteClient(Client):
             data['species'] = species
 
         response = self.post('addOrganismWithSequence', list(data.items()), files={'organismData': organism_data}, autoconvert_to_json=False)
+        if 'error' in response:
+            return response
+
         return [x for x in response if x['commonName'] == common_name]
 
     def delete_organism(self, organism_id):
@@ -129,7 +131,7 @@ class RemoteClient(Client):
         :param organism_id: Organism ID Number
 
         :type track_data: file
-        :param track_data: .tar.gz or .zip archive containing the data/<track> directory.
+        :param track_data: .tar.gz or .zip archive containing the <track> directory.
 
         :type track_config: dict
         :param track_config: Track configuration
@@ -147,7 +149,6 @@ class RemoteClient(Client):
 
     def update_track(self, organism_id, track_config):
         """
-        TODO: Broken?
         Update the configuration of a track that has already been added to the
         organism. Will not update data for the track.
 
@@ -175,7 +176,7 @@ class RemoteClient(Client):
             'trackConfig': json.dumps(track_config),
         }
 
-        response = self.post('updateTrackForOrganism', data)
+        response = self.post('updateTrackForOrganism', data, autoconvert_to_json=False)
         return response
 
     def delete_track(self, organism_id, track_label):

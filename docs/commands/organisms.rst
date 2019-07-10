@@ -25,7 +25,7 @@ Add an organism
 **Options**::
 
 
-      --blatdb TEXT   Server-side Blat directory for the organism
+      --blatdb TEXT   Server-side path to 2bit index of the genome for Blat
       --genus TEXT    Genus
       --species TEXT  Species
       --public        User's email

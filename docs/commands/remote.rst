@@ -25,7 +25,8 @@ Add an organism using the remote organism API.
 **Options**::
 
 
-      --blatdb TEXT                   Server-side Blat directory for the organism
+      --blatdb TEXT                   Server-side path to 2bit index of the genome
+                                      for Blat
       --genus TEXT                    Genus
       --species TEXT                  Species
       --public                        should the organism be public
@@ -53,30 +54,6 @@ Adds a tarball containing track data to an existing organism.
 
 
     a dictionary with information about all tracks on the organism
-    
-**Options**::
-
-
-      -h, --help  Show this message and exit.
-    
-
-``add_track_file`` command
---------------------------
-
-**Usage**::
-
-    arrow remote add_track_file [OPTIONS] ORGANISM_ID TRACK_DATA TRACK_CONFIG
-
-**Help**
-
-Adds a tarball containing track data to an existing organism.
-
-
-**Output**
-
-
-a dictionary with information about all tracks on the organism
-   
     
 **Options**::
 
