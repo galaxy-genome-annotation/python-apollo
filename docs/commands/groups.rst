@@ -218,7 +218,7 @@ Update the group's admins
 
 **Usage**::
 
-    arrow groups update_membership [OPTIONS] GROUP_ID
+    arrow groups update_membership [OPTIONS]
 
 **Help**
 
@@ -233,8 +233,13 @@ Update the group's membership
 **Options**::
 
 
-      --users TEXT  List of emails
-      -h, --help    Show this message and exit.
+      --group_id INTEGER  Group ID Number
+      --users TEXT        List of emails
+      --memberships TEXT  Bulk memberships to update of the form: [ {groupId:
+                          <groupId>,users: ["user1", "user2", "user3"]},
+                          {groupId:<another-groupId>, users: ["user2", "user8"]}
+                          (users and groupId will be ignored)
+      -h, --help          Show this message and exit.
     
 
 ``update_organism_permissions`` command

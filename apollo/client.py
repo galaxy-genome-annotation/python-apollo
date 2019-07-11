@@ -26,21 +26,31 @@ class Client(object):
         if 'verify' in self._request_args:
             del self._request_args['verify']
 
-    def post(self, client_method, data, post_params=None, is_json=True):
+    def post(self, client_method, data, post_params=None, is_json=True, files=None, autoconvert_to_json=True):
         """Make a POST request"""
         url = self._wa.apollo_url + self.CLIENT_BASE + client_method
 
         if post_params is None:
             post_params = {}
 
-        headers = {
-            'Content-Type': 'application/json'
-        }
+        if isinstance(data, dict):
+            data.update({
+                'username': self._wa.username,
+                'password': self._wa.password,
+            })
+        elif isinstance(data, list):
+            data.append(('username', self._wa.username))
+            data.append(('password', self._wa.password))
+        else:
+            raise Exception("You must add credentials yourself")
 
-        data.update({
-            'username': self._wa.username,
-            'password': self._wa.password,
-        })
+        if autoconvert_to_json:
+            headers = {
+                'Content-Type': 'application/json'
+            }
+            data = json.dumps(data)
+        else:
+            headers = {}
 
         curl_command = ['curl', url]
         for (k, v) in headers.items():
@@ -48,10 +58,9 @@ class Client(object):
         curl_command += ['-d', quote(json.dumps(data))]
         log.info(' '.join(curl_command))
 
-        resp = requests.post(url, data=json.dumps(data),
-                             headers=headers, verify=self.__verify,
+        resp = requests.post(url, data=data, headers=headers, verify=self.__verify,
                              params=post_params, allow_redirects=False,
-                             **self._request_args)
+                             files=files, **self._request_args)
 
         if resp.status_code == 200 or resp.status_code == 302:
             if is_json:

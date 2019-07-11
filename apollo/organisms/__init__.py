@@ -21,7 +21,7 @@ class OrganismsClient(Client):
         :param directory: Server-side directory
 
         :type blatdb: str
-        :param blatdb: Server-side Blat directory for the organism
+        :param blatdb: Server-side path to 2bit index of the genome for Blat
 
         :type genus: str
         :param genus: Genus
@@ -178,3 +178,15 @@ class OrganismsClient(Client):
         :return: a dictionary containing user information
         """
         return self.post('getOrganismCreator', {'organism': organism_id})
+
+    def update_metadata(self, organism_id, metadata):
+        """
+        Update the metadata for an existing organism.
+
+        :type metadata: str
+        :param metadata: Organism metadata. (Recommendation: use a structured format like JSON)
+
+        :rtype: dict
+        :return: An empty, useless dictionary
+        """
+        return self.post('updateOrganismMetadata', {'id': organism_id, 'metadata': metadata})

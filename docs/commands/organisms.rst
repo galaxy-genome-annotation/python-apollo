@@ -25,7 +25,7 @@ Add an organism
 **Options**::
 
 
-      --blatdb TEXT   Server-side Blat directory for the organism
+      --blatdb TEXT   Server-side path to 2bit index of the genome for Blat
       --genus TEXT    Genus
       --species TEXT  Species
       --public        User's email
@@ -164,6 +164,29 @@ Get information about a specific organism.
 
 
     a dictionary containing the organism's information
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``update_metadata`` command
+---------------------------
+
+**Usage**::
+
+    arrow organisms update_metadata [OPTIONS] ORGANISM_ID METADATA
+
+**Help**
+
+Update the metadata for an existing organism.
+
+
+**Output**
+
+
+    An empty, useless dictionary
     
 **Options**::
 
