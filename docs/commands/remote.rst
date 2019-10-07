@@ -25,8 +25,10 @@ Add an organism using the remote organism API.
 **Options**::
 
 
-      --blatdb TEXT                   Server-side path to 2bit index of the genome
-                                      for Blat
+      --blatdb FILENAME               Server-side path to 2bit index of the genome
+                                      for Blat (Blat 2bit data can also be in
+                                      organism_data in directory
+                                      'searchDatabaseData')
       --genus TEXT                    Genus
       --species TEXT                  Species
       --public                        should the organism be public
@@ -107,6 +109,37 @@ Remove a track from an organism
       -h, --help  Show this message and exit.
     
 
+``update_organism`` command
+---------------------------
+
+**Usage**::
+
+    arrow remote update_organism [OPTIONS] ORGANISM_ID ORGANISM_DATA
+
+**Help**
+
+Update an organism using the remote organism API.
+
+
+**Output**
+
+
+    a dictionary with information about the updated organism
+    
+**Options**::
+
+
+      --blatdb TEXT       Server-side path to 2bit index of the genome for Blat
+                          (Blat 2bit data can also be in organism_data in directory
+                          'searchDatabaseData')
+      --common_name TEXT  Organism common name
+      --genus TEXT        Genus
+      --species TEXT      Species
+      --public            User's email
+      --metadata TEXT     JSON formatted arbitrary metadata
+      -h, --help          Show this message and exit.
+    
+
 ``update_track`` command
 ------------------------
 
@@ -116,7 +149,7 @@ Remove a track from an organism
 
 **Help**
 
-TODO: Broken? Update the configuration of a track that has already been added to the organism. Will not update data for the track.
+Update the configuration of a track that has already been added to the organism. Will not update data for the track.
 
 
 **Output**

@@ -26,14 +26,19 @@ from arrow.decorators import custom_exception, dict_output
     help="User's email",
     is_flag=True
 )
+@click.option(
+    "--metadata",
+    help="JSON formatted arbitrary metadata",
+    type=str
+)
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False):
+def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False, metadata=""):
     """Add an organism
 
 Output:
 
     a dictionary with information about the new organism
     """
-    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public)
+    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public, metadata=metadata)
