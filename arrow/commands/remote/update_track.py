@@ -10,7 +10,7 @@ from arrow.decorators import custom_exception, dict_output
 @custom_exception
 @dict_output
 def cli(ctx, organism_id, track_config):
-    """TODO: Broken? Update the configuration of a track that has already been added to the organism. Will not update data for the track.
+    """Update the configuration of a track that has already been added to the organism. Will not update data for the track.
 
 Output:
 

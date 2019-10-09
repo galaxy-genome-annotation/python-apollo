@@ -18,6 +18,7 @@ class RemoteClient(Client):
 
             names/
             names/root.json
+            searchDatabaseData/blat_db.2bit
             seq/
             seq/fba/
             seq/fba/da8/
@@ -33,22 +34,25 @@ class RemoteClient(Client):
             tracks.conf
 
         The genome name / hashed directories below the seq folder will
-        obviously be specific to your orgnaism.
+        obviously be specific to your organism.
 
-        :type species: str
-        :param species: Species
+        :type common_name: str
+        :param common_name: Organism common name
+
+        :type organism_data: file
+        :param organism_data: .tar.gz or .zip archive containing the data directory.
+
+        :type blatdb: file
+        :param blatdb: Server-side path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')
 
         :type genus: str
         :param genus: Genus
 
-        :type blatdb: str
-        :param blatdb: Server-side path to 2bit index of the genome for Blat
+        :type species: str
+        :param species: Species
 
         :type public: bool
         :param public: should the organism be public
-
-        :type common_name: str
-        :param common_name: Organism common name
 
         :type non_default_translation_table: int
         :param non_default_translation_table: The translation table number for
@@ -58,9 +62,6 @@ class RemoteClient(Client):
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
 
-        :type organism_data: file
-        :param organism_data: .tar.gz or .zip archive containing the data directory.
-
         :rtype: dict
         :return: a dictionary with information about the new organism
         """
@@ -68,18 +69,110 @@ class RemoteClient(Client):
             'commonName': common_name,
         }
 
+        files = {'organismData': organism_data}
+
         if blatdb is not None:
-            data['blatdb'] = blatdb
+            data['searchDatabaseData'] = blatdb
         if genus is not None:
             data['genus'] = genus
         if species is not None:
             data['species'] = species
+        if metadata is not None:
+            data['metadata'] = metadata
+        if public is not None:
+            data['publicMode'] = public
 
-        response = self.post('addOrganismWithSequence', list(data.items()), files={'organismData': organism_data}, autoconvert_to_json=False)
+        response = self.post('addOrganismWithSequence', list(data.items()), files=files, autoconvert_to_json=False)
         if 'error' in response:
             return response
 
         return [x for x in response if x['commonName'] == common_name]
+
+    def update_organism(self, organism_id, organism_data, blatdb=None, common_name=None,
+                        genus=None, species=None, public=None, metadata=None):
+        """
+        Update an organism using the remote organism API.
+
+        The recommended structure for the genome data tarball is as follows::
+
+            names/
+            names/root.json
+            searchDatabaseData/blat_db.2bit
+            seq/
+            seq/fba/
+            seq/fba/da8/
+            seq/fba/da8/f3/
+            seq/fba/da8/f3/Mijalis-0.txt
+            seq/fba/da8/f3/Mijalis-1.txt
+            seq/fba/da8/f3/Mijalis-2.txt
+            seq/fba/da8/f3/Mijalis-3.txt
+            seq/fba/da8/f3/Mijalis-4.txt
+            seq/refSeqs.json
+            tracks/
+            trackList.json
+            tracks.conf
+
+        The genome name / hashed directories below the seq folder will
+        obviously be specific to your organism.
+
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
+        :type organism_data: file
+        :param organism_data: .tar.gz or .zip archive containing the data directory.
+
+        :type blatdb: str
+        :param blatdb: Server-side path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')
+
+        :type common_name: str
+        :param common_name: Organism common name
+
+        :type genus: str
+        :param genus: Genus
+
+        :type species: str
+        :param species: Species
+
+        :type public: bool
+        :param public: User's email
+
+        :type metadata: str
+        :param metadata: JSON formatted arbitrary metadata
+
+        :rtype: dict
+        :return: a dictionary with information about the updated organism
+        """
+        data = {
+            'id': organism_id,
+        }
+
+        files = {'organismData': organism_data}
+
+        if blatdb is not None:
+            data['searchDatabaseData'] = blatdb
+        if genus is not None:
+            data['genus'] = genus
+        if species is not None:
+            data['species'] = species
+        if common_name is not None:
+            data['name'] = common_name
+        if metadata is not None:
+            data['metadata'] = metadata
+        if public is not None:
+            data['publicMode'] = public
+
+        if blatdb is not None:
+            data['blatdb'] = blatdb
+
+        response = self.post('updateOrganismInfo', list(data.items()), files=files, autoconvert_to_json=False)
+        if 'error' in response:
+            return response
+
+        for org in response:
+            if str(org['id']) == organism_id:
+                return org
+
+        return response
 
     def delete_organism(self, organism_id):
         """

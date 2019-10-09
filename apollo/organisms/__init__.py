@@ -10,7 +10,7 @@ class OrganismsClient(Client):
 
     @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
-                     species=None, public=False):
+                     species=None, public=False, metadata=None):
         """
         Add an organism
 
@@ -32,6 +32,9 @@ class OrganismsClient(Client):
         :type public: bool
         :param public: User's email
 
+        :type metadata: str
+        :param metadata: JSON formatted arbitrary metadata
+
         :rtype: dict
         :return: a dictionary with information about the new organism
         """
@@ -47,6 +50,8 @@ class OrganismsClient(Client):
             data['genus'] = genus
         if species is not None:
             data['species'] = species
+        if metadata is not None:
+            data['metadata'] = metadata
 
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
@@ -80,11 +85,8 @@ class OrganismsClient(Client):
         :type public: bool
         :param public: User's email
 
-        .. warning::
-            Not specifying genus/species/public state will cause those values to be wiped.
-
         :rtype: dict
-        :return: a dictionary with information about the new organism
+        :return: a dictionary with information about the updated organism
         """
         data = {
             'id': organism_id,

@@ -25,11 +25,12 @@ Add an organism
 **Options**::
 
 
-      --blatdb TEXT   Server-side path to 2bit index of the genome for Blat
-      --genus TEXT    Genus
-      --species TEXT  Species
-      --public        User's email
-      -h, --help      Show this message and exit.
+      --blatdb TEXT    Server-side path to 2bit index of the genome for Blat
+      --genus TEXT     Genus
+      --species TEXT   Species
+      --public         User's email
+      --metadata TEXT  JSON formatted arbitrary metadata
+      -h, --help       Show this message and exit.
     
 
 ``delete_features`` command
@@ -209,7 +210,7 @@ Update an organism
 **Output**
 
 
-    a dictionary with information about the new organism
+    a dictionary with information about the updated organism
     
 **Options**::
 

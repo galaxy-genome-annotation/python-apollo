@@ -65,7 +65,7 @@ History
 -------
 
 - 3.2
-    - Added support for remote creation/deletion of organisms/tracks
+    - Added support for remote creation/update/deletion of organisms/tracks
 - 3.1
     - Added user activate/inactivate
     - Added get_creator for user, group and organisms
