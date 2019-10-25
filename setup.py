@@ -24,7 +24,7 @@ setup(
         [console_scripts]
         arrow=arrow.cli:arrow
     ''',
-    install_requires=['requests', 'biopython', 'cachetools', 'click>=6.7', 'wrapt', 'pyyaml', 'decorator'],
+    install_requires=['requests', 'biopython', 'cachetools', 'click>=6.7', 'wrapt', 'pyyaml', 'decorator', 'bcbio-gff'],
     license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",
