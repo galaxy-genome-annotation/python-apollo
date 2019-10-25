@@ -28,7 +28,7 @@ Add an organism
       --blatdb TEXT    Server-side path to 2bit index of the genome for Blat
       --genus TEXT     Genus
       --species TEXT   Species
-      --public         User's email
+      --public         Should the organism be public or not
       --metadata TEXT  JSON formatted arbitrary metadata
       -h, --help       Show this message and exit.
     

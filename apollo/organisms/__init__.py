@@ -30,7 +30,7 @@ class OrganismsClient(Client):
         :param species: Species
 
         :type public: bool
-        :param public: User's email
+        :param public: Should the organism be public or not
 
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
@@ -102,7 +102,8 @@ class OrganismsClient(Client):
         if species is not None:
             data['species'] = species
 
-        response = self.post('updateOrganismInfo', data)
+        response = self.post('updateOrganismInfo', data)[0]
+
         if len(response.keys()) == 0:
             return self.show_organism(organism_id)
         return response
@@ -131,6 +132,8 @@ class OrganismsClient(Client):
         :return: a dictionary containing the organism's information
         """
         orgs = self.get_organisms(common_name=common_name)
+        if isinstance(orgs, list) and len(orgs) > 0:
+            orgs = orgs[0]
         return orgs
 
     def delete_organism(self, organism_id):
