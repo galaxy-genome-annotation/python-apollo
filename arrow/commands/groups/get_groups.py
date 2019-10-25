@@ -4,14 +4,18 @@ from arrow.decorators import custom_exception, list_output
 
 
 @click.command('get_groups')
+@click.option(
+    "--name",
+    help=""
+)
 @pass_context
 @custom_exception
 @list_output
-def cli(ctx):
+def cli(ctx, name=""):
     """Get all the groups
 
 Output:
 
     list of a dictionaries containing group information
     """
-    return ctx.gi.groups.get_groups()
+    return ctx.gi.groups.get_groups(name=name)

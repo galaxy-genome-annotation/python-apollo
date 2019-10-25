@@ -117,7 +117,8 @@ Get all the groups
 **Options**::
 
 
-      -h, --help  Show this message and exit.
+      --name TEXT
+      -h, --help   Show this message and exit.
     
 
 ``get_organism_permissions`` command
