@@ -46,7 +46,7 @@ class IOClient(Client):
 
         data = {
             'type': export_type,
-            'seq_type': seq_type,
+            'seqType': seq_type,
             'format': export_format,
             'sequences': sequences,
             'organism': organism,
