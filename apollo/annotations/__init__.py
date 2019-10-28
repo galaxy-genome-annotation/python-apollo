@@ -91,7 +91,7 @@ class AnnotationsClient(Client):
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
-        # TODO
+
         data = {
             'features': [
                 {
