@@ -42,7 +42,11 @@ def GuessOrg(args, wa):
         else:
             raise Exception("Organism Common Name not provided")
     elif args.org_id:
-        return [wa.organisms.findOrganismById(args.org_id).get('commonName', None)]
+        all_orgs = wa.organisms.get_organisms()
+        if 'error' in all_orgs:
+            raise Exception("Error while getting the list of organisms: %s" % all_orgs)
+        orgs = [org['commonName'] for org in all_orgs if str(args.org_id) == str(org['id'])]
+        return orgs
     else:
         raise Exception("Organism Common Name not provided")
 
