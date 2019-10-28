@@ -14,6 +14,8 @@ jobs:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
     - stage: deploy
+      install: skip
+      script: echo "Deploying to Pypi"
       deploy:
         provider: pypi
         username: erasche
