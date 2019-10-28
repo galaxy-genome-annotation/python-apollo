@@ -7,13 +7,16 @@ try:
 except ImportError:
     from distutils.core import setup
 
+with open('requirements.txt') as f:
+    requires = f.read().splitlines()
+
 readme = open('README.rst').read()
 subpackages = [x.replace('/', '.') for x in glob.glob('arrow/commands/*') if not x.endswith('.py') and not x.endswith('.pyc')] + \
     [x.replace('/', '.') for x in glob.glob('apollo/*') if not x.endswith('.py') and not x.endswith('.pyc')] + ['arrow.commands']
 
 setup(
     name="apollo",
-    version='3.1',
+    version='4.0',
     description="Apollo API library",
     long_description=readme,
     author="Helena Rasche;Anthony Bretaudeau",
@@ -24,7 +27,7 @@ setup(
         [console_scripts]
         arrow=arrow.cli:arrow
     ''',
-    install_requires=['requests', 'biopython', 'cachetools', 'click>=6.7', 'wrapt', 'pyyaml', 'decorator', 'bcbio-gff'],
+    install_requires=requires,
     license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",

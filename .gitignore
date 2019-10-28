@@ -45,3 +45,5 @@ docs/_build
 
 # test harness
 test_harness.py
+
+apollo_shared_dir
