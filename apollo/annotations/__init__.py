@@ -927,7 +927,7 @@ class AnnotationsClient(Client):
         :type organism: str
         :param organism: Organism Common Name
 
-        :type gff3: file
+        :type gff3: str
         :param gff3: GFF3 to load
 
         :type source: str

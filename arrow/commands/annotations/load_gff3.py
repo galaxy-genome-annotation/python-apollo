@@ -5,7 +5,7 @@ from arrow.decorators import custom_exception, str_output
 
 @click.command('load_gff3')
 @click.argument("organism", type=str)
-@click.argument("gff3", type=click.File('rb+'))
+@click.argument("gff3", type=str)
 @click.option(
     "--source",
     help="URL where the input dataset can be found.",
