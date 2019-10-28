@@ -67,11 +67,11 @@ def accessible_organisms(user, orgs, permission=None):
     permission_map = {
         x['organism']: x['permissions']
         for x in user.organismPermissions
-        if (permission is not None and permission in x['permissions']) or
-        (permission is None and ('WRITE' in x['permissions'] or
-        'READ' in x['permissions'] or
-        'ADMINISTRATE' in x['permissions'])) or
-        user.role == 'ADMIN'
+        if (permission is not None and permission in x['permissions'])
+        or (permission is None and ('WRITE' in x['permissions']
+                                    or 'READ' in x['permissions']
+                                    or 'ADMINISTRATE' in x['permissions']))
+        or user.role == 'ADMIN'
     }
 
     if 'error' in orgs:
