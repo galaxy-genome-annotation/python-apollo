@@ -11,8 +11,17 @@ Apollo API Library
 Apollo is a Python library for interacting with
 `Apollo <https://github.com/gmod/apollo/>`__
 
+Installation
+------------
+
+.. code-block:: shell
+
+    pip install apollo
+
 Examples
 --------
+
+Example code to create a new organism and add yourself in the permission list:
 
 .. code:: python
 
@@ -39,7 +48,15 @@ Examples
         read=True,
     )
 
-Or with the new Arrow client:
+If you have already created an Arrow config file (with command `arrow init`),
+you can also get an ApolloInstance without writing credentials explicitely:
+
+.. code:: python
+
+    from arrow.apollo import get_apollo_instance
+    wa = get_apollo_instance()
+
+Or with the Arrow client:
 
 .. code-block:: shell
 
