@@ -1,6 +1,6 @@
 import click
-from arrow.cli import pass_context
-from arrow.decorators import custom_exception, dict_output
+from arrow.cli import pass_context, json_loads
+from arrow.decorators import custom_exception, str_output
 
 
 @click.command('download')
@@ -14,12 +14,12 @@ from arrow.decorators import custom_exception, dict_output
 )
 @pass_context
 @custom_exception
-@dict_output
+@str_output
 def cli(ctx, uuid, output_format="gzip"):
-    """[CURRENTLY BROKEN] Download pre-prepared data by UUID
+    """Download pre-prepared data by UUID
 
 Output:
 
-    a dictionary
+    The downloaded content
     """
     return ctx.gi.io.download(uuid, output_format=output_format)

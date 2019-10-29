@@ -56,6 +56,31 @@ Set a feature's description
       -h, --help       Show this message and exit.
     
 
+``add_dbxref`` command
+----------------------
+
+**Usage**::
+
+    arrow annotations add_dbxref [OPTIONS] FEATURE_ID DB ACCESSION
+
+**Help**
+
+Add a dbxref to a feature
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
 ``add_feature`` command
 -----------------------
 
@@ -120,6 +145,31 @@ Add a feature
 **Help**
 
 Delete an attribute from a feature
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``delete_dbxref`` command
+-------------------------
+
+**Usage**::
+
+    arrow annotations delete_dbxref [OPTIONS] FEATURE_ID DB ACCESSION
+
+**Help**
+
+Delete a dbxref from a feature
 
 
 **Output**
@@ -684,6 +734,31 @@ Set the translation start of a feature
 **Help**
 
 Delete an attribute from a feature
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
+``update_dbxref`` command
+-------------------------
+
+**Usage**::
+
+    arrow annotations update_dbxref [OPTIONS] FEATURE_ID OLD_DB OLD_ACCESSION
+
+**Help**
+
+Delete a dbxref from a feature
 
 
 **Output**

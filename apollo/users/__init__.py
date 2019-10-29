@@ -2,8 +2,10 @@
 Contains possible interactions with the Apollo Users Module
 """
 import json
+import time
 
 from apollo.client import Client
+from apollo.decorators import raise_error_decorator
 
 
 def _fix_single_user(user):
@@ -40,18 +42,30 @@ class UsersClient(Client):
     def _handle_empty(self, user, response):
         """Apollo likes to return empty user arrays, even when you REALLY
         want a user response back... like creating a user."""
-        if len(response.keys()) == 0:
-            return self.show_user(user)
+        found_response = len(response.keys()) > 0
+        retries = 0
+        while not found_response and retries < 10:
+            response = self.show_user(user)
+            found_response = len(response) >= 0 and response != []
+            if not found_response and retries > 1:
+                time.sleep(1)
+            retries += 1
         return response
 
-    def get_users(self):
+    def get_users(self, omit_empty_organisms=False):
         """
         Get all users known to this Apollo instance
+
+        :type omit_empty_organisms: bool
+        :param omit_empty_organisms: Will omit users having no access to any organism
 
         :rtype: list of dicts
         :return: list of user info dictionaries
         """
-        res = self.post('loadUsers', {})
+        payload = {}
+        if omit_empty_organisms:
+            payload['omitEmptyOrganisms'] = omit_empty_organisms
+        res = self.post('loadUsers', payload)
         data = [_fix_user(user) for user in res]
         return data
 
@@ -66,7 +80,7 @@ class UsersClient(Client):
         :return: a dictionary containing user information
         """
         res = self.post('loadUsers', {'userId': user})
-        if isinstance(res, list):
+        if isinstance(res, list) and len(res) > 0:
             res = res[0]
         return _fix_user(res)
 
@@ -83,6 +97,7 @@ class UsersClient(Client):
         uop = self.show_user(user)['organismPermissions']
         return uop
 
+    @raise_error_decorator
     def update_organism_permissions(self, user, organism, administrate=False,
                                     write=False, export=False, read=False):
         """
@@ -110,7 +125,7 @@ class UsersClient(Client):
         :return: a dictionary containing user's organism permissions
         """
         data = {
-            'userId': user,
+            'user': user,
             'organism': organism,
             'ADMINISTRATE': administrate,
             'WRITE': write,
@@ -118,7 +133,8 @@ class UsersClient(Client):
             'READ': read,
         }
         response = self.post('updateOrganismPermission', data)
-        response['permissions'] = json.loads(response['permissions'])
+        if 'permissions' in response:
+            response['permissions'] = json.loads(response['permissions'])
         return response
 
     def add_to_group(self, group, user):
@@ -232,3 +248,39 @@ class UsersClient(Client):
         }
         response = self.post('updateUser', data)
         return self._handle_empty(email, response)
+
+    def get_user_creator(self, user):
+        """
+        Get the creator of a user
+
+        :type user: str
+        :param user: User Email
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+        return self.post('getUserCreator', {'email': user})
+
+    def activate_user(self, user):
+        """
+        Activate a user
+
+        :type user: str
+        :param user: User's email
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        return self.post('activateUser', {'userToActivate': user})
+
+    def inactivate_user(self, user):
+        """
+        Activate a user
+
+        :type user: str
+        :param user: User's email
+
+        :rtype: dict
+        :return: an empty dictionary
+        """
+        return self.post('inactivateUser', {'userToDelete': user})

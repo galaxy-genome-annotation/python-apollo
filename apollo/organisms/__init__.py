@@ -2,13 +2,15 @@
 Contains possible interactions with the Apollo Organisms Module
 """
 from apollo.client import Client
+from apollo.decorators import raise_error_decorator
 
 
 class OrganismsClient(Client):
     CLIENT_BASE = '/organism/'
 
+    @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
-                     species=None, public=False):
+                     species=None, public=False, metadata=None):
         """
         Add an organism
 
@@ -19,7 +21,7 @@ class OrganismsClient(Client):
         :param directory: Server-side directory
 
         :type blatdb: str
-        :param blatdb: Server-side Blat directory for the organism
+        :param blatdb: Server-side path to 2bit index of the genome for Blat
 
         :type genus: str
         :param genus: Genus
@@ -29,6 +31,9 @@ class OrganismsClient(Client):
 
         :type public: bool
         :param public: User's email
+
+        :type metadata: str
+        :param metadata: JSON formatted arbitrary metadata
 
         :rtype: dict
         :return: a dictionary with information about the new organism
@@ -45,10 +50,14 @@ class OrganismsClient(Client):
             data['genus'] = genus
         if species is not None:
             data['species'] = species
+        if metadata is not None:
+            data['metadata'] = metadata
 
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
         # EVERY organism. LMAO.
+        if type(response) is not list:
+            return response
         return [x for x in response if x['commonName'] == common_name][0]
 
     def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False):
@@ -76,11 +85,8 @@ class OrganismsClient(Client):
         :type public: bool
         :param public: User's email
 
-        .. warning::
-            Not specifying genus/species/public state will cause those values to be wiped.
-
         :rtype: dict
-        :return: a dictionary with information about the new organism
+        :return: a dictionary with information about the updated organism
         """
         data = {
             'id': organism_id,
@@ -162,3 +168,27 @@ class OrganismsClient(Client):
         :return: The set of sequences associated with an organism
         """
         return self.post('getSequencesForOrganism', {'organism': organism_id})
+
+    def get_organism_creator(self, organism_id):
+        """
+        Get the creator of an organism
+
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+        return self.post('getOrganismCreator', {'organism': organism_id})
+
+    def update_metadata(self, organism_id, metadata):
+        """
+        Update the metadata for an existing organism.
+
+        :type metadata: str
+        :param metadata: Organism metadata. (Recommendation: use a structured format like JSON)
+
+        :rtype: dict
+        :return: An empty, useless dictionary
+        """
+        return self.post('updateOrganismMetadata', {'id': organism_id, 'metadata': metadata})

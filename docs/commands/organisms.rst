@@ -25,11 +25,12 @@ Add an organism
 **Options**::
 
 
-      --blatdb TEXT   Server-side Blat directory for the organism
-      --genus TEXT    Genus
-      --species TEXT  Species
-      --public        User's email
-      -h, --help      Show this message and exit.
+      --blatdb TEXT    Server-side path to 2bit index of the genome for Blat
+      --genus TEXT     Genus
+      --species TEXT   Species
+      --public         User's email
+      --metadata TEXT  JSON formatted arbitrary metadata
+      -h, --help       Show this message and exit.
     
 
 ``delete_features`` command
@@ -71,6 +72,29 @@ Delete an organim
 
 
     A list of all remaining organisms
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
+``get_organism_creator`` command
+--------------------------------
+
+**Usage**::
+
+    arrow organisms get_organism_creator [OPTIONS] ORGANISM_ID
+
+**Help**
+
+Get the creator of an organism
+
+
+**Output**
+
+
+    a dictionary containing user information
     
 **Options**::
 
@@ -148,6 +172,29 @@ Get information about a specific organism.
       -h, --help  Show this message and exit.
     
 
+``update_metadata`` command
+---------------------------
+
+**Usage**::
+
+    arrow organisms update_metadata [OPTIONS] ORGANISM_ID METADATA
+
+**Help**
+
+Update the metadata for an existing organism.
+
+
+**Output**
+
+
+    An empty, useless dictionary
+    
+**Options**::
+
+
+      -h, --help  Show this message and exit.
+    
+
 ``update_organism`` command
 ---------------------------
 
@@ -163,7 +210,7 @@ Update an organism
 **Output**
 
 
-    a dictionary with information about the new organism
+    a dictionary with information about the updated organism
     
 **Options**::
 

@@ -1,0 +1,7 @@
+{
+  "label": "testing2",
+  "key": "annot",
+  "storeClass": "JBrowse/Store/SeqFeature/NCList",
+  "type": "FeatureTrack",
+  "urlTemplate": "tracks/testing2/{refseq}/trackData.json"
+}

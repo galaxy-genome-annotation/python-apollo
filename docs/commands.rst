@@ -19,5 +19,6 @@ describes these commands.
    commands/io.rst
    commands/metrics.rst
    commands/organisms.rst
+   commands/remote.rst
    commands/status.rst
    commands/users.rst

@@ -1,5 +1,5 @@
 import click
-from arrow.cli import pass_context
+from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, str_output
 
 

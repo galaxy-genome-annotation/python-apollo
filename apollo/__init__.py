@@ -1,4 +1,5 @@
 import os
+import logging
 
 from cachetools import TTLCache
 from apollo.util import AssertUser
@@ -6,7 +7,7 @@ from apollo.exceptions import UnknownUserException
 
 from apollo import (annotations, cannedcomments, cannedkeys,
                     cannedvalues, groups, io, metrics, organisms,
-                    status, users)
+                    status, users, remote)
 
 
 cache = TTLCache(
@@ -17,6 +18,10 @@ userCache = TTLCache(
     10,  # Up to 2 items
     60  # 1 minute cache life
 )
+
+
+def set_logging_level(level):
+    logging.basicConfig(level=getattr(logging, level.upper()))
 
 
 class ApolloInstance(object):
@@ -36,6 +41,7 @@ class ApolloInstance(object):
         self.organisms = organisms.OrganismsClient(self)
         self.status = status.StatusClient(self)
         self.users = users.UsersClient(self)
+        self.remote = remote.RemoteClient(self)
 
     def __str__(self):
         return '<ApolloInstance at %s>' % self.apollo_url

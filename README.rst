@@ -12,15 +12,15 @@ Apollo API Library
     :alt: Documentation Status
 
 Apollo is a Python library for interacting with
-`WebApollo <https://github.com/gmod/apollo/>`__
+`Apollo <https://github.com/gmod/apollo/>`__
 
 Examples
 --------
 
 .. code:: python
 
-    from apollo import WebApolloInstance
-    wa = WebApolloInstance('https://fqdn/apollo', 'jane.doe@fqdn.edu', 'password')
+    from apollo import ApolloInstance
+    wa = ApolloInstance('https://fqdn/apollo', 'jane.doe@fqdn.edu', 'password')
 
     orgs = wa.organisms.add_organism(
         "Yeast",
@@ -30,7 +30,7 @@ Examples
         public=False
     )
 
-    # Give webapollo a second to process the uploaded organism.
+    # Give Apollo a second to process the uploaded organism.
     time.sleep(1)
 
     # Then add yourself to permission list
@@ -67,6 +67,15 @@ Or with the new Arrow client:
 History
 -------
 
+- 3.2
+    - Added support for remote creation/update/deletion of organisms/tracks
+- 3.1
+    - Added user activate/inactivate
+    - Added get_creator for user, group and organisms
+    - Added omitEmptyOrganisms to get_users
+    - Added support for group admins
+    - Added support for bulk group creation/deletion
+    - Repaired GFF3/Fasta downloading
 - 3.0.4
     - `Fixed bug <https://github.com/galaxy-genome-annotation/python-apollo/issues/4>`__ in deleteFeatures (Thanks `@NeillGibson <https://github.com/NeillGibson>`__)
 - 3.0.3
@@ -96,4 +105,3 @@ Support
 -------
 
 This material is based upon work supported by the National Science Foundation under Grant Number (Award 1565146)
-
