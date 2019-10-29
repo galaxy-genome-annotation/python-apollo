@@ -92,22 +92,27 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        org_info = wa.organisms.show_organism('org4')
+        time.sleep(2)
+
+        org_info = wa.organisms.show_organism('temp_org')
 
         # TODO add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_organism(org_info['id'])
-        # Returns useless stuff
 
         time.sleep(2)
 
         orgs = wa.organisms.get_organisms()
 
         for org in orgs:
-            assert org['commonName'] != 'org4'
+            assert org['commonName'] != 'temp_org'
 
     def test_delete_features(self):
 
-        org_info = wa.organisms.show_organism('org3')
+        time.sleep(2)
+
+        wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
+
+        org_info = wa.organisms.show_organism('temp_org')
 
         feats_before = wa.annotations.get_features(org_info['id'], 'Merlin')
 
@@ -136,3 +141,38 @@ class OrganismTest(ApolloTestCase):
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
         assert org_info['blatdb'] == '/some/where'
+
+    def test_add_organism(self):
+
+        org_info = wa.organisms.show_organism('test_organism')
+
+        meta = {"bla": "bli"}
+        res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb='/some/where', metadata=meta)
+
+        assert res['species'] == 'newspecies'
+        assert res['genus'] == 'newgenus'
+        assert res['blatdb'] == '/some/where'
+        meta_back = json.loads(res['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+
+        time.sleep(2)
+
+        org_info = wa.organisms.show_organism('some_new_org')
+
+        wa.organisms.delete_organism(res['id'])
+
+        assert org_info['species'] == 'newspecies'
+        assert org_info['genus'] == 'newgenus'
+        assert org_info['blatdb'] == '/some/where'
+        meta_back = json.loads(org_info['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+
+    def setUp(self):
+        org_info = wa.organisms.show_organism('alt_org')
+        wa.organisms.add_organism('temp_org', org_info['directory'])
+
+    def tearDown(self):
+        org_info = wa.organisms.show_organism('temp_org')
+
+        if org_info and 'id' in org_info:
+            wa.organisms.delete_organism(org_info['id'])
