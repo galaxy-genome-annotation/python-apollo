@@ -28,7 +28,7 @@ class RemoteTest(ApolloTestCase):
 
         org_info = wa.organisms.show_organism('temp_org')
 
-        meta = {"bla": "bli"}
+        meta = '{"bla": "bli"}'
 
         with tempfile.NamedTemporaryFile(suffix='.tar.gz') as archive:
             with tarfile.open(archive.name, mode="w:gz") as tar:
@@ -47,7 +47,7 @@ class RemoteTest(ApolloTestCase):
 
     def test_add_organism(self):
 
-        meta = {"bla": "bli"}
+        meta = '{"bla": "bli"}';
 
         with tempfile.NamedTemporaryFile(suffix='.tar.gz') as archive:
             with tarfile.open(archive.name, mode="w:gz") as tar:
