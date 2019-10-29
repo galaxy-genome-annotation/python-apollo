@@ -58,8 +58,8 @@ class RemoteTest(ApolloTestCase):
         assert res['species'] == 'newspecies'
         assert res['genus'] == 'newgenus'
         # FIXME https://github.com/GMOD/Apollo/issues/2290
-        # meta_back = json.loads(res['metadata'])
-        # assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+        meta_back = json.loads(res['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
         time.sleep(3)
 
@@ -70,8 +70,8 @@ class RemoteTest(ApolloTestCase):
         assert org_info['species'] == 'newspecies'
         assert org_info['genus'] == 'newgenus'
         # FIXME https://github.com/GMOD/Apollo/issues/2290
-        # meta_back = json.loads(org_info['metadata'])
-        # assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+        meta_back = json.loads(org_info['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
     def setUp(self):
         org_info = wa.organisms.show_organism('alt_org')
