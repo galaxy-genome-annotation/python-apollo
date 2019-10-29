@@ -92,14 +92,14 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        time.sleep(2)
+        time.sleep(3)
 
         org_info = wa.organisms.show_organism('temp_org')
 
-        # TODO add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
+        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_organism(org_info['id'])
 
-        time.sleep(2)
+        time.sleep(3)
 
         orgs = wa.organisms.get_organisms()
 
@@ -108,7 +108,7 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_features(self):
 
-        time.sleep(2)
+        time.sleep(3)
 
         wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
 
@@ -119,7 +119,7 @@ class OrganismTest(ApolloTestCase):
         assert 'features' in feats_before
         assert len(feats_before['features']) > 0
 
-        # TODO add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
+        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_features(org_info['id'])
 
         feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
@@ -131,11 +131,11 @@ class OrganismTest(ApolloTestCase):
 
         org_info = wa.organisms.show_organism('test_organism')
 
-        # TODO add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
+        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.update_organism(org_info['id'], 'test_organism', org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb='/some/where')
         # Returns useless stuff
 
-        time.sleep(2)
+        time.sleep(3)
         org_info = wa.organisms.show_organism('test_organism')
 
         assert org_info['species'] == 'updatedspecies'
@@ -155,7 +155,7 @@ class OrganismTest(ApolloTestCase):
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
-        time.sleep(2)
+        time.sleep(3)
 
         org_info = wa.organisms.show_organism('some_new_org')
 

@@ -72,7 +72,7 @@ class RemoteClient(Client):
         files = {'organismData': organism_data}
 
         if blatdb is not None:
-            data['searchDatabaseData'] = blatdb
+            data['blatdb'] = blatdb
         if genus is not None:
             data['genus'] = genus
         if species is not None:
@@ -149,7 +149,7 @@ class RemoteClient(Client):
         files = {'organismData': organism_data}
 
         if blatdb is not None:
-            data['searchDatabaseData'] = blatdb
+            data['blatdb'] = blatdb
         if genus is not None:
             data['genus'] = genus
         if species is not None:
