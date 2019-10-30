@@ -1,6 +1,8 @@
 """
 Contains possible interactions with the Apollo Organisms Module
 """
+import json
+
 from apollo.client import Client
 from apollo.decorators import raise_error_decorator
 
@@ -51,6 +53,9 @@ class OrganismsClient(Client):
         if species is not None:
             data['species'] = species
         if metadata is not None:
+            if isinstance(metadata, dict):
+                # Apollo wants a string
+                metadata = json.dumps(metadata)
             data['metadata'] = metadata
 
         response = self.post('addOrganism', data)

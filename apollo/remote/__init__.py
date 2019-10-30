@@ -78,6 +78,9 @@ class RemoteClient(Client):
         if species is not None:
             data['species'] = species
         if metadata is not None:
+            if isinstance(metadata, dict):
+                # Apollo wants a string
+                metadata = json.dumps(metadata)
             data['metadata'] = metadata
         if public is not None:
             data['publicMode'] = public
@@ -157,6 +160,9 @@ class RemoteClient(Client):
         if common_name is not None:
             data['name'] = common_name
         if metadata is not None:
+            if isinstance(metadata, dict):
+                # Apollo wants a string
+                metadata = json.dumps(metadata)
             data['metadata'] = metadata
         if public is not None:
             data['publicMode'] = public
