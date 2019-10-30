@@ -1,6 +1,4 @@
 
-No longer synced.  `Actively maintained version <https://github.com/galaxy-genome-annotation/python-apollo>`__
-
 Apollo API Library
 ==================
 
