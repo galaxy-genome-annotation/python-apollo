@@ -162,7 +162,7 @@ class OrganismTest(ApolloTestCase):
 
         org_info = wa.organisms.show_organism('test_organism')
 
-        wa.organisms.update_organism(org_info['id'], 'test_organism', org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb='/some/where')
+        wa.organisms.update_organism(org_info['id'], 'test_organism', org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb='/some/where', public=False)
         # Returns useless stuff
 
         time.sleep(3)
@@ -171,6 +171,7 @@ class OrganismTest(ApolloTestCase):
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
         assert org_info['blatdb'] == '/some/where'
+        assert not org_info['publicMode']
 
     def test_add_organism(self):
 
@@ -194,6 +195,7 @@ class OrganismTest(ApolloTestCase):
         assert org_info['species'] == 'newspecies'
         assert org_info['genus'] == 'newgenus'
         assert org_info['blatdb'] == '/some/where'
+        assert not org_info['publicMode']
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
