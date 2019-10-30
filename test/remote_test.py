@@ -73,13 +73,14 @@ class RemoteTest(ApolloTestCase):
 
     def test_add_organism(self):
 
-        meta = '{"bla": "bli"}';
+        meta = '{"bla": "bli"}'
 
         with tempfile.NamedTemporaryFile(suffix='.tar.gz') as archive:
             with tarfile.open(archive.name, mode="w:gz") as tar:
                 for file in glob.glob('test-data/dataset_1_files/data/'):
                     tar.add(file, arcname=file.replace('test-data/dataset_1_files/data/', './'))
-            res = wa.remote.add_organism('some_new_org_remote', archive, species='newspecies', genus='newgenus', metadata=meta)
+            # Note: we added this upstream, so we have to use another name to create a separate sample directory
+            res = wa.remote.add_organism('some_new_org_remote_v2', archive, species='newspecies', genus='newgenus', metadata=meta)
 
         res = res[0]
         assert res['species'] == 'newspecies'
@@ -90,7 +91,7 @@ class RemoteTest(ApolloTestCase):
 
         time.sleep(3)
 
-        org_info = wa.organisms.show_organism('some_new_org_remote')
+        org_info = wa.organisms.show_organism('some_new_org_remote_v2')
 
         wa.remote.delete_organism(org_info['id'])
 
