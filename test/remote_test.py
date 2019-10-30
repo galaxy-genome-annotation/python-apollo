@@ -57,6 +57,7 @@ class RemoteTest(ApolloTestCase):
 
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
+        assert org_info['sequences'] == 1
         assert not org_info['publicMode']
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'

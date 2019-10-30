@@ -180,11 +180,11 @@ class OrganismTest(ApolloTestCase):
         org_info = wa.organisms.show_organism('test_organism')
 
         meta = {"bla": "bli"}
-        res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb='/some/where', metadata=meta)
+        res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb=org_info['directory'] + "/seq/genome.2bit", metadata=meta)
 
         assert res['species'] == 'newspecies'
         assert res['genus'] == 'newgenus'
-        assert res['blatdb'] == '/some/where'
+        assert res['blatdb'] == org_info['directory'] + "/seq/genome.2bit"
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
@@ -196,7 +196,7 @@ class OrganismTest(ApolloTestCase):
 
         assert org_info['species'] == 'newspecies'
         assert org_info['genus'] == 'newgenus'
-        assert org_info['blatdb'] == '/some/where'
+        assert org_info['blatdb'] == org_info['directory'] + "/seq/genome.2bit"
         assert not org_info['publicMode']
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
