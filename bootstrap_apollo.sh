@@ -3,7 +3,7 @@
 export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
 
-docker run -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:2.4.1
+docker run -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:latest
 
 echo "[BOOTSTRAP] Waiting while Apollo starts up..."
 # Wait for apollo to be online
