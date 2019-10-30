@@ -39,6 +39,8 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism(self):
 
+        time.sleep(3)
+
         org_info = wa.organisms.show_organism('temp_org')
 
         meta = {"bla": "bli"}
