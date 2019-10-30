@@ -13,6 +13,21 @@ class RemoteTest(ApolloTestCase):
 
         time.sleep(3)
 
+        org_info = wa.organisms.show_organism('temp_org')
+
+        wa.remote.delete_organism(org_info['id'])
+
+        time.sleep(3)
+
+        orgs = wa.organisms.get_organisms()
+
+        for org in orgs:
+            assert org['commonName'] != 'temp_org'
+
+    def test_delete_organism_cn(self):
+
+        time.sleep(3)
+
         wa.remote.delete_organism('temp_org')
 
         time.sleep(3)
