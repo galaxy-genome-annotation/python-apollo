@@ -3,12 +3,13 @@
 export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
 
-docker run --memory=4g -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:latest
+#docker run --memory=4g -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:latest
 
 echo "[BOOTSTRAP] Waiting while Apollo starts up..."
 # Wait for apollo to be online
 for ((i=0;i<30;i++))
 do
+    echo $i
     APOLLO_UP=$(arrow users get_users 2> /dev/null | head -1 | grep '^\[$' -q; echo "$?")
 	if [[ $APOLLO_UP -eq 0 ]]; then
 		break

@@ -15,18 +15,11 @@ class RemoteTest(ApolloTestCase):
         time.sleep(3)
 
         org_info = wa.organisms.show_organism('temp_org')
-        orgs = wa.organisms.get_organisms()
-
-        print "AAAAA"
-        print json.dumps(org_info)
-        print "org count"
-        print str(len(orgs))
+        # orgs = wa.organisms.get_organisms()
 
         wa.remote.delete_organism(org_info['id'])
 
         time.sleep(3)
-        print "B org count"
-        print str(len(orgs))
 
         orgs = wa.organisms.get_organisms()
 

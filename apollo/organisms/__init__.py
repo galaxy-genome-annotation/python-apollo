@@ -70,7 +70,6 @@ class OrganismsClient(Client):
         """
         Update an organism
 
-        :param no_reload_sequences:
 
         :type organism_id: str
         :param organism_id: Organism ID Number
@@ -92,6 +91,9 @@ class OrganismsClient(Client):
 
         :type public: bool
         :param public: User's email
+
+        :type no_reload_sequences: bool
+        :param no_reload_sequences:
 
         :rtype: dict
         :return: a dictionary with information about the updated organism
