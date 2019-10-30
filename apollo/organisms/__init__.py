@@ -65,9 +65,12 @@ class OrganismsClient(Client):
             return response
         return [x for x in response if x['commonName'] == common_name][0]
 
-    def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False):
+    def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False,
+                        no_reload_sequences=False):
         """
         Update an organism
+
+        :param no_reload_sequences:
 
         :type organism_id: str
         :param organism_id: Organism ID Number
@@ -98,6 +101,7 @@ class OrganismsClient(Client):
             'name': common_name,
             'directory': directory,
             'publicMode': public,
+            'noReloadSequences': no_reload_sequences,
         }
 
         if blatdb is not None:
