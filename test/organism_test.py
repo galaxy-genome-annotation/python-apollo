@@ -95,6 +95,8 @@ class OrganismTest(ApolloTestCase):
         time.sleep(3)
 
         org_info = wa.organisms.show_organism('temp_org')
+        print "DELETE WITH ID"
+        print json.dumps(org_info)
 
         wa.organisms.delete_organism(org_info['id'])
 
@@ -161,13 +163,18 @@ class OrganismTest(ApolloTestCase):
     def test_update_organism(self):
 
         other_org_info = wa.organisms.show_organism('test_organism')
-        org_info = wa.organisms.show_organism('temp_org')
 
-        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        org_info = wa.organisms.show_organism('temp_org')
+        print "BBBBB"
+        print json.dumps(org_info)
+
+        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False, no_reload_sequences=True)
         # Returns useless stuff
 
         time.sleep(3)
         org_info = wa.organisms.show_organism('temp_org')
+        print "CCCCC"
+        print json.dumps(org_info)
 
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
