@@ -96,8 +96,20 @@ class OrganismTest(ApolloTestCase):
 
         org_info = wa.organisms.show_organism('temp_org')
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_organism(org_info['id'])
+
+        time.sleep(3)
+
+        orgs = wa.organisms.get_organisms()
+
+        for org in orgs:
+            assert org['commonName'] != 'temp_org'
+
+    def test_delete_organism_cn(self):
+
+        time.sleep(3)
+
+        wa.organisms.delete_organism('temp_org')
 
         time.sleep(3)
 
@@ -119,8 +131,27 @@ class OrganismTest(ApolloTestCase):
         assert 'features' in feats_before
         assert len(feats_before['features']) > 0
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_features(org_info['id'])
+
+        feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
+
+        assert 'features' in feats_after
+        assert len(feats_after['features']) == 0
+
+    def test_delete_features_cn(self):
+
+        time.sleep(3)
+
+        wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        feats_before = wa.annotations.get_features(org_info['id'], 'Merlin')
+
+        assert 'features' in feats_before
+        assert len(feats_before['features']) > 0
+
+        wa.organisms.delete_features('temp_org')
 
         feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
 
@@ -129,29 +160,31 @@ class OrganismTest(ApolloTestCase):
 
     def test_update_organism(self):
 
-        org_info = wa.organisms.show_organism('test_organism')
+        other_org_info = wa.organisms.show_organism('test_organism')
+        org_info = wa.organisms.show_organism('temp_org')
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
-        wa.organisms.update_organism(org_info['id'], 'test_organism', org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb='/some/where')
+        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
         # Returns useless stuff
 
         time.sleep(3)
-        org_info = wa.organisms.show_organism('test_organism')
+        org_info = wa.organisms.show_organism('temp_org')
 
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
-        assert org_info['blatdb'] == '/some/where'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 1
 
     def test_add_organism(self):
 
         org_info = wa.organisms.show_organism('test_organism')
 
         meta = {"bla": "bli"}
-        res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb='/some/where', metadata=meta)
+        res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb=org_info['directory'] + "/seq/genome.2bit", metadata=meta)
 
         assert res['species'] == 'newspecies'
         assert res['genus'] == 'newgenus'
-        assert res['blatdb'] == '/some/where'
+        assert res['blatdb'] == org_info['directory'] + "/seq/genome.2bit"
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
@@ -163,7 +196,8 @@ class OrganismTest(ApolloTestCase):
 
         assert org_info['species'] == 'newspecies'
         assert org_info['genus'] == 'newgenus'
-        assert org_info['blatdb'] == '/some/where'
+        assert org_info['blatdb'] == org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 

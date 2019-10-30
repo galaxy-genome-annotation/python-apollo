@@ -1,4 +1,5 @@
 import glob
+import json
 import tarfile
 import tempfile
 import time
@@ -13,7 +14,21 @@ class RemoteTest(ApolloTestCase):
 
         time.sleep(3)
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        wa.remote.delete_organism(org_info['id'])
+
+        time.sleep(3)
+
+        orgs = wa.organisms.get_organisms()
+
+        for org in orgs:
+            assert org['commonName'] != 'temp_org'
+
+    def test_delete_organism_cn(self):
+
+        time.sleep(3)
+
         wa.remote.delete_organism('temp_org')
 
         time.sleep(3)
@@ -23,8 +38,9 @@ class RemoteTest(ApolloTestCase):
         for org in orgs:
             assert org['commonName'] != 'temp_org'
 
-    # FIXME only available starting with Apollo 2.4.2
-    """def test_update_organism(self):
+    def test_update_organism(self):
+
+        time.sleep(3)
 
         org_info = wa.organisms.show_organism('temp_org')
 
@@ -35,15 +51,17 @@ class RemoteTest(ApolloTestCase):
                 for file in glob.glob('test-data/dataset_1_files/data/'):
                     tar.add(file, arcname=file.replace('test-data/dataset_1_files/data/', './'))
 
-            wa.remote.update_organism(org_info['id'], archive, species='updatedspecies', genus='updatedgenus', metadata=meta)
+            wa.remote.update_organism(org_info['id'], archive, species='updatedspecies', genus='updatedgenus', public=False, metadata=meta)
 
         time.sleep(3)
         org_info = wa.organisms.show_organism('temp_org')
 
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
+        assert org_info['sequences'] == 1
+        assert not org_info['publicMode']
         meta_back = json.loads(org_info['metadata'])
-        assert 'bla' in meta_back and meta_back['bla'] == 'bli'"""
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
     def test_add_organism(self):
 
@@ -58,7 +76,7 @@ class RemoteTest(ApolloTestCase):
         res = res[0]
         assert res['species'] == 'newspecies'
         assert res['genus'] == 'newgenus'
-        # FIXME https://github.com/GMOD/Apollo/issues/2290
+        assert not res['publicMode']
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
@@ -70,7 +88,6 @@ class RemoteTest(ApolloTestCase):
 
         assert org_info['species'] == 'newspecies'
         assert org_info['genus'] == 'newgenus'
-        # FIXME https://github.com/GMOD/Apollo/issues/2290
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
