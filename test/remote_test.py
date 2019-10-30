@@ -1,4 +1,5 @@
 import glob
+import json
 import tarfile
 import tempfile
 import time
@@ -12,7 +13,6 @@ class RemoteTest(ApolloTestCase):
 
         time.sleep(3)
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.remote.delete_organism('temp_org')
 
         time.sleep(3)
@@ -22,8 +22,7 @@ class RemoteTest(ApolloTestCase):
         for org in orgs:
             assert org['commonName'] != 'temp_org'
 
-    # FIXME only available starting with Apollo 2.4.2
-    """def test_update_organism(self):
+    def test_update_organism(self):
 
         org_info = wa.organisms.show_organism('temp_org')
 
@@ -42,7 +41,7 @@ class RemoteTest(ApolloTestCase):
         assert org_info['species'] == 'updatedspecies'
         assert org_info['genus'] == 'updatedgenus'
         meta_back = json.loads(org_info['metadata'])
-        assert 'bla' in meta_back and meta_back['bla'] == 'bli'"""
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
     def test_add_organism(self):
 

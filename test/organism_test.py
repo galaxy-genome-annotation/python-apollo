@@ -96,8 +96,20 @@ class OrganismTest(ApolloTestCase):
 
         org_info = wa.organisms.show_organism('temp_org')
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_organism(org_info['id'])
+
+        time.sleep(3)
+
+        orgs = wa.organisms.get_organisms()
+
+        for org in orgs:
+            assert org['commonName'] != 'temp_org'
+
+    def test_delete_organism_cn(self):
+
+        time.sleep(3)
+
+        wa.organisms.delete_organism('temp_org')
 
         time.sleep(3)
 
@@ -119,8 +131,27 @@ class OrganismTest(ApolloTestCase):
         assert 'features' in feats_before
         assert len(feats_before['features']) > 0
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.delete_features(org_info['id'])
+
+        feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
+
+        assert 'features' in feats_after
+        assert len(feats_after['features']) == 0
+
+    def test_delete_features_cn(self):
+
+        time.sleep(3)
+
+        wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        feats_before = wa.annotations.get_features(org_info['id'], 'Merlin')
+
+        assert 'features' in feats_before
+        assert len(feats_before['features']) > 0
+
+        wa.organisms.delete_features('temp_org')
 
         feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
 
@@ -131,7 +162,6 @@ class OrganismTest(ApolloTestCase):
 
         org_info = wa.organisms.show_organism('test_organism')
 
-        # FIXME add a test with commonName too (broken in 2.4.1, should be fixed in 2.4.2)
         wa.organisms.update_organism(org_info['id'], 'test_organism', org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb='/some/where')
         # Returns useless stuff
 
