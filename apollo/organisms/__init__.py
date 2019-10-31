@@ -93,7 +93,7 @@ class OrganismsClient(Client):
         :param public: User's email
 
         :type no_reload_sequences: bool
-        :param no_reload_sequences:
+        :param no_reload_sequences: Set this if you don't want Apollo to reload genome sequences (no change in genome sequence)
 
         :rtype: dict
         :return: a dictionary with information about the updated organism

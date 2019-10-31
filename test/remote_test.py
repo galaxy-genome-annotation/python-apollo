@@ -14,7 +14,6 @@ class RemoteTest(ApolloTestCase):
         time.sleep(3)
 
         org_info = wa.organisms.show_organism('temp_org')
-        # orgs = wa.organisms.get_organisms()
 
         wa.remote.delete_organism(org_info['id'])
 
