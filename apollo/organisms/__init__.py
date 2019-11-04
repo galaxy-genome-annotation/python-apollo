@@ -65,7 +65,8 @@ class OrganismsClient(Client):
             return response
         return [x for x in response if x['commonName'] == common_name][0]
 
-    def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False):
+    def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False,
+                        no_reload_sequences=False):
         """
         Update an organism
 
@@ -90,6 +91,9 @@ class OrganismsClient(Client):
         :type public: bool
         :param public: User's email
 
+        :type no_reload_sequences: bool
+        :param no_reload_sequences: Set this if you don't want Apollo to reload genome sequences (no change in genome sequence)
+
         :rtype: dict
         :return: a dictionary with information about the updated organism
         """
@@ -98,6 +102,7 @@ class OrganismsClient(Client):
             'name': common_name,
             'directory': directory,
             'publicMode': public,
+            'noReloadSequences': no_reload_sequences,
         }
 
         if blatdb is not None:

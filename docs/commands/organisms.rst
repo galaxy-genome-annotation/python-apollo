@@ -215,9 +215,11 @@ Update an organism
 **Options**::
 
 
-      --blatdb TEXT   Server-side Blat directory for the organism
-      --species TEXT  Species
-      --genus TEXT    Genus
-      --public        User's email
-      -h, --help      Show this message and exit.
+      --blatdb TEXT          Server-side Blat directory for the organism
+      --species TEXT         Species
+      --genus TEXT           Genus
+      --public               User's email
+      --no_reload_sequences  Set this if you don't want Apollo to reload genome
+                             sequences (no change in genome sequence)
+      -h, --help             Show this message and exit.
     

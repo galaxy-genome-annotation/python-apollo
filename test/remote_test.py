@@ -105,3 +105,8 @@ class RemoteTest(ApolloTestCase):
 
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
+
+        org_info = wa.organisms.show_organism('some_new_org_remote')
+
+        if org_info and 'id' in org_info:
+            wa.organisms.delete_organism(org_info['id'])
