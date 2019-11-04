@@ -25,10 +25,9 @@ Add an organism using the remote organism API.
 **Options**::
 
 
-      --blatdb FILENAME               Server-side path to 2bit index of the genome
-                                      for Blat (Blat 2bit data can also be in
-                                      organism_data in directory
-                                      'searchDatabaseData')
+      --blatdb FILENAME               Path to 2bit index of the genome for Blat
+                                      (Blat 2bit data can also be in organism_data
+                                      in directory 'searchDatabaseData')
       --genus TEXT                    Genus
       --species TEXT                  Species
       --public                        should the organism be public
@@ -129,8 +128,8 @@ Update an organism using the remote organism API.
 **Options**::
 
 
-      --blatdb TEXT       Server-side path to 2bit index of the genome for Blat
-                          (Blat 2bit data can also be in organism_data in directory
+      --blatdb FILENAME   Path to 2bit index of the genome for Blat (Blat 2bit data
+                          can also be in organism_data in directory
                           'searchDatabaseData')
       --common_name TEXT  Organism common name
       --genus TEXT        Genus

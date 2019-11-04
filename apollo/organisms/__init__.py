@@ -1,6 +1,8 @@
 """
 Contains possible interactions with the Apollo Organisms Module
 """
+import json
+
 from apollo.client import Client
 from apollo.decorators import raise_error_decorator
 
@@ -30,7 +32,7 @@ class OrganismsClient(Client):
         :param species: Species
 
         :type public: bool
-        :param public: User's email
+        :param public: Should the organism be public or not
 
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
@@ -51,6 +53,9 @@ class OrganismsClient(Client):
         if species is not None:
             data['species'] = species
         if metadata is not None:
+            if isinstance(metadata, dict):
+                # Apollo wants a string
+                metadata = json.dumps(metadata)
             data['metadata'] = metadata
 
         response = self.post('addOrganism', data)
@@ -60,7 +65,8 @@ class OrganismsClient(Client):
             return response
         return [x for x in response if x['commonName'] == common_name][0]
 
-    def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False):
+    def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False,
+                        no_reload_sequences=False):
         """
         Update an organism
 
@@ -85,6 +91,9 @@ class OrganismsClient(Client):
         :type public: bool
         :param public: User's email
 
+        :type no_reload_sequences: bool
+        :param no_reload_sequences: Set this if you don't want Apollo to reload genome sequences (no change in genome sequence)
+
         :rtype: dict
         :return: a dictionary with information about the updated organism
         """
@@ -93,6 +102,7 @@ class OrganismsClient(Client):
             'name': common_name,
             'directory': directory,
             'publicMode': public,
+            'noReloadSequences': no_reload_sequences,
         }
 
         if blatdb is not None:
@@ -102,7 +112,8 @@ class OrganismsClient(Client):
         if species is not None:
             data['species'] = species
 
-        response = self.post('updateOrganismInfo', data)
+        response = self.post('updateOrganismInfo', data)[0]
+
         if len(response.keys()) == 0:
             return self.show_organism(organism_id)
         return response
@@ -131,6 +142,8 @@ class OrganismsClient(Client):
         :return: a dictionary containing the organism's information
         """
         orgs = self.get_organisms(common_name=common_name)
+        if isinstance(orgs, list) and len(orgs) > 0:
+            orgs = orgs[0]
         return orgs
 
     def delete_organism(self, organism_id):

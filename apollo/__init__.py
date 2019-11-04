@@ -1,14 +1,13 @@
-import os
 import logging
-
-from cachetools import TTLCache
-from apollo.util import AssertUser
-from apollo.exceptions import UnknownUserException
+import os
 
 from apollo import (annotations, cannedcomments, cannedkeys,
                     cannedvalues, groups, io, metrics, organisms,
-                    status, users, remote)
+                    remote, status, users)
+from apollo.exceptions import UnknownUserException
+from apollo.util import AssertUser
 
+from cachetools import TTLCache
 
 cache = TTLCache(
     100,  # Up to 100 items
@@ -57,31 +56,39 @@ def require_user(wa, email):
         # If we hit a key error above, indicating that
         # we couldn't find the key, we'll simply re-request
         # the data
-        data = wa.users.loadUsers()
+        data = wa.users.get_users()
         userCache[cache_key] = data
 
     return AssertUser([x for x in data if x.username == email])
 
 
-def accessible_organisms(user, orgs):
+def accessible_organisms(user, orgs, permission=None):
     """Get the list of organisms accessible to a user, filtered by `orgs`"""
     permission_map = {
         x['organism']: x['permissions']
         for x in user.organismPermissions
-        if 'WRITE' in x['permissions'] or
-        'READ' in x['permissions'] or
-        'ADMINISTRATE' in x['permissions'] or
-        user.role == 'ADMIN'
+        if (permission is not None and permission in x['permissions'])
+        or (permission is None and ('WRITE' in x['permissions']
+                                    or 'READ' in x['permissions']
+                                    or 'ADMINISTRATE' in x['permissions']))
+        or user.role == 'ADMIN'
     }
 
     if 'error' in orgs:
+        if orgs['error'] == "Not authorized for any organisms":
+            return []
         raise Exception("Error received from Apollo server: \"%s\"" % orgs['error'])
 
-    return [
-        (org['commonName'], org['id'], False)
-        for org in sorted(orgs, key=lambda x: x['commonName'])
-        if org['commonName'] in permission_map
-    ]
+    if len(orgs) > 0 and isinstance(orgs[0], dict):
+        # Received complete org json
+        return [
+            org
+            for org in sorted(orgs, key=lambda x: x['commonName'])
+            if org['commonName'] in permission_map
+        ]
+    else:
+        # Received only a list of commonnames
+        return [org for org in sorted(orgs) if org in permission_map]
 
 
 def galaxy_list_groups(trans, *args, **kwargs):

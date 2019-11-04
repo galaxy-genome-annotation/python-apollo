@@ -60,14 +60,18 @@ class GroupsClient(Client):
         else:
             return _fix_group(res)
 
-    def get_groups(self):
+    def get_groups(self, name=None):
         """
         Get all the groups
 
         :rtype: list of dicts
         :return: list of a dictionaries containing group information
         """
-        res = self.post('loadGroups', {})
+        payload = {}
+        if name:
+            payload['name'] = name
+
+        res = self.post('loadGroups', payload)
         return [_fix_group(group) for group in res]
 
     def update_group(self, group_id, new_name):

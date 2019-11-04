@@ -23,7 +23,7 @@ from arrow.decorators import custom_exception, dict_output
 )
 @click.option(
     "--public",
-    help="User's email",
+    help="Should the organism be public or not",
     is_flag=True
 )
 @click.option(

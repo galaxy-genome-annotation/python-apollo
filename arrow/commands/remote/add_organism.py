@@ -8,7 +8,7 @@ from arrow.decorators import custom_exception, dict_output
 @click.argument("organism_data", type=click.File('rb+'))
 @click.option(
     "--blatdb",
-    help="Server-side path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')",
+    help="Path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')",
     type=click.File('rb+')
 )
 @click.option(

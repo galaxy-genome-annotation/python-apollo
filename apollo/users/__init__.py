@@ -2,10 +2,12 @@
 Contains possible interactions with the Apollo Users Module
 """
 import json
+import random
 import time
 
 from apollo.client import Client
 from apollo.decorators import raise_error_decorator
+from apollo.exceptions import UnknownUserException
 
 
 def _fix_single_user(user):
@@ -284,3 +286,48 @@ class UsersClient(Client):
         :return: an empty dictionary
         """
         return self.post('inactivateUser', {'userToDelete': user})
+
+    def _assert_user(self, user_list):
+        """
+        Asserts that user_list contains exactly 1 user
+
+        :type user_list: list
+        :param user_list: A list of users as returned by show_user
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+
+        if len(user_list) == 0:
+            raise UnknownUserException()
+        elif len(user_list) == 1:
+            return user_list[0]
+        else:
+            raise Exception("Too many users in %s!" % user_list)
+
+    def _assert_or_create_user(self, email):
+        """
+        Make sure an user exists
+
+        :type email: str
+        :param email: User Email
+
+        :rtype: dict
+        :return: a dictionary containing user information
+        """
+
+        try:
+            user = self.show_user(email)
+            if not isinstance(user, list):
+                user = [user]
+            user = self._assert_user(user)
+        except UnknownUserException:
+            password = self._password_generator(12)
+            self.create_user(email, email, email, password, role="user")
+            user = self._assert_user([self.show_user(email)])
+            user['new_password'] = password
+        return user
+
+    def _password_generator(self, length):
+        chars = list('qwrtpsdfghjklzxcvbnm')
+        return ''.join(random.choice(chars) for _ in range(length))

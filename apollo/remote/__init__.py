@@ -43,7 +43,7 @@ class RemoteClient(Client):
         :param organism_data: .tar.gz or .zip archive containing the data directory.
 
         :type blatdb: file
-        :param blatdb: Server-side path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')
+        :param blatdb: Path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')
 
         :type genus: str
         :param genus: Genus
@@ -72,12 +72,15 @@ class RemoteClient(Client):
         files = {'organismData': organism_data}
 
         if blatdb is not None:
-            data['searchDatabaseData'] = blatdb
+            files['searchDatabaseData'] = blatdb
         if genus is not None:
             data['genus'] = genus
         if species is not None:
             data['species'] = species
         if metadata is not None:
+            if isinstance(metadata, dict):
+                # Apollo wants a string
+                metadata = json.dumps(metadata)
             data['metadata'] = metadata
         if public is not None:
             data['publicMode'] = public
@@ -121,8 +124,8 @@ class RemoteClient(Client):
         :type organism_data: file
         :param organism_data: .tar.gz or .zip archive containing the data directory.
 
-        :type blatdb: str
-        :param blatdb: Server-side path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')
+        :type blatdb: file
+        :param blatdb: Path to 2bit index of the genome for Blat (Blat 2bit data can also be in organism_data in directory 'searchDatabaseData')
 
         :type common_name: str
         :param common_name: Organism common name
@@ -149,7 +152,7 @@ class RemoteClient(Client):
         files = {'organismData': organism_data}
 
         if blatdb is not None:
-            data['searchDatabaseData'] = blatdb
+            files['searchDatabaseData'] = blatdb
         if genus is not None:
             data['genus'] = genus
         if species is not None:
@@ -157,12 +160,12 @@ class RemoteClient(Client):
         if common_name is not None:
             data['name'] = common_name
         if metadata is not None:
+            if isinstance(metadata, dict):
+                # Apollo wants a string
+                metadata = json.dumps(metadata)
             data['metadata'] = metadata
         if public is not None:
             data['publicMode'] = public
-
-        if blatdb is not None:
-            data['blatdb'] = blatdb
 
         response = self.post('updateOrganismInfo', list(data.items()), files=files, autoconvert_to_json=False)
         if 'error' in response:

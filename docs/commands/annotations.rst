@@ -451,6 +451,30 @@ Get the search tools available
       -h, --help       Show this message and exit.
     
 
+``load_gff3`` command
+---------------------
+
+**Usage**::
+
+    arrow annotations load_gff3 [OPTIONS] ORGANISM GFF3
+
+**Help**
+
+Load a full GFF3 into annotation track
+
+
+**Output**
+
+
+    Loading report
+    
+**Options**::
+
+
+      --source TEXT  URL where the input dataset can be found.
+      -h, --help     Show this message and exit.
+    
+
 ``merge_exons`` command
 -----------------------
 

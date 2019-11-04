@@ -1,7 +1,14 @@
 import argparse
 import json
+import logging
+import time
+
 from Bio import SeqIO
+
 from apollo.exceptions import UnknownUserException
+
+
+log = logging.getLogger()
 
 
 def WAAuth(parser):
@@ -35,7 +42,11 @@ def GuessOrg(args, wa):
         else:
             raise Exception("Organism Common Name not provided")
     elif args.org_id:
-        return [wa.organisms.findOrganismById(args.org_id).get('commonName', None)]
+        all_orgs = wa.organisms.get_organisms()
+        if 'error' in all_orgs:
+            raise Exception("Error while getting the list of organisms: %s" % all_orgs)
+        orgs = [org['commonName'] for org in all_orgs if str(args.org_id) == str(org['id'])]
+        return orgs
     else:
         raise Exception("Organism Common Name not provided")
 
@@ -110,3 +121,29 @@ def featuresToFeatureSchema(features):
         for x in _yieldFeatData([feature]):
             compiled.append(x)
     return compiled
+
+
+def retry(closure, sleep=1, limit=5):
+    """
+    Apollo has the bad habit of returning 500 errors if you call APIs
+    too quickly, largely because of the unholy things that happen in
+    grails.
+
+    To deal with the fact that we cannot send an addComments call too
+    quickly after a createFeature call, we have this function that will
+    keep calling a closure until it works.
+    """
+    count = 0
+    while True:
+        count += 1
+
+        if count >= limit:
+            return False
+        try:
+            # Try calling it
+            closure()
+            # If successful, exit
+            return True
+        except Exception as e:
+            log.info(str(e)[0:100])
+            time.sleep(sleep)

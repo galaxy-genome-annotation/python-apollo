@@ -1,7 +1,13 @@
 """
 Contains possible interactions with the Apollo's Annotations
 """
+import sys
+import time
+
+from BCBio import GFF
+
 from apollo.client import Client
+from apollo.util import featuresToFeatureSchema, retry
 
 
 class AnnotationsClient(Client):
@@ -85,7 +91,7 @@ class AnnotationsClient(Client):
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
-        # TODO
+
         data = {
             'features': [
                 {
@@ -913,3 +919,193 @@ class AnnotationsClient(Client):
         }
         data = self._update_data(data, organism, sequence)
         return self.post('getGff3', data, is_json=False)
+
+    def load_gff3(self, organism, gff3, source=None):
+        """
+        Load a full GFF3 into annotation track
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type gff3: str
+        :param gff3: GFF3 to load
+
+        :type source: str
+        :param source: URL where the input dataset can be found.
+
+        :rtype: str
+        :return: Loading report
+        """
+
+        sys.stdout.write('# ')
+        sys.stdout.write('\t'.join(['Feature ID', 'Apollo ID', 'Success', 'Messages']))
+        sys.stdout.write('\n')
+
+        bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
+
+        for rec in GFF.parse(gff3):
+            self.set_sequence(organism, rec.id)
+            for feature in rec.features:
+                # We can only handle genes right now
+                if feature.type not in ('gene', 'terminator'):
+                    continue
+                # Convert the feature into a presentation that Apollo will accept
+                featureData = featuresToFeatureSchema([feature])
+                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                    # We're experiencing a (transient?) problem where gene_001 to
+                    # gene_025 will be rejected. Thus, hardcode to a known working
+                    # gene name and update later.
+
+                    featureData[0]['name'] = 'tRNA_000'
+                    tRNA_sf = [child for child in feature.sub_features if child.type == 'tRNA'][0]
+                    tRNA_type = 'tRNA-' + tRNA_sf.qualifiers.get('Codon', ["Unk"])[0]
+
+                    if 'Name' in feature.qualifiers:
+                        if feature.qualifiers['Name'][0].startswith('tRNA-'):
+                            tRNA_type = feature.qualifiers['Name'][0]
+
+                    newfeature = self.add_feature(featureData)
+
+                    def func0():
+                        self.set_name(
+                            newfeature['features'][0]['uniquename'],
+                            tRNA_type,
+                        )
+                    retry(func0)
+
+                    if source:
+                        gene_id = newfeature['features'][0]['parent_id']
+
+                        def setSource():
+                            self.add_attributes(gene_id, {'DatasetSource': [source]})
+                        retry(setSource)
+
+                    sys.stdout.write('\t'.join([
+                        feature.id,
+                        newfeature['features'][0]['uniquename'],
+                        'success',
+                    ]))
+                elif featureData[0]['type']['name'] == 'terminator':
+                    # We're experiencing a (transient?) problem where gene_001 to
+                    # gene_025 will be rejected. Thus, hardcode to a known working
+                    # gene name and update later.
+                    featureData[0]['name'] = 'terminator_000'
+                    newfeature = self.add_feature(featureData)
+
+                    def func0():
+                        self.set_name(
+                            newfeature['features'][0]['uniquename'],
+                            'terminator'
+                        )
+
+                    retry(func0)
+
+                    if source:
+                        gene_id = newfeature['features'][0]['parent_id']
+
+                        def setSource():
+                            self.add_attributes(gene_id, {'DatasetSource': [source]})
+                        retry(setSource)
+
+                    sys.stdout.write('\t'.join([
+                        feature.id,
+                        newfeature['features'][0]['uniquename'],
+                        'success',
+                    ]))
+                else:
+                    try:
+                        # We're experiencing a (transient?) problem where gene_001 to
+                        # gene_025 will be rejected. Thus, hardcode to a known working
+                        # gene name and update later.
+                        featureData[0]['name'] = 'gene_000'
+                        # Create the new feature
+                        newfeature = self.add_feature(featureData)
+                        # Extract the UUIDs that apollo returns to us
+                        mrna_id = newfeature['features'][0]['uniquename']
+                        gene_id = newfeature['features'][0]['parent_id']
+                        # Sleep to give it time to actually persist the feature. Apollo
+                        # is terrible about writing + immediately reading back written
+                        # data.
+                        time.sleep(1)
+
+                        # Extract CDS feature from the feature data, this will be used
+                        # to set the CDS location correctly (apollo currently screwing
+                        # this up (2.0.6))
+                        min_cds = None
+                        max_cds = None
+
+                        for feat in featureData[0]['children']:
+                            # mRNA level
+                            for subfeat in feat['children']:
+                                # Can be exon or CDS
+                                if subfeat['type']['name'] == 'CDS':
+                                    if min_cds is None:
+                                        min_cds = subfeat['location']['fmin']
+                                        max_cds = subfeat['location']['fmax']
+                                    else:
+                                        min_cds = min(min_cds, subfeat['location']['fmin'])
+                                        max_cds = max(max_cds, subfeat['location']['fmax'])
+                                if 'children' in subfeat:
+                                    for subsubfeat in subfeat['children']:
+                                        if subsubfeat['type']['name'] == 'CDS':
+                                            if min_cds is None:
+                                                min_cds = subsubfeat['location']['fmin']
+                                                max_cds = subsubfeat['location']['fmax']
+                                            else:
+                                                min_cds = min(min_cds, subsubfeat['location']['fmin'])
+                                                max_cds = max(max_cds, subsubfeat['location']['fmax'])
+
+                        # Correct the translation start, but with strand specific log
+                        if featureData[0]['location']['strand'] == 1:
+                            self.set_translation_start(mrna_id, min(min_cds, max_cds))
+                        else:
+                            self.set_translation_start(mrna_id, max(min_cds, max_cds) - 1)
+
+                        # Finally we set the name, this should be correct.
+                        def func():
+                            self.set_name(mrna_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
+                        retry(func)
+
+                        def func():
+                            self.set_name(gene_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
+                        retry(func)
+
+                        if source:
+                            gene_id = newfeature['features'][0]['parent_id']
+
+                            def setSource():
+                                self.add_attributes(gene_id, {'DatasetSource': [source]})
+                            retry(setSource)
+                        extra_attr = {}
+                        for (key, values) in feature.qualifiers.items():
+                            if key in bad_quals:
+                                continue
+
+                            if key == 'Note':
+                                def func2():
+                                    self.add_comments(gene_id, values)
+                                retry(func2)
+                            else:
+                                extra_attr[key] = values
+
+                        def func3():
+                            self.add_attributes(gene_id, extra_attr)
+                        retry(func3)
+
+                        sys.stdout.write('\t'.join([
+                            feature.id,
+                            gene_id,
+                            'success',
+                        ]))
+                    except Exception as e:
+                        msg = str(e)
+                        if '\n' in msg:
+                            msg = msg[0:msg.index('\n')]
+                        sys.stdout.write('\t'.join([
+                            feature.id,
+                            '',
+                            'ERROR',
+                            msg
+                        ]))
+                sys.stdout.write('\n')
+                sys.stdout.flush()
