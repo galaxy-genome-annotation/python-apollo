@@ -70,8 +70,7 @@ class RemoteTest(ApolloTestCase):
             with tarfile.open(archive.name, mode="w:gz") as tar:
                 for file in glob.glob('test-data/dataset_1_files/data/'):
                     tar.add(file, arcname=file.replace('test-data/dataset_1_files/data/', './'))
-            # Note: we added this upstream, so we have to use another name to create a separate sample directory
-            res = wa.remote.add_organism('some_new_org_remote_v2', archive, species='newspecies', genus='newgenus', metadata=meta)
+            res = wa.remote.add_organism('some_new_org_remote', archive, species='newspecies', genus='newgenus', metadata=meta)
 
         res = res[0]
         assert res['species'] == 'newspecies'
@@ -82,7 +81,7 @@ class RemoteTest(ApolloTestCase):
 
         time.sleep(3)
 
-        org_info = wa.organisms.show_organism('some_new_org_remote_v2')
+        org_info = wa.organisms.show_organism('some_new_org_remote')
 
         wa.remote.delete_organism(org_info['id'])
 
@@ -103,6 +102,11 @@ class RemoteTest(ApolloTestCase):
 
     def tearDown(self):
         org_info = wa.organisms.show_organism('temp_org')
+
+        if org_info and 'id' in org_info:
+            wa.organisms.delete_organism(org_info['id'])
+
+        org_info = wa.organisms.show_organism('some_new_org_remote')
 
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])

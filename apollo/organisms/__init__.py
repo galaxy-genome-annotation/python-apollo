@@ -70,7 +70,6 @@ class OrganismsClient(Client):
         """
         Update an organism
 
-
         :type organism_id: str
         :param organism_id: Organism ID Number
 

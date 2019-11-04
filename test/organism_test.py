@@ -158,7 +158,7 @@ class OrganismTest(ApolloTestCase):
         assert 'features' in feats_after
         assert len(feats_after['features']) == 0
 
-    def test_update_organism(self):
+    def test_update_organism_noreload(self):
 
         other_org_info = wa.organisms.show_organism('test_organism')
 
@@ -175,6 +175,24 @@ class OrganismTest(ApolloTestCase):
         assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
         assert not org_info['publicMode']
         assert org_info['sequences'] == 1
+
+    def test_update_organism(self):
+
+        other_org_info = wa.organisms.show_organism('test_organism')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        # Returns useless stuff
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 2
 
     def test_add_organism(self):
 
@@ -214,6 +232,11 @@ class OrganismTest(ApolloTestCase):
 
     def tearDown(self):
         org_info = wa.organisms.show_organism('temp_org')
+
+        if org_info and 'id' in org_info:
+            wa.organisms.delete_organism(org_info['id'])
+
+        org_info = wa.organisms.show_organism('some_new_org')
 
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
