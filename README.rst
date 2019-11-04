@@ -81,6 +81,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.0.1
+    - Fix missing file in pypi package, no code change
 - 4.0
     - Added support for remote creation/update/deletion of organisms/tracks
     - Added support for adding GFF3 in the annotation track
