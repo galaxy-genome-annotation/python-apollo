@@ -86,6 +86,8 @@ class OrganismTest(ApolloTestCase):
 
         assert res == {}
 
+        time.sleep(3)
+
         org_info = wa.organisms.show_organism(org_id)
 
         assert json.loads(org_info['metadata']) == {'some': 'metadata'}
