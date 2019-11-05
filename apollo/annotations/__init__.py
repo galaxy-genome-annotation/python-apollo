@@ -977,7 +977,7 @@ class AnnotationsClient(Client):
                         gene_id = newfeature['features'][0]['parent_id']
 
                         def setSource():
-                            self.add_attributes(gene_id, {'DatasetSource': [source]})
+                            self.add_attribute(gene_id, 'DatasetSource', source)
                         retry(setSource)
 
                     sys.stdout.write('\t'.join([
@@ -1004,7 +1004,7 @@ class AnnotationsClient(Client):
                         gene_id = newfeature['features'][0]['parent_id']
 
                         def setSource():
-                            self.add_attributes(gene_id, {'DatasetSource': [source]})
+                            self.add_attribute(gene_id, 'DatasetSource', source)
                         retry(setSource)
 
                     sys.stdout.write('\t'.join([
@@ -1074,7 +1074,7 @@ class AnnotationsClient(Client):
                             gene_id = newfeature['features'][0]['parent_id']
 
                             def setSource():
-                                self.add_attributes(gene_id, {'DatasetSource': [source]})
+                                self.add_attribute(gene_id, 'DatasetSource', source)
                             retry(setSource)
                         extra_attr = {}
                         for (key, values) in feature.qualifiers.items():
@@ -1088,9 +1088,10 @@ class AnnotationsClient(Client):
                             else:
                                 extra_attr[key] = values
 
-                        def func3():
-                            self.add_attributes(gene_id, extra_attr)
-                        retry(func3)
+                        for key in extra_attr:
+                            def func3():
+                                self.add_attribute(gene_id, key, extra_attr[key])
+                            retry(func3)
 
                         sys.stdout.write('\t'.join([
                             feature.id,
