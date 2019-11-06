@@ -81,6 +81,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.1
+    - Fix loading attributes from gff3
 - 4.0.1
     - Fix missing file in pypi package, no code change
 - 4.0

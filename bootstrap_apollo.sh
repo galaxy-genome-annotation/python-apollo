@@ -1,9 +1,25 @@
 #!/bin/bash
 
+SHOULD_LAUNCH_DOCKER=1
+for arg in "$@"
+do
+    case $arg in
+        --nodocker)
+        SHOULD_LAUNCH_DOCKER=0
+        shift
+        ;;
+        *)
+        shift
+        ;;
+    esac
+done
+
 export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
 
-docker run --memory=4g -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:latest
+if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
+    docker run --memory=4g -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:latest
+fi
 
 echo "[BOOTSTRAP] Waiting while Apollo starts up..."
 # Wait for apollo to be online
