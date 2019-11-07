@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<root>
+    <metadata>
+        <gencode>1</gencode>
+        <genomes>
+              <genome path="/opt/galaxy-dist/database/files/002/193/dataset_2193148.dat">
+                <metadata>
+                  <dataset id="7ed4c8d59e701923" hid="1"
+                      size="176.3 KB"
+                      edam_format="format_1929"
+                      file_ext="fasta" />
+                  <history id="f6a2fa1f8dc7c2ab"
+                      user_email="anthony.bretaudeau@irisa.fr"
+                      user_id="17"
+                      display_name="jbrowse test"/>
+                  <metadata
+                      dbkey="?"
+                      data_lines="2961"
+                      sequences="2"
+                      />
+                  <tool
+                      tool_id="upload1"
+                      tool_version="1.1.6"
+                      />
+                </metadata>
+              </genome>
+        </genomes>
+        <general>
+            <defaultLocation></defaultLocation>
+            <trackPadding>20</trackPadding>
+
+            <shareLink>true</shareLink>
+            <aboutDescription></aboutDescription>
+            <show_tracklist>true</show_tracklist>
+            <show_nav>true</show_nav>
+            <show_overview>true</show_overview>
+            <show_menu>true</show_menu>
+            <hideGenomeOptions>false</hideGenomeOptions>
+        </general>
+        <galaxyUrl>http://localhost</galaxyUrl>
+    </metadata>
+    <tracks>
+    </tracks>
+    <plugins
+        ComboTrackSelector=""
+        Bookmarks=""
+        GCContent=""
+        BlastView="True"
+        theme=""
+        />
+</root>
