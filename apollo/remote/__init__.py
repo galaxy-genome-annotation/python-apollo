@@ -92,7 +92,7 @@ class RemoteClient(Client):
         return [x for x in response if x['commonName'] == common_name]
 
     def update_organism(self, organism_id, organism_data, blatdb=None, common_name=None,
-                        genus=None, species=None, public=None, metadata=None):
+                        genus=None, species=None, public=None, metadata=None, no_reload_sequences=False):
         """
         Update an organism using the remote organism API.
 
@@ -142,11 +142,15 @@ class RemoteClient(Client):
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
 
+        :type no_reload_sequences: bool
+        :param no_reload_sequences: Set this if you don't want Apollo to reload genome sequences (no change in genome sequence)
+
         :rtype: dict
         :return: a dictionary with information about the updated organism
         """
         data = {
             'id': organism_id,
+            'noReloadSequences': no_reload_sequences,
         }
 
         files = {'organismData': organism_data}

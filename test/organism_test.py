@@ -178,6 +178,13 @@ class OrganismTest(ApolloTestCase):
         assert not org_info['publicMode']
         assert org_info['sequences'] == 1
 
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
     def test_update_organism(self):
 
         other_org_info = wa.organisms.show_organism('test_organism')
@@ -194,7 +201,14 @@ class OrganismTest(ApolloTestCase):
         assert org_info['genus'] == 'updatedgenus'
         assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
         assert not org_info['publicMode']
-        assert org_info['sequences'] == 2
+        assert org_info['sequences'] == 1
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
 
     def test_add_organism(self):
 

@@ -62,6 +62,45 @@ class RemoteTest(ApolloTestCase):
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
+    def test_update_organism(self):
+
+        time.sleep(3)
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        meta = {"bla": "bli"}
+
+        with tempfile.NamedTemporaryFile(suffix='.tar.gz') as archive:
+            with tarfile.open(archive.name, mode="w:gz") as tar:
+                for file in glob.glob('test-data/dataset_1_files/data/'):
+                    tar.add(file, arcname=file.replace('test-data/dataset_1_files/data/', './'))
+
+            wa.remote.update_organism(org_info['id'], archive, species='updatedspecies', genus='updatedgenus', public=False, metadata=meta, no_reload_sequences=True)
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['sequences'] == 1
+        assert not org_info['publicMode']
+        meta_back = json.loads(org_info['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
     def test_add_organism(self):
 
         meta = {"bla": "bli"}

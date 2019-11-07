@@ -128,15 +128,17 @@ Update an organism using the remote organism API.
 **Options**::
 
 
-      --blatdb FILENAME   Path to 2bit index of the genome for Blat (Blat 2bit data
-                          can also be in organism_data in directory
-                          'searchDatabaseData')
-      --common_name TEXT  Organism common name
-      --genus TEXT        Genus
-      --species TEXT      Species
-      --public            User's email
-      --metadata TEXT     JSON formatted arbitrary metadata
-      -h, --help          Show this message and exit.
+      --blatdb FILENAME      Path to 2bit index of the genome for Blat (Blat 2bit
+                             data can also be in organism_data in directory
+                             'searchDatabaseData')
+      --common_name TEXT     Organism common name
+      --genus TEXT           Genus
+      --species TEXT         Species
+      --public               User's email
+      --metadata TEXT        JSON formatted arbitrary metadata
+      --no_reload_sequences  Set this if you don't want Apollo to reload genome
+                             sequences (no change in genome sequence)
+      -h, --help             Show this message and exit.
     
 
 ``update_track`` command
