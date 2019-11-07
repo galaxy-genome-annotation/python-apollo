@@ -69,7 +69,7 @@ class RemoteTest(ApolloTestCase):
         assert seq['name'] == 'Merlin'
         assert seq['length'] == 172788
 
-    def test_update_organism(self):
+    def test_update_organism_noreload(self):
 
         time.sleep(3)
 
