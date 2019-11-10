@@ -233,12 +233,12 @@ class OrganismTest(ApolloTestCase):
         assert len(seqs) == 2
 
         seq = seqs[0]
-        assert seq['name'] == 'Merlin'
-        assert seq['length'] == 172788
-
-        seq = seqs[1]
         assert seq['name'] == 'Anotherseq'
         assert seq['length'] == 4730
+
+        seq = seqs[1]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
 
     def test_update_organism_changedseq(self):
 
@@ -263,12 +263,12 @@ class OrganismTest(ApolloTestCase):
         assert len(seqs) == 2
 
         seq = seqs[0]
-        assert seq['name'] == 'Merlin'
-        assert seq['length'] == 172188
-
-        seq = seqs[1]
         assert seq['name'] == 'Anotherseq'
         assert seq['length'] == 4730
+
+        seq = seqs[1]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172188
 
     def test_update_organism_newseq_noreload(self):
 
