@@ -277,7 +277,7 @@ class OrganismTest(ApolloTestCase):
         org_info = wa.organisms.show_organism('temp_org')
 
         new_dir = org_info['directory'].replace('org2', 'org_update_newseq')
-        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False, no_reload_sequences=True)
         # Returns useless stuff
 
         time.sleep(3)
@@ -303,7 +303,7 @@ class OrganismTest(ApolloTestCase):
         org_info = wa.organisms.show_organism('temp_org')
 
         new_dir = org_info['directory'].replace('org2', 'org_update_changedseq')
-        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False, no_reload_sequences=True)
         # Returns useless stuff
 
         time.sleep(3)

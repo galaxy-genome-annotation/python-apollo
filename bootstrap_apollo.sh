@@ -18,7 +18,7 @@ export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
-    docker run --memory=4g -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ quay.io/gmod/apollo:latest
+    docker run --memory=4g -d -it -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
 fi
 
 echo "[BOOTSTRAP] Waiting while Apollo starts up..."
