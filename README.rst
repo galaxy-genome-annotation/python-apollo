@@ -83,6 +83,7 @@ History
 
 - 4.1
     - Fix loading attributes from gff3
+    - Better handling of genome sequence update, with or without the no_reload_sequences option
 - 4.0.1
     - Fix missing file in pypi package, no code change
 - 4.0
