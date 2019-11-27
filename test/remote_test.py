@@ -258,14 +258,18 @@ class RemoteTest(ApolloTestCase):
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
     def setUp(self):
-        org_info = wa.organisms.show_organism('alt_org')
-        if 'directory' not in org_info:
-            # Should not happen, but let's be tolerant...
-            # Error received when it fails: {'error': 'No row with the given identifier exists: [org.bbop.apollo.Organism#1154]'}
-            time.sleep(1)
-            org_info = wa.organisms.show_organism('alt_org')
+        # Make sure the organism is not already there
+        temp_org_info = wa.organisms.show_organism('temp_org')
+        if 'directory' in temp_org_info:
+            wa.organisms.delete_organism(temp_org_info['id'])
+            self.waitOrgDeleted('temp_org')
 
-        wa.organisms.add_organism('temp_org', org_info['directory'])
+        with tempfile.NamedTemporaryFile(suffix='.tar.gz') as archive:
+            with tarfile.open(archive.name, mode="w:gz") as tar:
+                for file in glob.glob('test-data/dataset_1_files/data/'):
+                    tar.add(file, arcname=file.replace('test-data/dataset_1_files/data/', './'))
+            wa.remote.add_organism('temp_org', archive)
+        self.waitOrgCreated('temp_org')
 
     def tearDown(self):
         org_info = wa.organisms.show_organism('temp_org')
