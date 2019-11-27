@@ -47,3 +47,5 @@ docs/_build
 test_harness.py
 
 apollo_shared_dir
+
+.idea
