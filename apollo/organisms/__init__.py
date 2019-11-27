@@ -128,7 +128,10 @@ class OrganismsClient(Client):
         :rtype: list
         :return: Organism information
         """
-        orgs = self.post('findAllOrganisms', {'organism': common_name})
+        if common_name is None:
+            orgs = self.post('findAllOrganisms', data={})
+        else:
+            orgs = self.post('findAllOrganisms', {'organism': common_name})
         return orgs
 
     def show_organism(self, common_name):

@@ -94,13 +94,11 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        time.sleep(3)
-
-        org_info = wa.organisms.show_organism('temp_org')
+        org_info = self.waitOrgCreated('temp_org')
 
         wa.organisms.delete_organism(org_info['id'])
 
-        time.sleep(3)
+        self.waitOrgDeleted('temp_org')
 
         orgs = wa.organisms.get_organisms()
 
@@ -109,11 +107,9 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism_cn(self):
 
-        time.sleep(3)
-
         wa.organisms.delete_organism('temp_org')
 
-        time.sleep(3)
+        self.waitOrgDeleted('temp_org')
 
         orgs = wa.organisms.get_organisms()
 
@@ -121,8 +117,6 @@ class OrganismTest(ApolloTestCase):
             assert org['commonName'] != 'temp_org'
 
     def test_delete_features(self):
-
-        time.sleep(3)
 
         wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
 
@@ -142,8 +136,6 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_features_cn(self):
 
-        time.sleep(3)
-
         wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
 
         org_info = wa.organisms.show_organism('temp_org')
@@ -159,6 +151,31 @@ class OrganismTest(ApolloTestCase):
 
         assert 'features' in feats_after
         assert len(feats_after['features']) == 0
+
+    def test_update_organism(self):
+
+        other_org_info = wa.organisms.show_organism('test_organism')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        # Returns useless stuff
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 1
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
 
     def test_update_organism_noreload(self):
 
@@ -178,13 +195,21 @@ class OrganismTest(ApolloTestCase):
         assert not org_info['publicMode']
         assert org_info['sequences'] == 1
 
-    def test_update_organism(self):
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
+    def test_update_organism_newseq(self):
 
         other_org_info = wa.organisms.show_organism('test_organism')
 
         org_info = wa.organisms.show_organism('temp_org')
 
-        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        new_dir = org_info['directory'].replace('org2', 'org_update_newseq')
+        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
         # Returns useless stuff
 
         time.sleep(3)
@@ -195,6 +220,99 @@ class OrganismTest(ApolloTestCase):
         assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
         assert not org_info['publicMode']
         assert org_info['sequences'] == 2
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 2
+
+        seq = seqs[0]
+        assert seq['name'] == 'Anotherseq'
+        assert seq['length'] == 4730
+
+        seq = seqs[1]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
+    def test_update_organism_changedseq(self):
+
+        other_org_info = wa.organisms.show_organism('test_organism')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        new_dir = org_info['directory'].replace('org2', 'org_update_changedseq')
+        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False)
+        # Returns useless stuff
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 2
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 2
+
+        seq = seqs[0]
+        assert seq['name'] == 'Anotherseq'
+        assert seq['length'] == 4730
+
+        seq = seqs[1]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172188
+
+    def test_update_organism_newseq_noreload(self):
+
+        other_org_info = wa.organisms.show_organism('test_organism')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        new_dir = org_info['directory'].replace('org2', 'org_update_newseq')
+        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False, no_reload_sequences=True)
+        # Returns useless stuff
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 1
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
+    def test_update_organism_changedseq_noreload(self):
+
+        other_org_info = wa.organisms.show_organism('test_organism')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        new_dir = org_info['directory'].replace('org2', 'org_update_changedseq')
+        wa.organisms.update_organism(org_info['id'], 'temp_org', new_dir, species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False, no_reload_sequences=True)
+        # Returns useless stuff
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 1
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
 
     def test_add_organism(self):
 
@@ -209,9 +327,7 @@ class OrganismTest(ApolloTestCase):
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
-        time.sleep(3)
-
-        org_info = wa.organisms.show_organism('some_new_org')
+        org_info = self.waitOrgCreated('some_new_org')
 
         wa.organisms.delete_organism(org_info['id'])
 
@@ -223,6 +339,12 @@ class OrganismTest(ApolloTestCase):
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
     def setUp(self):
+        # Make sure the organism is not already there
+        temp_org_info = wa.organisms.show_organism('temp_org')
+        if 'directory' in temp_org_info:
+            wa.organisms.delete_organism(temp_org_info['id'])
+            self.waitOrgDeleted('temp_org')
+
         org_info = wa.organisms.show_organism('alt_org')
         if 'directory' not in org_info:
             # Should not happen, but let's be tolerant...
@@ -231,6 +353,7 @@ class OrganismTest(ApolloTestCase):
             org_info = wa.organisms.show_organism('alt_org')
 
         wa.organisms.add_organism('temp_org', org_info['directory'])
+        self.waitOrgCreated('temp_org')
 
     def tearDown(self):
         org_info = wa.organisms.show_organism('temp_org')
@@ -238,7 +361,10 @@ class OrganismTest(ApolloTestCase):
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
 
+        self.waitOrgDeleted('temp_org')
+
         org_info = wa.organisms.show_organism('some_new_org')
 
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
+            self.waitOrgDeleted('some_new_org')
