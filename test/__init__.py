@@ -29,7 +29,7 @@ class ApolloTestCase(unittest.TestCase):
         """
 
         org_info = wa.organisms.show_organism(org_id)
-        if 'directory' in org_info:
+        if 'directory' not in org_info:
             time.sleep(1)
             org_info = wa.organisms.show_organism(org_id)
 
