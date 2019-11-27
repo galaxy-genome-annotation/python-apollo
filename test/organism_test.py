@@ -94,13 +94,11 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
 
         wa.organisms.delete_organism(org_info['id'])
 
-        time.sleep(3)
+        self.waitOrgDeleted('temp_org')
 
         orgs = wa.organisms.get_organisms()
 
@@ -109,11 +107,9 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism_cn(self):
 
-        time.sleep(3)
-
         wa.organisms.delete_organism('temp_org')
 
-        time.sleep(3)
+        self.waitOrgDeleted('temp_org')
 
         orgs = wa.organisms.get_organisms()
 
@@ -121,8 +117,6 @@ class OrganismTest(ApolloTestCase):
             assert org['commonName'] != 'temp_org'
 
     def test_delete_features(self):
-
-        time.sleep(3)
 
         wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
 
@@ -141,8 +135,6 @@ class OrganismTest(ApolloTestCase):
         assert len(feats_after['features']) == 0
 
     def test_delete_features_cn(self):
-
-        time.sleep(3)
 
         wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
 
@@ -335,7 +327,7 @@ class OrganismTest(ApolloTestCase):
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
-        time.sleep(3)
+        self.waitOrgCreated('some_new_org')
 
         org_info = wa.organisms.show_organism('some_new_org')
 
@@ -349,6 +341,12 @@ class OrganismTest(ApolloTestCase):
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
     def setUp(self):
+        # Make sure the organism is not already there
+        temp_org_info = wa.organisms.show_organism('temp_org')
+        if 'directory' in temp_org_info:
+            wa.organisms.delete_organism(temp_org_info['id'])
+            self.waitOrgDeleted('temp_org')
+
         org_info = wa.organisms.show_organism('alt_org')
         if 'directory' not in org_info:
             # Should not happen, but let's be tolerant...
@@ -357,6 +355,7 @@ class OrganismTest(ApolloTestCase):
             org_info = wa.organisms.show_organism('alt_org')
 
         wa.organisms.add_organism('temp_org', org_info['directory'])
+        self.waitOrgCreated('temp_org')
 
     def tearDown(self):
         org_info = wa.organisms.show_organism('temp_org')
@@ -364,7 +363,10 @@ class OrganismTest(ApolloTestCase):
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
 
+        self.waitOrgDeleted('temp_org')
+
         org_info = wa.organisms.show_organism('some_new_org')
 
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
+            self.waitOrgDeleted('some_new_org')

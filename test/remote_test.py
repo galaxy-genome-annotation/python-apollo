@@ -11,13 +11,11 @@ class RemoteTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
 
         wa.remote.delete_organism(org_info['id'])
 
-        time.sleep(3)
+        self.waitOrgDeleted('temp_org')
 
         orgs = wa.organisms.get_organisms()
 
@@ -26,11 +24,9 @@ class RemoteTest(ApolloTestCase):
 
     def test_delete_organism_cn(self):
 
-        time.sleep(3)
-
         wa.remote.delete_organism('temp_org')
 
-        time.sleep(3)
+        self.waitOrgDeleted('temp_org')
 
         orgs = wa.organisms.get_organisms()
 
@@ -39,9 +35,8 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
+        assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
 
@@ -71,9 +66,8 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism_noreload(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
+        assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
 
@@ -103,9 +97,8 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism_newseq(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
+        assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
 
@@ -130,18 +123,17 @@ class RemoteTest(ApolloTestCase):
         assert len(seqs) == 2
 
         seq = seqs[0]
-        assert seq['name'] == 'Merlin'
-        assert seq['length'] == 172788
-
-        seq = seqs[1]
         assert seq['name'] == 'Anotherseq'
         assert seq['length'] == 4730
 
+        seq = seqs[1]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
     def test_update_organism_changedseq(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
+        assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
 
@@ -166,18 +158,17 @@ class RemoteTest(ApolloTestCase):
         assert len(seqs) == 2
 
         seq = seqs[0]
-        assert seq['name'] == 'Merlin'
-        assert seq['length'] == 172188
-
-        seq = seqs[1]
         assert seq['name'] == 'Anotherseq'
         assert seq['length'] == 4730
 
+        seq = seqs[1]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172188
+
     def test_update_organism_newseq_noreload(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
+        assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
 
@@ -207,9 +198,8 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism_changedseq_noreload(self):
 
-        time.sleep(3)
-
         org_info = wa.organisms.show_organism('temp_org')
+        assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
 
@@ -254,14 +244,16 @@ class RemoteTest(ApolloTestCase):
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
-        time.sleep(3)
+        self.waitOrgCreated('some_new_org_remote')
 
         org_info = wa.organisms.show_organism('some_new_org_remote')
 
         wa.remote.delete_organism(org_info['id'])
+        self.waitOrgDeleted('some_new_org_remote')
 
         assert org_info['species'] == 'newspecies'
         assert org_info['genus'] == 'newgenus'
+        assert org_info['sequences'] == 1
         meta_back = json.loads(org_info['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
@@ -281,7 +273,10 @@ class RemoteTest(ApolloTestCase):
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
 
+        self.waitOrgDeleted('temp_org')
+
         org_info = wa.organisms.show_organism('some_new_org_remote')
 
         if org_info and 'id' in org_info:
             wa.organisms.delete_organism(org_info['id'])
+            self.waitOrgDeleted('some_new_org_remote')
