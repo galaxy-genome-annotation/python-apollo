@@ -11,7 +11,7 @@ class RemoteTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        org_info = wa.organisms.show_organism('temp_org')
+        org_info = self.waitOrgCreated('temp_org')
 
         wa.remote.delete_organism(org_info['id'])
 
@@ -35,7 +35,7 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism(self):
 
-        org_info = wa.organisms.show_organism('temp_org')
+        org_info = self.waitOrgCreated('temp_org')
         assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
@@ -66,7 +66,7 @@ class RemoteTest(ApolloTestCase):
 
     def test_update_organism_noreload(self):
 
-        org_info = wa.organisms.show_organism('temp_org')
+        org_info = self.waitOrgCreated('temp_org')
         assert org_info['sequences'] == 1
 
         meta = {"bla": "bli"}
@@ -244,9 +244,7 @@ class RemoteTest(ApolloTestCase):
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
-        self.waitOrgCreated('some_new_org_remote')
-
-        org_info = wa.organisms.show_organism('some_new_org_remote')
+        org_info = self.waitOrgCreated('some_new_org_remote')
 
         wa.remote.delete_organism(org_info['id'])
         self.waitOrgDeleted('some_new_org_remote')

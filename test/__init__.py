@@ -21,6 +21,8 @@ class ApolloTestCase(unittest.TestCase):
             time.sleep(1)
             org_info = wa.organisms.show_organism(org_id)
 
+        return org_info
+
     def waitOrgCreated(self, org_id):
         """
         Wait for an organism to be really created from Apollo
@@ -30,3 +32,5 @@ class ApolloTestCase(unittest.TestCase):
         if 'directory' in org_info:
             time.sleep(1)
             org_info = wa.organisms.show_organism(org_id)
+
+        return org_info

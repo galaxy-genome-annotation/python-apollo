@@ -94,7 +94,7 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_organism(self):
 
-        org_info = wa.organisms.show_organism('temp_org')
+        org_info = self.waitOrgCreated('temp_org')
 
         wa.organisms.delete_organism(org_info['id'])
 
@@ -327,9 +327,7 @@ class OrganismTest(ApolloTestCase):
         meta_back = json.loads(res['metadata'])
         assert 'bla' in meta_back and meta_back['bla'] == 'bli'
 
-        self.waitOrgCreated('some_new_org')
-
-        org_info = wa.organisms.show_organism('some_new_org')
+        org_info = self.waitOrgCreated('some_new_org')
 
         wa.organisms.delete_organism(org_info['id'])
 
