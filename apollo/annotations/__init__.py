@@ -543,7 +543,7 @@ class AnnotationsClient(Client):
         }
         data = self._update_data(data, organism, sequence)
         if test:
-            print data
+            print(data)
         else:
             return self.post('addFeature', data)
 
@@ -582,7 +582,7 @@ class AnnotationsClient(Client):
         }
         data = self._update_data(data, organism, sequence)
         if test:
-            print data
+            print(data)
         else:
             return self.post('addTranscript', data)
 
