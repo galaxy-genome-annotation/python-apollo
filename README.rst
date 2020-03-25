@@ -81,6 +81,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2
+    - Added arguments 'test', 'disable_cds_recalculation', and 'use_name_for_feature' to gff3 loader.
 - 4.1
     - Fix loading attributes from gff3
     - Better handling of genome sequence update, with or without the no_reload_sequences option
