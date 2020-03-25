@@ -976,13 +976,17 @@ class AnnotationsClient(Client):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
+
                 if 'children' in featureData[0] and any(
                     [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
 
-                    featureData[0]['name'] = 'tRNA_000'
+                    if use_name_for_feature:
+                        featureData['use_name'] = True
+                    else:
+                        featureData[0]['name'] = 'tRNA_000'
                     tRNA_sf = [child for child in feature.sub_features if child.type == 'tRNA'][0]
                     tRNA_type = 'tRNA-' + tRNA_sf.qualifiers.get('Codon', ["Unk"])[0]
 
@@ -990,36 +994,38 @@ class AnnotationsClient(Client):
                         if feature.qualifiers['Name'][0].startswith('tRNA-'):
                             tRNA_type = feature.qualifiers['Name'][0]
 
-                    if not test:
-                        newfeature = self.add_feature(featureData,test)
+                    newfeature = self.add_feature(featureData, test=test)
 
-                        def func0():
-                            self.set_name(
-                                newfeature['features'][0]['uniquename'],
-                                tRNA_type,
-                            )
-
-                        retry(func0)
-
-                        if source:
-                            gene_id = newfeature['features'][0]['parent_id']
-
-                            def setSource():
-                                self.add_attribute(gene_id, 'DatasetSource', source)
-
-                            retry(setSource)
-
-                        sys.stdout.write('\t'.join([
-                            feature.id,
+                    def func0():
+                        self.set_name(
                             newfeature['features'][0]['uniquename'],
-                            'success',
-                        ]))
+                            tRNA_type,
+                        )
+
+                    retry(func0)
+
+                    if source:
+                        gene_id = newfeature['features'][0]['parent_id']
+
+                        def setSource():
+                            self.add_attribute(gene_id, 'DatasetSource', source)
+
+                        retry(setSource)
+
+                    sys.stdout.write('\t'.join([
+                        feature.id,
+                        newfeature['features'][0]['uniquename'],
+                        'success',
+                    ]))
                 elif featureData[0]['type']['name'] == 'terminator':
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
-                    featureData[0]['name'] = 'terminator_000'
-                    newfeature = self.add_feature(featureData,test)
+                    if use_name_for_feature:
+                        featureData['use_name'] = True
+                    else:
+                        featureData[0]['name'] = 'terminator_000'
+                    newfeature = self.add_feature(featureData, test=test)
 
                     def func0():
                         self.set_name(
@@ -1047,9 +1053,12 @@ class AnnotationsClient(Client):
                         # We're experiencing a (transient?) problem where gene_001 to
                         # gene_025 will be rejected. Thus, hardcode to a known working
                         # gene name and update later.
-                        featureData[0]['name'] = 'gene_000'
+                        if use_name_for_feature:
+                            featureData['use_name'] = True
+                        else:
+                            featureData[0]['name'] = 'gene_000'
                         # Create the new feature
-                        newfeature = self.add_feature(featureData,test)
+                        newfeature = self.add_feature(featureData, test=test)
                         # Extract the UUIDs that apollo returns to us
                         mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
