@@ -518,7 +518,7 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getSequence', data)
 
-    def add_feature(self, feature={}, organism=None, sequence=None):
+    def add_feature(self, feature={}, organism=None, sequence=None, test=False):
         """
         Add a feature
 
@@ -531,6 +531,9 @@ class AnnotationsClient(Client):
         :type sequence: str
         :param sequence: Sequence Name
 
+        :type test: bool
+        :param test: Print out result instead of sending
+
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
@@ -539,9 +542,13 @@ class AnnotationsClient(Client):
             'features': feature,
         }
         data = self._update_data(data, organism, sequence)
-        return self.post('addFeature', data)
+        if test:
+            print data
+        else:
+            return self.post('addFeature', data)
 
-    def add_transcript(self, transcript={}, suppress_history=False, suppress_events=False, organism=None, sequence=None):
+    def add_transcript(self, transcript={}, suppress_history=False, suppress_events=False, organism=None, sequence=None,
+                       test=False):
         """
         [UNTESTED] Add a transcript to a feature
 
@@ -560,6 +567,9 @@ class AnnotationsClient(Client):
         :type sequence: str
         :param sequence: Sequence Name
 
+        :type test: bool
+        :param test: Whether or not to submit or test
+
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
@@ -571,7 +581,10 @@ class AnnotationsClient(Client):
             ]
         }
         data = self._update_data(data, organism, sequence)
-        return self.post('addTranscript', data)
+        if test:
+            print data
+        else:
+            return self.post('addTranscript', data)
 
     # addExon, add/delete/updateComments, addTranscript skipped due to docs
 
@@ -920,7 +933,10 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getGff3', data, is_json=False)
 
-    def load_gff3(self, organism, gff3, source=None):
+    def load_gff3(self, organism, gff3, source=None
+                  , disable_cds_recalculation=False
+                  , use_name_for_feature=False
+                  , test=False):
         """
         Load a full GFF3 into annotation track
 
@@ -931,7 +947,16 @@ class AnnotationsClient(Client):
         :param gff3: GFF3 to load
 
         :type source: str
-        :param source: URL where the input dataset can be found.
+        :param source: URL where the input dataset can be found
+
+        :type test: bool
+        :param test: Test function, but do not execute it
+
+        :type disable_cds_recalculation: bool
+        :param disable_cds_recalculation: Disable CDS recalculation in Apollo
+
+        :type use_name_for_feature: bool
+        :param use_name_for_feature: Uses existing name for feature
 
         :rtype: str
         :return: Loading report
@@ -951,7 +976,8 @@ class AnnotationsClient(Client):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
-                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in featureData[0] and any(
+                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
@@ -964,33 +990,36 @@ class AnnotationsClient(Client):
                         if feature.qualifiers['Name'][0].startswith('tRNA-'):
                             tRNA_type = feature.qualifiers['Name'][0]
 
-                    newfeature = self.add_feature(featureData)
+                    if not test:
+                        newfeature = self.add_feature(featureData,test)
 
-                    def func0():
-                        self.set_name(
+                        def func0():
+                            self.set_name(
+                                newfeature['features'][0]['uniquename'],
+                                tRNA_type,
+                            )
+
+                        retry(func0)
+
+                        if source:
+                            gene_id = newfeature['features'][0]['parent_id']
+
+                            def setSource():
+                                self.add_attribute(gene_id, 'DatasetSource', source)
+
+                            retry(setSource)
+
+                        sys.stdout.write('\t'.join([
+                            feature.id,
                             newfeature['features'][0]['uniquename'],
-                            tRNA_type,
-                        )
-                    retry(func0)
-
-                    if source:
-                        gene_id = newfeature['features'][0]['parent_id']
-
-                        def setSource():
-                            self.add_attribute(gene_id, 'DatasetSource', source)
-                        retry(setSource)
-
-                    sys.stdout.write('\t'.join([
-                        feature.id,
-                        newfeature['features'][0]['uniquename'],
-                        'success',
-                    ]))
+                            'success',
+                        ]))
                 elif featureData[0]['type']['name'] == 'terminator':
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
                     featureData[0]['name'] = 'terminator_000'
-                    newfeature = self.add_feature(featureData)
+                    newfeature = self.add_feature(featureData,test)
 
                     def func0():
                         self.set_name(
@@ -1005,6 +1034,7 @@ class AnnotationsClient(Client):
 
                         def setSource():
                             self.add_attribute(gene_id, 'DatasetSource', source)
+
                         retry(setSource)
 
                     sys.stdout.write('\t'.join([
@@ -1019,7 +1049,7 @@ class AnnotationsClient(Client):
                         # gene name and update later.
                         featureData[0]['name'] = 'gene_000'
                         # Create the new feature
-                        newfeature = self.add_feature(featureData)
+                        newfeature = self.add_feature(featureData,test)
                         # Extract the UUIDs that apollo returns to us
                         mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
@@ -1063,11 +1093,17 @@ class AnnotationsClient(Client):
 
                         # Finally we set the name, this should be correct.
                         def func():
-                            self.set_name(mrna_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
+                            self.set_name(mrna_id, feature.qualifiers.get('product',
+                                                                          feature.qualifiers.get('Name', ["Unknown"]))[
+                                0])
+
                         retry(func)
 
                         def func():
-                            self.set_name(gene_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
+                            self.set_name(gene_id, feature.qualifiers.get('product',
+                                                                          feature.qualifiers.get('Name', ["Unknown"]))[
+                                0])
+
                         retry(func)
 
                         if source:
@@ -1075,6 +1111,7 @@ class AnnotationsClient(Client):
 
                             def setSource():
                                 self.add_attribute(gene_id, 'DatasetSource', source)
+
                             retry(setSource)
                         extra_attr = {}
                         for (key, values) in feature.qualifiers.items():
@@ -1084,6 +1121,7 @@ class AnnotationsClient(Client):
                             if key == 'Note':
                                 def func2():
                                     self.add_comments(gene_id, values)
+
                                 retry(func2)
                             else:
                                 extra_attr[key] = values
@@ -1091,6 +1129,7 @@ class AnnotationsClient(Client):
                         for key in extra_attr:
                             def func3():
                                 self.add_attribute(gene_id, key, extra_attr[key])
+
                             retry(func3)
 
                         sys.stdout.write('\t'.join([
