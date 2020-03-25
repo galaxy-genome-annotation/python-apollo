@@ -1054,6 +1054,9 @@ class AnnotationsClient(Client):
                             featureData['use_name'] = True
                         else:
                             featureData[0]['name'] = 'gene_000'
+
+                        if disable_cds_recalculation:
+                            featureData[0]['use_cds'] = True
                         # Create the new feature
                         newfeature = self.add_feature(featureData, test=test)
                         # Extract the UUIDs that apollo returns to us
