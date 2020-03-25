@@ -933,10 +933,8 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getGff3', data, is_json=False)
 
-    def load_gff3(self, organism, gff3, source=None
-                  , disable_cds_recalculation=False
-                  , use_name_for_feature=False
-                  , test=False):
+    def load_gff3(self, organism, gff3, source=None, disable_cds_recalculation=False, use_name_for_feature=False,
+                  test=False):
         """
         Load a full GFF3 into annotation track
 
@@ -977,8 +975,7 @@ class AnnotationsClient(Client):
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
 
-                if 'children' in featureData[0] and any(
-                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
