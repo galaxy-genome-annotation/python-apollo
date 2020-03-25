@@ -11,7 +11,7 @@ from arrow.decorators import custom_exception, str_output
 @click.option("--use_name_for_feature", help="Uses the original name for the feature", type=bool, default=False)
 @click.option(
     "--source",
-    help="URL where the input dataset can be found.",
+    help="URL where the input dataset will be found.",
     type=str
 )
 @pass_context

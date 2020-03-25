@@ -922,6 +922,7 @@ class AnnotationsClient(Client):
 
         :rtype: str
         :return: GFF3 text content
+
         """
         data = {
             'features': [
