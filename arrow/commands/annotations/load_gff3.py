@@ -6,9 +6,9 @@ from arrow.decorators import custom_exception, str_output
 @click.command('load_gff3')
 @click.argument("organism", type=str)
 @click.argument("gff3", type=str)
-@click.option("test", help="Just parse the GFF3 and print results, do not push data", type=bool)
-@click.option("disable_cds_recalculation", help="Disables recalculation of CDS", type=bool)
-@click.option("use_name_for_feature", help="Uses the original name for the feature", type=bool)
+@click.option("--test", help="Just parse the GFF3 and print results, do not push data", type=bool, default=False)
+@click.option("--disable_cds_recalculation", help="Disables recalculation of CDS", type=bool, default=False)
+@click.option("--use_name_for_feature", help="Uses the original name for the feature", type=bool, default=False)
 @click.option(
     "--source",
     help="URL where the input dataset can be found.",

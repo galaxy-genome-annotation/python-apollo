@@ -70,3 +70,6 @@ arrow annotations load_gff3 test_organism test-data/merlin.gff
 arrow annotations load_gff3 alt_org test-data/merlin.gff
 arrow annotations load_gff3 org3 test-data/merlin.gff
 arrow annotations load_gff3 org4 test-data/merlin.gff
+#arrow annotations load_gff3 org5 --test=True test-data/merlin.gff # should not exist
+#arrow annotations load_gff3 org6 --use_name_for_feature=True test-data/merlin.gff
+#arrow annotations load_gff3 org7 --disable_cds_recalculation=True test-data/merlin.gff
