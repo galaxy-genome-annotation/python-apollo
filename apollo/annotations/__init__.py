@@ -544,6 +544,7 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         if test:
             print(data)
+            return [{'features': data[0]}]
         else:
             return self.post('addFeature', data)
 
@@ -583,6 +584,7 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         if test:
             print(data)
+            return [{'features': data[0]}]
         else:
             return self.post('addTranscript', data)
 
@@ -976,7 +978,8 @@ class AnnotationsClient(Client):
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
 
-                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in featureData[0] and any(
+                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.

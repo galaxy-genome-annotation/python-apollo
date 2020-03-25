@@ -52,24 +52,33 @@ cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org1"
 cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org2"
 cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org3"
 cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org4"
+cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org5"
+cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org6"
+cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org7"
 cp -r test-data/dataset_2_files/data/ "${GALAXY_SHARED_DIR}/org_update_newseq"
 cp -r test-data/dataset_3_files/data/ "${GALAXY_SHARED_DIR}/org_update_changedseq"
 arrow organisms add_organism --genus Testus --species organus test_organism $GALAXY_SHARED_DIR/org1
 arrow organisms add_organism --genus Foo --species barus alt_org $GALAXY_SHARED_DIR/org2
 arrow organisms add_organism --genus Foo3 --species barus org3 $GALAXY_SHARED_DIR/org3
 arrow organisms add_organism --genus Foo4 --species barus org4 $GALAXY_SHARED_DIR/org4
+arrow organisms add_organism --genus Foo5 --species barus org5 $GALAXY_SHARED_DIR/org5
+arrow organisms add_organism --genus Foo6 --species barus org6 $GALAXY_SHARED_DIR/org6
+arrow organisms add_organism --genus Foo7 --species barus org7 $GALAXY_SHARED_DIR/org7
 
 # Give access to organisms for test user
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" test_organism
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" alt_org
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org3
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org4
+arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org5
+arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org6
+arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org7
 
 # Load some annotations
 arrow annotations load_gff3 test_organism test-data/merlin.gff
 arrow annotations load_gff3 alt_org test-data/merlin.gff
 arrow annotations load_gff3 org3 test-data/merlin.gff
 arrow annotations load_gff3 org4 test-data/merlin.gff
-#arrow annotations load_gff3 org5 --test=True test-data/merlin.gff # should not exist
-#arrow annotations load_gff3 org6 --use_name_for_feature=True test-data/merlin.gff
-#arrow annotations load_gff3 org7 --disable_cds_recalculation=True test-data/merlin.gff
+arrow annotations load_gff3 org5 --test test-data/merlin.gff
+arrow annotations load_gff3 org6 --use_name_for_feature test-data/merlin.gff
+arrow annotations load_gff3 org7 --disable_cds_recalculation test-data/merlin.gff
