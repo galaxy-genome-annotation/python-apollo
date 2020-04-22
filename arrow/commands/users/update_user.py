@@ -7,7 +7,11 @@ from arrow.decorators import custom_exception, dict_output
 @click.argument("email", type=str)
 @click.argument("first_name", type=str)
 @click.argument("last_name", type=str)
-@click.argument("password", type=str)
+@click.option(
+    "--password",
+    help="User's password (omit to keep untouched)",
+    type=str
+)
 @click.option(
     "--metadata",
     help="User metadata",
@@ -21,11 +25,11 @@ from arrow.decorators import custom_exception, dict_output
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, email, first_name, last_name, password, metadata={}, new_email=""):
+def cli(ctx, email, first_name, last_name, password="", metadata={}, new_email=""):
     """Update an existing user
 
 Output:
 
     a dictionary containing user information
     """
-    return ctx.gi.users.update_user(email, first_name, last_name, password, metadata=metadata, new_email=new_email)
+    return ctx.gi.users.update_user(email, first_name, last_name, password=password, metadata=metadata, new_email=new_email)
