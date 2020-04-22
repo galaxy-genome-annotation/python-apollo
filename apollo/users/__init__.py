@@ -219,7 +219,7 @@ class UsersClient(Client):
         """
         return self.post('deleteUser', {'userToDelete': user})
 
-    def update_user(self, email, first_name, last_name, password, metadata={}):
+    def update_user(self, email, first_name, last_name, password=None, metadata={}, new_email=None):
         """
         Update an existing user
 
@@ -233,10 +233,13 @@ class UsersClient(Client):
         :param last_name: User's last name
 
         :type password: str
-        :param password: User's password
+        :param password: User's password (omit to keep untouched)
 
         :type metadata: dict
         :param metadata: User metadata
+
+        :type new_email: str
+        :param new_email: User's new email (if you want to change it)
 
         :rtype: dict
         :return: a dictionary containing user information
@@ -245,9 +248,22 @@ class UsersClient(Client):
             'email': email,
             'firstName': first_name,
             'lastName': last_name,
-            'newPassword': password,
             'metadata': metadata,
         }
+
+        if password:
+            data['newPassword'] = password
+
+        # If updating the email, we need to give apollo a userId
+        if new_email:
+            user = self.show_user(email)
+            if not isinstance(user, list):
+                user = [user]
+            user = self._assert_user(user)
+
+            data['email'] = new_email
+            data['userId'] = user['userId']
+
         response = self.post('updateUser', data)
         return self._handle_empty(email, response)
 

@@ -286,6 +286,7 @@ Update an existing user
 **Options**::
 
 
-      --metadata TEXT  User metadata
-      -h, --help       Show this message and exit.
+      --metadata TEXT   User metadata
+      --new_email TEXT  User's new email (if you want to change it)
+      -h, --help        Show this message and exit.
     
