@@ -81,6 +81,9 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2
+    - Improve user update method
+    - Add tests for user api
 - 4.1
     - Fix loading attributes from gff3
     - Better handling of genome sequence update, with or without the no_reload_sequences option

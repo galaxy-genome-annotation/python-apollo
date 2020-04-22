@@ -271,7 +271,7 @@ Update the permissions of a user on a specified organism
 
 **Usage**::
 
-    arrow users update_user [OPTIONS] EMAIL FIRST_NAME LAST_NAME PASSWORD
+    arrow users update_user [OPTIONS] EMAIL FIRST_NAME LAST_NAME
 
 **Help**
 
@@ -286,6 +286,8 @@ Update an existing user
 **Options**::
 
 
-      --metadata TEXT  User metadata
-      -h, --help       Show this message and exit.
+      --password TEXT   User's password (omit to keep untouched)
+      --metadata TEXT   User metadata
+      --new_email TEXT  User's new email (if you want to change it)
+      -h, --help        Show this message and exit.
     
