@@ -81,6 +81,9 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.1
+    - Fix getting groups by name
+    - Add tests for group api
 - 4.2
     - Improve user update method
     - Add tests for user api
