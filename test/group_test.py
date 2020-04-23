@@ -205,7 +205,9 @@ class GroupTest(ApolloTestCase):
 
         wa.groups.create_group("temp_group")
         self.waitGroupCreated('temp_group')
-        wa.users.create_user("test_temp@bx.psu.edu", 'Temp', 'orary', 'coolpassword', role="user")
+
+        user_info = wa.users.create_user("test_temp@bx.psu.edu", 'Temp', 'orary', 'coolpassword', role="user")
+        self.waitUserCreated(user_info['userId'])
 
     def tearDown(self):
         temp_group_info = wa.groups.get_groups('temp_group')
