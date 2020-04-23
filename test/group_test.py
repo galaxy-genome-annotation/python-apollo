@@ -123,6 +123,8 @@ class GroupTest(ApolloTestCase):
 
         wa.groups.update_group_admin(res[0]['id'], ['test_temp@bx.psu.edu'])
 
+        time.sleep(1)
+
         res = wa.groups.get_groups('trash_group')
 
         assert len(res) == 1
@@ -181,6 +183,8 @@ class GroupTest(ApolloTestCase):
 
         assert res['class'] == 'org.bbop.apollo.GroupOrganismPermission'
         assert res['permissions'] == ['ADMINISTRATE', 'READ']
+
+        time.sleep(1)
 
         res = wa.groups.get_organism_permissions('trash_group')
 
