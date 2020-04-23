@@ -68,11 +68,16 @@ class GroupsClient(Client):
         :return: list of a dictionaries containing group information
         """
         payload = {}
-        if name:
-            payload['name'] = name
 
         res = self.post('loadGroups', payload)
-        return [_fix_group(group) for group in res]
+
+        groups = []
+        if name:
+            groups = [_fix_group(group) for group in res if group['name'] == name]
+        else:
+            groups = [_fix_group(group) for group in res]
+
+        return groups
 
     def update_group(self, group_id, new_name):
         """

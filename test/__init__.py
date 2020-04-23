@@ -66,3 +66,32 @@ class ApolloTestCase(unittest.TestCase):
             tries += 1
 
         return user_info
+
+    def waitGroupDeleted(self, group_id):
+        """
+        Wait for an group to be really deleted from Apollo
+        """
+
+        group_info = wa.groups.get_groups(group_id)
+        tries = 1
+        while len(group_info) and tries < 10:
+            time.sleep(1)
+            group_info = wa.groups.get_groups(group_id)
+            tries += 1
+
+        return group_info
+
+    def waitGroupCreated(self, group_id):
+        """
+        Wait for an group to be really created from Apollo
+        """
+
+        time.sleep(1)
+        group_info = wa.groups.get_groups(group_id)
+        tries = 1
+        while len(group_info) < 1 and tries < 10:
+            time.sleep(1)
+            group_info = wa.groups.get_groups(group_id)
+            tries += 1
+
+        return group_info
