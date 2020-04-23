@@ -86,6 +86,7 @@ class ApolloTestCase(unittest.TestCase):
         Wait for an group to be really created from Apollo
         """
 
+        time.sleep(1)
         group_info = wa.groups.get_groups(group_id)
         tries = 1
         while len(group_info) < 1 and tries < 10:
