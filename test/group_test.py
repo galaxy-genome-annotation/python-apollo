@@ -12,8 +12,6 @@ class GroupTest(ApolloTestCase):
 
         first_group = groups[0]
 
-        {'public': False, 'numberOfUsers': 0, 'name': 'temp_group', 'admin': [{'firstName': 'Ad', 'lastName': 'min', 'id': 20, 'email': 'admin@local.host'}], 'id': 683, 'organismPermissions': [], 'users': []}
-
         assert 'public' in first_group
         assert 'numberOfUsers' in first_group
         assert 'name' in first_group
@@ -67,6 +65,7 @@ class GroupTest(ApolloTestCase):
     def test_create_group(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
 
@@ -78,12 +77,14 @@ class GroupTest(ApolloTestCase):
     def test_delete_group(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
 
         assert len(res) == 1
 
         wa.groups.delete_group('trash_group')
+        self.waitGroupDeleted('trash_group')
 
         groups = wa.groups.get_groups()
 
@@ -93,6 +94,7 @@ class GroupTest(ApolloTestCase):
     def test_update_group(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
 
@@ -111,24 +113,23 @@ class GroupTest(ApolloTestCase):
     def test_update_group_admin(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
 
         assert len(res) == 1
 
-        wa.groups.update_group_admin(res[0]['id'], 'test_temp@bx.psu.edu')
+        wa.groups.update_group_admin(res[0]['id'], ['test_temp@bx.psu.edu'])
 
         res = wa.groups.get_groups('trash_group')
 
-        assert len(res) == 0
-
-        res = wa.groups.get_groups('trash_group_updated')
-
         assert len(res) == 1
+        assert res[0]['admin'][0]['email'] == 'test_temp@bx.psu.edu'
 
     def test_update_membership_username(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
 
@@ -145,6 +146,7 @@ class GroupTest(ApolloTestCase):
     def test_update_membership_dict(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
         assert len(res) == 1
@@ -160,6 +162,7 @@ class GroupTest(ApolloTestCase):
     def test_update_permissions(self):
 
         res = wa.groups.create_group("trash_group")
+        self.waitGroupCreated('trash_group')
 
         res = wa.groups.get_groups('trash_group')
         assert len(res) == 1
@@ -183,14 +186,17 @@ class GroupTest(ApolloTestCase):
         temp_group_info = wa.groups.get_groups('temp_group')
         if temp_group_info and 'name' in temp_group_info[0]:
             wa.groups.delete_group('temp_group')
+            self.waitGroupDeleted('temp_group')
 
         temp_group_info = wa.groups.get_groups('trash_group')
         if temp_group_info and 'name' in temp_group_info[0]:
             wa.groups.delete_group('trash_group')
+            self.waitGroupDeleted('trash_group')
 
         temp_group_info = wa.groups.get_groups('trash_group_updated')
         if temp_group_info and 'name' in temp_group_info[0]:
-            wa.groups.delete_group('trash_group')
+            wa.groups.delete_group('trash_group_updated')
+            self.waitGroupDeleted('trash_group_updated')
 
         temp_user_info = wa.users.show_user('test_temp@bx.psu.edu')
         if 'username' in temp_user_info:
@@ -198,20 +204,24 @@ class GroupTest(ApolloTestCase):
             self.waitUserDeleted(temp_user_info['userId'])
 
         wa.groups.create_group("temp_group")
+        self.waitGroupCreated('temp_group')
         wa.users.create_user("test_temp@bx.psu.edu", 'Temp', 'orary', 'coolpassword', role="user")
 
     def tearDown(self):
         temp_group_info = wa.groups.get_groups('temp_group')
         if temp_group_info and 'name' in temp_group_info[0]:
             wa.groups.delete_group('temp_group')
+            self.waitGroupDeleted('temp_group')
 
         temp_group_info = wa.groups.get_groups('trash_group')
         if temp_group_info and 'name' in temp_group_info[0]:
             wa.groups.delete_group('trash_group')
+            self.waitGroupDeleted('trash_group')
 
         temp_group_info = wa.groups.get_groups('trash_group_updated')
         if temp_group_info and 'name' in temp_group_info[0]:
-            wa.groups.delete_group('trash_group')
+            wa.groups.delete_group('trash_group_updated')
+            self.waitGroupDeleted('trash_group_updated')
 
         temp_user_info = wa.users.show_user('test_temp@bx.psu.edu')
         if 'username' in temp_user_info:
