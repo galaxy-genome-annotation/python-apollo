@@ -1,3 +1,5 @@
+import time
+
 from . import ApolloTestCase, wa
 
 
@@ -137,6 +139,8 @@ class GroupTest(ApolloTestCase):
 
         wa.groups.update_membership(res[0]['id'], ['test_temp@bx.psu.edu'])
 
+        time.sleep(1)
+
         res = wa.groups.get_groups('trash_group')
 
         assert len(res) == 1
@@ -152,6 +156,8 @@ class GroupTest(ApolloTestCase):
         assert len(res) == 1
 
         wa.groups.update_membership(memberships=[{'groupId': res[0]['id'], 'users': ['test_temp@bx.psu.edu']}])
+
+        time.sleep(1)
 
         res = wa.groups.get_groups('trash_group')
 
