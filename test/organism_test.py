@@ -29,7 +29,7 @@ class OrganismTest(ApolloTestCase):
         assert 'species' in first_org
         assert 'metadata' in first_org
 
-        assert 'apollo_shared_dir/org' in first_org['directory']
+        assert '/data/org' in first_org['directory']
         assert first_org['commonName'] in ['test_organism', 'alt_org', 'org3', 'org4']
 
     def test_get_organism_creator(self):
