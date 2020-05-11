@@ -948,13 +948,45 @@ class AnnotationsClient(Client):
             self.set_sequence(organism, rec.id)
             for feature in rec.features:
                 # We can only handle genes right now
-                if feature.type not in (
-                'gene', 'terminator', 'repeat_region', 'pseudogene', 'transposable_element', 'pseudogic region',
-                'processed_pseudogene'):
+                if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
                 # TODO: do we handle all top-types here?
+                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                    # We're experiencing a (transient?) problem where gene_001 to
+                    # gene_025 will be rejected. Thus, hardcode to a known working
+                    # gene name and update later.
+
+                    featureData[0]['name'] = 'tRNA_000'
+                    tRNA_sf = [child for child in feature.sub_features if child.type == 'tRNA'][0]
+                    tRNA_type = 'tRNA-' + tRNA_sf.qualifiers.get('Codon', ["Unk"])[0]
+
+                    if 'Name' in feature.qualifiers:
+                        if feature.qualifiers['Name'][0].startswith('tRNA-'):
+                            tRNA_type = feature.qualifiers['Name'][0]
+
+                    newfeature = self.add_feature(featureData)
+
+                    def func0():
+                        self.set_name(
+                            newfeature['features'][0]['uniquename'],
+                            tRNA_type,
+                        )
+                    retry(func0)
+
+                    if source:
+                        gene_id = newfeature['features'][0]['parent_id']
+
+                        def setSource():
+                            self.add_attribute(gene_id, 'DatasetSource', source)
+                        retry(setSource)
+
+                    sys.stdout.write('\t'.join([
+                        feature.id,
+                        newfeature['features'][0]['uniquename'],
+                        'success',
+                    ]))
                 if featureData[0]['type']['name'] == 'terminator':
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
@@ -1129,21 +1161,6 @@ class AnnotationsClient(Client):
                     featureData[0]['name'] = 'terminator_000'
                     newfeature = self.add_feature(featureData)
 
-                    # def func0():
-                    #     self.set_name(
-                    #         newfeature['features'][0]['uniquename'],
-                    #         'terminator'
-                    #     )
-                    #
-                    # retry(func0)
-
-                    if source:
-                        gene_id = newfeature['features'][0]['parent_id']
-                        # def setSource():
-                        #     self.add_attribute(gene_id, 'DatasetSource', source)
-                        #
-                        # retry(setSource)
-
                     sys.stdout.write('\t'.join([
                         feature.id,
                         newfeature['features'][0]['uniquename'],
@@ -1158,7 +1175,7 @@ class AnnotationsClient(Client):
                         # Create the new feature
                         newfeature = self.add_feature(featureData)
                         # Extract the UUIDs that apollo returns to us
-                        mrna_id = newfeature['features'][0]['uniquename']
+                        # mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
                         # Sleep to give it time to actually persist the feature. Apollo
                         # is terrible about writing + immediately reading back written
