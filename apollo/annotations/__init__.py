@@ -1122,34 +1122,6 @@ class AnnotationsClient(Client):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
-                # if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
-                #     # We're experiencing a (transient?) problem where gene_001 to
-                #     # gene_025 will be rejected. Thus, hardcode to a known working
-                #     # gene name and update later.
-                #
-                #     featureData[0]['name'] = 'tRNA_000'
-                #     tRNA_sf = [child for child in feature.sub_features if child.type == 'tRNA'][0]
-                #     tRNA_type = 'tRNA-' + tRNA_sf.qualifiers.get('Codon', ["Unk"])[0]
-                #
-                #     if 'Name' in feature.qualifiers:
-                #         if feature.qualifiers['Name'][0].startswith('tRNA-'):
-                #             tRNA_type = feature.qualifiers['Name'][0]
-                #
-                #     newfeature = self.add_feature(featureData)
-                #
-                #     if source:
-                #         gene_id = newfeature['features'][0]['parent_id']
-                #
-                #         def setSource():
-                #             self.add_attribute(gene_id, 'DatasetSource', source)
-                #
-                #         retry(setSource)
-                #
-                #     sys.stdout.write('\t'.join([
-                #         feature.id,
-                #         newfeature['features'][0]['uniquename'],
-                #         'success',
-                #     ]))
                 if featureData[0]['type']['name'] == 'terminator':
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
@@ -1178,7 +1150,6 @@ class AnnotationsClient(Client):
                         'success',
                     ]))
                 else:
-                    print("feature type:" + str(featureData[0]['type']['name']) + "\n")
                     try:
                         # We're experiencing a (transient?) problem where gene_001 to
                         # gene_025 will be rejected. Thus, hardcode to a known working
@@ -1221,20 +1192,6 @@ class AnnotationsClient(Client):
                                                 min_cds = min(min_cds, subsubfeat['location']['fmin'])
                                                 max_cds = max(max_cds, subsubfeat['location']['fmax'])
 
-                        # # Correct the translation start, but with strand specific log
-                        # if featureData[0]['location']['strand'] == 1:
-                        #     self.set_translation_start(mrna_id, min(min_cds, max_cds))
-                        # else:
-                        #     self.set_translation_start(mrna_id, max(min_cds, max_cds) - 1)
-                        # Finally we set the name, this should be correct.
-                        # def func():
-                        #     self.set_name(mrna_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
-                        # retry(func)
-                        #
-                        # def func():
-                        #     self.set_name(gene_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
-                        # retry(func)
-
                         if source:
                             gene_id = newfeature['features'][0]['parent_id']
 
@@ -1245,20 +1202,7 @@ class AnnotationsClient(Client):
                         for (key, values) in feature.qualifiers.items():
                             if key in bad_quals:
                                 continue
-
-                            # if key == 'Note':
-                            #     def func2():
-                            #         self.add_comments(gene_id, values)
-                            #
-                            #     retry(func2)
-                            # else:
                             extra_attr[key] = values
-
-                        # for key in extra_attr:
-                        #     def func3():
-                        #         self.add_attribute(gene_id, key, extra_attr[key])
-                        #
-                        #     retry(func3)
 
                         sys.stdout.write('\t'.join([
                             feature.id,
