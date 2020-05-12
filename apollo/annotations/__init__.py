@@ -1123,7 +1123,7 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def load_bulk_gff3(self, organism, gff3, source=None):
+    def load_generic_gff3(self, organism, gff3, source=None):
         """
         Load a full GFF3 into annotation track
 

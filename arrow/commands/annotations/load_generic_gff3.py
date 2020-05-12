@@ -3,7 +3,7 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, str_output
 
 
-@click.command('load_bulk_gff3')
+@click.command('load_generic_gff3')
 @click.argument("organism", type=str)
 @click.argument("gff3", type=str)
 @click.option(
@@ -21,4 +21,4 @@ Output:
 
     Loading report
     """
-    return ctx.gi.annotations.load_bulk_gff3(organism, gff3, source=source)
+    return ctx.gi.annotations.load_generic_gff3(organism, gff3, source=source)
