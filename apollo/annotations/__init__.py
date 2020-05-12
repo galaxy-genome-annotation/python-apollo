@@ -1210,17 +1210,26 @@ class AnnotationsClient(Client):
             self.set_sequence(organism, rec.id)
             for feature in rec.features:
                 # We can only handle genes right now
+                if verbose:
+                    print("input feature: " + str(feature))
+
                 if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
                 feature_data = features_to_feature_schema([feature], use_name, disable_cds_recalculation)
+
                 if source is not None:
                     add_property_to_feature(feature_data[0], "DatasetSource", source)
 
                 try:
                     # Create the new feature
+                    if verbose:
+                        print("adding feature to write list: " + str(feature_data[0]))
+
                     new_features_list.append(feature_data[0])
                     if len(new_features_list) >= batch_size:
+                        if verbose:
+                            print("writing out the features: " + str(new_features_list))
                         self.write_features(new_features_list, test)
                 except Exception as e:
                     msg = str(e)
