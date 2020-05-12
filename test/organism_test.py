@@ -118,7 +118,7 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_features(self):
 
-        wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
+        wa.annotations.load_generic_gff3('temp_org', 'test-data/merlin.gff')
 
         org_info = wa.organisms.show_organism('temp_org')
 
@@ -136,7 +136,7 @@ class OrganismTest(ApolloTestCase):
 
     def test_delete_features_cn(self):
 
-        wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
+        wa.annotations.load_generic_gff3('temp_org', 'test-data/merlin.gff')
 
         org_info = wa.organisms.show_organism('temp_org')
 
