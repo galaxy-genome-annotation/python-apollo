@@ -1277,8 +1277,11 @@ class AnnotationsClient(Client):
                 if verbose:
                     print("input feature: " + str(feature))
 
-                if feature.type not in ('gene', 'terminator'):
+                if feature.type not in (gene_types + coding_transcript_types + pseudogenes_types
+                                        + noncoding_transcript_types + single_level_feature_types):
+                    print("Ignoring unknown feature type '" + str(feature.type) + "' for " + str(feature))
                     continue
+
                 # Convert the feature into a presentation that Apollo will accept
                 feature_data = features_to_feature_schema([feature], use_name, disable_cds_recalculation)
 
@@ -1290,8 +1293,11 @@ class AnnotationsClient(Client):
                     if verbose:
                         print("adding feature to write list: " + str(feature_data[0]))
 
-                    new_features_list.append(feature_data[0])
-                    self.check_write(new_features_list, new_transcripts_list)
+                    if feature.type in (gene_types + coding_transcript_types):
+                        new_transcripts_list.append(feature_data[0])
+                    else:
+                        new_features_list.append(feature_data[0])
+                    self.check_write(batch_size, verbose, test, new_features_list, new_transcripts_list)
                 except Exception as e:
                     msg = str(e)
                     if '\n' in msg:
