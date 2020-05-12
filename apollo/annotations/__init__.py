@@ -1168,55 +1168,10 @@ class AnnotationsClient(Client):
                     ]))
                 else:
                     try:
-                        # We're experiencing a (transient?) problem where gene_001 to
-                        # gene_025 will be rejected. Thus, hardcode to a known working
-                        # gene name and update later.
-                        # featureData[0]['name'] = 'gene_000'
                         # Create the new feature
                         newfeature = self.add_feature(featureData)
                         # Extract the UUIDs that apollo returns to us
-                        # mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
-                        # Sleep to give it time to actually persist the feature. Apollo
-                        # is terrible about writing + immediately reading back written
-                        # data.
-                        # time.sleep(1)
-
-                        # Extract CDS feature from the feature data, this will be used
-                        # to set the CDS location correctly (apollo currently screwing
-                        # this up (2.0.6))
-                        # min_cds = None
-                        # max_cds = None
-                        #
-                        # for feat in featureData[0]['children']:
-                        #     # mRNA level
-                        #     for subfeat in feat['children']:
-                        #         # Can be exon or CDS
-                        #         if subfeat['type']['name'] == 'CDS':
-                        #             if min_cds is None:
-                        #                 min_cds = subfeat['location']['fmin']
-                        #                 max_cds = subfeat['location']['fmax']
-                        #             else:
-                        #                 min_cds = min(min_cds, subfeat['location']['fmin'])
-                        #                 max_cds = max(max_cds, subfeat['location']['fmax'])
-                        #         if 'children' in subfeat:
-                        #             for subsubfeat in subfeat['children']:
-                        #                 if subsubfeat['type']['name'] == 'CDS':
-                        #                     if min_cds is None:
-                        #                         min_cds = subsubfeat['location']['fmin']
-                        #                         max_cds = subsubfeat['location']['fmax']
-                        #                     else:
-                        #                         min_cds = min(min_cds, subsubfeat['location']['fmin'])
-                        #                         max_cds = max(max_cds, subsubfeat['location']['fmax'])
-                        #
-                        # if source:
-                        #     gene_id = newfeature['features'][0]['parent_id']
-                        # extra_attr = {}
-                        # for (key, values) in feature.qualifiers.items():
-                        #     if key in bad_quals:
-                        #         continue
-                        #     extra_attr[key] = values
-
                         sys.stdout.write('\t'.join([
                             feature.id,
                             gene_id,
