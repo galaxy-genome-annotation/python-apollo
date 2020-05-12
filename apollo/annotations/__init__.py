@@ -9,6 +9,14 @@ from BCBio import GFF
 from apollo.client import Client
 from apollo.util import features_to_feature_schema, retry, add_property_to_feature
 
+gene_types = ["gene"]
+coding_transcript_types = ["mRNA"]
+pseudogenes_types = ["pseudogene", "pseudogenic_region", "processed_pseudogene"]
+noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'mRNA', 'miRNA', 'guide_RNA',
+                              'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
+                              'tmRNA', 'enzymatic_RNA']
+single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence","transposable_element"]
+
 
 class AnnotationsClient(Client):
     CLIENT_BASE = '/annotationEditor/'
@@ -1157,7 +1165,8 @@ class AnnotationsClient(Client):
                 print("Features to write:")
                 print(new_features_list)
             if test is True:
-                sys.stdout.write("test success" + " " + str(len(new_features_list))+" features would have been loaded\n")
+                sys.stdout.write(
+                    "test success" + " " + str(len(new_features_list)) + " features would have been loaded\n")
             else:
                 returned_features = self.add_features(new_features_list)
                 sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " features returned\n")
