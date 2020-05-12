@@ -549,7 +549,7 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('addFeature', data)
 
-    def add_feature(self, feature: object = {}, organism=None, sequence=None):
+    def add_feature(self, feature: {}, organism=None, sequence=None):
         """
         :type organism: str
         :param organism: Organism Common Name
