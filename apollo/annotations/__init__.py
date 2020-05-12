@@ -568,8 +568,8 @@ class AnnotationsClient(Client):
         """
         [UNTESTED] Add a transcript to a feature
 
-        :type transcript: list
-        :param transcript: Transcript data
+        :type transcripts: list
+        :param transcripts: Transcript data
 
         :type suppress_history: bool
         :param suppress_history: Suppress the history of this operation

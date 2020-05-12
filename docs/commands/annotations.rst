@@ -106,6 +106,32 @@ Add a feature
       --sequence TEXT  Sequence Name
       -h, --help       Show this message and exit.
     
+``add_features`` command
+------------------------
+
+**Usage**::
+
+    arrow annotations add_features [OPTIONS]
+
+**Help**
+
+Add multiple features
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+
+**Options**::
+
+
+      --features TEXT   Feature information
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+
+
 
 ``add_transcript`` command
 --------------------------
@@ -134,6 +160,33 @@ Add a feature
       --sequence TEXT     Sequence Name
       -h, --help          Show this message and exit.
     
+``add_transcripts`` command
+--------------------------
+
+**Usage**::
+
+    arrow annotations add_transcripts [OPTIONS]
+
+**Help**
+
+[UNTESTED] Add multiple transcripts
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+
+**Options**::
+
+
+      --transcripts TEXT   Transcript array data
+      --suppress_history  Suppress the history of this operation
+      --suppress_events   Suppress instant update of the user interface
+      --organism TEXT     Organism Common Name
+      --sequence TEXT     Sequence Name
+      -h, --help          Show this message and exit.
+
 
 ``delete_attribute`` command
 ----------------------------

@@ -81,6 +81,10 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.2
+    - Drastically sped up load_gff3
+    - `load_gff3` now uses the Apollo `add_transcript` method if it is a gene or mRNA type
+    - Added support for all of the current Apollo coding and non-coding types
 - 4.2.1
     - Fix getting groups by name
     - Add tests for group api

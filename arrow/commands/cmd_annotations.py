@@ -3,7 +3,9 @@ from arrow.commands.annotations.add_attribute import cli as add_attribute
 from arrow.commands.annotations.add_comment import cli as add_comment
 from arrow.commands.annotations.add_dbxref import cli as add_dbxref
 from arrow.commands.annotations.add_feature import cli as add_feature
+from arrow.commands.annotations.add_features import cli as add_features
 from arrow.commands.annotations.add_transcript import cli as add_transcript
+from arrow.commands.annotations.add_transcripts import cli as add_transcripts
 from arrow.commands.annotations.delete_attribute import cli as delete_attribute
 from arrow.commands.annotations.delete_dbxref import cli as delete_dbxref
 from arrow.commands.annotations.delete_feature import cli as delete_feature
@@ -42,7 +44,9 @@ cli.add_command(add_attribute)
 cli.add_command(add_comment)
 cli.add_command(add_dbxref)
 cli.add_command(add_feature)
+cli.add_command(add_features)
 cli.add_command(add_transcript)
+cli.add_command(add_transcripts)
 cli.add_command(delete_attribute)
 cli.add_command(delete_dbxref)
 cli.add_command(delete_feature)
