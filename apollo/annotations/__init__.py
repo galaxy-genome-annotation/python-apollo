@@ -976,8 +976,7 @@ class AnnotationsClient(Client):
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
                 # TODO: do we handle all top-types here?
-                if 'children' in featureData[0] and any(
-                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
@@ -1170,7 +1169,7 @@ class AnnotationsClient(Client):
         sys.stdout.write('\t'.join(['Feature ID', 'Apollo ID', 'Success', 'Messages']))
         sys.stdout.write('\n')
 
-        bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
+        # bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
         new_features_list = []
 
         for rec in GFF.parse(gff3):
