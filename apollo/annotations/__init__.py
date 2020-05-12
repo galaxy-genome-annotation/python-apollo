@@ -518,6 +518,29 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getSequence', data)
 
+    def add_features(self, features=None, organism=None, sequence=None):
+        """
+        Add a feature
+
+        :type features: list
+        :param features:
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
+        """
+
+        data = {
+            'features': features,
+        }
+        data = self._update_data(data, organism, sequence)
+        return self.post('addFeature', data)
+
     def add_feature(self, feature={}, organism=None, sequence=None):
         """
         Add a feature
@@ -953,7 +976,8 @@ class AnnotationsClient(Client):
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
                 # TODO: do we handle all top-types here?
-                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in featureData[0] and any(
+                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
@@ -973,6 +997,7 @@ class AnnotationsClient(Client):
                             newfeature['features'][0]['uniquename'],
                             tRNA_type,
                         )
+
                     retry(func0)
 
                     if source:
@@ -980,6 +1005,7 @@ class AnnotationsClient(Client):
 
                         def setSource():
                             self.add_attribute(gene_id, 'DatasetSource', source)
+
                         retry(setSource)
 
                     sys.stdout.write('\t'.join([
@@ -1123,7 +1149,7 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def load_generic_gff3(self, organism, gff3, source=None):
+    def load_generic_gff3(self, organism, gff3, source=None, batch_size=100):
         """
         Load a full GFF3 into annotation track
 
@@ -1145,6 +1171,7 @@ class AnnotationsClient(Client):
         sys.stdout.write('\n')
 
         bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
+        new_features_list = []
 
         for rec in GFF.parse(gff3):
             self.set_sequence(organism, rec.id)
@@ -1169,14 +1196,19 @@ class AnnotationsClient(Client):
                 else:
                     try:
                         # Create the new feature
-                        newfeature = self.add_feature(featureData)
+                        new_features_list.append(featureData[0])
+                        if len(new_features_list) >= batch_size:
+                            returned_features = self.add_features(new_features_list)
+                            sys.stdout.write("success" + " " + str(len(returned_features)))
+                            # gene_id = newfeature['features'][0]['parent_id']
+                            # sys.stdout.write('\t'.join([
+                            #     returned_features.id,
+                            #     gene_id,
+                            #     'success',
+                            # ]))
+                            new_features_list.clear()
                         # Extract the UUIDs that apollo returns to us
-                        gene_id = newfeature['features'][0]['parent_id']
-                        sys.stdout.write('\t'.join([
-                            feature.id,
-                            gene_id,
-                            'success',
-                        ]))
+                        # gene_id = newfeature['features'][0]['parent_id']
                     except Exception as e:
                         msg = str(e)
                         if '\n' in msg:
@@ -1189,6 +1221,17 @@ class AnnotationsClient(Client):
                         ]))
                 sys.stdout.write('\n')
                 sys.stdout.flush()
+
+        if len(new_features_list) > 0:
+            returned_features = self.add_features(new_features_list)
+            sys.stdout.write("success" + " " + str(len(returned_features)))
+            # gene_id = newfeature['features'][0]['parent_id']
+            # sys.stdout.write('\t'.join([
+            #     returned_features.id,
+            #     gene_id,
+            #     'success',
+            # ]))
+            new_features_list.clear()
 
     def load_bulk_gff3(self, organism, gff3, source=None):
         """
