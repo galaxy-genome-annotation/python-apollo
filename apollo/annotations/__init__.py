@@ -1164,11 +1164,21 @@ class AnnotationsClient(Client):
             print("empty list, no more features to write")
 
     def load_gff3(self, organism, gff3, source=None, batch_size=100,
-                  test=False):
-
-        print("loading gff3 with test " + str(test))
+                  test=False,
+                  use_name=False,
+                  disable_cds_recalculation=False,
+                  verbose=False,
+                  ):
         """
         Load a full GFF3 into annotation track
+        :type use_name: bool
+        :param use_name:
+
+        :type disable_cds_recalculation: bool
+        :param disable_cds_recalculation:
+
+        :type verbose: bool
+        :param verbose:
 
         :type test: bool
         :param test:
@@ -1203,7 +1213,7 @@ class AnnotationsClient(Client):
                 if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
-                feature_data = features_to_feature_schema([feature])
+                feature_data = features_to_feature_schema([feature], use_name, disable_cds_recalculation)
                 if source is not None:
                     add_property_to_feature(feature_data[0], "DatasetSource", source)
 

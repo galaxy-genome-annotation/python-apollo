@@ -87,7 +87,7 @@ def _tnType(feature):
         return 'exon'
 
 
-def _yieldFeatData(features):
+def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
     for f in features:
         current = {
             'location': {
@@ -102,8 +102,15 @@ def _yieldFeatData(features):
                 }
             },
         }
+        if disable_cds_recalculation is True:
+            current['use_cds'] = 'true'
+
         if f.type in ('gene', 'mRNA'):
             current['name'] = f.qualifiers.get('Name', [f.id])[0]
+
+        if use_name is True:
+            current['use_name'] = True
+
         if hasattr(f, 'sub_features') and len(f.sub_features) > 0:
             current['children'] = [x for x in _yieldFeatData(f.sub_features)]
 
@@ -126,15 +133,17 @@ def add_property_to_feature(feature, property_key, property_value):
     return feature
 
 
-def features_to_feature_schema(features):
+def features_to_feature_schema(features, use_name=False, disable_cds_recalculation=False):
     """
 
+    :param disable_cds_recalculation:
+    :param use_name:
     :param features:
     :return:
     """
     compiled = []
     for feature in features:
-        for x in _yieldFeatData([feature]):
+        for x in _yieldFeatData([feature], use_name, disable_cds_recalculation):
             compiled.append(x)
     return compiled
 
