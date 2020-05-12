@@ -1149,15 +1149,21 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def write_features(self, new_features_list, test=False):
+    def write_features(self, new_features_list, test=False, verbose=False):
         if len(new_features_list) > 0:
             print("Writing " + str(len(new_features_list)) + " features")
             returned_features = []
-            if test is False:
-                returned_features = self.add_features(new_features_list)
-                sys.stdout.write("success" + " " + str(len(returned_features)))
+            if verbose:
+                print("Features to write:")
+                print(new_features_list)
+            if test is True:
+                sys.stdout.write("test success" + " " + str(len(new_features_list))+" features would have been loaded\n")
             else:
-                sys.stdout.write("test success" + " " + str(len(new_features_list)))
+                returned_features = self.add_features(new_features_list)
+                sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " features returned\n")
+                if verbose:
+                    print("Features returned")
+                    print(returned_features)
             del new_features_list[:]
             return returned_features
         else:
@@ -1199,9 +1205,10 @@ class AnnotationsClient(Client):
         :return: Loading report
         """
 
-        sys.stdout.write('# ')
-        sys.stdout.write('\t'.join(['Feature ID', 'Apollo ID', 'Success', 'Messages']))
-        sys.stdout.write('\n')
+        if verbose:
+            sys.stdout.write('# ')
+            sys.stdout.write('\t'.join(['Feature ID', 'Apollo ID', 'Success', 'Messages']))
+            sys.stdout.write('\n')
 
         # bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
         new_features_list = []
@@ -1230,7 +1237,7 @@ class AnnotationsClient(Client):
                     if len(new_features_list) >= batch_size:
                         if verbose:
                             print("writing out the features: " + str(new_features_list))
-                        self.write_features(new_features_list, test)
+                        self.write_features(new_features_list, test, verbose)
                 except Exception as e:
                     msg = str(e)
                     if '\n' in msg:
@@ -1241,7 +1248,11 @@ class AnnotationsClient(Client):
                         'ERROR',
                         msg
                     ]))
-                sys.stdout.write('\n')
+                # sys.stdout.write('\n')
                 sys.stdout.flush()
 
-        self.write_features(new_features_list, test)
+        sys.stdout.flush()
+        self.write_features(new_features_list, test, verbose)
+        sys.stdout.write("finished loading")
+        sys.stdout.write('\n')
+        sys.stdout.flush()
