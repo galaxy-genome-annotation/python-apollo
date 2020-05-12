@@ -976,8 +976,8 @@ class AnnotationsClient(Client):
                 # Convert the feature into a presentation that Apollo will accept
                 feature_data = features_to_feature_schema([feature])
                 # TODO: do we handle all top-types here?
-                if 'children' in feature_data[0] and any(
-                    [child['type']['name'] == 'tRNA' for child in feature_data[0]['children']]):
+                if 'children' in feature_data[0] and any([child['type']['name'] == 'tRNA'
+                                                          for child in feature_data[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
