@@ -11,14 +11,19 @@ from arrow.decorators import custom_exception, str_output
     help="URL where the input dataset can be found.",
     type=str
 )
+@click.option(
+    "--test",
+    is_flag=True,
+    help="Run as a test without writing.",
+)
 @pass_context
 @custom_exception
 @str_output
-def cli(ctx, organism, gff3, source=""):
+def cli(ctx, organism, gff3, source="", test=False):
     """Load a full GFF3 into annotation track
 
 Output:
 
     Loading report
     """
-    return ctx.gi.annotations.load_gff3(organism, gff3, source=source)
+    return ctx.gi.annotations.load_gff3(organism, gff3, source=source,test=test)

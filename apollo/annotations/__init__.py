@@ -976,7 +976,8 @@ class AnnotationsClient(Client):
                 # Convert the feature into a presentation that Apollo will accept
                 featureData = featuresToFeatureSchema([feature])
                 # TODO: do we handle all top-types here?
-                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in featureData[0] and any(
+                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
@@ -1148,19 +1149,29 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def write_features(self, new_features_list):
+    def write_features(self, new_features_list, test=False):
         if len(new_features_list) > 0:
             print("Writing " + str(len(new_features_list)) + " features")
-            returned_features = self.add_features(new_features_list)
-            sys.stdout.write("success" + " " + str(len(returned_features)))
+            returned_features = []
+            if test is False:
+                returned_features = self.add_features(new_features_list)
+                sys.stdout.write("success" + " " + str(len(returned_features)))
+            else:
+                sys.stdout.write("test success" + " " + str(len(new_features_list)))
             del new_features_list[:]
             return returned_features
         else:
             print("empty list, no more features to write")
 
-    def load_gff3(self, organism, gff3, source=None, batch_size=100):
+    def load_gff3(self, organism, gff3, source=None, batch_size=100,
+                  test=False):
+
+        print("loading gff3 with test "+str(test))
         """
         Load a full GFF3 into annotation track
+
+        :type test: bool
+        :param test:
 
         :type batch_size: int
         :param batch_size: Size of batches before writing
@@ -1192,36 +1203,23 @@ class AnnotationsClient(Client):
                 if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
-                featureData = featuresToFeatureSchema([feature])
-                if featureData[0]['type']['name'] == 'terminator':
-                    # We're experiencing a (transient?) problem where gene_001 to
-                    # gene_025 will be rejected. Thus, hardcode to a known working
-                    # gene name and update later.
-                    featureData[0]['name'] = 'terminator_000'
-                    newfeature = self.add_feature(featureData)
-
+                feature_data = featuresToFeatureSchema([feature])
+                try:
+                    # Create the new feature
+                    new_features_list.append(feature_data[0])
+                    if len(new_features_list) >= batch_size:
+                        self.write_features(new_features_list,test)
+                except Exception as e:
+                    msg = str(e)
+                    if '\n' in msg:
+                        msg = msg[0:msg.index('\n')]
                     sys.stdout.write('\t'.join([
                         feature.id,
-                        newfeature['features'][0]['uniquename'],
-                        'success',
+                        '',
+                        'ERROR',
+                        msg
                     ]))
-                else:
-                    try:
-                        # Create the new feature
-                        new_features_list.append(featureData[0])
-                        if len(new_features_list) >= batch_size:
-                            self.write_features(new_features_list)
-                    except Exception as e:
-                        msg = str(e)
-                        if '\n' in msg:
-                            msg = msg[0:msg.index('\n')]
-                        sys.stdout.write('\t'.join([
-                            feature.id,
-                            '',
-                            'ERROR',
-                            msg
-                        ]))
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-        self.write_features(new_features_list)
+        self.write_features(new_features_list, test)
