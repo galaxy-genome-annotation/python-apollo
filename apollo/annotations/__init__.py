@@ -1217,4 +1217,3 @@ class AnnotationsClient(Client):
             returned_features = self.add_features(new_features_list)
             sys.stdout.write("success" + " " + str(len(returned_features)))
             del new_features_list[:]
-
