@@ -7,7 +7,6 @@ from Bio import SeqIO
 
 from apollo.exceptions import UnknownUserException
 
-
 log = logging.getLogger()
 
 
@@ -111,13 +110,30 @@ def _yieldFeatData(features):
         yield current
 
 
-def featuresToFeatureSchema(features):
+def add_property_to_feature(feature, property_key, property_value):
+    """
+
+    :param feature:
+    :type property_key: str
+    :param property_key:
+    :type property_value: str
+    :param property_value:
+    :return:
+    """
+    if "feature_property" not in feature:
+        feature["feature_property"] = {}
+    feature["feature_property"][property_key] = property_value
+    return feature
+
+
+def features_to_feature_schema(features):
+    """
+
+    :param features:
+    :return:
+    """
     compiled = []
     for feature in features:
-        # if feature.type != 'gene':
-        #     log.warn("Not able to handle %s features just yet...", feature.type)
-        #     continue
-
         for x in _yieldFeatData([feature]):
             compiled.append(x)
     return compiled

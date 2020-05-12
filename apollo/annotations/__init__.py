@@ -7,7 +7,7 @@ import time
 from BCBio import GFF
 
 from apollo.client import Client
-from apollo.util import featuresToFeatureSchema, retry
+from apollo.util import features_to_feature_schema, retry, add_property_to_feature
 
 
 class AnnotationsClient(Client):
@@ -974,15 +974,15 @@ class AnnotationsClient(Client):
                 if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
-                featureData = featuresToFeatureSchema([feature])
+                feature_data = features_to_feature_schema([feature])
                 # TODO: do we handle all top-types here?
-                if 'children' in featureData[0] and any(
-                    [child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                if 'children' in feature_data[0] and any(
+                    [child['type']['name'] == 'tRNA' for child in feature_data[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
 
-                    featureData[0]['name'] = 'tRNA_000'
+                    feature_data[0]['name'] = 'tRNA_000'
                     tRNA_sf = [child for child in feature.sub_features if child.type == 'tRNA'][0]
                     tRNA_type = 'tRNA-' + tRNA_sf.qualifiers.get('Codon', ["Unk"])[0]
 
@@ -990,7 +990,7 @@ class AnnotationsClient(Client):
                         if feature.qualifiers['Name'][0].startswith('tRNA-'):
                             tRNA_type = feature.qualifiers['Name'][0]
 
-                    newfeature = self.add_feature(featureData)
+                    newfeature = self.add_feature(feature_data)
 
                     def func0():
                         self.set_name(
@@ -1013,12 +1013,12 @@ class AnnotationsClient(Client):
                         newfeature['features'][0]['uniquename'],
                         'success',
                     ]))
-                if featureData[0]['type']['name'] == 'terminator':
+                if feature_data[0]['type']['name'] == 'terminator':
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
-                    featureData[0]['name'] = 'terminator_000'
-                    newfeature = self.add_feature(featureData)
+                    feature_data[0]['name'] = 'terminator_000'
+                    newfeature = self.add_feature(feature_data)
 
                     def func0():
                         self.set_name(
@@ -1046,9 +1046,9 @@ class AnnotationsClient(Client):
                         # We're experiencing a (transient?) problem where gene_001 to
                         # gene_025 will be rejected. Thus, hardcode to a known working
                         # gene name and update later.
-                        featureData[0]['name'] = 'gene_000'
+                        feature_data[0]['name'] = 'gene_000'
                         # Create the new feature
-                        newfeature = self.add_feature(featureData)
+                        newfeature = self.add_feature(feature_data)
                         # Extract the UUIDs that apollo returns to us
                         mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
@@ -1063,7 +1063,7 @@ class AnnotationsClient(Client):
                         min_cds = None
                         max_cds = None
 
-                        for feat in featureData[0]['children']:
+                        for feat in feature_data[0]['children']:
                             # mRNA level
                             for subfeat in feat['children']:
                                 # Can be exon or CDS
@@ -1085,7 +1085,7 @@ class AnnotationsClient(Client):
                                                 max_cds = max(max_cds, subsubfeat['location']['fmax'])
 
                         # Correct the translation start, but with strand specific log
-                        if featureData[0]['location']['strand'] == 1:
+                        if feature_data[0]['location']['strand'] == 1:
                             self.set_translation_start(mrna_id, min(min_cds, max_cds))
                         else:
                             self.set_translation_start(mrna_id, max(min_cds, max_cds) - 1)
@@ -1166,7 +1166,7 @@ class AnnotationsClient(Client):
     def load_gff3(self, organism, gff3, source=None, batch_size=100,
                   test=False):
 
-        print("loading gff3 with test "+str(test))
+        print("loading gff3 with test " + str(test))
         """
         Load a full GFF3 into annotation track
 
@@ -1203,12 +1203,15 @@ class AnnotationsClient(Client):
                 if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
-                feature_data = featuresToFeatureSchema([feature])
+                feature_data = features_to_feature_schema([feature])
+                if source is not None:
+                    add_property_to_feature(feature_data[0], "DatasetSource", source)
+
                 try:
                     # Create the new feature
                     new_features_list.append(feature_data[0])
                     if len(new_features_list) >= batch_size:
-                        self.write_features(new_features_list,test)
+                        self.write_features(new_features_list, test)
                 except Exception as e:
                     msg = str(e)
                     if '\n' in msg:
