@@ -25,11 +25,13 @@ echo "[BOOTSTRAP] Waiting while Apollo starts up..."
 # Wait for apollo to be online
 for ((i=0;i<30;i++))
 do
-    APOLLO_UP=$(arrow users get_users 2> /dev/null | head -1 | grep '^\[$' -q; echo "$?")
+  echo "Checking Apollo ..."
+  APOLLO_UP=$(arrow users get_users 2> /dev/null | head -1 | grep '^\[$' -q; echo "$?")
 	if [[ $APOLLO_UP -eq 0 ]]; then
 		break
 	fi
-    sleep 10
+  echo "Not up yet, trying again in 10 seconds"
+  sleep 10
 done
 
 if ! [[ $APOLLO_UP -eq 0 ]]; then
@@ -66,11 +68,7 @@ arrow users update_organism_permissions --write --read --export "test@bx.psu.edu
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org4
 
 # Load some annotations
-arrow annotations load_generic_gff3 test_organism test-data/merlin.gff
-arrow annotations load_generic_gff3 alt_org test-data/merlin.gff
-arrow annotations load_generic_gff3 org3 test-data/merlin.gff
-arrow annotations load_generic_gff3 org4 test-data/merlin.gff
-#arrow annotations load_gff3 test_organism test-data/merlin.gff
-#arrow annotations load_gff3 alt_org test-data/merlin.gff
-#arrow annotations load_gff3 org3 test-data/merlin.gff
-#arrow annotations load_gff3 org4 test-data/merlin.gff
+arrow annotations load_gff3 test_organism test-data/merlin.gff
+arrow annotations load_gff3 alt_org test-data/merlin.gff
+arrow annotations load_gff3 org3 test-data/merlin.gff
+arrow annotations load_gff3 org4 test-data/merlin.gff

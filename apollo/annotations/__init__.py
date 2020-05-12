@@ -944,7 +944,7 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getGff3', data, is_json=False)
 
-    def load_gff3(self, organism, gff3, source=None):
+    def load_legacy_gff3(self, organism, gff3, source=None):
         """
         Load a full GFF3 into annotation track
 
@@ -1148,9 +1148,22 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def load_generic_gff3(self, organism, gff3, source=None, batch_size=100):
+    def write_features(self, new_features_list):
+        if len(new_features_list) > 0:
+            print("Writing " + str(len(new_features_list)) + " features")
+            returned_features = self.add_features(new_features_list)
+            sys.stdout.write("success" + " " + str(len(returned_features)))
+            del new_features_list[:]
+            return returned_features
+        else:
+            print("empty list, no more features to write")
+
+    def load_gff3(self, organism, gff3, source=None, batch_size=100):
         """
         Load a full GFF3 into annotation track
+
+        :type batch_size: int
+        :param batch_size: Size of batches before writing
 
         :type organism: str
         :param organism: Organism Common Name
@@ -1197,9 +1210,7 @@ class AnnotationsClient(Client):
                         # Create the new feature
                         new_features_list.append(featureData[0])
                         if len(new_features_list) >= batch_size:
-                            returned_features = self.add_features(new_features_list)
-                            sys.stdout.write("success" + " " + str(len(returned_features)))
-                            del new_features_list[:]
+                            self.write_features(new_features_list)
                     except Exception as e:
                         msg = str(e)
                         if '\n' in msg:
@@ -1213,7 +1224,4 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-        if len(new_features_list) > 0:
-            returned_features = self.add_features(new_features_list)
-            sys.stdout.write("success" + " " + str(len(returned_features)))
-            del new_features_list[:]
+        self.write_features(new_features_list)

@@ -16,8 +16,8 @@ from arrow.commands.annotations.get_features import cli as get_features
 from arrow.commands.annotations.get_gff3 import cli as get_gff3
 from arrow.commands.annotations.get_search_tools import cli as get_search_tools
 from arrow.commands.annotations.get_sequence_alterations import cli as get_sequence_alterations
+from arrow.commands.annotations.load_legacy_gff3 import cli as load_legacy_gff3
 from arrow.commands.annotations.load_gff3 import cli as load_gff3
-from arrow.commands.annotations.load_generic_gff3 import cli as load_generic_gff3
 from arrow.commands.annotations.merge_exons import cli as merge_exons
 from arrow.commands.annotations.set_boundaries import cli as set_boundaries
 from arrow.commands.annotations.set_description import cli as set_description
@@ -55,8 +55,8 @@ cli.add_command(get_features)
 cli.add_command(get_gff3)
 cli.add_command(get_search_tools)
 cli.add_command(get_sequence_alterations)
+cli.add_command(load_legacy_gff3)
 cli.add_command(load_gff3)
-cli.add_command(load_generic_gff3)
 cli.add_command(merge_exons)
 cli.add_command(set_boundaries)
 cli.add_command(set_description)
