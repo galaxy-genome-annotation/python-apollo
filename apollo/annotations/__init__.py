@@ -549,12 +549,33 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('addFeature', data)
 
-    def add_feature(self, feature={}, organism=None, sequence=None):
+    def add_feature(self, feature: object = {}, organism=None, sequence=None):
         """
-        Add a feature
+        :type organism: str
+        :param organism: Organism Common Name
 
-        :type feature: dict
-        :param feature: Feature information
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        :type feature: object
+        """
+        return self.add_features([feature], organism, sequence)
+
+    def add_transcripts(self, transcripts=None,
+                        suppress_history=False, suppress_events=False, organism=None,
+                        sequence=None
+                        ):
+        """
+        [UNTESTED] Add a transcript to a feature
+
+        :type transcript: list
+        :param transcript: Transcript data
+
+        :type suppress_history: bool
+        :param suppress_history: Suppress the history of this operation
+
+        :type suppress_events: bool
+        :param suppress_events: Suppress instant update of the user interface
 
         :type organism: str
         :param organism: Organism Common Name
@@ -565,15 +586,20 @@ class AnnotationsClient(Client):
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
-
+        if transcripts is None:
+            transcripts = []
         data = {
-            'features': feature,
+            'suppressHistory': suppress_history,
+            'suppressEvents': suppress_events,
+            'features': transcripts
         }
         data = self._update_data(data, organism, sequence)
-        return self.post('addFeature', data)
+        return self.post('addTranscript', data)
 
-    def add_transcript(self, transcript={}, suppress_history=False, suppress_events=False, organism=None,
-                       sequence=None):
+    def add_transcript(self, transcript=None,
+                       suppress_history=False, suppress_events=False, organism=None,
+                       sequence=None
+                       ):
         """
         [UNTESTED] Add a transcript to a feature
 
@@ -595,17 +621,7 @@ class AnnotationsClient(Client):
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
-        data = {
-            'suppressHistory': suppress_history,
-            'suppressEvents': suppress_events,
-            'features': [
-                transcript
-            ]
-        }
-        data = self._update_data(data, organism, sequence)
-        return self.post('addTranscript', data)
-
-    # addExon, add/delete/updateComments, addTranscript skipped due to docs
+        return self.add_transcripts([transcript], suppress_history, suppress_events, organism, sequence)
 
     def duplicate_transcript(self, transcript_id, organism=None, sequence=None):
         """
@@ -1157,6 +1173,37 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
+    def write_transcripts(self, new_transcripts_list, test=False, verbose=False):
+        if len(new_transcripts_list) > 0:
+            print("Writing " + str(len(new_transcripts_list)) + " transcripts")
+            returned_features = []
+            if verbose:
+                print("Features to write:")
+                print(new_transcripts_list)
+            if test is True:
+                sys.stdout.write(
+                    "test success" + " " + str(len(new_transcripts_list)) + " transcripts would have been loaded\n")
+            else:
+                returned_features = self.add_features(new_transcripts_list)
+                sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " transcripts returned\n")
+                if verbose:
+                    print("Transcripts returned")
+                    print(returned_features)
+            del new_transcripts_list[:]
+            return returned_features
+        else:
+            print("empty list, no more features to write")
+
+    def check_write(self, batch_size, verbose, test, new_features_list, new_transcripts_list):
+        if len(new_features_list) >= batch_size:
+            if verbose:
+                print("writing out the features: " + str(new_features_list))
+            self.write_features(new_features_list, test, verbose)
+        if len(new_transcripts_list) >= batch_size:
+            if verbose:
+                print("writing out the transcripts : " + str(new_transcripts_list))
+            self.write_transcripts(new_transcripts_list, test, verbose)
+
     def write_features(self, new_features_list, test=False, verbose=False):
         if len(new_features_list) > 0:
             print("Writing " + str(len(new_features_list)) + " features")
@@ -1221,6 +1268,7 @@ class AnnotationsClient(Client):
 
         # bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
         new_features_list = []
+        new_transcripts_list = []
 
         for rec in GFF.parse(gff3):
             self.set_sequence(organism, rec.id)
@@ -1243,10 +1291,7 @@ class AnnotationsClient(Client):
                         print("adding feature to write list: " + str(feature_data[0]))
 
                     new_features_list.append(feature_data[0])
-                    if len(new_features_list) >= batch_size:
-                        if verbose:
-                            print("writing out the features: " + str(new_features_list))
-                        self.write_features(new_features_list, test, verbose)
+                    self.check_write(new_features_list, new_transcripts_list)
                 except Exception as e:
                     msg = str(e)
                     if '\n' in msg:
@@ -1262,6 +1307,7 @@ class AnnotationsClient(Client):
 
         sys.stdout.flush()
         self.write_features(new_features_list, test, verbose)
+        self.write_transcripts(new_transcripts_list, test, verbose)
         sys.stdout.write("finished loading")
         sys.stdout.write('\n')
         sys.stdout.flush()
