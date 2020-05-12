@@ -18,7 +18,7 @@ export GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 mkdir -p "$GALAXY_SHARED_DIR"
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
-    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:`pwd`/apollo_shared_dir/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
+    docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" quay.io/gmod/apollo:latest
 fi
 
 echo "[BOOTSTRAP] Waiting while Apollo starts up..."
@@ -54,10 +54,10 @@ cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org3"
 cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org4"
 cp -r test-data/dataset_2_files/data/ "${GALAXY_SHARED_DIR}/org_update_newseq"
 cp -r test-data/dataset_3_files/data/ "${GALAXY_SHARED_DIR}/org_update_changedseq"
-arrow organisms add_organism --genus Testus --species organus test_organism $GALAXY_SHARED_DIR/org1
-arrow organisms add_organism --genus Foo --species barus alt_org $GALAXY_SHARED_DIR/org2
-arrow organisms add_organism --genus Foo3 --species barus org3 $GALAXY_SHARED_DIR/org3
-arrow organisms add_organism --genus Foo4 --species barus org4 $GALAXY_SHARED_DIR/org4
+arrow organisms add_organism --genus Testus --species organus test_organism /data/org1
+arrow organisms add_organism --genus Foo --species barus alt_org /data/org2
+arrow organisms add_organism --genus Foo3 --species barus org3 /data/org3
+arrow organisms add_organism --genus Foo4 --species barus org4 /data/org4
 
 # Give access to organisms for test user
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" test_organism
