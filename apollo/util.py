@@ -111,6 +111,14 @@ def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
         if use_name is True:
             current['use_name'] = True
 
+        # if OGS:
+        # TODO: handle comments
+        # TODO: handle dbxrefs
+        # TODO: handle attributes
+        # TODO: handle aliases
+        # TODO: handle description
+        # TODO: handle GO, Gene Product, Provenance
+
         if hasattr(f, 'sub_features') and len(f.sub_features) > 0:
             current['children'] = [x for x in _yieldFeatData(f.sub_features)]
 
