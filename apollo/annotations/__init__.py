@@ -1205,7 +1205,8 @@ class AnnotationsClient(Client):
                             #     gene_id,
                             #     'success',
                             # ]))
-                            new_features_list.clear()
+                            # new_features_list.clear()
+                            del new_features_list[:]
                         # Extract the UUIDs that apollo returns to us
                         # gene_id = newfeature['features'][0]['parent_id']
                     except Exception as e:
@@ -1230,7 +1231,8 @@ class AnnotationsClient(Client):
             #     gene_id,
             #     'success',
             # ]))
-            new_features_list.clear()
+            del new_features_list[:]
+            # new_features_list.clear()
 
     def load_bulk_gff3(self, organism, gff3, source=None):
         """
