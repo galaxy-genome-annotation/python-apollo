@@ -19,6 +19,7 @@ from arrow.decorators import custom_exception, str_output
 @click.option(
     "--batch_size",
     help="Number of annotations to write at a time",
+    default=1,
     type=int
 )
 @click.option(
@@ -51,6 +52,6 @@ Output:
         organism, gff3, source=source, test=test,
         use_name=use_name,
         disable_cds_recalculation=disable_cds_recalculation,
-        verbose=verbose,
-        batch_size=batch_size
+        batch_size=batch_size,
+        verbose=verbose
     )

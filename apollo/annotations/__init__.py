@@ -1194,7 +1194,7 @@ class AnnotationsClient(Client):
         else:
             print("empty list, no more features to write")
 
-    def check_write(self, batch_size, verbose, test, new_features_list, new_transcripts_list):
+    def check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None):
         if len(new_features_list) >= batch_size:
             if verbose:
                 print("writing out the features: " + str(new_features_list))
@@ -1204,7 +1204,7 @@ class AnnotationsClient(Client):
                 print("writing out the transcripts : " + str(new_transcripts_list))
             self.write_transcripts(new_transcripts_list, test, verbose)
 
-    def write_features(self, new_features_list, test=False, verbose=False):
+    def write_features(self, new_features_list=None, test=False, verbose=False):
         if len(new_features_list) > 0:
             print("Writing " + str(len(new_features_list)) + " features")
             returned_features = []
