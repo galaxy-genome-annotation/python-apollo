@@ -1225,7 +1225,7 @@ class AnnotationsClient(Client):
         else:
             print("empty list, no more features to write")
 
-    def load_gff3(self, organism, gff3, source=None, batch_size=100,
+    def load_gff3(self, organism, gff3, source=None, batch_size=1,
                   test=False,
                   use_name=False,
                   disable_cds_recalculation=False,

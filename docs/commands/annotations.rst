@@ -524,8 +524,15 @@ Load a full GFF3 into annotation track
 **Options**::
 
 
-      --source TEXT  URL where the input dataset can be found.
-      -h, --help     Show this message and exit.
+      --batch_size NUMBER          Number of annotations to write at a time.  Default 1.
+      --source TEXT                URL where the input dataset can be found.
+      --test                       Run as a test without writing.
+      --use_name                   Use the given name instead of generating one.
+      --disable_cds_recalculation  Disable recalculation of the CDS and instead
+                                   use the one provided
+
+      --verbose                    Provide verbose output
+      -h, --help                   Show this message and exit.
     
 
 ``merge_exons`` command

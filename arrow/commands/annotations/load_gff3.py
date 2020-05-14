@@ -17,6 +17,11 @@ from arrow.decorators import custom_exception, str_output
     help="Run as a test without writing.",
 )
 @click.option(
+    "--batch_size",
+    help="Number of annotations to write at a time",
+    type=int
+)
+@click.option(
     "--use_name",
     is_flag=True,
     help="Use the given name instead of generating one.",
@@ -34,7 +39,8 @@ from arrow.decorators import custom_exception, str_output
 @pass_context
 @custom_exception
 @str_output
-def cli(ctx, organism, gff3, source="", test=False, use_name=False, disable_cds_recalculation=False, verbose=False):
+def cli(ctx, organism, gff3, source="", test=False, use_name=False, disable_cds_recalculation=False, verbose=False,
+        batch_size=1):
     """Load a full GFF3 into annotation track
 
 Output:
@@ -45,5 +51,6 @@ Output:
         organism, gff3, source=source, test=test,
         use_name=use_name,
         disable_cds_recalculation=disable_cds_recalculation,
-        verbose=verbose
+        verbose=verbose,
+        batch_size=batch_size
     )
