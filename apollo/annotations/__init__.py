@@ -1175,9 +1175,9 @@ class AnnotationsClient(Client):
 
     def write_transcripts(self, new_transcripts_list, test=False, verbose=False):
         if len(new_transcripts_list) > 0:
-            print("Writing " + str(len(new_transcripts_list)) + " transcripts")
             returned_features = []
             if verbose:
+                print("Writing " + str(len(new_transcripts_list)) + " transcripts")
                 print("Features to write:")
                 print(new_transcripts_list)
             if test is True:
@@ -1206,9 +1206,9 @@ class AnnotationsClient(Client):
 
     def write_features(self, new_features_list=None, test=False, verbose=False):
         if len(new_features_list) > 0:
-            print("Writing " + str(len(new_features_list)) + " features")
             returned_features = []
             if verbose:
+                print("Writing " + str(len(new_features_list)) + " features")
                 print("Features to write:")
                 print(new_features_list)
             if test is True:
