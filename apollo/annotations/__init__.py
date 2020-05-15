@@ -1281,6 +1281,7 @@ class AnnotationsClient(Client):
         if timing:
             start_timer = default_timer()
             total_features_written = 0
+            sys.stdout.write('Times are in seconds.  If batch-size > 1 then .(total_batch_time/avg_feature_time)')
 
         if verbose:
             sys.stdout.write('# ')
