@@ -1223,9 +1223,11 @@ class AnnotationsClient(Client):
                     end_time = default_timer()
                     duration = end_time - start_time
                     avg_duration = duration / len(new_features_list)
-                    sys.stdout.write("(" + str('{:.0f}'.format((duration))) + ")")
+                    if len(new_features_list) == 1:
+                        sys.stdout.write("(" + str('{:.2f}'.format(duration)) + ")")
                     if len(new_features_list) > 1:
-                        sys.stdout.write("(" + str('{:.2f}'.format(avg_duration)) + ")")
+                        sys.stdout.write("(" + str('{:.1f}'.format((duration))) + "")
+                        sys.stdout.write("/" + str('{:.2f}'.format(avg_duration)) + ")")
 
                 if verbose:
                     print("Features returned")
@@ -1330,7 +1332,7 @@ class AnnotationsClient(Client):
                         'ERROR',
                         msg
                     ]))
-                # sys.stdout.write('\n')
+                sys.stdout.write('\n')
                 sys.stdout.flush()
 
         sys.stdout.flush()
