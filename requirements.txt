@@ -6,3 +6,4 @@ wrapt
 pyyaml
 decorator
 bcbio-gff
+pytictoc

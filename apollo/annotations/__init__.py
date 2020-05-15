@@ -3,6 +3,7 @@ Contains possible interactions with the Apollo's Annotations
 """
 import sys
 import time
+from enum import Enum
 
 from BCBio import GFF
 
@@ -16,6 +17,11 @@ noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 
                               'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
                               'tmRNA', 'enzymatic_RNA']
 single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence", "transposable_element"]
+
+
+class FeatureType(Enum):
+    FEATURE = 1
+    TRANSCRIPT = 1
 
 
 class AnnotationsClient(Client):
@@ -1173,38 +1179,18 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def write_transcripts(self, new_transcripts_list, test=False, verbose=False):
-        if len(new_transcripts_list) > 0:
-            returned_features = []
-            if verbose:
-                print("Writing " + str(len(new_transcripts_list)) + " transcripts")
-                print("Features to write:")
-                print(new_transcripts_list)
-            if test is True:
-                sys.stdout.write(
-                    "test success" + " " + str(len(new_transcripts_list)) + " transcripts would have been loaded\n")
-            else:
-                returned_features = self.add_features(new_transcripts_list)
-                sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " transcripts returned\n")
-                if verbose:
-                    print("Transcripts returned")
-                    print(returned_features)
-            del new_transcripts_list[:]
-            return returned_features
-        else:
-            print("empty list, no more features to write")
-
-    def check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None):
+    def check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None, timing=False):
         if len(new_features_list) >= batch_size:
             if verbose:
                 print("writing out the features: " + str(new_features_list))
-            self.write_features(new_features_list, test, verbose)
+            self.write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
         if len(new_transcripts_list) >= batch_size:
             if verbose:
                 print("writing out the transcripts : " + str(new_transcripts_list))
-            self.write_transcripts(new_transcripts_list, test, verbose)
+            self.write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
 
-    def write_features(self, new_features_list=None, test=False, verbose=False):
+    def write_features(self, new_features_list=None, test=False, verbose=False, timing=False,
+                       feature_type=None):
         if len(new_features_list) > 0:
             returned_features = []
             if verbose:
@@ -1215,15 +1201,30 @@ class AnnotationsClient(Client):
                 sys.stdout.write(
                     "test success" + " " + str(len(new_features_list)) + " features would have been loaded\n")
             else:
-                returned_features = self.add_features(new_features_list)
-                sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " features returned\n")
+                try:
+                    if feature_type == FeatureType.FEATURE:
+                        returned_features = self.add_features(new_features_list)
+                    elif feature_type == FeatureType.TRANSCRIPT:
+                        returned_features = self.add_transcripts(new_features_list)
+                    else:
+                        raise Exception("Type '" + feature_type + "' is unknown")
+                    sys.stdout.write(".")
+                except Exception:
+                    if verbose:
+                        e = sys.exc_info()[0]
+                        sys.stdout.write("Error writing: " + str(e))
+                    else:
+                        sys.stdout.write("e")
+                pass
                 if verbose:
                     print("Features returned")
                     print(returned_features)
+                    sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " features returned\n")
             del new_features_list[:]
             return returned_features
         else:
-            print("empty list, no more features to write")
+            if verbose:
+                print("empty list, no more features to write")
 
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
                   test=False,
@@ -1301,7 +1302,7 @@ class AnnotationsClient(Client):
                         new_transcripts_list.append(feature_data[0])
                     else:
                         new_features_list.append(feature_data[0])
-                    self.check_write(batch_size, verbose, test, new_features_list, new_transcripts_list)
+                    self.check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
                 except Exception as e:
                     msg = str(e)
                     if '\n' in msg:
@@ -1316,8 +1317,7 @@ class AnnotationsClient(Client):
                 sys.stdout.flush()
 
         sys.stdout.flush()
-        self.write_features(new_features_list, test, verbose)
-        self.write_transcripts(new_transcripts_list, test, verbose)
-        sys.stdout.write("finished loading")
-        sys.stdout.write('\n')
+        self.write_features(new_features_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+        self.write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+        sys.stdout.write("\nfinished loading\n")
         sys.stdout.flush()

@@ -1,3 +1,5 @@
+import json
+
 import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, str_output
@@ -53,6 +55,23 @@ Output:
 
     Loading report
     """
+    organisms = ctx.gi.organisms.get_organisms()
+    org_ids = []
+
+    print(organisms)
+    print(len(organisms))
+    for org in organisms:
+        if organism == org['commonName'] or organism == str(org['id']):
+            org_ids.append(org['id'])
+
+    if len(org_ids) == 0:
+        print("Organism name or id not found [" + organism + "]")
+        return 1
+
+    if len(org_ids) > 1:
+        print("More than one organism found for [" + organism + "].  Use an organism ID instead: " + str(org_ids) + "")
+        return 1
+
     return ctx.gi.annotations.load_gff3(
         organism, gff3, source=source, test=test,
         use_name=use_name,
