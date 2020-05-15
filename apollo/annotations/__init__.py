@@ -1333,7 +1333,6 @@ class AnnotationsClient(Client):
                         'ERROR',
                         msg
                     ]))
-                sys.stdout.write('\n')
                 sys.stdout.flush()
 
         sys.stdout.flush()
