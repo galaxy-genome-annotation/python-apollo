@@ -1281,7 +1281,7 @@ class AnnotationsClient(Client):
         if timing:
             start_timer = default_timer()
             total_features_written = 0
-            sys.stdout.write('Times are in seconds.  If batch-size > 1 then .(total_batch_time/avg_feature_time)')
+            sys.stdout.write('Times are in seconds.  If batch-size > 1 then .(total_batch_time/avg_feature_time)\n')
 
         if verbose:
             sys.stdout.write('# ')
@@ -1301,7 +1301,7 @@ class AnnotationsClient(Client):
 
                 if feature.type not in (gene_types + coding_transcript_types + pseudogenes_types
                                         + noncoding_transcript_types + single_level_feature_types):
-                    print("Ignoring unknown feature type '" + str(feature.type) + "' for " + str(feature))
+                    print("\nIgnoring unknown feature type '" + str(feature.type) + "' for " + str(feature) + "\n")
                     continue
 
                 # Convert the feature into a presentation that Apollo will accept
