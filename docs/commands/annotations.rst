@@ -532,6 +532,7 @@ Load a full GFF3 into annotation track
                                    use the one provided
 
       --verbose                    Provide verbose output
+      --timing                     Show timing output
       -h, --help                   Show this message and exit.
     
 

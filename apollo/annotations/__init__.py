@@ -1230,9 +1230,13 @@ class AnnotationsClient(Client):
                   use_name=False,
                   disable_cds_recalculation=False,
                   verbose=False,
+                  timing=False,
                   ):
         """
         Load a full GFF3 into annotation track
+        :type timing: bool
+        :param timing:
+
         :type use_name: bool
         :param use_name:
 

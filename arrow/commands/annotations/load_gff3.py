@@ -37,11 +37,16 @@ from arrow.decorators import custom_exception, str_output
     is_flag=True,
     help="Provide verbose output",
 )
+@click.option(
+    "--timing",
+    is_flag=True,
+    help="Show timing output",
+)
 @pass_context
 @custom_exception
 @str_output
 def cli(ctx, organism, gff3, source="", test=False, use_name=False, disable_cds_recalculation=False, verbose=False,
-        batch_size=1):
+        batch_size=1, timing=False):
     """Load a full GFF3 into annotation track
 
 Output:
@@ -53,5 +58,6 @@ Output:
         use_name=use_name,
         disable_cds_recalculation=disable_cds_recalculation,
         batch_size=batch_size,
-        verbose=verbose
+        verbose=verbose,
+        timing=timing
     )
