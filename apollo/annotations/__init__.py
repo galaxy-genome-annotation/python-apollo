@@ -1014,7 +1014,7 @@ class AnnotationsClient(Client):
                         if feature.qualifiers['Name'][0].startswith('tRNA-'):
                             tRNA_type = feature.qualifiers['Name'][0]
 
-                    newfeature = self.add_feature(feature_data)
+                    newfeature = self.add_feature(feature_data[0])
 
                     def func0():
                         self.set_name(
@@ -1042,7 +1042,7 @@ class AnnotationsClient(Client):
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
                     feature_data[0]['name'] = 'terminator_000'
-                    newfeature = self.add_feature(feature_data)
+                    newfeature = self.add_feature(feature_data[0])
 
                     def func0():
                         self.set_name(
@@ -1072,7 +1072,7 @@ class AnnotationsClient(Client):
                         # gene name and update later.
                         feature_data[0]['name'] = 'gene_000'
                         # Create the new feature
-                        newfeature = self.add_feature(feature_data)
+                        newfeature = self.add_feature(feature_data[0])
                         # Extract the UUIDs that apollo returns to us
                         mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
