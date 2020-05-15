@@ -9,6 +9,14 @@ from apollo.exceptions import UnknownUserException
 
 log = logging.getLogger()
 
+gene_types = ["gene"]
+coding_transcript_types = ["mRNA"]
+pseudogenes_types = ["pseudogene", "pseudogenic_region", "processed_pseudogene"]
+noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'mRNA', 'miRNA', 'guide_RNA',
+                              'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
+                              'tmRNA', 'enzymatic_RNA']
+single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence", "transposable_element"]
+
 
 def WAAuth(parser):
     parser.add_argument('apollo', help='Complete Apollo URL')
@@ -105,7 +113,8 @@ def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
         if disable_cds_recalculation is True:
             current['use_cds'] = 'true'
 
-        if f.type in ('gene', 'mRNA'):
+        if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
+                      + single_level_feature_types):
             current['name'] = f.qualifiers.get('Name', [f.id])[0]
 
         if use_name is True:

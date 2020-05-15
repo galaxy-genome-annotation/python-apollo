@@ -7,22 +7,15 @@ from timeit import default_timer
 from enum import Enum
 
 from BCBio import GFF
+from apollo import util
 
 from apollo.client import Client
 from apollo.util import features_to_feature_schema, retry, add_property_to_feature
 
-gene_types = ["gene"]
-coding_transcript_types = ["mRNA"]
-pseudogenes_types = ["pseudogene", "pseudogenic_region", "processed_pseudogene"]
-noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'mRNA', 'miRNA', 'guide_RNA',
-                              'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
-                              'tmRNA', 'enzymatic_RNA']
-single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence", "transposable_element"]
-
 
 class FeatureType(Enum):
     FEATURE = 1
-    TRANSCRIPT = 1
+    TRANSCRIPT = 2
 
 
 class AnnotationsClient(Client):
@@ -1192,6 +1185,8 @@ class AnnotationsClient(Client):
 
     def write_features(self, new_features_list=None, test=False, verbose=False, timing=False,
                        feature_type=None):
+        if not isinstance(feature_type, FeatureType):
+            raise TypeError("Feature type must be of type feature type : " + str(feature_type))
         if len(new_features_list) > 0:
             returned_features = []
             if verbose:
@@ -1210,7 +1205,7 @@ class AnnotationsClient(Client):
                     elif feature_type == FeatureType.TRANSCRIPT:
                         returned_features = self.add_transcripts(new_features_list)
                     else:
-                        raise Exception("Type '" + feature_type + "' is unknown")
+                        raise Exception("Type '" + str(feature_type) + "' is unknown")
                     sys.stdout.write(".")
                 except Exception:
                     if verbose:
@@ -1299,8 +1294,8 @@ class AnnotationsClient(Client):
                 if verbose:
                     print("input feature: " + str(feature))
 
-                if feature.type not in (gene_types + coding_transcript_types + pseudogenes_types
-                                        + noncoding_transcript_types + single_level_feature_types):
+                if feature.type not in (util.gene_types + util.coding_transcript_types + util.pseudogenes_types
+                                        + util.noncoding_transcript_types + util.single_level_feature_types):
                     print("\nIgnoring unknown feature type '" + str(feature.type) + "' for " + str(feature) + "\n")
                     continue
 
@@ -1313,9 +1308,12 @@ class AnnotationsClient(Client):
                 try:
                     # Create the new feature
                     if verbose:
-                        print("adding feature to write list: " + str(feature_data[0]))
+                        print("adding " + str(feature.type) + " to write list: " + str(feature_data[0]))
 
-                    if feature.type in (gene_types + coding_transcript_types):
+                    if feature.type in util.gene_types:
+                        new_transcripts_list.append(feature_data[0])
+                    # TODO: note that this NEVER handles a transcript ever
+                    if feature.type in util.coding_transcript_types:
                         new_transcripts_list.append(feature_data[0])
                     else:
                         new_features_list.append(feature_data[0])
@@ -1336,7 +1334,7 @@ class AnnotationsClient(Client):
                 sys.stdout.flush()
 
         sys.stdout.flush()
-        self.write_features(new_features_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+        self.write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
         self.write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         sys.stdout.write("\nfinished loading\n")
         if timing:
