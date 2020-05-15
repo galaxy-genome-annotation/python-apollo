@@ -1276,6 +1276,9 @@ class AnnotationsClient(Client):
         :rtype: str
         :return: Loading report
         """
+        if timing:
+            start_timer = default_timer()
+            total_features_written = 0
 
         if verbose:
             sys.stdout.write('# ')
@@ -1313,6 +1316,9 @@ class AnnotationsClient(Client):
                         new_transcripts_list.append(feature_data[0])
                     else:
                         new_features_list.append(feature_data[0])
+
+                    if timing:
+                        total_features_written += 1
                     self.check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
                 except Exception as e:
                     msg = str(e)
@@ -1331,4 +1337,10 @@ class AnnotationsClient(Client):
         self.write_features(new_features_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         self.write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         sys.stdout.write("\nfinished loading\n")
+        if timing:
+            end_timer = default_timer()
+            duration = end_timer - start_timer
+            sys.stdout.write("\n" + str(duration) + " seconds to write " + str(total_features_written) + " features\n")
+            sys.stdout.write(
+                "Avg write time (s) per feature: " + str('{:.3f}'.format(duration / total_features_written)) + "\n")
         sys.stdout.flush()
