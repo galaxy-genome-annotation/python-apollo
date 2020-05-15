@@ -1223,9 +1223,9 @@ class AnnotationsClient(Client):
                     end_time = default_timer()
                     duration = end_time - start_time
                     avg_duration = duration / len(new_features_list)
-                    sys.stdout.write("(" + str('{:.0f}'.format((duration) * 1000.0)) + ")")
+                    sys.stdout.write("(" + str('{:.0f}'.format((duration))) + ")")
                     if len(new_features_list) > 1:
-                        sys.stdout.write("(" + str('{:.2f}'.format(avg_duration * 1000.0)) + ")")
+                        sys.stdout.write("(" + str('{:.2f}'.format(avg_duration)) + ")")
 
                 if verbose:
                     print("Features returned")
