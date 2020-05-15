@@ -76,4 +76,5 @@ arrow users update_organism_permissions --write --read --export "test@bx.psu.edu
 arrow annotations load_gff3 test_organism test-data/merlin.gff
 arrow annotations load_gff3 alt_org test-data/merlin.gff
 arrow annotations load_gff3 org3 test-data/merlin.gff
-arrow annotations load_gff3 org4 test-data/merlin.gff
+arrow annotations load_legacy_gff3 org4 test-data/merlin.gff
+#arrow annotations load_gff3 org4 test-data/merlin.gff
