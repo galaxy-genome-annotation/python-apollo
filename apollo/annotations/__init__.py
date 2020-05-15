@@ -3,6 +3,7 @@ Contains possible interactions with the Apollo's Annotations
 """
 import sys
 import time
+from timeit import default_timer
 from enum import Enum
 
 from BCBio import GFF
@@ -1201,6 +1202,8 @@ class AnnotationsClient(Client):
                 sys.stdout.write(
                     "test success" + " " + str(len(new_features_list)) + " features would have been loaded\n")
             else:
+                if timing:
+                    start_time = default_timer()
                 try:
                     if feature_type == FeatureType.FEATURE:
                         returned_features = self.add_features(new_features_list)
@@ -1215,7 +1218,15 @@ class AnnotationsClient(Client):
                         sys.stdout.write("Error writing: " + str(e))
                     else:
                         sys.stdout.write("e")
-                pass
+                    pass
+                if timing:
+                    end_time = default_timer()
+                    duration = end_time - start_time
+                    avg_duration = duration / len(new_features_list)
+                    sys.stdout.write("(" + str('{:.0f}'.format((duration) * 1000)) + ")")
+                    if len(new_features_list) > 1:
+                        sys.stdout.write("(" + str('{:.2f}'.format(avg_duration)) + ")")
+
                 if verbose:
                     print("Features returned")
                     print(returned_features)

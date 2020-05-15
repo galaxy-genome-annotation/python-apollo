@@ -57,9 +57,6 @@ Output:
     """
     organisms = ctx.gi.organisms.get_organisms()
     org_ids = []
-
-    print(organisms)
-    print(len(organisms))
     for org in organisms:
         if organism == org['commonName'] or organism == str(org['id']):
             org_ids.append(org['id'])
