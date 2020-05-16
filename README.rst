@@ -9,7 +9,11 @@ Apollo API Library
     :alt: Documentation Status
 
 Apollo is a Python library for interacting with
-`Apollo <https://github.com/gmod/apollo/>`__
+`Apollo <https://github.com/gmod/apollo/>`__. Arrow is its companion CLI tool.
+
+    `for the record <https://gitter.im/galaxy-genome-annotation/Lobby?at=5ebee6c049a1b7318479380d>`__ ... arrow makes working with Apollo SOOO much easier
+    — Nathan Dunn, Apollo Developer
+
 
 Installation
 ------------
