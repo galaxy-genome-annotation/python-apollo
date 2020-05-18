@@ -566,7 +566,7 @@ class AnnotationsClient(Client):
                         sequence=None
                         ):
         """
-        [UNTESTED] Add a transcript to a feature
+        Add one or more transcript annotations
 
         :type transcripts: list
         :param transcripts: Transcript data
@@ -601,7 +601,7 @@ class AnnotationsClient(Client):
                        sequence=None
                        ):
         """
-        [UNTESTED] Add a transcript to a feature
+        Add a transcript annotation
 
         :type transcript: dict
         :param transcript: Transcript data
