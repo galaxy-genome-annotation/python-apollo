@@ -2,7 +2,7 @@
 
 SHOULD_LAUNCH_DOCKER=1
 ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-APOLLO_DATA_DIRECTORY="/data/"
+APOLLO_DATA_DIRECTORY="/data"
 GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 for arg in "$@"
 do
