@@ -181,14 +181,16 @@ class GroupTest(ApolloTestCase):
 
         res = wa.groups.update_organism_permissions('trash_group', 'test_organism', True, False, True, False)
 
-        assert res['class'] == 'org.bbop.apollo.GroupOrganismPermission'
+        # this is an artifact and should not be used
+        # assert res['class'] == 'org.bbop.apollo.GroupOrganismPermission'
         assert res['permissions'] == ['ADMINISTRATE', 'READ']
 
         time.sleep(1)
 
         res = wa.groups.get_organism_permissions('trash_group')
 
-        assert res[0]['class'] == 'org.bbop.apollo.GroupOrganismPermission'
+        # this is an artifact and should not be used
+        # assert res[0]['class'] == 'org.bbop.apollo.GroupOrganismPermission'
         assert res[0]['permissions'] == ['ADMINISTRATE', 'READ']
 
     def setUp(self):

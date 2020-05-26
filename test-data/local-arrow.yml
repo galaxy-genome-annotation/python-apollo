@@ -1,5 +1,5 @@
 __default: local
 local:
-    url: "http://localhost:8080/apollo"
+    url: "http://localhost:8080/"
     username: "admin@local.host"
     password: "password"
