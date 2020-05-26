@@ -21,7 +21,8 @@ class OrganismTest(ApolloTestCase):
         assert 'id' in first_org
         assert 'publicMode' in first_org
         assert 'valid' in first_org
-        assert 'currentOrganism' in first_org
+        # deprecated
+        # assert 'currentOrganism' in first_org
         assert 'sequences' in first_org
         assert 'directory' in first_org
         assert 'blatdb' in first_org
