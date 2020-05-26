@@ -11,6 +11,7 @@ do
         SHOULD_LAUNCH_DOCKER=0
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
+		mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
         *)
