@@ -9,6 +9,11 @@ from . import ApolloTestCase, wa
 
 class RemoteTest(ApolloTestCase):
 
+    def test_initial(self):
+        org_info = self.waitOrgCreated('temp_org')
+        assert org_info['commonName'] == 'temp_org'
+
+
     def test_delete_organism(self):
 
         org_info = self.waitOrgCreated('temp_org')
