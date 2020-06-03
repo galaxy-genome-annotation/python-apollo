@@ -12,6 +12,15 @@ jobs:
       script:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
+    - stage: test
+      install:
+        - pip install -U pip setuptools nose
+      script:
+        - python setup.py install
+        - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+        - ./bootstrap_apollo.sh
+        - python setup.py nosetests
+
     - stage: deploy
       install: skip
       script: echo "Deploying to Pypi"
@@ -24,15 +33,6 @@ jobs:
           tags: true
           distributions: "sdist bdist_wheel"
           repo: galaxy-genome-annotation/python-apollo
-
-install:
-  - pip install -U pip setuptools nose
-
-script:
-  - python setup.py install
-  - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-  - ./bootstrap_apollo.sh
-  - python setup.py nosetests
 
 notifications:
   webhooks:
