@@ -64,6 +64,9 @@ class GroupsClient(Client):
         """
         Get all the groups
 
+        :type name: str
+        :param name: Only return group(s) with given name
+
         :rtype: list of dicts
         :return: list of a dictionaries containing group information
         """

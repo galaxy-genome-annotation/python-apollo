@@ -201,6 +201,9 @@ class OrganismsClient(Client):
         """
         Update the metadata for an existing organism.
 
+        :type organism_id: str
+        :param organism_id: Organism ID Number
+
         :type metadata: str
         :param metadata: Organism metadata. (Recommendation: use a structured format like JSON)
 
