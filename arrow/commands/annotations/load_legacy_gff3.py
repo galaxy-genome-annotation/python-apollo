@@ -15,7 +15,7 @@ from arrow.decorators import custom_exception, str_output
 @custom_exception
 @str_output
 def cli(ctx, organism, gff3, source=""):
-    """Load a full GFF3 into annotation track
+    """Load a full GFF3 into annotation track (legacy version, kept for compatibility only)
 
 Output:
 

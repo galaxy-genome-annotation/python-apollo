@@ -1,5 +1,3 @@
-import json
-
 import click
 from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, str_output
@@ -14,66 +12,45 @@ from arrow.decorators import custom_exception, str_output
     type=str
 )
 @click.option(
-    "--test",
-    is_flag=True,
-    help="Run as a test without writing.",
-)
-@click.option(
     "--batch_size",
-    help="Number of annotations to write at a time",
-    default=1,
+    help="Size of batches before writing",
+    default="1",
+    show_default=True,
     type=int
 )
 @click.option(
+    "--test",
+    help="Run in dry run mode",
+    is_flag=True
+)
+@click.option(
     "--use_name",
-    is_flag=True,
     help="Use the given name instead of generating one.",
+    is_flag=True
 )
 @click.option(
     "--disable_cds_recalculation",
-    is_flag=True,
-    help="Disable recalculation of the CDS and instead use the one provided",
+    help="Disable CDS recalculation and instead use the one provided",
+    is_flag=True
 )
 @click.option(
     "--verbose",
-    is_flag=True,
-    help="Provide verbose output",
+    help="Verbose mode",
+    is_flag=True
 )
 @click.option(
     "--timing",
-    is_flag=True,
-    help="Show timing output",
+    help="Output loading performance metrics",
+    is_flag=True
 )
 @pass_context
 @custom_exception
 @str_output
-def cli(ctx, organism, gff3, source="", test=False, use_name=False, disable_cds_recalculation=False, verbose=False,
-        batch_size=1, timing=False):
+def cli(ctx, organism, gff3, source="", batch_size=1, test=False, use_name=False, disable_cds_recalculation=False, verbose=False, timing=False):
     """Load a full GFF3 into annotation track
 
 Output:
 
     Loading report
     """
-    organisms = ctx.gi.organisms.get_organisms()
-    org_ids = []
-    for org in organisms:
-        if organism == org['commonName'] or organism == str(org['id']):
-            org_ids.append(org['id'])
-
-    if len(org_ids) == 0:
-        print("Organism name or id not found [" + organism + "]")
-        return 1
-
-    if len(org_ids) > 1:
-        print("More than one organism found for [" + organism + "].  Use an organism ID instead: " + str(org_ids) + "")
-        return 1
-
-    return ctx.gi.annotations.load_gff3(
-        organism, gff3, source=source, test=test,
-        use_name=use_name,
-        disable_cds_recalculation=disable_cds_recalculation,
-        batch_size=batch_size,
-        verbose=verbose,
-        timing=timing
-    )
+    return ctx.gi.annotations.load_gff3(organism, gff3, source=source, batch_size=batch_size, test=test, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation, verbose=verbose, timing=timing)

@@ -3,14 +3,14 @@ Contains possible interactions with the Apollo's Annotations
 """
 import sys
 import time
-from timeit import default_timer
 from enum import Enum
+from timeit import default_timer
 
 from BCBio import GFF
-from apollo import util
 
+from apollo import util
 from apollo.client import Client
-from apollo.util import features_to_feature_schema, retry, add_property_to_feature
+from apollo.util import add_property_to_feature, features_to_feature_schema, retry
 
 
 class FeatureType(Enum):
@@ -526,12 +526,12 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getSequence', data)
 
-    def add_features(self, features=None, organism=None, sequence=None):
+    def add_features(self, features=[], organism=None, sequence=None):
         """
-        Add a feature
+        Add a list of feature
 
         :type features: list
-        :param features:
+        :param features: Feature information
 
         :type organism: str
         :param organism: Organism Common Name
@@ -549,24 +549,30 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('addFeature', data)
 
-    def add_feature(self, feature=None, organism=None, sequence=None):
+    def add_feature(self, feature={}, organism=None, sequence=None):
         """
+        Add a single feature
+
+        :type feature: dict
+        :param feature: Feature information
+
         :type organism: str
         :param organism: Organism Common Name
 
         :type sequence: str
         :param sequence: Sequence Name
 
-        :type feature: object
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
         return self.add_features([feature], organism, sequence)
 
-    def add_transcripts(self, transcripts=None,
+    def add_transcripts(self, transcripts=[],
                         suppress_history=False, suppress_events=False, organism=None,
                         sequence=None
                         ):
         """
-        Add one or more transcript annotations
+        Add a list of transcript annotations
 
         :type transcripts: list
         :param transcripts: Transcript data
@@ -596,12 +602,12 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('addTranscript', data)
 
-    def add_transcript(self, transcript=None,
+    def add_transcript(self, transcript={},
                        suppress_history=False, suppress_events=False, organism=None,
                        sequence=None
                        ):
         """
-        Add a transcript annotation
+        Add a single transcript annotation
 
         :type transcript: dict
         :param transcript: Transcript data
@@ -970,7 +976,7 @@ class AnnotationsClient(Client):
 
     def load_legacy_gff3(self, organism, gff3, source=None):
         """
-        Load a full GFF3 into annotation track
+        Load a full GFF3 into annotation track (legacy version, kept for compatibility only)
 
         :type organism: str
         :param organism: Organism Common Name
@@ -1173,18 +1179,18 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None, timing=False):
+    def _check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None, timing=False):
         if len(new_features_list) >= batch_size:
             if verbose:
                 print("writing out the features: " + str(new_features_list))
-            self.write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
+            self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
         if len(new_transcripts_list) >= batch_size:
             if verbose:
                 print("writing out the transcripts : " + str(new_transcripts_list))
-            self.write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+            self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
 
-    def write_features(self, new_features_list=None, test=False, verbose=False, timing=False,
-                       feature_type=None):
+    def _write_features(self, new_features_list=None, test=False, verbose=False, timing=False,
+                        feature_type=None):
         if not isinstance(feature_type, FeatureType):
             raise TypeError("Feature type must be of type feature type : " + str(feature_type))
         if len(new_features_list) > 0:
@@ -1243,23 +1249,6 @@ class AnnotationsClient(Client):
                   ):
         """
         Load a full GFF3 into annotation track
-        :type timing: bool
-        :param timing:
-
-        :type use_name: bool
-        :param use_name:
-
-        :type disable_cds_recalculation: bool
-        :param disable_cds_recalculation:
-
-        :type verbose: bool
-        :param verbose:
-
-        :type test: bool
-        :param test:
-
-        :type batch_size: int
-        :param batch_size: Size of batches before writing
 
         :type organism: str
         :param organism: Organism Common Name
@@ -1270,9 +1259,41 @@ class AnnotationsClient(Client):
         :type source: str
         :param source: URL where the input dataset can be found.
 
+        :type batch_size: int
+        :param batch_size: Size of batches before writing
+
+        :type test: bool
+        :param test: Run in dry run mode
+
+        :type use_name: bool
+        :param use_name: Use the given name instead of generating one.
+
+        :type disable_cds_recalculation: bool
+        :param disable_cds_recalculation: Disable CDS recalculation and instead use the one provided
+
+        :type verbose: bool
+        :param verbose: Verbose mode
+
+        :type timing: bool
+        :param timing: Output loading performance metrics
+
         :rtype: str
         :return: Loading report
         """
+        organisms = self._wa.organisms.get_organisms()
+        org_ids = []
+        for org in organisms:
+            if organism == org['commonName'] or organism == str(org['id']):
+                org_ids.append(org['id'])
+
+        if len(org_ids) == 0:
+            print("Organism name or id not found [" + organism + "]")
+            return 1
+
+        if len(org_ids) > 1:
+            print("More than one organism found for [" + organism + "].  Use an organism ID instead: " + str(org_ids) + "")
+            return 1
+
         if timing:
             start_timer = default_timer()
             total_features_written = 0
@@ -1320,7 +1341,7 @@ class AnnotationsClient(Client):
 
                     if timing:
                         total_features_written += 1
-                    self.check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
+                    self._check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
                 except Exception as e:
                     msg = str(e)
                     if '\n' in msg:
@@ -1334,8 +1355,8 @@ class AnnotationsClient(Client):
                 sys.stdout.flush()
 
         sys.stdout.flush()
-        self.write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
-        self.write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+        self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
+        self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         sys.stdout.write("\nfinished loading\n")
         if timing:
             end_timer = default_timer()

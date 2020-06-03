@@ -6,8 +6,9 @@ from arrow.decorators import custom_exception, dict_output
 @click.command('add_features')
 @click.option(
     "--features",
-    help="Feature information in an array",
-    type=str
+    help="Feature information",
+    type=str,
+    multiple=True
 )
 @click.option(
     "--organism",
@@ -23,7 +24,7 @@ from arrow.decorators import custom_exception, dict_output
 @custom_exception
 @dict_output
 def cli(ctx, features=None, organism="", sequence=""):
-    """Add multiple features
+    """Add a list of feature
 
 Output:
 

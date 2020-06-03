@@ -7,7 +7,8 @@ from arrow.decorators import custom_exception, dict_output
 @click.option(
     "--transcripts",
     help="Transcript data",
-    type=str
+    type=str,
+    multiple=True
 )
 @click.option(
     "--suppress_history",
@@ -33,7 +34,7 @@ from arrow.decorators import custom_exception, dict_output
 @custom_exception
 @dict_output
 def cli(ctx, transcripts=None, suppress_history=False, suppress_events=False, organism="", sequence=""):
-    """[UNTESTED] Add multiple transcripts
+    """Add a list of transcript annotations
 
 Output:
 

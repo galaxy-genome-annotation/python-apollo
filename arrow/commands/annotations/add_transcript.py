@@ -33,7 +33,7 @@ from arrow.decorators import custom_exception, dict_output
 @custom_exception
 @dict_output
 def cli(ctx, transcript={}, suppress_history=False, suppress_events=False, organism="", sequence=""):
-    """[UNTESTED] Add a transcript to a feature
+    """Add a single transcript annotation
 
 Output:
 

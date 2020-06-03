@@ -23,7 +23,7 @@ from arrow.decorators import custom_exception, dict_output
 @custom_exception
 @dict_output
 def cli(ctx, feature={}, organism="", sequence=""):
-    """Add a feature
+    """Add a single feature
 
 Output:
 
