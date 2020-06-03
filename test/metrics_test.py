@@ -14,4 +14,6 @@ class MetricsTest(ApolloTestCase):
         assert 'meters' in metrics
         assert 'timers' in metrics
 
-        assert 'org.bbop.apollo.AnnotationEditorController.annotationEditorTimer' in metrics['timers']
+        # this is only valid for Apollo 2.6.X
+        # this class will change later
+        # assert 'org.bbop.apollo.AnnotationEditorController.annotationEditorTimer' in metrics['timers']

@@ -3,11 +3,19 @@ Contains possible interactions with the Apollo's Annotations
 """
 import sys
 import time
+from enum import Enum
+from timeit import default_timer
 
 from BCBio import GFF
 
+from apollo import util
 from apollo.client import Client
-from apollo.util import featuresToFeatureSchema, retry
+from apollo.util import add_property_to_feature, features_to_feature_schema, retry
+
+
+class FeatureType(Enum):
+    FEATURE = 1
+    TRANSCRIPT = 2
 
 
 class AnnotationsClient(Client):
@@ -518,9 +526,32 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getSequence', data)
 
+    def add_features(self, features=[], organism=None, sequence=None):
+        """
+        Add a list of feature
+
+        :type features: list
+        :param features: Feature information
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
+        """
+
+        data = {
+            'features': features,
+        }
+        data = self._update_data(data, organism, sequence)
+        return self.post('addFeature', data)
+
     def add_feature(self, feature={}, organism=None, sequence=None):
         """
-        Add a feature
+        Add a single feature
 
         :type feature: dict
         :param feature: Feature information
@@ -534,16 +565,49 @@ class AnnotationsClient(Client):
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
+        return self.add_features([feature], organism, sequence)
 
+    def add_transcripts(self, transcripts=[],
+                        suppress_history=False, suppress_events=False, organism=None,
+                        sequence=None
+                        ):
+        """
+        Add a list of transcript annotations
+
+        :type transcripts: list
+        :param transcripts: Transcript data
+
+        :type suppress_history: bool
+        :param suppress_history: Suppress the history of this operation
+
+        :type suppress_events: bool
+        :param suppress_events: Suppress instant update of the user interface
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type sequence: str
+        :param sequence: Sequence Name
+
+        :rtype: dict
+        :return: A standard apollo feature dictionary ({"features": [{...}]})
+        """
+        if transcripts is None:
+            transcripts = []
         data = {
-            'features': feature,
+            'suppressHistory': suppress_history,
+            'suppressEvents': suppress_events,
+            'features': transcripts
         }
         data = self._update_data(data, organism, sequence)
-        return self.post('addFeature', data)
+        return self.post('addTranscript', data)
 
-    def add_transcript(self, transcript={}, suppress_history=False, suppress_events=False, organism=None, sequence=None):
+    def add_transcript(self, transcript={},
+                       suppress_history=False, suppress_events=False, organism=None,
+                       sequence=None
+                       ):
         """
-        [UNTESTED] Add a transcript to a feature
+        Add a single transcript annotation
 
         :type transcript: dict
         :param transcript: Transcript data
@@ -563,17 +627,7 @@ class AnnotationsClient(Client):
         :rtype: dict
         :return: A standard apollo feature dictionary ({"features": [{...}]})
         """
-        data = {
-            'suppressHistory': suppress_history,
-            'suppressEvents': suppress_events,
-            'features': [
-                transcript
-            ]
-        }
-        data = self._update_data(data, organism, sequence)
-        return self.post('addTranscript', data)
-
-    # addExon, add/delete/updateComments, addTranscript skipped due to docs
+        return self.add_transcripts([transcript], suppress_history, suppress_events, organism, sequence)
 
     def duplicate_transcript(self, transcript_id, organism=None, sequence=None):
         """
@@ -920,9 +974,9 @@ class AnnotationsClient(Client):
         data = self._update_data(data, organism, sequence)
         return self.post('getGff3', data, is_json=False)
 
-    def load_gff3(self, organism, gff3, source=None):
+    def load_legacy_gff3(self, organism, gff3, source=None):
         """
-        Load a full GFF3 into annotation track
+        Load a full GFF3 into annotation track (legacy version, kept for compatibility only)
 
         :type organism: str
         :param organism: Organism Common Name
@@ -950,13 +1004,15 @@ class AnnotationsClient(Client):
                 if feature.type not in ('gene', 'terminator'):
                     continue
                 # Convert the feature into a presentation that Apollo will accept
-                featureData = featuresToFeatureSchema([feature])
-                if 'children' in featureData[0] and any([child['type']['name'] == 'tRNA' for child in featureData[0]['children']]):
+                feature_data = features_to_feature_schema([feature])
+                # TODO: do we handle all top-types here?
+                if 'children' in feature_data[0] and any([child['type']['name'] == 'tRNA'
+                                                          for child in feature_data[0]['children']]):
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
 
-                    featureData[0]['name'] = 'tRNA_000'
+                    feature_data[0]['name'] = 'tRNA_000'
                     tRNA_sf = [child for child in feature.sub_features if child.type == 'tRNA'][0]
                     tRNA_type = 'tRNA-' + tRNA_sf.qualifiers.get('Codon', ["Unk"])[0]
 
@@ -964,13 +1020,14 @@ class AnnotationsClient(Client):
                         if feature.qualifiers['Name'][0].startswith('tRNA-'):
                             tRNA_type = feature.qualifiers['Name'][0]
 
-                    newfeature = self.add_feature(featureData)
+                    newfeature = self.add_feature(feature_data[0])
 
                     def func0():
                         self.set_name(
                             newfeature['features'][0]['uniquename'],
                             tRNA_type,
                         )
+
                     retry(func0)
 
                     if source:
@@ -978,6 +1035,7 @@ class AnnotationsClient(Client):
 
                         def setSource():
                             self.add_attribute(gene_id, 'DatasetSource', source)
+
                         retry(setSource)
 
                     sys.stdout.write('\t'.join([
@@ -985,12 +1043,12 @@ class AnnotationsClient(Client):
                         newfeature['features'][0]['uniquename'],
                         'success',
                     ]))
-                elif featureData[0]['type']['name'] == 'terminator':
+                if feature_data[0]['type']['name'] == 'terminator':
                     # We're experiencing a (transient?) problem where gene_001 to
                     # gene_025 will be rejected. Thus, hardcode to a known working
                     # gene name and update later.
-                    featureData[0]['name'] = 'terminator_000'
-                    newfeature = self.add_feature(featureData)
+                    feature_data[0]['name'] = 'terminator_000'
+                    newfeature = self.add_feature(feature_data[0])
 
                     def func0():
                         self.set_name(
@@ -1005,6 +1063,7 @@ class AnnotationsClient(Client):
 
                         def setSource():
                             self.add_attribute(gene_id, 'DatasetSource', source)
+
                         retry(setSource)
 
                     sys.stdout.write('\t'.join([
@@ -1017,9 +1076,9 @@ class AnnotationsClient(Client):
                         # We're experiencing a (transient?) problem where gene_001 to
                         # gene_025 will be rejected. Thus, hardcode to a known working
                         # gene name and update later.
-                        featureData[0]['name'] = 'gene_000'
+                        feature_data[0]['name'] = 'gene_000'
                         # Create the new feature
-                        newfeature = self.add_feature(featureData)
+                        newfeature = self.add_feature(feature_data[0])
                         # Extract the UUIDs that apollo returns to us
                         mrna_id = newfeature['features'][0]['uniquename']
                         gene_id = newfeature['features'][0]['parent_id']
@@ -1034,7 +1093,7 @@ class AnnotationsClient(Client):
                         min_cds = None
                         max_cds = None
 
-                        for feat in featureData[0]['children']:
+                        for feat in feature_data[0]['children']:
                             # mRNA level
                             for subfeat in feat['children']:
                                 # Can be exon or CDS
@@ -1056,18 +1115,24 @@ class AnnotationsClient(Client):
                                                 max_cds = max(max_cds, subsubfeat['location']['fmax'])
 
                         # Correct the translation start, but with strand specific log
-                        if featureData[0]['location']['strand'] == 1:
+                        if feature_data[0]['location']['strand'] == 1:
                             self.set_translation_start(mrna_id, min(min_cds, max_cds))
                         else:
                             self.set_translation_start(mrna_id, max(min_cds, max_cds) - 1)
 
                         # Finally we set the name, this should be correct.
                         def func():
-                            self.set_name(mrna_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
+                            self.set_name(mrna_id, feature.qualifiers.get('product',
+                                                                          feature.qualifiers.get('Name', ["Unknown"]))[
+                                0])
+
                         retry(func)
 
                         def func():
-                            self.set_name(gene_id, feature.qualifiers.get('product', feature.qualifiers.get('Name', ["Unknown"]))[0])
+                            self.set_name(gene_id, feature.qualifiers.get('product',
+                                                                          feature.qualifiers.get('Name', ["Unknown"]))[
+                                0])
+
                         retry(func)
 
                         if source:
@@ -1075,6 +1140,7 @@ class AnnotationsClient(Client):
 
                             def setSource():
                                 self.add_attribute(gene_id, 'DatasetSource', source)
+
                             retry(setSource)
                         extra_attr = {}
                         for (key, values) in feature.qualifiers.items():
@@ -1084,6 +1150,7 @@ class AnnotationsClient(Client):
                             if key == 'Note':
                                 def func2():
                                     self.add_comments(gene_id, values)
+
                                 retry(func2)
                             else:
                                 extra_attr[key] = values
@@ -1091,6 +1158,7 @@ class AnnotationsClient(Client):
                         for key in extra_attr:
                             def func3():
                                 self.add_attribute(gene_id, key, extra_attr[key])
+
                             retry(func3)
 
                         sys.stdout.write('\t'.join([
@@ -1110,3 +1178,190 @@ class AnnotationsClient(Client):
                         ]))
                 sys.stdout.write('\n')
                 sys.stdout.flush()
+
+    def _check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None, timing=False):
+        if len(new_features_list) >= batch_size:
+            if verbose:
+                print("writing out the features: " + str(new_features_list))
+            self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
+        if len(new_transcripts_list) >= batch_size:
+            if verbose:
+                print("writing out the transcripts : " + str(new_transcripts_list))
+            self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+
+    def _write_features(self, new_features_list=None, test=False, verbose=False, timing=False,
+                        feature_type=None):
+        if not isinstance(feature_type, FeatureType):
+            raise TypeError("Feature type must be of type feature type : " + str(feature_type))
+        if len(new_features_list) > 0:
+            returned_features = []
+            if verbose:
+                print("Writing " + str(len(new_features_list)) + " features")
+                print("Features to write:")
+                print(new_features_list)
+            if test is True:
+                sys.stdout.write(
+                    "test success" + " " + str(len(new_features_list)) + " features would have been loaded\n")
+            else:
+                if timing:
+                    start_time = default_timer()
+                try:
+                    if feature_type == FeatureType.FEATURE:
+                        returned_features = self.add_features(new_features_list)
+                    elif feature_type == FeatureType.TRANSCRIPT:
+                        returned_features = self.add_transcripts(new_features_list)
+                    else:
+                        raise Exception("Type '" + str(feature_type) + "' is unknown")
+                    sys.stdout.write(".")
+                except Exception:
+                    if verbose:
+                        e = sys.exc_info()[0]
+                        sys.stdout.write("Error writing: " + str(e))
+                    else:
+                        sys.stdout.write("e")
+                    pass
+                if timing:
+                    end_time = default_timer()
+                    duration = end_time - start_time
+                    avg_duration = duration / len(new_features_list)
+                    if len(new_features_list) == 1:
+                        sys.stdout.write("(" + str('{:.2f}'.format(duration)) + ")")
+                    if len(new_features_list) > 1:
+                        sys.stdout.write("(" + str('{:.1f}'.format((duration))) + "")
+                        sys.stdout.write("/" + str('{:.2f}'.format(avg_duration)) + ")")
+
+                if verbose:
+                    print("Features returned")
+                    print(returned_features)
+                    sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " features returned\n")
+            del new_features_list[:]
+            return returned_features
+        else:
+            if verbose:
+                print("empty list, no more features to write")
+
+    def load_gff3(self, organism, gff3, source=None, batch_size=1,
+                  test=False,
+                  use_name=False,
+                  disable_cds_recalculation=False,
+                  verbose=False,
+                  timing=False,
+                  ):
+        """
+        Load a full GFF3 into annotation track
+
+        :type organism: str
+        :param organism: Organism Common Name
+
+        :type gff3: str
+        :param gff3: GFF3 to load
+
+        :type source: str
+        :param source: URL where the input dataset can be found.
+
+        :type batch_size: int
+        :param batch_size: Size of batches before writing
+
+        :type test: bool
+        :param test: Run in dry run mode
+
+        :type use_name: bool
+        :param use_name: Use the given name instead of generating one.
+
+        :type disable_cds_recalculation: bool
+        :param disable_cds_recalculation: Disable CDS recalculation and instead use the one provided
+
+        :type verbose: bool
+        :param verbose: Verbose mode
+
+        :type timing: bool
+        :param timing: Output loading performance metrics
+
+        :rtype: str
+        :return: Loading report
+        """
+        organisms = self._wa.organisms.get_organisms()
+        org_ids = []
+        for org in organisms:
+            if organism == org['commonName'] or organism == str(org['id']):
+                org_ids.append(org['id'])
+
+        if len(org_ids) == 0:
+            print("Organism name or id not found [" + organism + "]")
+            return 1
+
+        if len(org_ids) > 1:
+            print("More than one organism found for [" + organism + "].  Use an organism ID instead: " + str(org_ids) + "")
+            return 1
+
+        if timing:
+            start_timer = default_timer()
+            total_features_written = 0
+            sys.stdout.write('Times are in seconds.  If batch-size > 1 then .(total_batch_time/avg_feature_time)\n')
+
+        if verbose:
+            sys.stdout.write('# ')
+            sys.stdout.write('\t'.join(['Feature ID', 'Apollo ID', 'Success', 'Messages']))
+            sys.stdout.write('\n')
+
+        # bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
+        new_features_list = []
+        new_transcripts_list = []
+
+        for rec in GFF.parse(gff3):
+            self.set_sequence(organism, rec.id)
+            for feature in rec.features:
+                # We can only handle genes right now
+                if verbose:
+                    print("input feature: " + str(feature))
+
+                if feature.type not in (util.gene_types + util.coding_transcript_types + util.pseudogenes_types
+                                        + util.noncoding_transcript_types + util.single_level_feature_types):
+                    print("\nIgnoring unknown feature type '" + str(feature.type) + "' for " + str(feature) + "\n")
+                    continue
+
+                # Convert the feature into a presentation that Apollo will accept
+                feature_data = features_to_feature_schema([feature], use_name, disable_cds_recalculation)
+
+                if source is not None:
+                    add_property_to_feature(feature_data[0], "DatasetSource", source)
+
+                try:
+                    # Create the new feature
+                    if verbose:
+                        print("adding " + str(feature.type) + " to write list: " + str(feature_data[0]))
+
+                    if feature.type in util.gene_types:
+                        new_transcripts_list.append(feature_data[0])
+                    # TODO: note that this NEVER handles a transcript ever
+                    if feature.type in util.coding_transcript_types:
+                        new_transcripts_list.append(feature_data[0])
+                    else:
+                        new_features_list.append(feature_data[0])
+
+                    if timing:
+                        total_features_written += 1
+                    self._check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
+                except Exception as e:
+                    msg = str(e)
+                    if '\n' in msg:
+                        msg = msg[0:msg.index('\n')]
+                    sys.stdout.write('\t'.join([
+                        feature.id,
+                        '',
+                        'ERROR',
+                        msg
+                    ]))
+                sys.stdout.flush()
+
+        sys.stdout.flush()
+        self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
+        self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+        sys.stdout.write("\nfinished loading\n")
+        if timing:
+            end_timer = default_timer()
+            duration = end_timer - start_timer
+            sys.stdout.write("\n" + str(duration) + " seconds to write " + str(total_features_written) + " features\n")
+            sys.stdout.write(
+                "Avg write time (s) per feature: " + str('{:.3f}'.format(duration / total_features_written)) + "\n")
+        sys.stdout.flush()

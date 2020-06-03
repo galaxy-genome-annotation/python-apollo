@@ -3,11 +3,12 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, dict_output
 
 
-@click.command('add_feature')
+@click.command('add_features')
 @click.option(
-    "--feature",
+    "--features",
     help="Feature information",
-    type=str
+    type=str,
+    multiple=True
 )
 @click.option(
     "--organism",
@@ -22,11 +23,11 @@ from arrow.decorators import custom_exception, dict_output
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, feature={}, organism="", sequence=""):
-    """Add a single feature
+def cli(ctx, features=None, organism="", sequence=""):
+    """Add a list of feature
 
 Output:
 
     A standard apollo feature dictionary ({"features": [{...}]})
     """
-    return ctx.gi.annotations.add_feature(feature=feature, organism=organism, sequence=sequence)
+    return ctx.gi.annotations.add_features(features=features, organism=organism, sequence=sequence)

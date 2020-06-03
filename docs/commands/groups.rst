@@ -117,7 +117,7 @@ Get all the groups
 **Options**::
 
 
-      --name TEXT
+      --name TEXT  Only return group(s) with given name
       -h, --help   Show this message and exit.
     
 

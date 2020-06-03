@@ -90,7 +90,7 @@ Add a dbxref to a feature
 
 **Help**
 
-Add a feature
+Add a single feature
 
 
 **Output**
@@ -107,6 +107,32 @@ Add a feature
       -h, --help       Show this message and exit.
     
 
+``add_features`` command
+------------------------
+
+**Usage**::
+
+    arrow annotations add_features [OPTIONS]
+
+**Help**
+
+Add a list of feature
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --features TEXT  Feature information
+      --organism TEXT  Organism Common Name
+      --sequence TEXT  Sequence Name
+      -h, --help       Show this message and exit.
+    
+
 ``add_transcript`` command
 --------------------------
 
@@ -116,7 +142,7 @@ Add a feature
 
 **Help**
 
-[UNTESTED] Add a transcript to a feature
+Add a single transcript annotation
 
 
 **Output**
@@ -128,6 +154,34 @@ Add a feature
 
 
       --transcript TEXT   Transcript data
+      --suppress_history  Suppress the history of this operation
+      --suppress_events   Suppress instant update of the user interface
+      --organism TEXT     Organism Common Name
+      --sequence TEXT     Sequence Name
+      -h, --help          Show this message and exit.
+    
+
+``add_transcripts`` command
+---------------------------
+
+**Usage**::
+
+    arrow annotations add_transcripts [OPTIONS]
+
+**Help**
+
+Add a list of transcript annotations
+
+
+**Output**
+
+
+    A standard apollo feature dictionary ({"features": [{...}]})
+    
+**Options**::
+
+
+      --transcripts TEXT  Transcript data
       --suppress_history  Suppress the history of this operation
       --suppress_events   Suppress instant update of the user interface
       --organism TEXT     Organism Common Name
@@ -461,6 +515,37 @@ Get the search tools available
 **Help**
 
 Load a full GFF3 into annotation track
+
+
+**Output**
+
+
+    Loading report
+    
+**Options**::
+
+
+      --source TEXT                URL where the input dataset can be found.
+      --batch_size INTEGER         Size of batches before writing  [default: 1]
+      --test                       Run in dry run mode
+      --use_name                   Use the given name instead of generating one.
+      --disable_cds_recalculation  Disable CDS recalculation and instead use the one
+                                   provided
+      --verbose                    Verbose mode
+      --timing                     Output loading performance metrics
+      -h, --help                   Show this message and exit.
+    
+
+``load_legacy_gff3`` command
+----------------------------
+
+**Usage**::
+
+    arrow annotations load_legacy_gff3 [OPTIONS] ORGANISM GFF3
+
+**Help**
+
+Load a full GFF3 into annotation track (legacy version, kept for compatibility only)
 
 
 **Output**

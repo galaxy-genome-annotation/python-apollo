@@ -3,7 +3,9 @@ from arrow.commands.annotations.add_attribute import cli as add_attribute
 from arrow.commands.annotations.add_comment import cli as add_comment
 from arrow.commands.annotations.add_dbxref import cli as add_dbxref
 from arrow.commands.annotations.add_feature import cli as add_feature
+from arrow.commands.annotations.add_features import cli as add_features
 from arrow.commands.annotations.add_transcript import cli as add_transcript
+from arrow.commands.annotations.add_transcripts import cli as add_transcripts
 from arrow.commands.annotations.delete_attribute import cli as delete_attribute
 from arrow.commands.annotations.delete_dbxref import cli as delete_dbxref
 from arrow.commands.annotations.delete_feature import cli as delete_feature
@@ -17,6 +19,7 @@ from arrow.commands.annotations.get_gff3 import cli as get_gff3
 from arrow.commands.annotations.get_search_tools import cli as get_search_tools
 from arrow.commands.annotations.get_sequence_alterations import cli as get_sequence_alterations
 from arrow.commands.annotations.load_gff3 import cli as load_gff3
+from arrow.commands.annotations.load_legacy_gff3 import cli as load_legacy_gff3
 from arrow.commands.annotations.merge_exons import cli as merge_exons
 from arrow.commands.annotations.set_boundaries import cli as set_boundaries
 from arrow.commands.annotations.set_description import cli as set_description
@@ -41,7 +44,9 @@ cli.add_command(add_attribute)
 cli.add_command(add_comment)
 cli.add_command(add_dbxref)
 cli.add_command(add_feature)
+cli.add_command(add_features)
 cli.add_command(add_transcript)
+cli.add_command(add_transcripts)
 cli.add_command(delete_attribute)
 cli.add_command(delete_dbxref)
 cli.add_command(delete_feature)
@@ -55,6 +60,7 @@ cli.add_command(get_gff3)
 cli.add_command(get_search_tools)
 cli.add_command(get_sequence_alterations)
 cli.add_command(load_gff3)
+cli.add_command(load_legacy_gff3)
 cli.add_command(merge_exons)
 cli.add_command(set_boundaries)
 cli.add_command(set_description)

@@ -3,11 +3,12 @@ from arrow.cli import pass_context, json_loads
 from arrow.decorators import custom_exception, dict_output
 
 
-@click.command('add_transcript')
+@click.command('add_transcripts')
 @click.option(
-    "--transcript",
+    "--transcripts",
     help="Transcript data",
-    type=str
+    type=str,
+    multiple=True
 )
 @click.option(
     "--suppress_history",
@@ -32,11 +33,11 @@ from arrow.decorators import custom_exception, dict_output
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, transcript={}, suppress_history=False, suppress_events=False, organism="", sequence=""):
-    """Add a single transcript annotation
+def cli(ctx, transcripts=None, suppress_history=False, suppress_events=False, organism="", sequence=""):
+    """Add a list of transcript annotations
 
 Output:
 
     A standard apollo feature dictionary ({"features": [{...}]})
     """
-    return ctx.gi.annotations.add_transcript(transcript=transcript, suppress_history=suppress_history, suppress_events=suppress_events, organism=organism, sequence=sequence)
+    return ctx.gi.annotations.add_transcripts(transcripts=transcripts, suppress_history=suppress_history, suppress_events=suppress_events, organism=organism, sequence=sequence)

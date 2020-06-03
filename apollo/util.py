@@ -7,8 +7,15 @@ from Bio import SeqIO
 
 from apollo.exceptions import UnknownUserException
 
-
 log = logging.getLogger()
+
+gene_types = ["gene"]
+coding_transcript_types = ["mRNA"]
+pseudogenes_types = ["pseudogene", "pseudogenic_region", "processed_pseudogene"]
+noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'mRNA', 'miRNA', 'guide_RNA',
+                              'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
+                              'tmRNA', 'enzymatic_RNA']
+single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence", "transposable_element"]
 
 
 def WAAuth(parser):
@@ -88,7 +95,7 @@ def _tnType(feature):
         return 'exon'
 
 
-def _yieldFeatData(features):
+def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
     for f in features:
         current = {
             'location': {
@@ -103,22 +110,57 @@ def _yieldFeatData(features):
                 }
             },
         }
-        if f.type in ('gene', 'mRNA'):
+        if disable_cds_recalculation is True:
+            current['use_cds'] = 'true'
+
+        if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
+                      + single_level_feature_types):
             current['name'] = f.qualifiers.get('Name', [f.id])[0]
+
+        if use_name is True:
+            current['use_name'] = True
+
+        # if OGS:
+        # TODO: handle comments
+        # TODO: handle dbxrefs
+        # TODO: handle attributes
+        # TODO: handle aliases
+        # TODO: handle description
+        # TODO: handle GO, Gene Product, Provenance
+
         if hasattr(f, 'sub_features') and len(f.sub_features) > 0:
             current['children'] = [x for x in _yieldFeatData(f.sub_features)]
 
         yield current
 
 
-def featuresToFeatureSchema(features):
+def add_property_to_feature(feature, property_key, property_value):
+    """
+
+    :param feature:
+    :type property_key: str
+    :param property_key:
+    :type property_value: str
+    :param property_value:
+    :return:
+    """
+    if "feature_property" not in feature:
+        feature["feature_property"] = {}
+    feature["feature_property"][property_key] = property_value
+    return feature
+
+
+def features_to_feature_schema(features, use_name=False, disable_cds_recalculation=False):
+    """
+
+    :param disable_cds_recalculation:
+    :param use_name:
+    :param features:
+    :return:
+    """
     compiled = []
     for feature in features:
-        # if feature.type != 'gene':
-        #     log.warn("Not able to handle %s features just yet...", feature.type)
-        #     continue
-
-        for x in _yieldFeatData([feature]):
+        for x in _yieldFeatData([feature], use_name, disable_cds_recalculation):
             compiled.append(x)
     return compiled
 

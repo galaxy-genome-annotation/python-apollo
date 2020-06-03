@@ -85,6 +85,11 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.2
+    - Drastically speed up load_gff3
+    - `load_gff3` now uses the Apollo `add_transcript` method if it is a gene or mRNA type
+    - Added support for all of the current Apollo coding and non-coding types
+    - Drop support for Python 2.7
 - 4.2.1
     - Fix getting groups by name
     - Add tests for group api
@@ -124,6 +129,18 @@ History
     - Status and Canned* Clients from `@abretaud <https://github.com/abretaud>`__
 - 1.0
     - Initial release
+
+
+Development
+-----------
+
+The content of docs and arrow directories is automatically generated from the code in the apollo directory.
+To regenerate it, install the latest version of the code, then run:
+
+
+.. code-block:: shell
+    make rebuild
+
 
 License
 -------

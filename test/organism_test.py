@@ -21,7 +21,8 @@ class OrganismTest(ApolloTestCase):
         assert 'id' in first_org
         assert 'publicMode' in first_org
         assert 'valid' in first_org
-        assert 'currentOrganism' in first_org
+        # deprecated
+        # assert 'currentOrganism' in first_org
         assert 'sequences' in first_org
         assert 'directory' in first_org
         assert 'blatdb' in first_org
@@ -29,7 +30,9 @@ class OrganismTest(ApolloTestCase):
         assert 'species' in first_org
         assert 'metadata' in first_org
 
-        assert '/data/org' in first_org['directory']
+        # when testing locally this could be something else
+        assert 'org' in first_org['directory']
+        # assert '/data/org' in first_org['directory']
         assert first_org['commonName'] in ['test_organism', 'alt_org', 'org3', 'org4']
 
     def test_get_organism_creator(self):
