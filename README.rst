@@ -130,6 +130,18 @@ History
 - 1.0
     - Initial release
 
+
+Development
+-----------
+
+The content of docs and arrow directories is automatically generated from the code in the apollo directory.
+To regenerate it, install the latest version of the code, then run:
+
+
+.. code-block:: shell
+    make rebuild
+
+
 License
 -------
 
