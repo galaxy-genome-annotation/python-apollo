@@ -139,6 +139,7 @@ To regenerate it, install the latest version of the code, then run:
 
 
 .. code-block:: shell
+
     make rebuild
 
 
