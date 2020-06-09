@@ -1,0 +1,5 @@
+##fileformat=VCFv4.2
+##fileDate=20200608
+##source=.
+##reference=/data/temporary/apollo_data/25-test_organism/seq/genome.fasta
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
