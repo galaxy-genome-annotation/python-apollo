@@ -53,24 +53,28 @@ class GroupTest(ApolloTestCase):
         creator = wa.groups.get_group_creator('temp_group')
         print("1 - CREATOR")
         print(str(creator))
+        print(str(creator['creator']))
 
-        user_info = wa.users.show_user(creator)
+        user_info = wa.users.show_user(creator['creator'])
         print("1 - USER_INFO")
         print(str(user_info))
+        print(str(user_info['username']))
 
-        assert creator['username'] == "admin@local.host"
+        assert user_info['username'] == "admin@local.host"
 
     def test_get_group_admin(self):
 
         creator = wa.groups.get_group_admin('temp_group')
         print("2 - CREATOR")
         print(str(creator))
+        print(str(creator['creator']))
 
-        user_info = wa.users.show_user(creator)
+        user_info = wa.users.show_user(creator['creator'])
         print("2 - USER_INFO")
         print(str(user_info))
+        print(str(user_info['username']))
 
-        assert creator['username'] == "admin@local.host"
+        assert user_info['username'] == "admin@local.host"
 
     def test_create_group(self):
 
