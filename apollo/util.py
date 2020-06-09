@@ -96,6 +96,8 @@ def _tnType(feature):
 
 
 def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
+    print("yeilding feature data")
+    print(features)
     for f in features:
         current = {
             'location': {
@@ -148,6 +150,20 @@ def add_property_to_feature(feature, property_key, property_value):
         feature["feature_property"] = {}
     feature["feature_property"][property_key] = property_value
     return feature
+
+
+def features_to_apollo_schema(features, use_name=False, disable_cds_recalculation=False):
+    """
+
+    :param disable_cds_recalculation:
+    :param use_name:
+    :param features:
+    :return:
+    """
+    compiled = []
+    for x in _yieldFeatData(features, use_name, disable_cds_recalculation):
+        compiled.append(x)
+    return compiled
 
 
 def features_to_feature_schema(features, use_name=False, disable_cds_recalculation=False):
