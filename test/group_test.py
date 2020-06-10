@@ -54,8 +54,10 @@ class GroupTest(ApolloTestCase):
         print("1 - creator")
         print(str(creator))
         user_info = wa.users.show_user(creator['creator'])
+        print("2 - user")
+        print(str(user_info))
 
-        assert user_info['username'] == "admin@local.host"
+        assert user_info[0]['username'] == "admin@local.host"
 
     def test_get_group_admin(self):
 
