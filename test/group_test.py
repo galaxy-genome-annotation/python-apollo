@@ -51,24 +51,18 @@ class GroupTest(ApolloTestCase):
     def test_get_group_creator(self):
 
         creator = wa.groups.get_group_creator('temp_group')
-
-        user_info = wa.users.show_user(creator)
-
+        user_info = wa.users.show_user(creator['creator'])
         assert user_info['username'] == "admin@local.host"
 
     def test_get_group_admin(self):
 
         creator = wa.groups.get_group_admin('temp_group')
-
-        user_info = wa.users.show_user(creator)
-
-        assert user_info['username'] == "admin@local.host"
+        assert creator[0]['username'] == "admin@local.host"
 
     def test_create_group(self):
 
         res = wa.groups.create_group("trash_group")
         self.waitGroupCreated('trash_group')
-
         res = wa.groups.get_groups('trash_group')
 
         assert len(res) == 1
