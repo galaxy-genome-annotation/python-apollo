@@ -1261,17 +1261,23 @@ class AnnotationsClient(Client):
     def _process_gff_entry(self, rec, new_feature_list, new_transcript_list, source=None,
                            disable_cds_recalculation=False, use_name=False, verbose=False):
         type = self._get_type(rec)
+        print("type " + str(type))
         subfeatures = self._get_subfeatures(rec)
         if type in util.gene_types:
+            print("is gene type")
             if subfeatures is not None and len(subfeatures) > 0:
-                feature_data = util._yieldApolloData(rec.features[1:], use_name=use_name,
+                print("has sub features")
+                feature_data = util._yieldApolloData(subfeatures, use_name=use_name,
                                                      disable_cds_recalculation=disable_cds_recalculation)
+                print("output feature data" + str(feature_data))
                 new_transcript_list.append(feature_data)
             else:
+                print("NO sub features, just adding directly")
                 feature_data = util._yieldApolloData(rec.features, use_name=use_name,
                                                      disable_cds_recalculation=disable_cds_recalculation)
+                print("output feature data" + str(feature_data))
                 new_feature_list.append(feature_data)
-        if type in util.pseudogenes_types:
+        elif type in util.pseudogenes_types:
             if subfeatures is not None and len(subfeatures) > 0:
                 feature_data = util._yieldApolloData(rec.features[1:], use_name=use_name,
                                                      disable_cds_recalculation=disable_cds_recalculation)
@@ -1280,11 +1286,11 @@ class AnnotationsClient(Client):
                 feature_data = util._yieldApolloData(rec.features, use_name=use_name,
                                                      disable_cds_recalculation=disable_cds_recalculation)
                 new_feature_list.append(feature_data)
-        if type in util.coding_transcript_types or type in util.noncoding_transcript_types:
+        elif type in util.coding_transcript_types or type in util.noncoding_transcript_types:
             feature_data = util._yieldApolloData(rec.features, use_name=use_name,
                                                  disable_cds_recalculation=disable_cds_recalculation)
             new_transcript_list.append(feature_data)
-        if type in util.single_level_feature_types:
+        elif type in util.single_level_feature_types:
             feature_data = util._yieldApolloData(rec.features, use_name=use_name,
                                                  disable_cds_recalculation=disable_cds_recalculation)
             new_feature_list.append(feature_data)
@@ -1349,7 +1355,7 @@ class AnnotationsClient(Client):
         #     # a gene or a transcript
         #
         return_object = {}
-        return_object['features'] = feature_data
+        return_object['features'] = [feature_data]
         return return_object
 
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
@@ -1498,6 +1504,8 @@ class AnnotationsClient(Client):
             #     sys.stdout.flush()
 
         sys.stdout.flush()
+        print("features to write" + new_features_list)
+        print("transcripts to write" + new_transcripts_list)
         self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
         self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         sys.stdout.write("\nfinished loading\n")
