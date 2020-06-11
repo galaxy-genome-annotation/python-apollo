@@ -95,6 +95,181 @@ def _tnType(feature):
         return 'exon'
 
 
+def _yieldGeneData(features, disable_cds_recalculation=False, use_name=False):
+    f = features[0]
+    current = _yieldSubFeatureData(f, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
+    sub_features = features[1:]
+
+    if sub_features:
+        current['children'] = []
+        for sf in sub_features:
+            if _tnType(sf) in coding_transcript_types + noncoding_transcript_types:
+                current['children'].append(
+                    _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                               use_name=use_name))
+
+    # current = {
+    #     'location': {
+    #         'strand': f.strand,
+    #         'fmin': int(f.location.start),
+    #         'fmax': int(f.location.end),
+    #     },
+    #     'type': {
+    #         'name': _tnType(f),
+    #         'cv': {
+    #             'name': 'sequence',
+    #         }
+    #     },
+    # }
+    # if disable_cds_recalculation is True:
+    #     current['use_cds'] = 'true'
+    #
+    # if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
+    #               + single_level_feature_types):
+    #     current['name'] = f.qualifiers.get('Name', [f.id])[0]
+    #
+    # if use_name is True:
+    #     current['use_name'] = True
+    #
+    # # if OGS:
+    # # TODO: handle comments
+    # # TODO: handle dbxrefs
+    # # TODO: handle attributes
+    # # TODO: handle aliases
+    # # TODO: handle description
+    # # TODO: handle GO, Gene Product, Provenance
+    return current
+
+
+def _yieldSubFeatureData(f, disable_cds_recalculation=False, use_name=False):
+    current = {
+        'location': {
+            'strand': f.strand,
+            'fmin': int(f.location.start),
+            'fmax': int(f.location.end),
+        },
+        'type': {
+            'name': _tnType(f),
+            'cv': {
+                'name': 'sequence',
+            }
+        },
+    }
+    if disable_cds_recalculation is True:
+        current['use_cds'] = 'true'
+
+    if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
+                  + single_level_feature_types):
+        current['name'] = f.qualifiers.get('Name', [f.id])[0]
+
+    if use_name is True:
+        current['use_name'] = True
+
+    # if OGS:
+    # TODO: handle comments
+    # TODO: handle dbxrefs
+    # TODO: handle attributes
+    # TODO: handle aliases
+    # TODO: handle description
+    # TODO: handle GO, Gene Product, Provenance
+    return current
+
+
+def _yieldCodingTranscriptData(features, disable_cds_recalculation=False, use_name=False):
+    f = features[0]
+    current = {
+        'location': {
+            'strand': f.strand,
+            'fmin': int(f.location.start),
+            'fmax': int(f.location.end),
+        },
+        'type': {
+            'name': _tnType(f),
+            'cv': {
+                'name': 'sequence',
+            }
+        },
+    }
+    subfeatures = features[1:]
+    if len(subfeatures) > 0:
+        current['children'] = []
+
+    for sf in subfeatures:
+        current['children'].append(
+            _yieldSubFeatureData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+
+    return current
+
+
+# def _yieldNonCodingTranscriptData(features):
+#     pass
+
+
+# def _yieldSingleLevelFeatureData(features):
+#     return _yieldSubFeatureData(features[0])
+
+
+def _yieldApolloData(features, use_name=False, disable_cds_recalculation=False):
+    print("yeilding apollo data")
+    print(features)
+    current_feature = features[0]
+    if _tnType(current_feature) in gene_types:
+        return _yieldGeneData(features)
+    elif _tnType(current_feature) in coding_transcript_types:
+        return _yieldCodingTranscriptData(features)
+    elif _tnType(current_feature) in noncoding_transcript_types:
+        return _yieldCodingTranscriptData(features)
+        # return _yieldNonCodingTranscriptData(features)
+    elif _tnType(current_feature) in single_level_feature_types:
+        # return _yieldSingleLevelFeatureData(features)
+        return _yieldSubFeatureData(features)
+    else:
+        print("nothing there")
+        return None
+
+    # for f in features:
+    #
+    #     if _tnType(f) in gene_types:
+    #         current = {
+    #             'location': {
+    #                 'strand': f.strand,
+    #                 'fmin': int(f.location.start),
+    #                 'fmax': int(f.location.end),
+    #             },
+    #             'type': {
+    #                 'name': _tnType(f),
+    #                 'cv': {
+    #                     'name': 'sequence',
+    #                 }
+    #             },
+    #         }
+    #     elif _tnType(f) in coding_transcript_types:
+    #
+    #
+    #     if disable_cds_recalculation is True:
+    #         current['use_cds'] = 'true'
+    #
+    #     if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
+    #                   + single_level_feature_types):
+    #         current['name'] = f.qualifiers.get('Name', [f.id])[0]
+    #
+    #     if use_name is True:
+    #         current['use_name'] = True
+    #
+    #     # if OGS:
+    #     # TODO: handle comments
+    #     # TODO: handle dbxrefs
+    #     # TODO: handle attributes
+    #     # TODO: handle aliases
+    #     # TODO: handle description
+    #     # TODO: handle GO, Gene Product, Provenance
+    #
+    #     if hasattr(f, 'sub_features') and len(f.sub_features) > 0:
+    #         current['children'] = [x for x in _yieldFeatData(f.sub_features)]
+    #
+    #     yield current
+
+
 def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
     print("yeilding feature data")
     print(features)
@@ -161,7 +336,7 @@ def features_to_apollo_schema(features, use_name=False, disable_cds_recalculatio
     :return:
     """
     compiled = []
-    for x in _yieldFeatData(features, use_name, disable_cds_recalculation):
+    for x in _yieldApolloData(features, use_name, disable_cds_recalculation):
         compiled.append(x)
     return compiled
 
