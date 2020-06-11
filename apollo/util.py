@@ -95,18 +95,23 @@ def _tnType(feature):
         return 'exon'
 
 
-def _yieldGeneData(features, disable_cds_recalculation=False, use_name=False):
-    f = features[0]
-    current = _yieldSubFeatureData(f, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
-    sub_features = features[1:]
+def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
+    current = _yieldSubFeatureData(gene, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
+    sub_features = gene.sub_features
+    print("yielding gene data current " + str(current))
 
     if sub_features:
         current['children'] = []
         for sf in sub_features:
-            if _tnType(sf) in coding_transcript_types + noncoding_transcript_types:
-                current['children'].append(
-                    _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
-                                               use_name=use_name))
+            if _tnType(sf) in coding_transcript_types:
+                child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                                        use_name=use_name)
+                print("child data" + str(child_data))
+                current['children'].append(child_data)
+            if _tnType(sf) in noncoding_transcript_types:
+                child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                                        use_name=use_name)
+                current['children'].append(child_data)
 
     # current = {
     #     'location': {
@@ -175,8 +180,7 @@ def _yieldSubFeatureData(f, disable_cds_recalculation=False, use_name=False):
     return current
 
 
-def _yieldCodingTranscriptData(features, disable_cds_recalculation=False, use_name=False):
-    f = features[0]
+def _yieldCodingTranscriptData(f, disable_cds_recalculation=False, use_name=False):
     current = {
         'location': {
             'strand': f.strand,
@@ -190,15 +194,19 @@ def _yieldCodingTranscriptData(features, disable_cds_recalculation=False, use_na
             }
         },
     }
-    subfeatures = features[1:]
-    if len(subfeatures) > 0:
+    if len(f.sub_features) > 0:
         current['children'] = []
-
-    for sf in subfeatures:
-        current['children'].append(
-            _yieldSubFeatureData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+        for sf in f.sub_features:
+            current['children'].append(
+                _yieldSubFeatureData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
 
     return current
+
+
+def print_file(path):
+    with open(path) as file:
+        print(file.read())
+        file.close()
 
 
 # def _yieldNonCodingTranscriptData(features):
@@ -209,23 +217,23 @@ def _yieldCodingTranscriptData(features, disable_cds_recalculation=False, use_na
 #     return _yieldSubFeatureData(features[0])
 
 
-def _yieldApolloData(features, use_name=False, disable_cds_recalculation=False):
-    current_feature = features[0]
-    if _tnType(current_feature) in gene_types:
-        return _yieldGeneData(features)
-    if _tnType(current_feature) in pseudogenes_types:
-        return _yieldGeneData(features)
-    elif _tnType(current_feature) in coding_transcript_types:
-        return _yieldCodingTranscriptData(features)
-    elif _tnType(current_feature) in noncoding_transcript_types:
-        return _yieldCodingTranscriptData(features)
-        # return _yieldNonCodingTranscriptData(features)
-    elif _tnType(current_feature) in single_level_feature_types:
-        # return _yieldSingleLevelFeatureData(features)
-        return _yieldSubFeatureData(features)
+def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False):
+    feature_type = _tnType(feature)
+    if feature_type in gene_types:
+        return _yieldGeneData(feature)
+    if feature_type in pseudogenes_types:
+        return _yieldGeneData(feature)
+    elif feature_type in coding_transcript_types:
+        return _yieldCodingTranscriptData(feature)
+    elif feature_type in noncoding_transcript_types:
+        return _yieldCodingTranscriptData(feature)
+        # return _yieldNonCodingTranscriptData(current_feature)
+    elif feature_type in single_level_feature_types:
+        # return _yieldSingleLevelFeatureData(current_feature)
+        return _yieldSubFeatureData(feature)
     else:
-        print("nothing there")
-        return None
+        print("other type: " + feature_type)
+        return _yieldSubFeatureData(feature)
 
     # for f in features:
     #
@@ -334,8 +342,11 @@ def features_to_apollo_schema(features, use_name=False, disable_cds_recalculatio
     :return:
     """
     compiled = []
-    for x in _yieldApolloData(features, use_name, disable_cds_recalculation):
-        compiled.append(x)
+    # for x in _yieldApolloData(features, use_name, disable_cds_recalculation):
+    #     compiled.append(x)
+    # return compiled
+    for f in features:
+        compiled.append(yieldApolloData(f, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation))
     return compiled
 
 

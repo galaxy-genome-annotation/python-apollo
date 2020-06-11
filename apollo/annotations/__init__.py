@@ -1246,12 +1246,6 @@ class AnnotationsClient(Client):
             if verbose:
                 print("empty list, no more features to write")
 
-    def _get_subfeatures(self, rec):
-        if len(rec.features) > 1:
-            return rec.features[1:]
-        else:
-            return None
-
     def _get_type(self, rec):
         return rec.features[0].type
 
@@ -1262,100 +1256,53 @@ class AnnotationsClient(Client):
                            disable_cds_recalculation=False, use_name=False, verbose=False):
         type = self._get_type(rec)
         print("type " + str(type))
-        subfeatures = self._get_subfeatures(rec)
-        if type in util.gene_types:
-            print("is gene type")
-            if subfeatures is not None and len(subfeatures) > 0:
-                print("has sub features")
-                feature_data = util._yieldApolloData(subfeatures, use_name=use_name,
-                                                     disable_cds_recalculation=disable_cds_recalculation)
-                print("output feature data" + str(feature_data))
+        all_features = []
+        for feature in rec.features:
+            sub_features = feature.sub_features
+            feature_data = None
+            if type in util.gene_types:
+                print("is gene type")
+                if sub_features is not None and len(sub_features) > 0:
+                    print("has sub features")
+                    feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                        disable_cds_recalculation=disable_cds_recalculation)
+                    print("output feature data" + str(feature_data))
+                    new_transcript_list.append(feature_data)
+                else:
+                    print("NO sub features, just adding directly")
+                    feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                        disable_cds_recalculation=disable_cds_recalculation)
+                    print("output feature data" + str(feature_data))
+                    new_feature_list.append(feature_data)
+            elif type in util.pseudogenes_types:
+                if sub_features is not None and len(sub_features) > 0:
+                    feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                        disable_cds_recalculation=disable_cds_recalculation)
+                    new_feature_list.append(feature_data)
+                else:
+                    feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                        disable_cds_recalculation=disable_cds_recalculation)
+                    new_feature_list.append(feature_data)
+            elif type in util.coding_transcript_types:
+                feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                    disable_cds_recalculation=disable_cds_recalculation)
                 new_transcript_list.append(feature_data)
+            elif type in util.noncoding_transcript_types:
+                print("a non-coding transcript\n")
+                feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                    disable_cds_recalculation=disable_cds_recalculation)
+                new_feature_list.append(feature_data)
+                print("new feature list \n" + str(new_feature_list))
+            elif type in util.single_level_feature_types:
+                feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                    disable_cds_recalculation=disable_cds_recalculation)
+                new_feature_list.append(feature_data)
             else:
-                print("NO sub features, just adding directly")
-                feature_data = util._yieldApolloData(rec.features, use_name=use_name,
-                                                     disable_cds_recalculation=disable_cds_recalculation)
-                print("output feature data" + str(feature_data))
-                new_feature_list.append(feature_data)
-        elif type in util.pseudogenes_types:
-            if subfeatures is not None and len(subfeatures) > 0:
-                feature_data = util._yieldApolloData(rec.features[1:], use_name=use_name,
-                                                     disable_cds_recalculation=disable_cds_recalculation)
-                new_feature_list.append(feature_data)
-            else:
-                feature_data = util._yieldApolloData(rec.features, use_name=use_name,
-                                                     disable_cds_recalculation=disable_cds_recalculation)
-                new_feature_list.append(feature_data)
-        elif type in util.coding_transcript_types or type in util.noncoding_transcript_types:
-            feature_data = util._yieldApolloData(rec.features, use_name=use_name,
-                                                 disable_cds_recalculation=disable_cds_recalculation)
-            new_transcript_list.append(feature_data)
-        elif type in util.single_level_feature_types:
-            feature_data = util._yieldApolloData(rec.features, use_name=use_name,
-                                                 disable_cds_recalculation=disable_cds_recalculation)
-            new_feature_list.append(feature_data)
-        else:
-            print("unknown type " + type + " ")
+                print("unknown type " + type + " ")
+            if feature_data is not None:
+                all_features.append(feature_data)
 
-        # type = self._get_type(rec)
-        # subfeatures = self._get_subfeatures(rec)
-        # if type not in util.gene_types and type not in util.coding_transcript_types:
-        #     print("AAAAAA")
-        #     if subfeatures is not None:
-        #         print("BBBBBB")
-        #         # process noncoding transcripts
-        #         for subfeature in subfeatures:
-        #             self._process_gff_entry(subfeature, new_feature_list, new_transcript_list, source,
-        #                                     disable_cds_recalculation, use_name)
-        #     else:
-        #         print("CCCCCC")
-        #         # if its not a gene or a transcript type then process as a simple singleton
-        #         feature_data = features_to_feature_schema([rec.features[0]], disable_cds_recalculation, use_name)
-        #         if source is not None:
-        #             add_property_to_feature(feature_data[0], "DatasetSource", source)
-        #         if verbose:
-        #             print("adding " + str(type) + " to write list: " + str(feature_data[0]))
-        #         new_feature_list.append(feature_data[0])
-        # else:
-        #     print("DDDDDD")
-        #     if type in util.gene_types:
-        #         print("EEEEEE")
-        #         transcript_type = self._get_subfeature_type(rec)
-        #         if transcript_type in util.coding_transcript_types:
-        #             print("FFFFFF")
-        #             feature_data = features_to_feature_schema(subfeatures, use_name=use_name,
-        #                                                       disable_cds_recalculation=disable_cds_recalculation)
-        #             if source is not None:
-        #                 add_property_to_feature(feature_data[0], "DatasetSource", source)
-        #             new_transcript_list.append(feature_data)
-        #             if verbose:
-        #                 print("adding gene with MRNA type " + str(type) + " to write list: " + str(feature_data))
-        #         else:
-        #             print("GGGGGG")
-        #             feature_data = features_to_feature_schema(rec.features, use_name=use_name,
-        #                                                       disable_cds_recalculation=disable_cds_recalculation)
-        #             if verbose:
-        #                 print("adding gene with noncoding transcript type " + str(type) + " to write list: " + str(
-        #                     feature_data))
-        #             if source is not None:
-        #                 add_property_to_feature(feature_data[0], "DatasetSource", source)
-        #             new_feature_list.append(feature_data)
-        #             # self._process_gene(rec.features)
-        #     elif type in util.coding_transcript_types:
-        #         print("HHHHHH")
-        #         feature_data = features_to_apollo_schema(rec.features, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation)
-        #         if source is not None:
-        #             add_property_to_feature(feature_data[0], "DatasetSource", source)
-        #         if verbose:
-        #             print("adding transcript type " + str(type) + " to write list: " + str(feature_data))
-        #         new_transcript_list.append(feature_data)
-        #     else:
-        #         print("how did we get here?")
-        #
-        #     # a gene or a transcript
-        #
-        return_object = {}
-        return_object['features'] = [feature_data]
+        return_object = {'features': all_features}
         return return_object
 
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
