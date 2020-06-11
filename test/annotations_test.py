@@ -6,12 +6,6 @@ from BCBio.GFF import GFFExaminer
 from . import ApolloTestCase, wa
 from apollo import util
 
-def parse(path):
-    in_handle = open(path)
-    for rec in GFF.parse(in_handle):
-        print("rec -> "+str(rec)+"\n")
-        for f in rec.features:
-            print("feature ->" + str(f)+"\n")
 
 
 class AnnotationsTest(ApolloTestCase):
@@ -37,14 +31,6 @@ class AnnotationsTest(ApolloTestCase):
 
     def test_features_to_apollo_schema_gene(self):
         path = 'test-data/gene-top.gff'
-        print("inspecting")
-        output = parse(path)
-        print(str(output))
-        for o in output:
-            print("AAA")
-            print(str(o))
-            print("BBB")
-        print("inspected")
 
         with open(path) as file:
             print(file.read())
@@ -59,6 +45,8 @@ class AnnotationsTest(ApolloTestCase):
         new_transcript_list = []
         for rec in GFF.parse(in_handle):
             print(str(rec))
+            print(str(rec.features))
+            print(str(rec.sub_features))
             for f in rec.features:
                 print("feature ===== start")
                 print(f)
