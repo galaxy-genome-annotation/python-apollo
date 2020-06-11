@@ -46,10 +46,11 @@ class AnnotationsTest(ApolloTestCase):
         for rec in GFF.parse(in_handle):
             print(str(rec))
             print(str(rec.features))
-            print(str(rec.sub_features))
+            # print(str(rec.sub_features))
             for f in rec.features:
                 print("feature ===== start")
                 print(f)
+                print(f.sub_features)
                 print("feature ===== end")
             feature_data = wa.annotations._process_gff_entry(rec, new_feature_list=new_feature_list,
                                                              new_transcript_list=new_transcript_list)
