@@ -9,7 +9,9 @@ from apollo import util
 def parse(path):
     in_handle = open(path)
     for rec in GFF.parse(in_handle):
-        yield rec
+        print("rec -> "+str(rec)+"\n")
+        for f in rec.features:
+            print("feature ->" + str(f)+"\n")
 
 
 class AnnotationsTest(ApolloTestCase):
