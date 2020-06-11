@@ -1348,7 +1348,9 @@ class AnnotationsClient(Client):
         #
         #     # a gene or a transcript
         #
-        return feature_data
+        return_object = {}
+        return_object['features'] = feature_data
+        return return_object
 
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
                   test=False,
