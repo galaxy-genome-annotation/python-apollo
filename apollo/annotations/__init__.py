@@ -1263,18 +1263,33 @@ class AnnotationsClient(Client):
         type = self._get_type(rec)
         subfeatures = self._get_subfeatures(rec)
         if type in util.gene_types:
-            if len(subfeatures) > 0:
-                feature_data = util._yieldApolloData(rec.features[1:])
+            if subfeatures is not None and len(subfeatures) > 0:
+                feature_data = util._yieldApolloData(rec.features[1:], use_name=use_name,
+                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_transcript_list.append(feature_data)
             else:
-                feature_data = util._yieldApolloData(rec.features)
+                feature_data = util._yieldApolloData(rec.features, use_name=use_name,
+                                                     disable_cds_recalculation=disable_cds_recalculation)
+                new_feature_list.append(feature_data)
+        if type in util.pseudogenes_types:
+            if subfeatures is not None and len(subfeatures) > 0:
+                feature_data = util._yieldApolloData(rec.features[1:], use_name=use_name,
+                                                     disable_cds_recalculation=disable_cds_recalculation)
+                new_feature_list.append(feature_data)
+            else:
+                feature_data = util._yieldApolloData(rec.features, use_name=use_name,
+                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_feature_list.append(feature_data)
         if type in util.coding_transcript_types or type in util.noncoding_transcript_types:
-            feature_data = util._yieldApolloData(rec.features)
+            feature_data = util._yieldApolloData(rec.features, use_name=use_name,
+                                                 disable_cds_recalculation=disable_cds_recalculation)
             new_transcript_list.append(feature_data)
         if type in util.single_level_feature_types:
-            feature_data = util._yieldApolloData(rec.features)
+            feature_data = util._yieldApolloData(rec.features, use_name=use_name,
+                                                 disable_cds_recalculation=disable_cds_recalculation)
             new_feature_list.append(feature_data)
+        else:
+            print("unknown type " + type + " ")
 
         # type = self._get_type(rec)
         # subfeatures = self._get_subfeatures(rec)

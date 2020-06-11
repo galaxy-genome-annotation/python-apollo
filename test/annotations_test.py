@@ -39,3 +39,77 @@ class AnnotationsTest(ApolloTestCase):
         assert (len(feature_list) == 0)
         assert (len(transcript_list) == 1)
         print(transcript_list)
+
+    def test_create_gene(self):
+        path = 'test-data/gene-top.gff'
+
+        with open(path) as file:
+            print(file.read())
+            file.close()
+
+        feature_list = []
+        transcript_list = []
+        in_handle = open(path)
+        for rec in GFF.parse(in_handle):
+            wa.annotations._process_gff_entry(rec, feature_list, transcript_list)
+
+        in_handle.close()
+        print(feature_list)
+        print(transcript_list)
+        # assert (len(feature_list) == 0)
+        # assert (len(transcript_list) == 1)
+
+    def test_create_pseudogene(self):
+        path = 'test-data/pseudogene-top.gff'
+
+        with open(path) as file:
+            print(file.read())
+            file.close()
+
+        feature_list = []
+        transcript_list = []
+        in_handle = open(path)
+        for rec in GFF.parse(in_handle):
+            wa.annotations._process_gff_entry(rec, feature_list, transcript_list)
+
+        in_handle.close()
+        assert (len(feature_list) == 1)
+        assert (len(transcript_list) == 0)
+        print(transcript_list)
+
+    def test_create_ncRNA(self):
+        path = 'test-data/ncrna-top.gff'
+
+        with open(path) as file:
+            print(file.read())
+            file.close()
+
+        feature_list = []
+        transcript_list = []
+        in_handle = open(path)
+        for rec in GFF.parse(in_handle):
+            wa.annotations._process_gff_entry(rec, feature_list, transcript_list)
+
+        in_handle.close()
+        assert (len(feature_list) == 0)
+        assert (len(transcript_list) == 1)
+        print(transcript_list)
+
+    def test_create_repeat_region(self):
+        path = 'test-data/repeat-region-top.gff'
+
+        with open(path) as file:
+            print(file.read())
+            file.close()
+
+        feature_list = []
+        transcript_list = []
+        in_handle = open(path)
+        for rec in GFF.parse(in_handle):
+            wa.annotations._process_gff_entry(rec, feature_list, transcript_list)
+
+        in_handle.close()
+        print(feature_list)
+        print(transcript_list)
+        assert (len(feature_list) == 1)
+        assert (len(transcript_list) == 0)

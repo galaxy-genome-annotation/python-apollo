@@ -213,6 +213,8 @@ def _yieldApolloData(features, use_name=False, disable_cds_recalculation=False):
     current_feature = features[0]
     if _tnType(current_feature) in gene_types:
         return _yieldGeneData(features)
+    if _tnType(current_feature) in pseudogenes_types:
+        return _yieldGeneData(features)
     elif _tnType(current_feature) in coding_transcript_types:
         return _yieldCodingTranscriptData(features)
     elif _tnType(current_feature) in noncoding_transcript_types:
