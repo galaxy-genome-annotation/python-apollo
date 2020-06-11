@@ -210,8 +210,6 @@ def _yieldCodingTranscriptData(features, disable_cds_recalculation=False, use_na
 
 
 def _yieldApolloData(features, use_name=False, disable_cds_recalculation=False):
-    print("yeilding apollo data")
-    print(features)
     current_feature = features[0]
     if _tnType(current_feature) in gene_types:
         return _yieldGeneData(features)
@@ -271,8 +269,6 @@ def _yieldApolloData(features, use_name=False, disable_cds_recalculation=False):
 
 
 def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
-    print("yeilding feature data")
-    print(features)
     for f in features:
         current = {
             'location': {
