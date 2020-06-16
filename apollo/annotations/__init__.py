@@ -1451,8 +1451,8 @@ class AnnotationsClient(Client):
             #     sys.stdout.flush()
 
         sys.stdout.flush()
-        print("features to write" + new_features_list)
-        print("transcripts to write" + new_transcripts_list)
+        # print("features to write" + new_features_list)
+        # print("transcripts to write" + new_transcripts_list)
         self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
         self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         sys.stdout.write("\nfinished loading\n")
