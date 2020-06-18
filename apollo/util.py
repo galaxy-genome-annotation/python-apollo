@@ -104,14 +104,17 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
         current['children'] = []
         for sf in sub_features:
             if _tnType(sf) in coding_transcript_types:
-                child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
-                                                        use_name=use_name)
+                # child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
+                child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
                 print("child data" + str(child_data))
-                current['children'].append(child_data)
+                return child_data
+                # current['children'].append(child_data)
             if _tnType(sf) in noncoding_transcript_types:
                 child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
                                                         use_name=use_name)
-                current['children'].append(child_data)
+                # current['children'].append(child_data)
+                print("child data" + str(child_data))
+                return child_data
 
     # current = {
     #     'location': {
