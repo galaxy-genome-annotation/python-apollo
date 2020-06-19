@@ -21,7 +21,7 @@ class IoTest(ApolloTestCase):
         assert 'Merlin\t.\tmRNA\t2\t691\t.\t+\t.' in gff_content
         assert 'Merlin\t.\texon\t2\t691\t.\t+\t.' in gff_content
         assert 'Merlin\t.\tCDS\t2\t691\t.\t+\t0' in gff_content
-        assert 'score=["-1335.034872"]' in gff_content
+        # assert 'score=["-1335.034872"]' in gff_content
         assert 'Merlin\t.\tnon_canonical_three_prime_splice_site\t4297\t4297\t.\t-\t.' in gff_content
         assert 'Merlin\t.\tnon_canonical_five_prime_splice_site\t4364\t4364\t.\t-\t.' in gff_content
 
