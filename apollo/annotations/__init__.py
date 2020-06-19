@@ -10,17 +10,12 @@ from BCBio import GFF
 
 from apollo import util
 from apollo.client import Client
-# from apollo.util import add_property_to_feature, features_to_feature_schema, retry, features_to_apollo_schema
 from apollo.util import features_to_feature_schema, retry
 
 
 class FeatureType(Enum):
     FEATURE = 1
     TRANSCRIPT = 2
-
-
-def get_type(rec):
-    pass
 
 
 class AnnotationsClient(Client):
@@ -1376,12 +1371,6 @@ class AnnotationsClient(Client):
 
         for rec in GFF.parse(gff3):
             self.set_sequence(organism, rec.id)
-            print("GFF entry")
-            print(str(rec))
-            print("Features")
-            print(str(rec.features))
-            # type = self._get_type(rec)
-            # transcript_type = self._get_subfeature_type(rec)
             try:
                 if verbose:
                     print("processing" + str(rec) + " with features: " + str(rec.features))
@@ -1404,55 +1393,7 @@ class AnnotationsClient(Client):
                 ]))
             sys.stdout.flush()
 
-            # for feature in rec.features:
-            #     print("---feature--")
-            #     print(str(feature))
-            #     # We can only handle genes right now
-            #     if verbose:
-            #         print("input feature: " + str(feature))
-            #
-            #     if feature.type not in (util.gene_types + util.coding_transcript_types + util.pseudogenes_types
-            #                             + util.noncoding_transcript_types + util.single_level_feature_types):
-            #         print("\nIgnoring unknown feature type '" + str(feature.type) + "' for " + str(feature) + "\n")
-            #         continue
-            #
-            #     # Convert the feature into a presentation that Apollo will accept
-            #     feature_data = features_to_feature_schema([feature], use_name, disable_cds_recalculation)
-            #
-            #     if source is not None:
-            #         add_property_to_feature(feature_data[0], "DatasetSource", source)
-            #
-            #     try:
-            #         # Create the new feature
-            #         if verbose:
-            #             print("adding " + str(feature.type) + " to write list: " + str(feature_data[0]))
-            #
-            #         if feature.type in util.gene_types:
-            #             new_transcripts_list.append(feature_data[0])
-            #         # TODO: note that this NEVER handles a transcript ever
-            #         if feature.type in util.coding_transcript_types:
-            #             new_transcripts_list.append(feature_data[0])
-            #         else:
-            #             new_features_list.append(feature_data[0])
-            #
-            #         if timing:
-            #             total_features_written += 1
-            #         self._check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
-            #     except Exception as e:
-            #         msg = str(e)
-            #         if '\n' in msg:
-            #             msg = msg[0:msg.index('\n')]
-            #         sys.stdout.write('\t'.join([
-            #             feature.id,
-            #             '',
-            #             'ERROR',
-            #             msg
-            #         ]))
-            #     sys.stdout.flush()
-
         sys.stdout.flush()
-        # print("features to write" + new_features_list)
-        # print("transcripts to write" + new_transcripts_list)
         self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
         self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
         sys.stdout.write("\nfinished loading\n")

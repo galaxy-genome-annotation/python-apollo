@@ -98,48 +98,20 @@ def _tnType(feature):
 def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
     current = _yieldSubFeatureData(gene, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
     sub_features = gene.sub_features
-    print("yielding gene data current " + str(current))
 
+    # TODO: is this handling multiple isoforms properly?
     if sub_features:
-        current['children'] = []
+        # current['children'] = []
+        # child_data = []
         for sf in sub_features:
             if _tnType(sf) in coding_transcript_types:
-                # child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
-                child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
-                print("child data" + str(child_data))
-                return child_data
-                # current['children'].append(child_data)
+                # child_data.append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+                return _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
             if _tnType(sf) in noncoding_transcript_types:
-                child_data = _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
-                                                        use_name=use_name)
-                # current['children'].append(child_data)
-                print("child data" + str(child_data))
-                return child_data
+                # child_data.append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+                return _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
+        # return child_data
 
-    # current = {
-    #     'location': {
-    #         'strand': f.strand,
-    #         'fmin': int(f.location.start),
-    #         'fmax': int(f.location.end),
-    #     },
-    #     'type': {
-    #         'name': _tnType(f),
-    #         'cv': {
-    #             'name': 'sequence',
-    #         }
-    #     },
-    # }
-    # if disable_cds_recalculation is True:
-    #     current['use_cds'] = 'true'
-    #
-    # if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
-    #               + single_level_feature_types):
-    #     current['name'] = f.qualifiers.get('Name', [f.id])[0]
-    #
-    # if use_name is True:
-    #     current['use_name'] = True
-    #
-    # # if OGS:
     # # TODO: handle comments
     # # TODO: handle dbxrefs
     # # TODO: handle attributes
@@ -212,6 +184,8 @@ def print_file(path):
         file.close()
 
 
+# TODO: we may need specify something different here, but for now this works
+
 # def _yieldNonCodingTranscriptData(features):
 #     pass
 
@@ -235,38 +209,8 @@ def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False):
         # return _yieldSingleLevelFeatureData(current_feature)
         return _yieldSubFeatureData(feature)
     else:
-        print("other type: " + feature_type)
         return _yieldSubFeatureData(feature)
 
-    # for f in features:
-    #
-    #     if _tnType(f) in gene_types:
-    #         current = {
-    #             'location': {
-    #                 'strand': f.strand,
-    #                 'fmin': int(f.location.start),
-    #                 'fmax': int(f.location.end),
-    #             },
-    #             'type': {
-    #                 'name': _tnType(f),
-    #                 'cv': {
-    #                     'name': 'sequence',
-    #                 }
-    #             },
-    #         }
-    #     elif _tnType(f) in coding_transcript_types:
-    #
-    #
-    #     if disable_cds_recalculation is True:
-    #         current['use_cds'] = 'true'
-    #
-    #     if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
-    #                   + single_level_feature_types):
-    #         current['name'] = f.qualifiers.get('Name', [f.id])[0]
-    #
-    #     if use_name is True:
-    #         current['use_name'] = True
-    #
     #     # if OGS:
     #     # TODO: handle comments
     #     # TODO: handle dbxrefs
@@ -274,11 +218,6 @@ def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False):
     #     # TODO: handle aliases
     #     # TODO: handle description
     #     # TODO: handle GO, Gene Product, Provenance
-    #
-    #     if hasattr(f, 'sub_features') and len(f.sub_features) > 0:
-    #         current['children'] = [x for x in _yieldFeatData(f.sub_features)]
-    #
-    #     yield current
 
 
 def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
@@ -345,9 +284,6 @@ def features_to_apollo_schema(features, use_name=False, disable_cds_recalculatio
     :return:
     """
     compiled = []
-    # for x in _yieldApolloData(features, use_name, disable_cds_recalculation):
-    #     compiled.append(x)
-    # return compiled
     for f in features:
         compiled.append(yieldApolloData(f, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation))
     return compiled
