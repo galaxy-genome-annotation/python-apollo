@@ -1,4 +1,4 @@
 ##gff-version 3
 ##sequence-region Merlin 1 172788
-Merlin	GeneMark.hmm	ncRNA	2	691	.	+	.	ID=Merlin_1_mRNA;seqid=Merlin;color=#00ff00
-Merlin	GeneMark.hmm	exon	2	691	.	+	.	ID=Merlin_1_exon;Parent=Merlin_1_mRNA;seqid=Merlin
+Merlin	GeneMark.hmm	ncRNA	2	691	.	+	.	ID=Merlin_100_ncRNA;seqid=Merlin;color=#00ff00
+Merlin	GeneMark.hmm	exon	2	691	.	+	.	ID=Merlin_100_exon;Parent=Merlin_100_ncRNA;seqid=Merlin

@@ -1,6 +1,7 @@
 """
 Contains possible interactions with the Apollo's Annotations
 """
+import logging
 import sys
 import time
 from enum import Enum
@@ -11,6 +12,8 @@ from BCBio import GFF
 from apollo import util
 from apollo.client import Client
 from apollo.util import features_to_feature_schema, retry
+
+log = logging.getLogger()
 
 
 class FeatureType(Enum):
@@ -1179,29 +1182,35 @@ class AnnotationsClient(Client):
                 sys.stdout.write('\n')
                 sys.stdout.flush()
 
-    def _check_write(self, batch_size, verbose, test, new_features_list=None, new_transcripts_list=None, timing=False):
+    def _check_write(self, batch_size, test, new_features_list=[], type=FeatureType.FEATURE, timing=False):
         if len(new_features_list) >= batch_size:
-            if verbose:
-                print("writing out the features: " + str(new_features_list))
-            self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
-        if len(new_transcripts_list) >= batch_size:
-            if verbose:
-                print("writing out the transcripts : " + str(new_transcripts_list))
-            self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
+            log.debug("writing out: " + str(new_features_list))
+            returned = self._write_features(new_features_list, test, timing, type)
 
-    def _write_features(self, new_features_list=None, test=False, verbose=False, timing=False,
-                        feature_type=None):
+            if 'error' in returned:
+                log.error("Error returned by Apollo while loading data: %s" % returned['error'])
+                return {top_in['gff_id']: 'error' for top_in in new_features_list}
+
+            elif len(returned):
+                # FIXME this can give strange results in case of error while loading some of the features.
+                # This expects the order to be preserved. It's the case in Apollo 2.6.0 at least.
+                in_ids = [top_in['gff_id'] for top_in in new_features_list]
+                return dict(zip(in_ids, returned['features']))
+
+        return {}
+
+    def _write_features(self, new_features_list=None, test=False, timing=False, feature_type=None):
+
         if not isinstance(feature_type, FeatureType):
             raise TypeError("Feature type must be of type feature type : " + str(feature_type))
+
         if len(new_features_list) > 0:
-            returned_features = []
-            if verbose:
-                print("Writing " + str(len(new_features_list)) + " features")
-                print("Features to write:")
-                print(new_features_list)
-            if test is True:
-                sys.stdout.write(
-                    "test success" + " " + str(len(new_features_list)) + " features would have been loaded\n")
+            returned_features = {}
+            log.debug("Writing " + str(len(new_features_list)) + " features")
+            log.debug("Features to write:")
+            log.debug(new_features_list)
+            if test:
+                print("test success " + str(len(new_features_list)) + " features would have been loaded")
             else:
                 if timing:
                     start_time = default_timer()
@@ -1212,34 +1221,25 @@ class AnnotationsClient(Client):
                         returned_features = self.add_transcripts(new_features_list)
                     else:
                         raise Exception("Type '" + str(feature_type) + "' is unknown")
-                    sys.stdout.write(".")
                 except Exception:
-                    if verbose:
-                        e = sys.exc_info()[0]
-                        sys.stdout.write("Error writing: " + str(e))
-                    else:
-                        sys.stdout.write("e")
-                    pass
+                    e = sys.exc_info()
+                    log.error("Error writing: " + str(e))
+                    returned_features = {'error': "Error writing: " + str(e)}
                 if timing:
                     end_time = default_timer()
                     duration = end_time - start_time
                     avg_duration = duration / len(new_features_list)
-                    if len(new_features_list) == 1:
-                        sys.stdout.write("(" + str('{:.2f}'.format(duration)) + ")")
                     if len(new_features_list) > 1:
-                        sys.stdout.write("(" + str('{:.1f}'.format((duration))) + "")
-                        sys.stdout.write("/" + str('{:.2f}'.format(avg_duration)) + ")")
+                        print('({:.1f}/{:.2f})'.format(duration, avg_duration))
+                    else:
+                        print('({:.2f})'.format(duration))
 
-                if verbose:
-                    print("Features returned")
-                    print(returned_features)
-                    # sys.stdout.write("success" + " " + str(len(returned_features['features'])) + " features returned\n")
-                    # sys.stdout.write("success" + " " + str(len(returned_features)) + " features returned\n")
-            del new_features_list[:]
+                log.debug("Features returned: ")
+                log.debug(returned_features)
             return returned_features
         else:
-            if verbose:
-                print("empty list, no more features to write")
+            log.debug("empty list, no more features to write")
+            return {}
 
     def _get_type(self, rec):
         return rec.features[0].type
@@ -1247,64 +1247,62 @@ class AnnotationsClient(Client):
     def _get_subfeature_type(self, rec):
         return rec.features[0].type
 
-    def _process_gff_entry(self, rec, new_feature_list, new_transcript_list, source=None,
-                           disable_cds_recalculation=False, use_name=False, verbose=False):
+    def _process_gff_entry(self, rec, source=None, disable_cds_recalculation=False, use_name=False):
+
+        new_feature_list = []
+        new_transcript_list = []
+
         type = self._get_type(rec)
-        print("type " + str(type))
-        all_features = []
+        log.debug("type " + str(type))
+
         for feature in rec.features:
-            sub_features = feature.sub_features
             feature_data = None
             if type in util.gene_types:
-                print("is gene type")
-                if sub_features is not None and len(sub_features) > 0:
-                    print("has sub features")
+                log.debug("is gene type")
+                if len(feature.sub_features) > 0:
                     feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                         disable_cds_recalculation=disable_cds_recalculation)
-                    print("output feature data" + str(feature_data))
-                    new_transcript_list.append(feature_data)
+                    log.debug("output feature data" + str(feature_data))
+                    if isinstance(feature_data, list):
+                        new_transcript_list += feature_data
+                    else:
+                        new_transcript_list.append(feature_data)
                 else:
-                    print("NO sub features, just adding directly")
+                    log.debug("NO sub features, just adding directly")
                     feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                         disable_cds_recalculation=disable_cds_recalculation)
-                    print("output feature data" + str(feature_data))
+                    log.debug("output feature data" + str(feature_data))
                     new_feature_list.append(feature_data)
             elif type in util.pseudogenes_types:
-                if sub_features is not None and len(sub_features) > 0:
-                    feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                        disable_cds_recalculation=disable_cds_recalculation)
-                    new_feature_list.append(feature_data)
+                feature_data = util.yieldApolloData(feature, use_name=use_name,
+                                                    disable_cds_recalculation=disable_cds_recalculation)
+                if isinstance(feature_data, list):
+                    new_feature_list += feature_data
                 else:
-                    feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                        disable_cds_recalculation=disable_cds_recalculation)
                     new_feature_list.append(feature_data)
             elif type in util.coding_transcript_types:
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_transcript_list.append(feature_data)
             elif type in util.noncoding_transcript_types:
-                print("a non-coding transcript\n")
+                log.debug("a non-coding transcript")
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_feature_list.append(feature_data)
-                print("new feature list \n" + str(new_feature_list))
+                log.debug("new feature list " + str(new_feature_list))
             elif type in util.single_level_feature_types:
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_feature_list.append(feature_data)
             else:
-                print("unknown type " + type + " ")
-            if feature_data is not None:
-                all_features.append(feature_data)
+                log.debug("unknown type " + type + " ")
 
-        return_object = {'features': all_features}
-        return return_object
+        return {'top-level': new_feature_list, 'transcripts': new_transcript_list}
 
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
                   test=False,
                   use_name=False,
                   disable_cds_recalculation=False,
-                  verbose=False,
                   timing=False,
                   ):
         """
@@ -1331,9 +1329,6 @@ class AnnotationsClient(Client):
         :type disable_cds_recalculation: bool
         :param disable_cds_recalculation: Disable CDS recalculation and instead use the one provided
 
-        :type verbose: bool
-        :param verbose: Verbose mode
-
         :type timing: bool
         :param timing: Output loading performance metrics
 
@@ -1347,60 +1342,62 @@ class AnnotationsClient(Client):
                 org_ids.append(org['id'])
 
         if len(org_ids) == 0:
-            print("Organism name or id not found [" + organism + "]")
-            return 1
+            raise Exception("Organism name or id not found [" + organism + "]")
 
         if len(org_ids) > 1:
-            print("More than one organism found for [" + organism + "].  Use an organism ID instead: " + str(
-                org_ids) + "")
-            return 1
+            raise Exception("More than one organism found for [" + organism + "].  Use an organism ID instead: " + str(
+                org_ids))
 
         total_features_written = 0
         start_timer = default_timer()
         if timing:
-            sys.stdout.write('Times are in seconds.  If batch-size > 1 then .(total_batch_time/avg_feature_time)\n')
+            print('Times are in seconds.  If batch-size > 1 then .(total_batch_time/avg_feature_time)')
 
-        if verbose:
-            sys.stdout.write('# ')
-            sys.stdout.write('\t'.join(['Feature ID', 'Apollo ID', 'Success', 'Messages']))
-            sys.stdout.write('\n')
-
-        # bad_quals = ['date_creation', 'source', 'owner', 'date_last_modified', 'Name', 'ID']
-        new_features_list = []
-        new_transcripts_list = []
-
+        all_processed = {'top-level': [], 'transcripts': []}
+        loading_status = {}
         for rec in GFF.parse(gff3):
             self.set_sequence(organism, rec.id)
             try:
-                if verbose:
-                    print("processing" + str(rec) + " with features: " + str(rec.features))
-                self._process_gff_entry(rec, new_features_list, new_transcripts_list, source=source,
-                                        disable_cds_recalculation=disable_cds_recalculation,
-                                        use_name=use_name
-                                        )
+                log.info("Processing %s with features: %s" % (rec.id, rec.features))
+                processed = self._process_gff_entry(rec, source=source,
+                                                    disable_cds_recalculation=disable_cds_recalculation,
+                                                    use_name=use_name
+                                                    )
+                all_processed['top-level'].extend(processed['top-level'])
+                all_processed['transcripts'].extend(processed['transcripts'])
                 total_features_written += 1
-                self._check_write(batch_size, verbose, test, new_features_list, new_transcripts_list, timing)
+                written_top = self._check_write(batch_size, test, all_processed['top-level'], FeatureType.FEATURE, timing)
+                written_transcripts = self._check_write(batch_size, test, all_processed['transcripts'], FeatureType.TRANSCRIPT, timing)
+
+                if len(written_top):
+                    all_processed['top-level'] = []
+                    loading_status = {**loading_status, **written_top}
+                if len(written_transcripts):
+                    all_processed['transcripts'] = []
+                    loading_status = {**loading_status, **written_transcripts}
 
             except Exception as e:
                 msg = str(e)
                 if '\n' in msg:
                     msg = msg[0:msg.index('\n')]
-                sys.stdout.write('\t'.join([
-                    rec.features.id,
-                    '',
-                    'ERROR',
-                    msg
-                ]))
-            sys.stdout.flush()
+                log.error("Failed to load features from %s" % rec.id)
 
-        sys.stdout.flush()
-        self._write_features(new_features_list, test, verbose, timing, FeatureType.FEATURE)
-        self._write_features(new_transcripts_list, test, verbose, timing, FeatureType.TRANSCRIPT)
-        sys.stdout.write("\nfinished loading\n")
+        # Write the rest of things to write (ignore batch_size)
+        written_top = self._check_write(0, test, all_processed['top-level'], FeatureType.FEATURE, timing)
+        written_transcripts = self._check_write(0, test, all_processed['transcripts'], FeatureType.TRANSCRIPT, timing)
+
+        if len(written_top):
+            all_processed['top-level'] = []
+            loading_status = {**loading_status, **written_top}
+        if len(written_transcripts):
+            all_processed['transcripts'] = []
+            loading_status = {**loading_status, **written_transcripts}
+
+        log.info("Finished loading")
         if timing:
             end_timer = default_timer()
             duration = end_timer - start_timer
-            sys.stdout.write("\n" + str(duration) + " seconds to write " + str(total_features_written) + " features\n")
-            sys.stdout.write(
-                "Avg write time (s) per feature: " + str('{:.3f}'.format(duration / total_features_written)) + "\n")
-        sys.stdout.flush()
+            print(str(duration) + " seconds to write " + str(total_features_written) + " features")
+            print("Avg write time (s) per feature: " + str('{:.3f}'.format(duration / total_features_written)))
+
+        return loading_status

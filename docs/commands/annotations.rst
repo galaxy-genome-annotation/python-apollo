@@ -531,7 +531,6 @@ Load a full GFF3 into annotation track
       --use_name                   Use the given name instead of generating one.
       --disable_cds_recalculation  Disable CDS recalculation and instead use the one
                                    provided
-      --verbose                    Verbose mode
       --timing                     Output loading performance metrics
       -h, --help                   Show this message and exit.
     

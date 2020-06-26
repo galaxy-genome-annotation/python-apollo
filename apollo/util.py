@@ -89,7 +89,7 @@ def AssertAdmin(user):
 
 
 def _tnType(feature):
-    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA'):
+    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript'):
         return feature.type
     else:
         return 'exon'
@@ -97,20 +97,14 @@ def _tnType(feature):
 
 def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
     current = _yieldSubFeatureData(gene, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
-    sub_features = gene.sub_features
 
-    # TODO: is this handling multiple isoforms properly?
-    if sub_features:
-        # current['children'] = []
-        # child_data = []
-        for sf in sub_features:
+    if gene.sub_features:
+        current['children'] = []
+        for sf in gene.sub_features:
             if _tnType(sf) in coding_transcript_types:
-                # child_data.append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
-                return _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
-            if _tnType(sf) in noncoding_transcript_types:
-                # child_data.append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
-                return _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
-        # return child_data
+                current['children'].append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+            elif _tnType(sf) in noncoding_transcript_types:
+                current['children'].append(_yieldNonCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
 
     # # TODO: handle comments
     # # TODO: handle dbxrefs
@@ -118,7 +112,13 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
     # # TODO: handle aliases
     # # TODO: handle description
     # # TODO: handle GO, Gene Product, Provenance
-    return current
+
+    if 'children' in current and gene.type == 'gene':
+        # Only sending mRNA level as apollo is more comfortable with orphan mRNAs
+        return current['children']
+    else:
+        # No children, return a generic gene feature
+        return current
 
 
 def _yieldSubFeatureData(f, disable_cds_recalculation=False, use_name=False):
@@ -135,14 +135,17 @@ def _yieldSubFeatureData(f, disable_cds_recalculation=False, use_name=False):
             }
         },
     }
-    if disable_cds_recalculation is True:
+    if disable_cds_recalculation:
         current['use_cds'] = 'true'
 
     if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
                   + single_level_feature_types):
         current['name'] = f.qualifiers.get('Name', [f.id])[0]
 
-    if use_name is True:
+    if 'ID' in f.qualifiers:
+        current['gff_id'] = f.qualifiers['ID'][0]
+
+    if use_name:
         current['use_name'] = True
 
     # if OGS:
@@ -169,6 +172,14 @@ def _yieldCodingTranscriptData(f, disable_cds_recalculation=False, use_name=Fals
             }
         },
     }
+
+    if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
+                  + single_level_feature_types):
+        current['name'] = f.qualifiers.get('Name', [f.id])[0]
+
+    if 'ID' in f.qualifiers:
+        current['gff_id'] = f.qualifiers['ID'][0]
+
     if len(f.sub_features) > 0:
         current['children'] = []
         for sf in f.sub_features:
@@ -178,16 +189,8 @@ def _yieldCodingTranscriptData(f, disable_cds_recalculation=False, use_name=Fals
     return current
 
 
-def print_file(path):
-    with open(path) as file:
-        print(file.read())
-        file.close()
-
-
-# TODO: we may need specify something different here, but for now this works
-
-# def _yieldNonCodingTranscriptData(features):
-#     pass
+def _yieldNonCodingTranscriptData(features, disable_cds_recalculation=False, use_name=False):
+    return _yieldCodingTranscriptData(features, disable_cds_recalculation, use_name)
 
 
 # def _yieldSingleLevelFeatureData(features):
@@ -198,13 +201,12 @@ def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False):
     feature_type = _tnType(feature)
     if feature_type in gene_types:
         return _yieldGeneData(feature)
-    if feature_type in pseudogenes_types:
+    elif feature_type in pseudogenes_types:
         return _yieldGeneData(feature)
     elif feature_type in coding_transcript_types:
         return _yieldCodingTranscriptData(feature)
     elif feature_type in noncoding_transcript_types:
-        return _yieldCodingTranscriptData(feature)
-        # return _yieldNonCodingTranscriptData(current_feature)
+        return _yieldNonCodingTranscriptData(feature)
     elif feature_type in single_level_feature_types:
         # return _yieldSingleLevelFeatureData(current_feature)
         return _yieldSubFeatureData(feature)
@@ -235,14 +237,17 @@ def _yieldFeatData(features, use_name=False, disable_cds_recalculation=False):
                 }
             },
         }
-        if disable_cds_recalculation is True:
+        if disable_cds_recalculation:
             current['use_cds'] = 'true'
 
         if f.type in (coding_transcript_types + noncoding_transcript_types + gene_types + pseudogenes_types
                       + single_level_feature_types):
             current['name'] = f.qualifiers.get('Name', [f.id])[0]
 
-        if use_name is True:
+        if 'ID' in f.qualifiers:
+            current['gff_id'] = f.qualifiers['ID'][0]
+
+        if use_name:
             current['use_name'] = True
 
         # if OGS:
