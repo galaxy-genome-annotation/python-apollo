@@ -1,0 +1,14 @@
+##gff-version 3
+##sequence-region Merlin 1 172788
+# 2 isoforms
+Merlin	GeneMark.hmm	gene	13066	14796	-2177.374893	-	.	ID=Merlin_58;seqid=Merlin;Name=multiexongene
+Merlin	GeneMark.hmm	mRNA	13066	14796	.	-	.	ID=Merlin_58_mRNA;Parent=Merlin_58;seqid=Merlin
+Merlin	GeneMark.hmm	exon	13066	14296	.	-	.	ID=Merlin_58_exon;Parent=Merlin_58_mRNA;seqid=Merlin
+Merlin	GeneMark.hmm	CDS	13066	14296	.	-	0	ID=Merlin_58_CDS;Parent=Merlin_58_exon;seqid=Merlin
+Merlin	GeneMark.hmm	exon	14366	14796	.	-	.	ID=Merlin_58_exon2;Parent=Merlin_58_mRNA;seqid=Merlin
+Merlin	GeneMark.hmm	CDS	14366	14796	.	-	0	ID=Merlin_58_CDS2;Parent=Merlin_58_exon2;seqid=Merlin
+Merlin	GeneMark.hmm	mRNA	13066	14796	.	-	.	ID=Merlin_58b_mRNA;Parent=Merlin_58;seqid=Merlin
+Merlin	GeneMark.hmm	exon	13066	14096	.	-	.	ID=Merlin_58b_exon;Parent=Merlin_58b_mRNA;seqid=Merlin
+Merlin	GeneMark.hmm	CDS	13066	14096	.	-	0	ID=Merlin_58b_CDS;Parent=Merlin_58b_exon;seqid=Merlin
+Merlin	GeneMark.hmm	exon	14466	14796	.	-	.	ID=Merlin_58b_exon2;Parent=Merlin_58b_mRNA;seqid=Merlin
+Merlin	GeneMark.hmm	CDS	14466	14796	.	-	0	ID=Merlin_58b_CDS2;Parent=Merlin_58b_exon2;seqid=Merlin

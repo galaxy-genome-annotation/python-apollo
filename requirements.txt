@@ -1,9 +1,9 @@
 requests
-biopython
+biopython==1.77
 cachetools<4
 click>=6.7
 wrapt
 pyyaml
 decorator
-bcbio-gff
+bcbio-gff==0.6.6
 pytest-timeit
