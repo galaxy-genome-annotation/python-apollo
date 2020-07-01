@@ -6,4 +6,3 @@ wrapt
 pyyaml
 decorator
 bcbio-gff==0.6.6
-pytest-timeit
