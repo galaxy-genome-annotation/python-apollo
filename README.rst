@@ -85,6 +85,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.4
+    - Remove unused dependency
 - 4.2.3
     - Fixed `load_gff3` to more accurately load transcripts including the CDS as well as handle non-coding types more accurately.
 - 4.2.2
