@@ -89,10 +89,11 @@ def AssertAdmin(user):
 
 
 def _tnType(feature):
-    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript'):
-        return feature.type
-    else:
-        return 'exon'
+    return feature.type
+    # if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript'):
+    #     return feature.type
+    # else:
+    #     return 'exon'
 
 
 def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):

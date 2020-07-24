@@ -1262,7 +1262,7 @@ class AnnotationsClient(Client):
                 if len(feature.sub_features) > 0:
                     feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                         disable_cds_recalculation=disable_cds_recalculation)
-                    log.debug("output feature data" + str(feature_data))
+                    print("output feature data" + str(feature_data))
                     if isinstance(feature_data, list):
                         new_transcript_list += feature_data
                     else:
