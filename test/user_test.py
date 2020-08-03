@@ -45,6 +45,8 @@ class UserTest(ApolloTestCase):
         meta = {"bla": "bli"}
         res = wa.users.create_user("trash@bx.psu.edu", 'Poutrelle', 'Lapinou', 'superpassword', role="user", metadata=meta)
         self.waitUserCreated(res['userId'])
+        users = wa.users.get_users()
+        assert len(users) >= 4
 
         res = wa.users.show_user('trash@bx.psu.edu')
 
@@ -57,9 +59,17 @@ class UserTest(ApolloTestCase):
 
         user_info = wa.users.create_user("trash@bx.psu.edu", 'Tempxx', 'oraryxx', 'coolpasswordxx', role="user")
         self.waitUserCreated(user_info['userId'])
+        users = wa.users.get_users()
+        # setup creates 1 and the test creates 1 and we delete 0
+        assert len(users) >= 4
 
-        wa.users.delete_user(user_info['username'])
+        wa.users.delete_user(user_info['email'])
+        # wa.users.delete_user(user_info['username'])
         self.waitUserDeleted(user_info['userId'])
+
+        users = wa.users.get_users()
+        # setup creates 1 and the test creates 1 and we delete 1
+        assert len(users) >= 3
 
         users = wa.users.get_users()
 
@@ -71,7 +81,8 @@ class UserTest(ApolloTestCase):
         user_info = wa.users.create_user("trash@bx.psu.edu", 'Tempxx', 'oraryxx', 'coolpasswordxx', role="user")
         self.waitUserCreated(user_info['userId'])
 
-        wa.users.update_user(user_info['username'], 'firstname2', 'lastname2')
+        # wa.users.update_user(user_info['username'], 'firstname2', 'lastname2')
+        wa.users.update_user(user_info['email'], 'firstname2', 'lastname2')
 
         time.sleep(3)
         res = wa.users.show_user('trash@bx.psu.edu')
@@ -86,7 +97,8 @@ class UserTest(ApolloTestCase):
         user_info = wa.users.create_user("trash@bx.psu.edu", 'Tempxx', 'oraryxx', 'coolpasswordxx', role="user")
         self.waitUserCreated(user_info['userId'])
 
-        wa.users.update_user(user_info['username'], 'firstname2', 'lastname2', new_email='updated@bx.psu.edu')
+        # wa.users.update_user(user_info['username'], 'firstname2', 'lastname2', new_email='updated@bx.psu.edu')
+        wa.users.update_user(user_info['email'], 'firstname2', 'lastname2', new_email='updated@bx.psu.edu')
 
         time.sleep(3)
         res = wa.users.show_user('updated@bx.psu.edu')
