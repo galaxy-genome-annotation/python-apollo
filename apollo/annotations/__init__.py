@@ -1305,11 +1305,26 @@ class AnnotationsClient(Client):
 
         return {'top-level': new_feature_list, 'transcripts': new_transcript_list}
 
+    def _handle_loading_status(self, written_top, written_transcripts, all_processed, loading_status, quiet):
+        if len(written_top):
+            all_processed['top-level'] = []
+            if not quiet:
+                loading_status = {**loading_status, **written_top}
+            if quiet:
+                loading_status['features'] = len(written_top)
+        if len(written_transcripts):
+            all_processed['transcripts'] = []
+            if not quiet:
+                loading_status = {**loading_status, **written_transcripts}
+            if quiet:
+                loading_status['transcripts'] = len(written_transcripts)
+
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
                   test=False,
                   use_name=False,
                   disable_cds_recalculation=False,
                   timing=False,
+                  quiet=False,
                   ):
         """
         Load a full GFF3 into annotation track
@@ -1337,6 +1352,9 @@ class AnnotationsClient(Client):
 
         :type timing: bool
         :param timing: Output loading performance metrics
+
+        :type quiet: bool
+        :param quiet: Suppress return output
 
         :rtype: str
         :return: Loading report
@@ -1372,15 +1390,12 @@ class AnnotationsClient(Client):
                 all_processed['top-level'].extend(processed['top-level'])
                 all_processed['transcripts'].extend(processed['transcripts'])
                 total_features_written += 1
-                written_top = self._check_write(batch_size, test, all_processed['top-level'], FeatureType.FEATURE, timing)
-                written_transcripts = self._check_write(batch_size, test, all_processed['transcripts'], FeatureType.TRANSCRIPT, timing)
+                written_top = self._check_write(batch_size, test, all_processed['top-level'], FeatureType.FEATURE,
+                                                timing)
+                written_transcripts = self._check_write(batch_size, test, all_processed['transcripts'],
+                                                        FeatureType.TRANSCRIPT, timing)
 
-                if len(written_top):
-                    all_processed['top-level'] = []
-                    loading_status = {**loading_status, **written_top}
-                if len(written_transcripts):
-                    all_processed['transcripts'] = []
-                    loading_status = {**loading_status, **written_transcripts}
+                self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status, quiet)
 
             except Exception as e:
                 msg = str(e)
@@ -1392,12 +1407,7 @@ class AnnotationsClient(Client):
         written_top = self._check_write(0, test, all_processed['top-level'], FeatureType.FEATURE, timing)
         written_transcripts = self._check_write(0, test, all_processed['transcripts'], FeatureType.TRANSCRIPT, timing)
 
-        if len(written_top):
-            all_processed['top-level'] = []
-            loading_status = {**loading_status, **written_top}
-        if len(written_transcripts):
-            all_processed['transcripts'] = []
-            loading_status = {**loading_status, **written_transcripts}
+        self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status, quiet)
 
         log.info("Finished loading")
         if timing:
