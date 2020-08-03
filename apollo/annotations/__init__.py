@@ -1311,13 +1311,15 @@ class AnnotationsClient(Client):
             if not quiet:
                 loading_status = {**loading_status, **written_top}
             if quiet:
-                loading_status['features'] = len(written_top)
+                loading_status['feature_count'] = len(written_top)
         if len(written_transcripts):
             all_processed['transcripts'] = []
             if not quiet:
                 loading_status = {**loading_status, **written_transcripts}
             if quiet:
-                loading_status['transcripts'] = len(written_transcripts)
+                loading_status['transcript_count'] = len(written_transcripts)
+
+        return loading_status
 
     def load_gff3(self, organism, gff3, source=None, batch_size=1,
                   test=False,
@@ -1395,7 +1397,8 @@ class AnnotationsClient(Client):
                 written_transcripts = self._check_write(batch_size, test, all_processed['transcripts'],
                                                         FeatureType.TRANSCRIPT, timing)
 
-                self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status, quiet)
+                loading_status = self._handle_loading_status(written_top, written_transcripts, all_processed,
+                                                             loading_status, quiet)
 
             except Exception as e:
                 msg = str(e)
@@ -1415,5 +1418,7 @@ class AnnotationsClient(Client):
             duration = end_timer - start_timer
             print(str(duration) + " seconds to write " + str(total_features_written) + " features")
             print("Avg write time (s) per feature: " + str('{:.3f}'.format(duration / total_features_written)))
+
+        print("output loading status" + str(loading_status))
 
         return loading_status

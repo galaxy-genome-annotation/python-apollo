@@ -14,11 +14,12 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = wa.annotations.load_gff3('temp_org', path)
 
+        print("output feature data"+str(feature_data))
+
         assert 'Merlin_1_mRNA' in feature_data
 
         feature_data = feature_data['Merlin_1_mRNA']
 
-        del feature_data['location']['id']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
         assert feature_data['parent_name'] == 'Merlin_1_mRNA'
