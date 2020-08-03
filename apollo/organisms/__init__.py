@@ -89,7 +89,7 @@ class OrganismsClient(Client):
         :param species: Species
 
         :type public: bool
-        :param public: User's email
+        :param public: Viewable without login
 
         :type no_reload_sequences: bool
         :param no_reload_sequences: Set this if you don't want Apollo to reload genome sequences (no change in genome sequence)

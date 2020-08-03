@@ -137,7 +137,7 @@ class RemoteClient(Client):
         :param species: Species
 
         :type public: bool
-        :param public: User's email
+        :param public: Visible without logging in
 
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata

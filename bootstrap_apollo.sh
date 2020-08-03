@@ -14,7 +14,7 @@ do
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
-        --apollo3)
+        --nodocker3)
         SHOULD_LAUNCH_DOCKER=0
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-apollo3-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
