@@ -14,7 +14,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = wa.annotations.load_gff3('temp_org', path)
 
-        print("output feature data"+str(feature_data))
+        print("output feature data" + str(feature_data))
 
         assert 'Merlin_1_mRNA' in feature_data
 
@@ -211,20 +211,20 @@ class AnnotationsTest(ApolloTestCase):
     def setUp(self):
         # Make sure the organism is not already there
         temp_org_info = wa.organisms.show_organism('temp_org')
-        print("B info: "+str(temp_org_info))
+        print("B info: " + str(temp_org_info))
         if 'directory' in temp_org_info:
             wa.organisms.delete_organism(temp_org_info['id'])
             self.waitOrgDeleted('temp_org')
 
         org_info = wa.organisms.show_organism('alt_org')
-        print("org info: "+str(org_info))
+        print("org info: " + str(org_info))
         if 'directory' not in org_info:
             # Should not happen, but let's be tolerant...
             # Error received when it fails: {'error': 'No row with the given identifier exists: [org.bbop.apollo.Organism#1154]'}
             time.sleep(1)
             org_info = wa.organisms.show_organism('alt_org')
 
-        print("organism "+str(org_info))
+        print("organism " + str(org_info))
         wa.organisms.add_organism('temp_org', org_info['directory'])
         self.waitOrgCreated('temp_org')
         org_info = wa.organisms.show_organism('temp_org')

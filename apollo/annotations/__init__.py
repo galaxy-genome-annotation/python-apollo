@@ -1410,7 +1410,7 @@ class AnnotationsClient(Client):
         written_top = self._check_write(0, test, all_processed['top-level'], FeatureType.FEATURE, timing)
         written_transcripts = self._check_write(0, test, all_processed['transcripts'], FeatureType.TRANSCRIPT, timing)
 
-        self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status, quiet)
+        loading_status = self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status, quiet)
 
         log.info("Finished loading")
         if timing:
