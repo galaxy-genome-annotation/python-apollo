@@ -48,7 +48,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_123_mRNA']
 
-        del feature_data['location']['id']
+        # del feature_data['location']['id']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
         assert feature_data['parent_name'] == 'Merlin_123_mRNA'
@@ -77,7 +77,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_123_mRNA']
 
-        del feature_data['location']['id']
+        # del feature_data['location']['id']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
         assert feature_data['parent_name'] == 'Merlin_123_mRNA'
@@ -106,7 +106,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_58_mRNA']
 
-        del feature_data['location']['id']
+        # del feature_data['location']['id']
         assert feature_data['location'] == {'strand': -1, 'fmin': 13065, 'fmax': 14796}
         assert feature_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
         assert feature_data['parent_name'] == 'Merlin_58_mRNA'
@@ -137,7 +137,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_564']
 
-        del feature_data['location']['id']
+        del feature_data['location']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'transcript', 'cv': {'name': 'sequence'}}
         assert len(feature_data['children']) == 1
@@ -164,7 +164,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_100_ncRNA']
 
-        del feature_data['location']['id']
+        # del feature_data['location']['id']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'ncRNA', 'cv': {'name': 'sequence'}}
         assert len(feature_data['children']) == 1
@@ -191,7 +191,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_800']
 
-        del feature_data['location']['id']
+        # del feature_data['location']['id']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'repeat_region', 'cv': {'name': 'sequence'}}
         assert 'children' not in feature_data
@@ -211,19 +211,25 @@ class AnnotationsTest(ApolloTestCase):
     def setUp(self):
         # Make sure the organism is not already there
         temp_org_info = wa.organisms.show_organism('temp_org')
+        print("B info: "+str(temp_org_info))
         if 'directory' in temp_org_info:
             wa.organisms.delete_organism(temp_org_info['id'])
             self.waitOrgDeleted('temp_org')
 
         org_info = wa.organisms.show_organism('alt_org')
+        print("org info: "+str(org_info))
         if 'directory' not in org_info:
             # Should not happen, but let's be tolerant...
             # Error received when it fails: {'error': 'No row with the given identifier exists: [org.bbop.apollo.Organism#1154]'}
             time.sleep(1)
             org_info = wa.organisms.show_organism('alt_org')
 
+        print("organism "+str(org_info))
         wa.organisms.add_organism('temp_org', org_info['directory'])
         self.waitOrgCreated('temp_org')
+        org_info = wa.organisms.show_organism('temp_org')
+        print("org info: " + str(org_info))
+        assert org_info['commonName'] == 'temp_org'
 
     def tearDown(self):
         org_info = wa.organisms.show_organism('temp_org')
