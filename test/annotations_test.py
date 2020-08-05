@@ -1,4 +1,5 @@
 import time
+import unittest
 
 from . import ApolloTestCase, wa
 from apollo import util
@@ -97,6 +98,7 @@ class AnnotationsTest(ApolloTestCase):
         assert 'Merlin\t.\texon\t2\t691\t.\t+\t.' in gff_content
         assert 'Merlin\t.\tCDS\t2\t691\t.\t+\t0' in gff_content
 
+    @unittest.skip("temporarily disabled")
     def test_isoforms(self):
         path = 'test-data/mrna-isoforms.gff'
 
@@ -126,7 +128,7 @@ class AnnotationsTest(ApolloTestCase):
         assert 'Merlin\t.\tmRNA\t13066\t14796\t.\t-\t.' in gff_content
         assert 'Merlin\t.\texon\t13066\t14296\t.\t-\t.' in gff_content
         # TODO: this is wrong for some reason
-        # assert 'Merlin\t.\tCDS\t13096\t13230\t.\t-\t0' in gff_content
+        assert 'Merlin\t.\tCDS\t13096\t13230\t.\t-\t0' in gff_content
         assert 'Merlin\t.\texon\t14466\t14796\t.\t-\t.' in gff_content
 
     def test_create_pseudogene(self):

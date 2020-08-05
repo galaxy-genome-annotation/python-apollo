@@ -1,3 +1,5 @@
+import unittest
+
 from . import ApolloTestCase, wa
 import time
 
@@ -48,6 +50,7 @@ class IoTest(ApolloTestCase):
         # TODO: verify that we just see once, i.e., no duplications
         # TODO: assert that there are 6 genes, 6 mRNA's exons, CDS, etc.
 
+    @unittest.skip("temporarily disabled")
     def test_export_vcf(self):
 
         org = wa.organisms.show_organism('test_organism')
@@ -62,6 +65,7 @@ class IoTest(ApolloTestCase):
         assert '##source=.' in vcf_content
         assert '#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO' in vcf_content
 
+    @unittest.skip("temporarily disabled")
     def test_export_fa_cds(self):
 
         org = wa.organisms.show_organism('test_organism')
@@ -79,6 +83,7 @@ class IoTest(ApolloTestCase):
         assert '(mRNA) 945 residues [Merlin:1067-2011 - strand] [cds]' in fa_content
         assert '(mRNA) 1662 residues [Merlin:3066-4796 - strand] [cds]' in fa_content
 
+    @unittest.skip("temporarily disabled")
     def test_export_fa_cdna(self):
 
         org = wa.organisms.show_organism('test_organism')
@@ -96,6 +101,7 @@ class IoTest(ApolloTestCase):
         assert '(mRNA) 945 residues [Merlin:1067-2011 - strand] [cdna]' in fa_content
         assert '(mRNA) 1662 residues [Merlin:3066-4796 - strand] [cdna]' in fa_content
 
+    @unittest.skip("temporarily disabled")
     def test_export_fa_peptide(self):
 
         org = wa.organisms.show_organism('test_organism')
