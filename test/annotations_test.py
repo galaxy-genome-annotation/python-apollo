@@ -125,7 +125,7 @@ class AnnotationsTest(ApolloTestCase):
         assert 'Merlin\t.\tgene\t13066\t14796\t.\t-\t.' in gff_content
         assert 'Merlin\t.\tmRNA\t13066\t14796\t.\t-\t.' in gff_content
         assert 'Merlin\t.\texon\t13066\t14296\t.\t-\t.' in gff_content
-        # TODO: implement phase
+        # TODO: this is wrong for some reason
         # assert 'Merlin\t.\tCDS\t13096\t13230\t.\t-\t0' in gff_content
         assert 'Merlin\t.\texon\t14466\t14796\t.\t-\t.' in gff_content
 
