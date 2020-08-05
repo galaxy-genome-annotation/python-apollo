@@ -137,7 +137,7 @@ class AnnotationsTest(ApolloTestCase):
 
         feature_data = feature_data['Merlin_564']
 
-        del feature_data['location']
+        # del feature_data['location']
         assert feature_data['location'] == {'strand': 1, 'fmin': 1, 'fmax': 691}
         assert feature_data['type'] == {'name': 'transcript', 'cv': {'name': 'sequence'}}
         assert len(feature_data['children']) == 1
