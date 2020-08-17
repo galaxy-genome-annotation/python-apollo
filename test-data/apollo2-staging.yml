@@ -1,0 +1,5 @@
+__default: local
+local:
+    url: "http://demo.genomearchitect.org/Apollo-staging"
+    username: "nathandunn@lbl.gov"
+    password: "demo"
