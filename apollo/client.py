@@ -45,7 +45,7 @@ class Client(object):
             raise Exception("You must add credentials yourself")
 
         # We don't want username+password in the logs
-        data_log = data
+        data_log = dict(data)
         data_log['username'] = 'XXXXXXXXX'
         data_log['password'] = 'XXXXXXXXX'
 
