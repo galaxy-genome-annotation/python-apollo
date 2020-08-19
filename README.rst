@@ -85,6 +85,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.5
+    - Prevent from displaying login/password in the logs
 - 4.2.4
     - Remove unused dependency
 - 4.2.3
