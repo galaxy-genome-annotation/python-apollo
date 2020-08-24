@@ -68,7 +68,10 @@ class OrganismsClient(Client):
         # EVERY organism. LMAO.
         if type(response) is not list:
             return response
-        return [x for x in response if x['commonName'] == common_name][0]
+        if len(response) > 0:
+            return [x for x in response if x['commonName'] == common_name][0]
+        else:
+            return data
 
     def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False,
                         no_reload_sequences=False):
