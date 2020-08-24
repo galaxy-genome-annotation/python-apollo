@@ -60,7 +60,7 @@ class OrganismsClient(Client):
                 # Apollo wants a string
                 metadata = json.dumps(metadata)
             data['metadata'] = metadata
-        if returnall is not None:
+        if return_all is not None:
             data['returnAllOrganisms'] = return_all
 
         response = self.post('addOrganism', data)
