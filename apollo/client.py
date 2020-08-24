@@ -44,6 +44,11 @@ class Client(object):
         else:
             raise Exception("You must add credentials yourself")
 
+        # We don't want username+password in the logs
+        data_log = dict(data)
+        data_log['username'] = 'XXXXXXXXX'
+        data_log['password'] = 'XXXXXXXXX'
+
         if autoconvert_to_json:
             headers = {
                 'Content-Type': 'application/json'
@@ -55,8 +60,12 @@ class Client(object):
         curl_command = ['curl', url]
         for (k, v) in headers.items():
             curl_command += ['-H', quote('%s: %s' % (k, v))]
+
+        curl_command_log = curl_command + ['-d', quote(json.dumps(data_log))]
+
         curl_command += ['-d', quote(json.dumps(data))]
-        log.info(' '.join(curl_command))
+
+        log.info(' '.join(curl_command_log))
 
         resp = requests.post(url, data=data, headers=headers, verify=self.__verify,
                              params=post_params, allow_redirects=False,
