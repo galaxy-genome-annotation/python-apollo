@@ -12,7 +12,7 @@ class OrganismsClient(Client):
 
     @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
-                     species=None, public=False, metadata=None):
+                     species=None, public=False, metadata=None, return_all=None):
         """
         Add an organism
 
@@ -37,6 +37,9 @@ class OrganismsClient(Client):
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
 
+        :type return_all: bool
+        :param return_all: Return all organisms (true / false) (default true)
+
         :rtype: dict
         :return: a dictionary with information about the new organism
         """
@@ -57,6 +60,8 @@ class OrganismsClient(Client):
                 # Apollo wants a string
                 metadata = json.dumps(metadata)
             data['metadata'] = metadata
+        if returnall is not None:
+            data['returnAllOrganisms'] = return_all
 
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
