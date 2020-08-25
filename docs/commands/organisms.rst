@@ -30,7 +30,7 @@ Add an organism
       --species TEXT   Species
       --public         Should the organism be public or not
       --metadata TEXT  JSON formatted arbitrary metadata
-      --return_no_organisms Suppress returning all of the added organisms
+      --return_all     Return all organisms (true / false) (default true)
       -h, --help       Show this message and exit.
     
 
@@ -66,7 +66,7 @@ Remove features of an organism
 
 **Help**
 
-Delete an organim
+Delete an organism
 
 
 **Output**
@@ -77,7 +77,8 @@ Delete an organim
 **Options**::
 
 
-      -h, --help  Show this message and exit.
+      --return_all  Return all organisms (true / false) (default true)
+      -h, --help    Show this message and exit.
     
 
 ``get_organism_creator`` command
