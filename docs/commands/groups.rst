@@ -240,6 +240,7 @@ Update the group's membership
                           <groupId>,users: ["user1", "user2", "user3"]},
                           {groupId:<another-groupId>, users: ["user2", "user8"]}
                           (users and groupId will be ignored)
+    
       -h, --help          Show this message and exit.
     
 

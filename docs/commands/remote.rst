@@ -28,6 +28,7 @@ Add an organism using the remote organism API.
       --blatdb FILENAME               Path to 2bit index of the genome for Blat
                                       (Blat 2bit data can also be in organism_data
                                       in directory 'searchDatabaseData')
+    
       --genus TEXT                    Genus
       --species TEXT                  Species
       --public                        should the organism be public
@@ -35,6 +36,7 @@ Add an organism using the remote organism API.
                                       The translation table number for the organism
                                       (if different than that of the server's
                                       default)
+    
       --metadata TEXT                 JSON formatted arbitrary metadata
       -h, --help                      Show this message and exit.
     
@@ -131,6 +133,7 @@ Update an organism using the remote organism API.
       --blatdb FILENAME      Path to 2bit index of the genome for Blat (Blat 2bit
                              data can also be in organism_data in directory
                              'searchDatabaseData')
+    
       --common_name TEXT     Organism common name
       --genus TEXT           Genus
       --species TEXT         Species
@@ -138,6 +141,7 @@ Update an organism using the remote organism API.
       --metadata TEXT        JSON formatted arbitrary metadata
       --no_reload_sequences  Set this if you don't want Apollo to reload genome
                              sequences (no change in genome sequence)
+    
       -h, --help             Show this message and exit.
     
 

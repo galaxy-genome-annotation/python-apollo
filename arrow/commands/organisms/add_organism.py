@@ -32,18 +32,19 @@ from arrow.decorators import custom_exception, dict_output
     type=str
 )
 @click.option(
-    "--return_all",
-    help="Return all organisms (true / false) (default true)",
+    "--suppress_output",
+    help="Suppress output of returning all organisms (default false)",
     is_flag=True
 )
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False, metadata="", return_all=""):
+def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False, metadata="", suppress_output=False):
     """Add an organism
 
 Output:
 
     a dictionary with information about the new organism
     """
-    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public, metadata=metadata, return_all=return_all)
+    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species,
+                                         public=public, metadata=metadata, return_all=(suppress_output == False))
