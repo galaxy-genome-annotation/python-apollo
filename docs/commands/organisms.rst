@@ -30,7 +30,7 @@ Add an organism
       --species TEXT   Species
       --public         Should the organism be public or not
       --metadata TEXT  JSON formatted arbitrary metadata
-      --return_all     Return all organisms (true / false) (default true)
+      --return_no_organisms Suppress returning all of the added organisms
       -h, --help       Show this message and exit.
     
 

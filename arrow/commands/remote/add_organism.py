@@ -46,4 +46,9 @@ Output:
 
     a dictionary with information about the new organism
     """
-    return ctx.gi.remote.add_organism(common_name, organism_data, blatdb=blatdb, genus=genus, species=species, public=public, non_default_translation_table=non_default_translation_table, metadata=metadata)
+    print("running the add organism command ")
+    return_all = return_no_organisms is None or return_no_organisms is True
+    print("return all is: "+str(return_all))
+    return ctx.gi.remote.add_organism(common_name, organism_data, blatdb=blatdb, genus=genus, species=species,
+                                      public=public, non_default_translation_table=non_default_translation_table,
+                                      metadata=metadata, return_all=return_all)
