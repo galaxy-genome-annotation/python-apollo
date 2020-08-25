@@ -157,17 +157,27 @@ class OrganismsClient(Client):
             orgs = orgs[0]
         return orgs
 
-    def delete_organism(self, organism_id):
+    def delete_organism(self, organism_id, return_all=None):
         """
-        Delete an organim
+        Delete an organism
 
         :type organism_id: str
         :param organism_id: Organism ID Number
 
+        :type return_all: bool
+        :param return_all: Return all organisms (true / false) (default true)
+
         :rtype: list
         :return: A list of all remaining organisms
+
         """
-        return self.post('deleteOrganism', {'id': organism_id})
+        data = {
+            'id': organism_id,
+        }
+        if return_all is not None:
+            data['returnAllOrganisms'] = return_all
+
+        return self.post('deleteOrganism', data)
 
     def delete_features(self, organism_id):
         """
