@@ -51,3 +51,4 @@ Output:
     print("returning and is is "+str(return_no_organisms == False))
     return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species,
                                          public=public, metadata=metadata, return_all=(return_no_organisms == False))
+
