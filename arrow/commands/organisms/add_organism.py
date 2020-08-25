@@ -33,7 +33,7 @@ from arrow.decorators import custom_exception, dict_output
 )
 @click.option(
     "--suppress_output",
-    help="Suppress output of returning all organisms (default false)",
+    help="Suppress output of all organisms (true / false) (default false)",
     is_flag=True
 )
 @pass_context
@@ -46,5 +46,4 @@ Output:
 
     a dictionary with information about the new organism
     """
-    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species,
-                                         public=public, metadata=metadata, return_all=(suppress_output == False))
+    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public, metadata=metadata, suppress_output=suppress_output)

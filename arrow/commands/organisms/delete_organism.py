@@ -7,7 +7,7 @@ from arrow.decorators import custom_exception, list_output
 @click.argument("organism_id", type=str)
 @click.option(
     "--suppress_output",
-    help="Suppresses returning all organisms (default false)",
+    help="Suppress return of all organisms (true / false) (default false)",
     is_flag=True
 )
 @pass_context
@@ -20,4 +20,4 @@ Output:
 
     A list of all remaining organisms
     """
-    return ctx.gi.organisms.delete_organism(organism_id, return_all=(suppress_output == False))
+    return ctx.gi.organisms.delete_organism(organism_id, suppress_output=suppress_output)
