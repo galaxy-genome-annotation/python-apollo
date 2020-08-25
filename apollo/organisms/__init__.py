@@ -61,7 +61,7 @@ class OrganismsClient(Client):
                 metadata = json.dumps(metadata)
             data['metadata'] = metadata
         if suppress_output is not None and suppress_output is True:
-            data['returnAllOrganisms'] = suppress_output
+            data['returnAllOrganisms'] = False
 
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
@@ -175,7 +175,7 @@ class OrganismsClient(Client):
             'id': organism_id,
         }
         if suppress_output is not None and suppress_output is not False:
-            data['returnAllOrganisms'] = suppress_output
+            data['returnAllOrganisms'] = False
 
         return self.post('deleteOrganism', data)
 
