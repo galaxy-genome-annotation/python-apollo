@@ -22,7 +22,6 @@ do
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
-        *)
         --docker3)
         SHOULD_LAUNCH_DOCKER=1
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
