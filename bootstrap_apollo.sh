@@ -26,7 +26,7 @@ do
         SHOULD_LAUNCH_DOCKER=1
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
-		DOCKER_TARGET=quay.io/gmod/apollo3server:latest
+        DOCKER_TARGET=quay.io/gmod/apollo3server:latest
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
