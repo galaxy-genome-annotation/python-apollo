@@ -25,12 +25,15 @@ Add an organism
 **Options**::
 
 
-      --blatdb TEXT    Server-side path to 2bit index of the genome for Blat
-      --genus TEXT     Genus
-      --species TEXT   Species
-      --public         Should the organism be public or not
-      --metadata TEXT  JSON formatted arbitrary metadata
-      -h, --help       Show this message and exit.
+      --blatdb TEXT      Server-side path to 2bit index of the genome for Blat
+      --genus TEXT       Genus
+      --species TEXT     Species
+      --public           Should the organism be public or not
+      --metadata TEXT    JSON formatted arbitrary metadata
+      --suppress_output  Suppress output of all organisms (true / false) (default
+                         false)
+    
+      -h, --help         Show this message and exit.
     
 
 ``delete_features`` command
@@ -65,7 +68,7 @@ Remove features of an organism
 
 **Help**
 
-Delete an organim
+Delete an organism
 
 
 **Output**
@@ -76,7 +79,10 @@ Delete an organim
 **Options**::
 
 
-      -h, --help  Show this message and exit.
+      --suppress_output  Suppress return of all organisms (true / false) (default
+                         false)
+    
+      -h, --help         Show this message and exit.
     
 
 ``get_organism_creator`` command
@@ -221,5 +227,6 @@ Update an organism
       --public               User's email
       --no_reload_sequences  Set this if you don't want Apollo to reload genome
                              sequences (no change in genome sequence)
+    
       -h, --help             Show this message and exit.
     

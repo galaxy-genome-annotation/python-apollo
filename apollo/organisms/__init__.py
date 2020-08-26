@@ -12,7 +12,7 @@ class OrganismsClient(Client):
 
     @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
-                     species=None, public=False, metadata=None):
+                     species=None, public=False, metadata=None, suppress_output=False):
         """
         Add an organism
 
@@ -37,6 +37,9 @@ class OrganismsClient(Client):
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
 
+        :type suppress_output: bool
+        :param suppress_output: Suppress output of all organisms (true / false) (default false)
+
         :rtype: dict
         :return: a dictionary with information about the new organism
         """
@@ -57,13 +60,18 @@ class OrganismsClient(Client):
                 # Apollo wants a string
                 metadata = json.dumps(metadata)
             data['metadata'] = metadata
+        if suppress_output is not None and suppress_output is True:
+            data['returnAllOrganisms'] = False
 
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
         # EVERY organism. LMAO.
         if type(response) is not list:
             return response
-        return [x for x in response if x['commonName'] == common_name][0]
+        if len(response) > 0:
+            return [x for x in response if x['commonName'] == common_name][0]
+        else:
+            return data
 
     def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False,
                         no_reload_sequences=False):
@@ -149,17 +157,27 @@ class OrganismsClient(Client):
             orgs = orgs[0]
         return orgs
 
-    def delete_organism(self, organism_id):
+    def delete_organism(self, organism_id, suppress_output=False):
         """
-        Delete an organim
+        Delete an organism
 
         :type organism_id: str
         :param organism_id: Organism ID Number
 
+        :type suppress_output: bool
+        :param suppress_output: Suppress return of all organisms (true / false) (default false)
+
         :rtype: list
         :return: A list of all remaining organisms
+
         """
-        return self.post('deleteOrganism', {'id': organism_id})
+        data = {
+            'id': organism_id,
+        }
+        if suppress_output is not None and suppress_output is not False:
+            data['returnAllOrganisms'] = False
+
+        return self.post('deleteOrganism', data)
 
     def delete_features(self, organism_id):
         """

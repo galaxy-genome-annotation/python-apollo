@@ -31,14 +31,19 @@ from arrow.decorators import custom_exception, dict_output
     help="JSON formatted arbitrary metadata",
     type=str
 )
+@click.option(
+    "--suppress_output",
+    help="Suppress output of all organisms (true / false) (default false)",
+    is_flag=True
+)
 @pass_context
 @custom_exception
 @dict_output
-def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False, metadata=""):
+def cli(ctx, common_name, directory, blatdb="", genus="", species="", public=False, metadata="", suppress_output=False):
     """Add an organism
 
 Output:
 
     a dictionary with information about the new organism
     """
-    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public, metadata=metadata)
+    return ctx.gi.organisms.add_organism(common_name, directory, blatdb=blatdb, genus=genus, species=species, public=public, metadata=metadata, suppress_output=suppress_output)
