@@ -12,7 +12,7 @@ class OrganismsClient(Client):
 
     @raise_error_decorator
     def add_organism(self, common_name, directory, blatdb=None, genus=None,
-                     species=None, public=False, metadata=None, return_all=None):
+                     species=None, public=False, metadata=None, suppress_output=False):
         """
         Add an organism
 
@@ -37,8 +37,8 @@ class OrganismsClient(Client):
         :type metadata: str
         :param metadata: JSON formatted arbitrary metadata
 
-        :type return_all: bool
-        :param return_all: Return all organisms (true / false) (default true)
+        :type suppress_output: bool
+        :param suppress_output: Suppress output of all organisms (true / false) (default false)
 
         :rtype: dict
         :return: a dictionary with information about the new organism
@@ -60,8 +60,8 @@ class OrganismsClient(Client):
                 # Apollo wants a string
                 metadata = json.dumps(metadata)
             data['metadata'] = metadata
-        if return_all is not None:
-            data['returnAllOrganisms'] = return_all
+        if suppress_output is not None and suppress_output is True:
+            data['returnAllOrganisms'] = False
 
         response = self.post('addOrganism', data)
         # Apollo decides here that it would be nice to return information about
@@ -157,15 +157,15 @@ class OrganismsClient(Client):
             orgs = orgs[0]
         return orgs
 
-    def delete_organism(self, organism_id, return_all=None):
+    def delete_organism(self, organism_id, suppress_output=False):
         """
         Delete an organism
 
         :type organism_id: str
         :param organism_id: Organism ID Number
 
-        :type return_all: bool
-        :param return_all: Return all organisms (true / false) (default true)
+        :type suppress_output: bool
+        :param suppress_output: Suppress return of all organisms (true / false) (default false)
 
         :rtype: list
         :return: A list of all remaining organisms
@@ -174,8 +174,8 @@ class OrganismsClient(Client):
         data = {
             'id': organism_id,
         }
-        if return_all is not None:
-            data['returnAllOrganisms'] = return_all
+        if suppress_output is not None and suppress_output is not False:
+            data['returnAllOrganisms'] = False
 
         return self.post('deleteOrganism', data)
 
