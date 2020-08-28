@@ -19,7 +19,7 @@ jobs:
       script:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
-    - stage: test-apollo2
+    - stage: apollo2
       install:
         - pip install -U pip setuptools nose
       script:
@@ -28,7 +28,7 @@ jobs:
         - ./bootstrap_apollo.sh --docker2
         - python setup.py nosetests
 
-    - stage: test-apollo3
+    - stage: apollo3
       install:
         - pip install -U pip setuptools nose
       script:
