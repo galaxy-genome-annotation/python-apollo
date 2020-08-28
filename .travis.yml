@@ -1,15 +1,19 @@
 language: python
 os: linux
+sudo: false
 
 python:
-  - '3.7.1'
+  - '3.7'
+env:
+  - APOLLO_VERISON=2
+  - APOLLO_VERISON=3
 
 services:
   - docker
 
-env:
-  - APOLLO_VERSION=apollo2-docker
-  - APOLLO_VERSION=apollo3-docker
+before_install:
+  - pip install -U pip flake8 setuptools nose
+  - python setup.py install
 
 jobs:
   include:
@@ -20,12 +24,9 @@ jobs:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
     - stage: test
-      install:
-        - pip install -U pip setuptools nose
       script:
-        - python setup.py install
-        - if [ ${APOLLO_VERSION} == "apollo2-docker" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/apollo.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
-        - if [ ${APOLLO_VERSION} == "apollo3-docker" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml ; ./bootstrap_apollo.sh --docker3 ; fi;
+        - if [ ${APOLLO_VERSION} == "2" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/apollo.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
+        - if [ ${APOLLO_VERSION} == "3" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml ; ./bootstrap_apollo.sh --docker3 ; fi;
         - python setup.py nosetests
 
 #    - stage: deploy
