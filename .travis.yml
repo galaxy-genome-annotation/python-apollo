@@ -8,8 +8,8 @@ python:
 #env:
 #  #  - DB=postgres TEST_SUITE=apollo
 #  #  - DB=mysql TEST_SUITE=apollo
-#  - TEST_SUITE=apollo2-docker
-#  - TEST_SUITE=apollo3-docker
+  - APOLLO_VERSION=apollo2-docker
+  - APOLLO_VERSION=apollo3-docker
 
 jobs:
   include:
@@ -19,22 +19,13 @@ jobs:
       script:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
-    - stage: apollo3
+    - stage: test
       install:
         - pip install -U pip setuptools nose
       script:
         - python setup.py install
-        - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
-        - ./bootstrap_apollo.sh --docker3
-        - python setup.py nosetests
-
-    - stage: apollo2
-      install:
-        - pip install -U pip setuptools nose
-      script:
-        - python setup.py install
-        - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
-        - ./bootstrap_apollo.sh --docker2
+        - if [ ${APOLLO_VERSION} == "apollo2-docker" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/apollo.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
+        - if [ ${APOLLO_VERSION} == "apollo3-docker" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml ; ./bootstrap_apollo.sh --docker3 ; fi;
         - python setup.py nosetests
 
 #    - stage: deploy
