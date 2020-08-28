@@ -33,7 +33,8 @@ do
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
         DOCKER_TARGET=quay.io/gmod/apollo3server:latest
         APOLLO_DATA_DIRECTORY="/data"
-        mkdir -p $APOLLO_DATA_DIRECTORY
+        GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
+#        mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
         *)
@@ -45,11 +46,12 @@ do
 done
 
 export ARROW_GLOBAL_CONFIG_PATH GALAXY_SHARED_DIR
-mkdir -p "$GALAXY_SHARED_DIR"
+echo "Config path $ARROW_GLOBAL_CONFIG_PATH"
+echo "Galaxy shared directory $GALAXY_SHARED_DIR"
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
-    rm -rf `pwd`/apollo_shared_dir
-    mkdir `pwd`/apollo_shared_dir
+    rm -rf "$GALAXY_SHARED_DIR"
+    mkdir -p "$GALAXY_SHARED_DIR"
     docker pull $DOCKER_TARGET
     docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" $DOCKER_TARGET
 fi
