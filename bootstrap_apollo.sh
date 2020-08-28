@@ -1,35 +1,44 @@
 #!/bin/bash
 
+# Apollo 2 docker defaults
 SHOULD_LAUNCH_DOCKER=1
-ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
 APOLLO_DATA_DIRECTORY="/data"
-DOCKER_TARGET=quay.io/gmod/apollo:latest
 GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 for arg in "$@"
 do
     case $arg in
-        --nodocker)
+        --local-docker2)
         SHOULD_LAUNCH_DOCKER=0
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-apollo2-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
-        --nodocker3)
+        --local-docker3)
         SHOULD_LAUNCH_DOCKER=0
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-apollo3-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
+        --docker2)
+        SHOULD_LAUNCH_DOCKER=1
+        ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+        DOCKER_TARGET=quay.io/gmod/apollo:latest
+        GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
+        shift
+        ;;
         --docker3)
         SHOULD_LAUNCH_DOCKER=1
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
         DOCKER_TARGET=quay.io/gmod/apollo3server:latest
+        APOLLO_DATA_DIRECTORY="/data"
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
         *)
+        echo "Must specify target --docker2 --docker3 --local-docker2 --local-docker3"
+        exit 1
         shift
         ;;
     esac
