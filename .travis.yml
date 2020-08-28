@@ -5,11 +5,11 @@ python:
   - '3.6'
 
 
-env:
-  #  - DB=postgres TEST_SUITE=apollo
-  #  - DB=mysql TEST_SUITE=apollo
-  - TEST_SUITE=apollo2-docker
-  - TEST_SUITE=apollo3-docker
+#env:
+#  #  - DB=postgres TEST_SUITE=apollo
+#  #  - DB=mysql TEST_SUITE=apollo
+#  - TEST_SUITE=apollo2-docker
+#  - TEST_SUITE=apollo3-docker
 
 jobs:
   include:
