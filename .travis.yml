@@ -2,7 +2,7 @@ language: python
 os: linux
 
 python:
-  - '3.6'
+  - '3.8'
 
 
 #env:
@@ -19,6 +19,15 @@ jobs:
       script:
         - flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
 
+    - stage: apollo3
+      install:
+        - pip install -U pip setuptools nose
+      script:
+        - python setup.py install
+        - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
+        - ./bootstrap_apollo.sh --docker3
+        - python setup.py nosetests
+
     - stage: apollo2
       install:
         - pip install -U pip setuptools nose
@@ -28,14 +37,6 @@ jobs:
         - ./bootstrap_apollo.sh --docker2
         - python setup.py nosetests
 
-    - stage: apollo3
-      install:
-        - pip install -U pip setuptools nose
-      script:
-        - python setup.py install
-        - export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml
-        - ./bootstrap_apollo.sh --docker3
-        - python setup.py nosetests
 
     - stage: deploy
       install: skip
