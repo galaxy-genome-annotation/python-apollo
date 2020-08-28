@@ -39,6 +39,9 @@ export ARROW_GLOBAL_CONFIG_PATH GALAXY_SHARED_DIR
 mkdir -p "$GALAXY_SHARED_DIR"
 
 if ! [[ $SHOULD_LAUNCH_DOCKER -eq 0 ]]; then
+    rm -rf `pwd`/apollo_shared_dir
+    mkdir `pwd`/apollo_shared_dir
+    docker pull $DOCKER_TARGET
     docker run --memory=4g -d -p 8888:8080 -v `pwd`/apollo_shared_dir/:/data/ -e "WEBAPOLLO_DEBUG=true" $DOCKER_TARGET
 fi
 
