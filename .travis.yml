@@ -5,9 +5,6 @@ python:
   - '3.8'
 
 
-#env:
-#  #  - DB=postgres TEST_SUITE=apollo
-#  #  - DB=mysql TEST_SUITE=apollo
 env:
   - APOLLO_VERSION=apollo2-docker
   - APOLLO_VERSION=apollo3-docker
