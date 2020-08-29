@@ -7,14 +7,14 @@ GALAXY_SHARED_DIR=`pwd`/apollo_shared_dir
 for arg in "$@"
 do
     case $arg in
-        --local-docker2)
+        --local2)
         SHOULD_LAUNCH_DOCKER=0
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-apollo2-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
         mkdir -p $APOLLO_DATA_DIRECTORY
         shift
         ;;
-        --local-docker3)
+        --local3)
         SHOULD_LAUNCH_DOCKER=0
         ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-apollo3-arrow.yml
         APOLLO_DATA_DIRECTORY=$GALAXY_SHARED_DIR
@@ -38,7 +38,7 @@ do
         shift
         ;;
         *)
-        echo "Must specify target --docker2 --docker3 --local-docker2 --local-docker3"
+        echo "Must specify target --docker2 --docker3 --local2 --local3"
         exit 1
         shift
         ;;
