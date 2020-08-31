@@ -103,9 +103,12 @@ class AnnotationsTest(ApolloTestCase):
         path = 'test-data/mrna-isoforms.gff'
 
         feature_data = wa.annotations.load_gff3('temp_org', path)
+        print('feature data')
+        print(str(feature_data))
 
         assert 'Merlin_58_mRNA' in feature_data
 
+        # NOTE: this feature data seems to be correct
         feature_data = feature_data['Merlin_58_mRNA']
 
         # del feature_data['location']['id']
@@ -147,7 +150,7 @@ class AnnotationsTest(ApolloTestCase):
         assert '##gff-version 3' in gff_content
         # TODO: check that it shows up twice
         assert gff_content.count('Merlin\t.\tgene\t13066\t14796\t.\t-\t.') == 1
-        assert gff_content.count('Merlin\t.\tmRNA\t13066\t14796\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t13066\t14796\t.\t-\t.') == 2
         assert gff_content.count('Merlin\t.\texon\t13066\t14296\t.\t-\t.') == 1
         assert gff_content.count('Merlin\t.\texon\t14366\t14796\t.\t-\t.') == 1
         assert gff_content.count('Merlin\t.\texon\t14466\t14796\t.\t-\t.') == 1
@@ -161,6 +164,7 @@ class AnnotationsTest(ApolloTestCase):
         assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14464\t14464\t.\t-\t0') == 1
 
         # TODO: validate the non_canonical_three_prime_splice_site
+        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14097\t14097\t.\t-\t0') == 1
 
     def test_create_pseudogene(self):
         path = 'test-data/pseudogene-top.gff'
