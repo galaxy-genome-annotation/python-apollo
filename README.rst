@@ -85,8 +85,10 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.7
+    - Renamed --return_all option to --suppress_output
 - 4.2.6
-    - Prevent from displaying login/password in the logs
+    - Added --return_all option to add_organism and delete_organism methods
 - 4.2.5
     - Prevent from displaying login/password in the logs
 - 4.2.4
