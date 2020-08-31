@@ -144,23 +144,23 @@ class AnnotationsTest(ApolloTestCase):
         # Merlin	.	CDS	13096	13230	.	-	0	Parent=7d536c77-0593-470e-ad4c-44aebeab8ecb;ID=7d536c77-0593-470e-ad4c-44aebeab8ecb-CDS;Name=7d536c77-0593-470e-ad4c-44aebeab8ecb-CDS
         ###
 
-
         assert '##gff-version 3' in gff_content
-        assert 'Merlin\t.\tgene\t13066\t14796\t.\t-\t.' in gff_content
         # TODO: check that it shows up twice
-        assert 'Merlin\t.\tmRNA\t13066\t14796\t.\t-\t.' in gff_content
-        assert 'Merlin\t.\texon\t13066\t14296\t.\t-\t.' in gff_content
-        assert 'Merlin\t.\texon\t14366\t14796\t.\t-\t.' in gff_content
-        assert 'Merlin\t.\texon\t14466\t14796\t.\t-\t.' in gff_content
+        assert gff_content.count('Merlin\t.\tgene\t13066\t14796\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t13066\t14796\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\texon\t13066\t14296\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\texon\t14366\t14796\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\texon\t14466\t14796\t.\t-\t.') == 1
         # this is correct
-        assert 'Merlin\t.\texon\t13066\t14096\t.\t-\t0' in gff_content
+        assert gff_content.count('Merlin\t.\texon\t13066\t14096\t.\t-\t0') == 1
 
         # TODO: validate the CDS  (2)
-        assert 'Merlin\t.\tCDS\t13096\t13230\t.\t-\t0' in gff_content
+        assert gff_content.count('Merlin\t.\tCDS\t13096\t13230\t.\t-\t0') == 2
         # TODO: validate the non_canonical_five_prime_splice_site
+        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14364\t14364\t.\t-\t0') == 1
+        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14464\t14464\t.\t-\t0') == 1
 
         # TODO: validate the non_canonical_three_prime_splice_site
-
 
     def test_create_pseudogene(self):
         path = 'test-data/pseudogene-top.gff'
