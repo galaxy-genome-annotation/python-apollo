@@ -228,5 +228,8 @@ Update an organism
       --no_reload_sequences  Set this if you don't want Apollo to reload genome
                              sequences (no change in genome sequence)
     
+      --suppress_output      Suppress output of all organisms (true / false)
+                             (default false)
+    
       -h, --help             Show this message and exit.
     
