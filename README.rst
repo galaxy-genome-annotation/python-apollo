@@ -85,6 +85,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.8
+    - Added --suppress_output to update_organism
 - 4.2.7
     - Renamed --return_all option to --suppress_output
 - 4.2.6
