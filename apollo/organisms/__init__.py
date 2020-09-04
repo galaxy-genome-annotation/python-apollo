@@ -125,14 +125,8 @@ class OrganismsClient(Client):
         if suppress_output is not None and suppress_output is True:
             data['returnAllOrganisms'] = False
 
-        if suppress_output:
-            response = self.post('updateOrganismInfo', data)
-        else:
-            response = self.post('updateOrganismInfo', data)[0]
-
-        if len(response.keys()) == 0:
-            return self.show_organism(organism_id)
-        return response
+        # full response unused anyway, switched to unified display of show_organism
+        return self.show_organism(organism_id)
 
     def get_organisms(self, common_name=None):
         """
