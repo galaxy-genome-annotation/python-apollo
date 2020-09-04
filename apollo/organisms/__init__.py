@@ -129,7 +129,7 @@ class OrganismsClient(Client):
             response = self.post('updateOrganismInfo', data)
         else:
             response = self.post('updateOrganismInfo', data)[0]
-           
+
         if len(response.keys()) == 0:
             return self.show_organism(organism_id)
         return response
