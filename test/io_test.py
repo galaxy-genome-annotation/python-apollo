@@ -31,9 +31,66 @@ class IoTest(ApolloTestCase):
         assert 'Merlin\t.\tnon_canonical_three_prime_splice_site\t4297\t4297\t.\t-\t.' in gff_content
         assert 'Merlin\t.\tnon_canonical_five_prime_splice_site\t4364\t4364\t.\t-\t.' in gff_content
 
+        # input:
+        # ##gff-version 3
+        # ##sequence-region Merlin 1 172788
+        # Merlin	GeneMark.hmm	gene	2	691	-856.563659	+	.	ID=Merlin_1;seqid=Merlin
+        # Merlin	GeneMark.hmm	mRNA	2	691	.	+	.	ID=Merlin_1_mRNA;Parent=Merlin_1;seqid=Merlin;color=#00ff00
+        # Merlin	GeneMark.hmm	exon	2	691	.	+	.	ID=Merlin_1_exon;Parent=Merlin_1_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	2	691	.	+	0	ID=Merlin_1_CDS;Parent=Merlin_1_exon;seqid=Merlin
+        # Merlin	GeneMark.hmm	gene	752	1039	-339.046618	+	.	ID=Merlin_2;seqid=Merlin
+        # Merlin	GeneMark.hmm	mRNA	752	1039	.	+	.	ID=Merlin_2_mRNA;Parent=Merlin_2;seqid=Merlin;Name=mrna-name
+        # Merlin	GeneMark.hmm	exon	752	1039	.	+	.	ID=Merlin_2_exon;Parent=Merlin_2_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	852	939	.	+	0	ID=Merlin_2_CDS;Parent=Merlin_2_exon;seqid=Merlin
+        # Merlin	GeneMark.hmm	gene	1067	2011	-1229.683915	-	.	ID=Merlin_3;seqid=Merlin
+        # Merlin	GeneMark.hmm	mRNA	1067	2011	.	-	.	ID=Merlin_3_mRNA;Parent=Merlin_3;seqid=Merlin
+        # Merlin	GeneMark.hmm	exon	1067	2011	.	-	.	ID=Merlin_3_exon;Parent=Merlin_3_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	1367	1811	.	-	0	ID=Merlin_3_CDS;Parent=Merlin_3_exon;seqid=Merlin
+        # Merlin	GeneMark.hmm	gene	2011	3066	-1335.034872	-	.	ID=Merlin_4;seqid=Merlin
+        # Merlin	GeneMark.hmm	mRNA	2011	3066	.	-	.	ID=Merlin_4_mRNA;Parent=Merlin_4;seqid=Merlin
+        # Merlin	GeneMark.hmm	exon	2011	3066	.	-	.	ID=Merlin_4_exon;Parent=Merlin_4_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	2011	3066	.	-	0	ID=Merlin_4_CDS;Parent=Merlin_4_exon;seqid=Merlin
+        # Merlin	GeneMark.hmm	gene	3066	4796	-2177.374893	-	.	ID=Merlin_5;seqid=Merlin;Name=multiexongene
+        # Merlin	GeneMark.hmm	mRNA	3066	4796	.	-	.	ID=Merlin_5_mRNA;Parent=Merlin_5;seqid=Merlin
+        # Merlin	GeneMark.hmm	exon	3066	4296	.	-	.	ID=Merlin_5_exon;Parent=Merlin_5_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	3066	4296	.	-	0	ID=Merlin_5_CDS;Parent=Merlin_5_exon;seqid=Merlin
+        # Merlin	GeneMark.hmm	exon	4366	4796	.	-	.	ID=Merlin_5_exon2;Parent=Merlin_5_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	4366	4796	.	-	0	ID=Merlin_5_CDS2;Parent=Merlin_5_exon2;seqid=Merlin
+        # Merlin	GeneMark.hmm	gene	5011	6066	-1335.034872	-	.	ID=Merlin_42;seqid=Merlin;Name=cds-not-under-exon
+        # Merlin	GeneMark.hmm	mRNA	5011	6066	.	-	.	ID=Merlin_42_mRNA;Parent=Merlin_42;seqid=Merlin
+        # Merlin	GeneMark.hmm	exon	5011	6066	.	-	.	ID=Merlin_42_exon;Parent=Merlin_42_mRNA;seqid=Merlin
+        # Merlin	GeneMark.hmm	CDS	5011	6066	.	-	0	ID=Merlin_42_CDS;Parent=Merlin_42_mRNA;seqid=Merlin
+
         index1 = gff_content.index('##gff-version 3')
         index2 = gff_content.index('Merlin\t.\tgene\t2\t691\t.\t+\t.')
+
+        gene_count = gff_content.count('Merlin\t.\tgene')
+        mrna_count = gff_content.count('Merlin\t.\tmRNA')
+        exon_count = gff_content.count('Merlin\t.\texon')
+        cds_count = gff_content.count('Merlin\t.\tCDS')
+
+        print(f'gene_count {gene_count}')
+        print(f'mrna_count {mrna_count}')
+        print(f'exon_count {exon_count}')
+        print(f'cds_count {cds_count}')
+
+        assert gene_count == 6
         assert gff_content.count('Merlin\t.\tgene\t2\t691\t.\t+\t.') == 1
+        assert gff_content.count('Merlin\t.\tgene\t752\t1039\t.\t+\t.') == 1
+        assert gff_content.count('Merlin\t.\tgene\t1067\t2011\t') == 1
+        assert gff_content.count('Merlin\t.\tgene\t2011\t3066\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tgene\t3066\t4796\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tgene\t5011\t6066\t') == 1
+        assert mrna_count == 6
+        assert gff_content.count('Merlin\t.\tmRNA\t2\t691\t.\t+\t.') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t752\t1039\t.\t+\t.') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t1067\t2011\t') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t2011\t3066\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t3066\t4796\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tmRNA\t5011\t6066\t') == 1
+        assert exon_count == 7
+        assert cds_count == 6 # or 7, but I think its 6
+
         assert gff_content.count('Merlin\t.\tmRNA\t2\t691\t.\t+\t.') == 1
         assert gff_content.count('Merlin\t.\texon\t2\t691\t.\t+\t.') == 1
         assert gff_content.count('Merlin\t.\tCDS\t2\t691\t.\t+\t0') == 1
