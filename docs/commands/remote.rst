@@ -137,7 +137,7 @@ Update an organism using the remote organism API.
       --common_name TEXT     Organism common name
       --genus TEXT           Genus
       --species TEXT         Species
-      --public               User's email
+      --public               Visible without logging in
       --metadata TEXT        JSON formatted arbitrary metadata
       --no_reload_sequences  Set this if you don't want Apollo to reload genome
                              sequences (no change in genome sequence)

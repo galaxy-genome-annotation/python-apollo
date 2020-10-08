@@ -25,7 +25,7 @@ jobs:
 
     - stage: test
       script:
-        - if [ ${APOLLO_VERSION} == "2" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/apollo.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
+        - if [ ${APOLLO_VERSION} == "2" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo2-arrow.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
         - if [ ${APOLLO_VERSION} == "3" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml ; ./bootstrap_apollo.sh --docker3 ; fi;
         - python setup.py nosetests
 

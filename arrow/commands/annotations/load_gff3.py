@@ -40,20 +40,17 @@ from arrow.decorators import custom_exception, str_output
 )
 @click.option(
     "--quiet",
-    help="Suppresses return output",
+    help="Suppress return output",
     is_flag=True
 )
 @pass_context
 @custom_exception
 @str_output
-def cli(ctx, organism, gff3, source="", batch_size=1, test=False, use_name=False, disable_cds_recalculation=False,
-        timing=False, quiet=False):
+def cli(ctx, organism, gff3, source="", batch_size=1, test=False, use_name=False, disable_cds_recalculation=False, timing=False, quiet=False):
     """Load a full GFF3 into annotation track
 
 Output:
 
     Loading report
     """
-    return ctx.gi.annotations.load_gff3(organism, gff3, source=source, batch_size=batch_size, test=test,
-                                        use_name=use_name, disable_cds_recalculation=disable_cds_recalculation,
-                                        timing=timing, quiet=quiet)
+    return ctx.gi.annotations.load_gff3(organism, gff3, source=source, batch_size=batch_size, test=test, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation, timing=timing, quiet=quiet)

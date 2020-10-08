@@ -18,7 +18,7 @@ def get_instance(instance_name=None):
             raise Exception("Unknown Apollo instance and no __default provided")
 
     if instance_name not in conf:
-        raise Exception("Unknown Apollo instance; check spelling or add to ~/.apollo-arrow.yml")
+        raise Exception("Unknown Apollo instance; check spelling or add to ~/.docker-apollo2-arrow.yml")
 
     return conf[instance_name]
 

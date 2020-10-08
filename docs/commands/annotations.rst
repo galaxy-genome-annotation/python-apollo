@@ -533,6 +533,7 @@ Load a full GFF3 into annotation track
                                    provided
     
       --timing                     Output loading performance metrics
+      --quiet                      Suppress return output
       -h, --help                   Show this message and exit.
     
 

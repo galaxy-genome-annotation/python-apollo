@@ -11,7 +11,7 @@ DEFAULT_CONFIG = {
 def global_config_path():
     config_path = os.environ.get(
         "ARROW_GLOBAL_CONFIG_PATH",
-        "~/.apollo-arrow.yml"
+        "~/.docker-apollo2-arrow.yml"
     )
     config_path = os.path.expanduser(config_path)
     return config_path

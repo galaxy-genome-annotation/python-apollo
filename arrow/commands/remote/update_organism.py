@@ -28,7 +28,7 @@ from arrow.decorators import custom_exception, dict_output
 )
 @click.option(
     "--public",
-    help="Allow view without logging in",
+    help="Visible without logging in",
     is_flag=True
 )
 @click.option(

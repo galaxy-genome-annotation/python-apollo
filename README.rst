@@ -152,6 +152,32 @@ To regenerate it, install the latest version of the code, then run:
 
     make rebuild
 
+Test
+----
+
+There are multiple built-in testing options int he test-data directory including against Apollo 2 versus Apollo 3
+as well as Docker versus a local instance.
+
+Below is an example for Docker and Apollo2.
+
+.. code-block:: shell
+
+    source env/bin/activate
+    export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo2-arrow.yml
+    ./bootstrap_apollo.sh --docker2
+    python setup.py nosetests
+
+This is an example of Local and [Apollo 3](https://github.com/GMOD/Apollo3Server).
+
+To run Apollo 3, start neo4j with an empty database and run it prior to running this script.
+
+.. code-block:: shell
+
+    source env/bin/activate
+    export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/local-apollo3-arrow.yml
+    ./bootstrap_apollo.sh --local3
+    python setup.py nosetests
+
 
 License
 -------
