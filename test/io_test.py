@@ -136,8 +136,7 @@ class IoTest(ApolloTestCase):
         assert gff_content.count('Merlin\t.\tCDS\t752\t1039\t.\t+\t0') == 1
         assert gff_content.count('Merlin\t.\tCDS\t1067\t2011\t.\t-\t0') == 1
         assert gff_content.count('Merlin\t.\tCDS\t2011\t3066\t.\t-\t0') == 1
-        # TODO: FIX
-        # assert gff_content.count('Merlin\t.\tCDS\t3066\t4296\t.\t-\t1') == 1
+        assert gff_content.count('Merlin\t.\tCDS\t3066\t4296\t.\t-\t1') == 1
         assert gff_content.count('Merlin\t.\tCDS\t4366\t4796\t.\t-\t0') == 1
         assert gff_content.count('Merlin\t.\tCDS\t5011\t6066\t.\t-\t0') == 1
 
