@@ -108,8 +108,16 @@ class IoTest(ApolloTestCase):
         print(f'mrna_count {mrna_count}')
         print(f'exon_count {exon_count}')
         print(f'cds_count {cds_count}')
+        print(f'Parent_count {gff_content.count("Parent=")}')
+        print(f'ID_count {gff_content.count("ID=")}')
+        print(f'Name_count {gff_content.count("Name=")}')
         print(f'non_canonical_three_prime_splice_site_count {non_canonical_three_prime_splice_site_count}')
         print(f'non_canonical_five_prime_splice_site {non_canonical_five_prime_splice_site_count}')
+
+        assert gff_content.count('Parent=') == 22
+        # assert gff_content.count('owner=') == 22
+        assert gff_content.count('ID=') == 28
+        assert gff_content.count('Name=') == 28
 
         assert non_canonical_five_prime_splice_site_count == 1
         assert non_canonical_three_prime_splice_site_count == 1
@@ -146,9 +154,9 @@ class IoTest(ApolloTestCase):
         assert gff_content.count('Merlin\t.\texon\t1067\t2011\t') == 1
         assert gff_content.count('Merlin\t.\texon\t2011\t3066\t.\t-\t.') == 1
         # TODO: FIX
-        # assert gff_content.count('Merlin\t.\texon\t3066\t4296\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\texon\t3066\t4296\t.\t-\t.') == 1
         # TODO: FIX
-        # assert gff_content.count('Merlin\t.\texon\t4366\t4796\t') == 1
+        assert gff_content.count('Merlin\t.\texon\t4366\t4796\t') == 1
         assert gff_content.count('Merlin\t.\texon\t5011\t6066\t') == 1
 
 
