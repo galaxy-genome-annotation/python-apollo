@@ -115,11 +115,6 @@ class IoTest(ApolloTestCase):
         print(f'non_canonical_three_prime_splice_site_count {non_canonical_three_prime_splice_site_count}')
         print(f'non_canonical_five_prime_splice_site {non_canonical_five_prime_splice_site_count}')
 
-        assert gff_content.count('owner=') > 11
-        assert gff_content.count('owner=') < 30
-        assert gff_content.count('ID=') == 28
-        assert gff_content.count('Name=') == 28
-        assert gff_content.count('Parent=') == 22
 
         assert non_canonical_five_prime_splice_site_count == 1
         assert non_canonical_three_prime_splice_site_count == 1
@@ -155,20 +150,21 @@ class IoTest(ApolloTestCase):
         assert gff_content.count('Merlin\t.\texon\t752\t1039\t.\t+\t.') == 1
         assert gff_content.count('Merlin\t.\texon\t1067\t2011\t') == 1
         assert gff_content.count('Merlin\t.\texon\t2011\t3066\t.\t-\t.') == 1
-        # TODO: FIX
         assert gff_content.count('Merlin\t.\texon\t3066\t4296\t.\t-\t.') == 1
-        # TODO: FIX
         assert gff_content.count('Merlin\t.\texon\t4366\t4796\t') == 1
         assert gff_content.count('Merlin\t.\texon\t5011\t6066\t') == 1
 
 
-        # TODO: FIX
-        # assert gff_content.count('Merlin\t.\tnon_canonical_three_prime_splice_site\t4297\t4297\t.\t-\t.') == 1
-        # TODO: FIX
-        # assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t4364\t4364\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tnon_canonical_three_prime_splice_site\t4297\t4297\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t4364\t4364\t.\t-\t.') == 1
 
-        # TODO: verify that we just see once, i.e., no duplications
-        # TODO: assert that there are 6 genes, 6 mRNA's exons, CDS, etc.
+        assert gff_content.count('ID=') == 28
+        assert gff_content.count('Name=') == 28
+        assert gff_content.count('owner=') > 11
+        assert gff_content.count('owner=') < 30
+
+        # TODO: fix parent showing up properly
+        assert gff_content.count('Parent=') == 22
 
     @unittest.skip("temporarily disabled")
     def test_export_vcf(self):
