@@ -160,11 +160,8 @@ class IoTest(ApolloTestCase):
 
         assert gff_content.count('ID=') == 28
         assert gff_content.count('Name=') == 28
-        assert gff_content.count('owner=') > 11
-        assert gff_content.count('owner=') < 30
-
-        # TODO: fix parent showing up properly
-        assert gff_content.count('Parent=') == 22
+        assert gff_content.count('owner=') == 12 # just for gene and mRNA or other top-level ones
+        assert gff_content.count('Parent=') == 22 # all but genes should have parent
 
     @unittest.skip("temporarily disabled")
     def test_export_vcf(self):
