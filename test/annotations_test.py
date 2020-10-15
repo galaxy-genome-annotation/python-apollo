@@ -242,6 +242,7 @@ class AnnotationsTest(ApolloTestCase):
         time.sleep(1)
 
         gff_content = wa.io.download(uuid_gff['uuid'], output_format="text")
+        print(gff_content)
 
         assert '##gff-version 3' in gff_content
         assert 'Merlin\t.\trepeat_region\t2\t691\t.\t+\t.' in gff_content
