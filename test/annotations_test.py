@@ -128,10 +128,9 @@ class AnnotationsTest(ApolloTestCase):
         transcript_data = feature_data['Merlin_58b_mRNA']
 
         # del feature_data['location']['id']
-        print(f"output feature data: {feature_data}")
         assert transcript_data['location'] == {'strand': -1, 'fmin': 13065, 'fmax': 14796}
         assert transcript_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
-        assert transcript_data['parent_name'] == 'Merlin_58b_mRNA'
+        assert transcript_data['parent_name'] == 'Merlin_58_mRNA'
         assert len(transcript_data['children']) == 5
         has_cds = False
         for child in transcript_data['children']:
