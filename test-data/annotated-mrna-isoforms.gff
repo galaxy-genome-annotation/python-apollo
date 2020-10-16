@@ -1,0 +1,15 @@
+##gff-version 3
+##sequence-region Merlin 1 172788
+Merlin	.	gene	13066	14796	.	-	.	owner=nathandunn@lbl.gov;ID=7e4239b0-8dbd-44af-bc79-c31a241bfcca;date_last_modified=2020-10-16;Name=Merlin_58_mRNA;date_creation=2020-10-16
+Merlin	.	mRNA	13066	14796	.	-	.	owner=nathandunn@lbl.gov;Parent=7e4239b0-8dbd-44af-bc79-c31a241bfcca;ID=75f58a1f-84c6-4939-840a-26205d7c1260;orig_id=Merlin_58b_mRNA;date_last_modified=2020-10-16;Name=Merlin_58_mRNA-00002;date_creation=2020-10-16
+Merlin	.	exon	13066	14096	.	-	.	Parent=75f58a1f-84c6-4939-840a-26205d7c1260;ID=9593764a-9faf-425c-83c4-a620f5e6bf94;Name=9593764a-9faf-425c-83c4-a620f5e6bf94
+Merlin	.	CDS	13096	13230	.	-	0	Parent=75f58a1f-84c6-4939-840a-26205d7c1260;ID=75f58a1f-84c6-4939-840a-26205d7c1260-CDS;Name=75f58a1f-84c6-4939-840a-26205d7c1260-CDS
+Merlin	.	exon	14466	14796	.	-	.	Parent=75f58a1f-84c6-4939-840a-26205d7c1260;ID=4ab0fb5e-a75a-43cd-8734-8abf578596fa;Name=4ab0fb5e-a75a-43cd-8734-8abf578596fa
+Merlin	.	non_canonical_five_prime_splice_site	14464	14464	.	-	.	Parent=75f58a1f-84c6-4939-840a-26205d7c1260;ID=75f58a1f-84c6-4939-840a-26205d7c1260-non_canonical_five_prime_splice_site-14463;Name=75f58a1f-84c6-4939-840a-26205d7c1260-non_canonical_five_prime_splice_site-14463
+Merlin	.	non_canonical_three_prime_splice_site	14097	14097	.	-	.	Parent=75f58a1f-84c6-4939-840a-26205d7c1260;ID=75f58a1f-84c6-4939-840a-26205d7c1260-non_canonical_three_prime_splice_site-14096;Name=75f58a1f-84c6-4939-840a-26205d7c1260-non_canonical_three_prime_splice_site-14096
+Merlin	.	mRNA	13066	14796	.	-	.	owner=nathandunn@lbl.gov;Parent=7e4239b0-8dbd-44af-bc79-c31a241bfcca;ID=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75;orig_id=Merlin_58_mRNA;date_last_modified=2020-10-16;Name=Merlin_58_mRNA-00001;date_creation=2020-10-16
+Merlin	.	non_canonical_five_prime_splice_site	14364	14364	.	-	.	Parent=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75;ID=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75-non_canonical_five_prime_splice_site-14363;Name=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75-non_canonical_five_prime_splice_site-14363
+Merlin	.	exon	13066	14296	.	-	.	Parent=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75;ID=14bc51a4-5611-4e23-b920-dd14bd01c5b3;Name=14bc51a4-5611-4e23-b920-dd14bd01c5b3
+Merlin	.	exon	14366	14796	.	-	.	Parent=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75;ID=2e39e931-40a5-475e-8aa4-33a8e13ccb7c;Name=2e39e931-40a5-475e-8aa4-33a8e13ccb7c
+Merlin	.	CDS	13096	13230	.	-	0	Parent=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75;ID=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75-CDS;Name=ab5b212b-8fd1-4b6b-9baa-d8b3c4e0be75-CDS
+###

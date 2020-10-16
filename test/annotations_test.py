@@ -112,6 +112,7 @@ class AnnotationsTest(ApolloTestCase):
         feature_data = feature_data['Merlin_58_mRNA']
 
         # del feature_data['location']['id']
+        print(f"output feature data: {feature_data}")
         assert feature_data['location'] == {'strand': -1, 'fmin': 13065, 'fmax': 14796}
         assert feature_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
         assert feature_data['parent_name'] == 'Merlin_58_mRNA'
@@ -155,16 +156,17 @@ class AnnotationsTest(ApolloTestCase):
         assert gff_content.count('Merlin\t.\texon\t14366\t14796\t.\t-\t.') == 1
         assert gff_content.count('Merlin\t.\texon\t14466\t14796\t.\t-\t.') == 1
         # this is correct
-        assert gff_content.count('Merlin\t.\texon\t13066\t14096\t.\t-\t0') == 1
+        assert gff_content.count('Merlin\t.\texon\t13066\t14096\t.\t-\t.') == 1
+
+        # TODO: validate the non_canonical_five_prime_splice_site
+        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14364\t14364\t.\t-\t.') == 1
+        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14464\t14464\t.\t-\t.') == 1
+
+        # TODO: validate the non_canonical_three_prime_splice_site
+        assert gff_content.count('Merlin\t.\tnon_canonical_three_prime_splice_site\t14097\t14097\t.\t-\t.') == 1
 
         # TODO: validate the CDS  (2)
         assert gff_content.count('Merlin\t.\tCDS\t13096\t13230\t.\t-\t0') == 2
-        # TODO: validate the non_canonical_five_prime_splice_site
-        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14364\t14364\t.\t-\t0') == 1
-        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14464\t14464\t.\t-\t0') == 1
-
-        # TODO: validate the non_canonical_three_prime_splice_site
-        assert gff_content.count('Merlin\t.\tnon_canonical_five_prime_splice_site\t14097\t14097\t.\t-\t0') == 1
 
     def test_create_pseudogene(self):
         path = 'test-data/pseudogene-top.gff'
