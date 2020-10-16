@@ -103,20 +103,42 @@ class AnnotationsTest(ApolloTestCase):
         path = 'test-data/mrna-isoforms.gff'
 
         feature_data = wa.annotations.load_gff3('temp_org', path)
-        print('feature data')
-        print(str(feature_data))
+        print(f"feature added: {feature_data}")
 
+        # it is an isoform with 2 transcripts
+        assert len(feature_data) == 2
         assert 'Merlin_58_mRNA' in feature_data
-
+        assert 'Merlin_58b_mRNA' in feature_data
         # NOTE: this feature data seems to be correct
-        feature_data = feature_data['Merlin_58_mRNA']
+        transcript_data = feature_data['Merlin_58_mRNA']
+
+        # del feature_data['location']['id']
+        assert transcript_data['location'] == {'strand': -1, 'fmin': 13065, 'fmax': 14796}
+        assert transcript_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
+        assert transcript_data['parent_name'] == 'Merlin_58_mRNA'
+        assert len(transcript_data['children']) == 4
+        has_cds = False
+        for child in transcript_data['children']:
+            print(f"child {child}")
+            if child['type']['name'] == 'CDS':
+                assert child['location']['fmin'] == 13095
+                has_cds = True
+        assert has_cds
+
+        transcript_data = feature_data['Merlin_58b_mRNA']
 
         # del feature_data['location']['id']
         print(f"output feature data: {feature_data}")
-        assert feature_data['location'] == {'strand': -1, 'fmin': 13065, 'fmax': 14796}
-        assert feature_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
-        assert feature_data['parent_name'] == 'Merlin_58_mRNA'
-        assert len(feature_data['children']) == 4
+        assert transcript_data['location'] == {'strand': -1, 'fmin': 13065, 'fmax': 14796}
+        assert transcript_data['type'] == {'name': 'mRNA', 'cv': {'name': 'sequence'}}
+        assert transcript_data['parent_name'] == 'Merlin_58b_mRNA'
+        assert len(transcript_data['children']) == 5
+        has_cds = False
+        for child in transcript_data['children']:
+            if child['type']['name'] == 'CDS':
+                assert child['location']['fmin'] == 13095
+                has_cds = True
+        assert has_cds
 
         # Now download back the gff
         uuid_gff = wa.io.write_downloadable('temp_org', 'GFF3')
