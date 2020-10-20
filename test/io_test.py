@@ -143,7 +143,8 @@ class IoTest(ApolloTestCase):
         assert gff_content.count('Merlin\t.\tCDS\t2011\t3066\t.\t-\t0') == 1
         assert gff_content.count('Merlin\t.\tCDS\t3066\t4296\t.\t-\t1') == 1
         assert gff_content.count('Merlin\t.\tCDS\t4366\t4796\t.\t-\t0') == 1
-        assert gff_content.count('Merlin\t.\tCDS\t5011\t6066\t.\t-\t0') == 1
+        # NOTE: this is the proper version, validated against the older Apollo
+        assert gff_content.count('Merlin\t.\tCDS\t5289\t6065\t.\t-\t0') == 1
 
         assert exon_count == 7
         assert gff_content.count('Merlin\t.\texon\t2\t691\t.\t+\t.') == 1
