@@ -127,12 +127,20 @@ class OrganismTest(ApolloTestCase):
 
         feats_before = wa.annotations.get_features(org_info['id'], 'Merlin')
 
+        print('features detected before')
+        print(str(feats_before))
+
         assert 'features' in feats_before
         assert len(feats_before['features']) > 0
 
         wa.organisms.delete_features(org_info['id'])
 
+        time.sleep(1)
+
         feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
+
+        print('features detected')
+        print(str(feats_after))
 
         assert 'features' in feats_after
         assert len(feats_after['features']) == 0

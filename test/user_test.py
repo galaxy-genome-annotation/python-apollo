@@ -7,6 +7,8 @@ class UserTest(ApolloTestCase):
 
     def test_get_users(self):
 
+        time.sleep(1)
+
         users = wa.users.get_users()
 
         # We at least have admin + junior + temp from setup
