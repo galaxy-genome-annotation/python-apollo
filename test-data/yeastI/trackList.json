@@ -1,12 +1,12 @@
 {
-    "refSeqs": "seq/yesatI.fa.fai",
+    "refSeqs": "seq/yeastI.fa.fai",
     "formatVersion": 1,
     "tracks": [
         {
             "storeClass": "JBrowse/Store/SeqFeature/IndexedFasta",
-            "faiUrlTemplate": "seq/yesatI.fa.fai",
+            "faiUrlTemplate": "seq/yeastI.fa.fai",
             "useAsRefSeqStore": 1,
-            "urlTemplate": "seq/yesatI.fa",
+            "urlTemplate": "seq/yeastI.fa",
             "label": "DNA",
             "category": "Reference sequence",
             "type": "SequenceTrack",

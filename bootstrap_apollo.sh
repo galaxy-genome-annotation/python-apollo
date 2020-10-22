@@ -91,20 +91,24 @@ cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org3"
 cp -r test-data/dataset_1_files/data/ "${GALAXY_SHARED_DIR}/org4"
 cp -r test-data/dataset_2_files/data/ "${GALAXY_SHARED_DIR}/org_update_newseq"
 cp -r test-data/dataset_3_files/data/ "${GALAXY_SHARED_DIR}/org_update_changedseq"
+cp -r test-data/yeastI/ "${GALAXY_SHARED_DIR}/yeastI"
 arrow organisms add_organism --genus Testus --species organus test_organism $APOLLO_DATA_DIRECTORY/org1
 arrow organisms add_organism --genus Foo --species barus alt_org $APOLLO_DATA_DIRECTORY/org2
 arrow organisms add_organism --genus Foo3 --species barus org3 $APOLLO_DATA_DIRECTORY/org3
 arrow organisms add_organism --genus Foo4 --species barus org4 $APOLLO_DATA_DIRECTORY/org4
+arrow organisms add_organism --genus Saccharomyces --species cerevisiae yeastI $APOLLO_DATA_DIRECTORY/yeastI
 
 # Give access to organisms for test user
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" test_organism
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" alt_org
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org3
 arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" org4
+arrow users update_organism_permissions --write --read --export "test@bx.psu.edu" yeastI
 
 # Load some annotations
 arrow annotations load_gff3 test_organism test-data/merlin.gff > /dev/null
 arrow annotations load_gff3 alt_org test-data/merlin.gff > /dev/null
 arrow annotations load_gff3 org3 test-data/merlin.gff > /dev/null
 arrow annotations load_gff3 org4 test-data/merlin.gff > /dev/null
+arrow annotations load_gff3 yeastI test-data/yeastI/raw/yeastI.gff > /dev/null
 #arrow annotations load_legacy_gff3 org4 test-data/merlin.gff
