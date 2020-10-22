@@ -1,0 +1,26 @@
+{
+    "refSeqs": "seq/yesatI.fa.fai",
+    "formatVersion": 1,
+    "tracks": [
+        {
+            "storeClass": "JBrowse/Store/SeqFeature/IndexedFasta",
+            "faiUrlTemplate": "seq/yesatI.fa.fai",
+            "useAsRefSeqStore": 1,
+            "urlTemplate": "seq/yesatI.fa",
+            "label": "DNA",
+            "category": "Reference sequence",
+            "type": "SequenceTrack",
+            "key": "Reference sequence",
+            "seqType": "dna"
+        },
+        {
+            "storeClass": "JBrowse/Store/SeqFeature/GFF3Tabix",
+            "topLevelFeatures": "mRNA",
+            "urlTemplate": "raw/yeastI.gff.gz",
+            "style": {"className": "feature"},
+            "label": "OfficialGenes",
+            "type": "JBrowse/View/Track/HTMLFeatures",
+            "key": "OfficialGenes"
+        }
+    ]
+}
