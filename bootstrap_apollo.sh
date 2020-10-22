@@ -110,5 +110,5 @@ arrow annotations load_gff3 test_organism test-data/merlin.gff > /dev/null
 arrow annotations load_gff3 alt_org test-data/merlin.gff > /dev/null
 arrow annotations load_gff3 org3 test-data/merlin.gff > /dev/null
 arrow annotations load_gff3 org4 test-data/merlin.gff > /dev/null
-arrow annotations load_gff3 yeastI test-data/yeastI/raw/yeastI.gff > /dev/null
+#arrow annotations load_gff3 yeastI test-data/yeastI/raw/yeastI.gff > /dev/null
 #arrow annotations load_legacy_gff3 org4 test-data/merlin.gff
