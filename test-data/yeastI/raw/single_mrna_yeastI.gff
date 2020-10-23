@@ -1,0 +1,6 @@
+##gff-version	3
+##sequence-region	I	1	172788
+I	sgd	gene	335	649	.	+	.	ID=gene:YAL069W;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000002143];gene_id=YAL069W;logic_name=sgd
+I	sgd	mRNA	335	649	.	+	.	ID=transcript:YAL069W_mRNA;Parent=gene:YAL069W;biotype=protein_coding;transcript_id=YAL069W_mRNA
+I	sgd	exon	335	649	.	+	.	Parent=transcript:YAL069W_mRNA;Name=YAL069W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL069W_mRNA-E1;rank=1
+I	sgd	CDS	335	649	.	+	0	ID=CDS:YAL069W;Parent=transcript:YAL069W_mRNA;protein_id=YAL069W
