@@ -1,0 +1,121 @@
+I	sgd	transposable_element	160597	164187	.	-	.	ID=gene:YAR009C;Name=YAR009C;biotype=transposable_element;description=Retrotransposon TYA Gag and TYB Pol genes%3B Gag processing produces capsid proteins%2C Pol is cleaved to produce protease%2C reverse transcriptase and integrase activities%3B in YARCTy1-1 TYB is mutant and probably non-functional%3B protein product forms cytoplasmic foci upon DNA replication stress [Source:SGD%3BAcc:S000000067];gene_id=YAR009C;logic_name=sgd
+###
+I	sgd	transposable_element	164544	165866	.	-	.	ID=gene:YAR010C;Name=YAR010C;biotype=transposable_element;description=Retrotransposon TYA Gag gene co-transcribed with TYB Pol%3B Gag processing produces capsid proteins%3B in YARCTy1-1 TYB is mutant and probably non-functional [Source:SGD%3BAcc:S000000068];gene_id=YAR010C;logic_name=sgd
+###
+I	sgd	gene	166267	166339	.	+	.	ID=gene:tA(UGC)A;Name=TGA1;biotype=tRNA;description=Alanine tRNA (tRNA-Ala)%2C predicted by tRNAscan-SE analysis%3B one of 5 nuclear tRNA genes containing the tDNA-anticodon TGC (mature tRNA may be UGC or may contain modified bases)%2C decodes GCA and probably GCG codons into alanine%2C one of 16 nuclear tRNAs for alanine [Source:SGD%3BAcc:S000006521];gene_id=tA(UGC)A;logic_name=sgd
+I	sgd	tRNA	166267	166339	.	+	.	ID=transcript:tA(UGC)A_tRNA;Parent=gene:tA(UGC)A;biotype=tRNA;transcript_id=tA(UGC)A_tRNA
+I	sgd	exon	166267	166339	.	+	.	Parent=transcript:tA(UGC)A_tRNA;Name=tA(UGC)A_tRNA-E1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=tA(UGC)A_tRNA-E1;rank=1
+###
+I	sgd	gene	166742	168871	.	-	.	ID=gene:YAR014C;Name=BUD14;biotype=protein_coding;description=Protein involved in bud-site selection%3B Bud14p-Glc7p complex is a cortical regulator of dynein%3B forms a complex with Kel1p and Kel2p that regulates Bnr1p (formin) to affect actin cable assembly%2C cytokinesis%2C and polarized growth%3B diploid mutants display a random budding pattern instead of the wild-type bipolar pattern%3B relative distribution to the nucleus increases upon DNA replication stress [Source:SGD%3BAcc:S000000069];gene_id=YAR014C;logic_name=sgd
+I	sgd	mRNA	166742	168871	.	-	.	ID=transcript:YAR014C_mRNA;Parent=gene:YAR014C;Name=BUD14;biotype=protein_coding;transcript_id=YAR014C_mRNA
+I	sgd	exon	166742	168871	.	-	.	Parent=transcript:YAR014C_mRNA;Name=YAR014C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR014C_mRNA-E1;rank=1
+I	sgd	CDS	166742	168871	.	-	0	ID=CDS:YAR014C;Parent=transcript:YAR014C_mRNA;protein_id=YAR014C
+###
+I	sgd	gene	169375	170295	.	+	.	ID=gene:YAR015W;Name=ADE1;biotype=protein_coding;description=N-succinyl-5-aminoimidazole-4-carboxamide ribotide synthetase%3B required for 'de novo' purine nucleotide biosynthesis%3B red pigment accumulates in mutant cells deprived of adenine%3B protein abundance increases in response to DNA replication stress [Source:SGD%3BAcc:S000000070];gene_id=YAR015W;logic_name=sgd
+I	sgd	mRNA	169375	170295	.	+	.	ID=transcript:YAR015W_mRNA;Parent=gene:YAR015W;Name=ADE1;biotype=protein_coding;transcript_id=YAR015W_mRNA
+I	sgd	exon	169375	170295	.	+	.	Parent=transcript:YAR015W_mRNA;Name=YAR015W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR015W_mRNA-E1;rank=1
+I	sgd	CDS	169375	170295	.	+	0	ID=CDS:YAR015W;Parent=transcript:YAR015W_mRNA;protein_id=YAR015W
+###
+I	sgd	gene	170396	171703	.	-	.	ID=gene:YAR018C;Name=KIN3;biotype=protein_coding;description=Nonessential serine/threonine protein kinase%3B possible role in DNA damage response%3B influences tolerance to high levels of ethanol [Source:SGD%3BAcc:S000000071];gene_id=YAR018C;logic_name=sgd
+I	sgd	mRNA	170396	171703	.	-	.	ID=transcript:YAR018C_mRNA;Parent=gene:YAR018C;Name=KIN3;biotype=protein_coding;transcript_id=YAR018C_mRNA
+I	sgd	exon	170396	171703	.	-	.	Parent=transcript:YAR018C_mRNA;Name=YAR018C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR018C_mRNA-E1;rank=1
+I	sgd	CDS	170396	171703	.	-	0	ID=CDS:YAR018C;Parent=transcript:YAR018C_mRNA;protein_id=YAR018C
+###
+I	sgd	gene	172211	175135	.	-	.	ID=gene:YAR019C;Name=CDC15;biotype=protein_coding;description=Protein kinase of the Mitotic Exit Network%3B localized to the spindle pole bodies at late anaphase%3B promotes mitotic exit by directly switching on the kinase activity of Dbf2p%3B required for spindle disassembly after meiosis II%3B relocalizes to the cytoplasm upon DNA replication stress [Source:SGD%3BAcc:S000000072];gene_id=YAR019C;logic_name=sgd
+I	sgd	mRNA	172211	175135	.	-	.	ID=transcript:YAR019C_mRNA;Parent=gene:YAR019C;Name=CDC15;biotype=protein_coding;transcript_id=YAR019C_mRNA
+I	sgd	exon	172211	175135	.	-	.	Parent=transcript:YAR019C_mRNA;Name=YAR019C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR019C_mRNA-E1;rank=1
+I	sgd	CDS	172211	175135	.	-	0	ID=CDS:YAR019C;Parent=transcript:YAR019C_mRNA;protein_id=YAR019C
+###
+I	sgd	gene	174998	175330	.	+	.	ID=gene:YAR019W-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps ORF CDC15/YAR019C [Source:SGD%3BAcc:S000028735];gene_id=YAR019W-A;logic_name=sgd
+I	sgd	mRNA	174998	175330	.	+	.	ID=transcript:YAR019W-A_mRNA;Parent=gene:YAR019W-A;biotype=protein_coding;transcript_id=YAR019W-A_mRNA
+I	sgd	exon	174998	175330	.	+	.	Parent=transcript:YAR019W-A_mRNA;Name=YAR019W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR019W-A_mRNA-E1;rank=1
+I	sgd	CDS	174998	175330	.	+	0	ID=CDS:YAR019W-A;Parent=transcript:YAR019W-A_mRNA;protein_id=YAR019W-A
+###
+I	sgd	gene	176856	177023	.	-	.	ID=gene:YAR020C;Name=PAU7;biotype=protein_coding;description=Member of the seripauperin multigene family%3B active during alcoholic fermentation%2C regulated by anaerobiosis%2C inhibited by oxygen%2C repressed by heme [Source:SGD%3BAcc:S000000073];gene_id=YAR020C;logic_name=sgd
+I	sgd	mRNA	176856	177023	.	-	.	ID=transcript:YAR020C_mRNA;Parent=gene:YAR020C;Name=PAU7;biotype=protein_coding;transcript_id=YAR020C_mRNA
+I	sgd	exon	176856	177023	.	-	.	Parent=transcript:YAR020C_mRNA;Name=YAR020C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR020C_mRNA-E1;rank=1
+I	sgd	CDS	176856	177023	.	-	0	ID=CDS:YAR020C;Parent=transcript:YAR020C_mRNA;protein_id=YAR020C
+###
+I	sgd	gene	179281	179820	.	-	.	ID=gene:YAR023C;biotype=protein_coding;description=Putative integral membrane protein%3B member of DUP240 gene family [Source:SGD%3BAcc:S000000074];gene_id=YAR023C;logic_name=sgd
+I	sgd	mRNA	179281	179820	.	-	.	ID=transcript:YAR023C_mRNA;Parent=gene:YAR023C;biotype=protein_coding;transcript_id=YAR023C_mRNA
+I	sgd	exon	179281	179820	.	-	.	Parent=transcript:YAR023C_mRNA;Name=YAR023C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR023C_mRNA-E1;rank=1
+I	sgd	CDS	179281	179820	.	-	0	ID=CDS:YAR023C;Parent=transcript:YAR023C_mRNA;protein_id=YAR023C
+###
+I	sgd	gene	181141	181254	.	+	.	ID=gene:tL(CAA)A;Name=SUP56;biotype=tRNA;description=Leucine tRNA (tRNA-Leu)%2C predicted by tRNAscan-SE analysis%3B can mutate to suppress amber nonsense mutations [Source:SGD%3BAcc:S000006636];gene_id=tL(CAA)A;logic_name=sgd
+I	sgd	tRNA	181141	181254	.	+	.	ID=transcript:tL(CAA)A_tRNA;Parent=gene:tL(CAA)A;biotype=tRNA;transcript_id=tL(CAA)A_tRNA
+I	sgd	exon	181141	181178	.	+	.	Parent=transcript:tL(CAA)A_tRNA;Name=tL(CAA)A_tRNA-E1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=tL(CAA)A_tRNA-E1;rank=1
+I	sgd	exon	181211	181254	.	+	.	Parent=transcript:tL(CAA)A_tRNA;Name=tL(CAA)A_tRNA-E2;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=tL(CAA)A_tRNA-E2;rank=2
+###
+I	sgd	gene	182522	182603	.	-	.	ID=gene:tS(AGA)A;biotype=tRNA;description=Serine tRNA (tRNA-Ser)%2C predicted by tRNAscan-SE analysis [Source:SGD%3BAcc:S000006719];gene_id=tS(AGA)A;logic_name=sgd
+I	sgd	tRNA	182522	182603	.	-	.	ID=transcript:tS(AGA)A_tRNA;Parent=gene:tS(AGA)A;biotype=tRNA;transcript_id=tS(AGA)A_tRNA
+I	sgd	exon	182522	182603	.	-	.	Parent=transcript:tS(AGA)A_tRNA;Name=tS(AGA)A_tRNA-E1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=tS(AGA)A_tRNA-E1;rank=1
+###
+I	sgd	gene	183770	184477	.	+	.	ID=gene:YAR027W;Name=UIP3;biotype=protein_coding;description=Putative integral membrane protein of unknown function%3B interacts with Ulp1p at the nuclear periphery%3B member of DUP240 gene family [Source:SGD%3BAcc:S000000075];gene_id=YAR027W;logic_name=sgd
+I	sgd	mRNA	183770	184477	.	+	.	ID=transcript:YAR027W_mRNA;Parent=gene:YAR027W;Name=UIP3;biotype=protein_coding;transcript_id=YAR027W_mRNA
+I	sgd	exon	183770	184477	.	+	.	Parent=transcript:YAR027W_mRNA;Name=YAR027W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR027W_mRNA-E1;rank=1
+I	sgd	CDS	183770	184477	.	+	0	ID=CDS:YAR027W;Parent=transcript:YAR027W_mRNA;protein_id=YAR027W
+###
+I	sgd	gene	184892	185596	.	+	.	ID=gene:YAR028W;biotype=protein_coding;description=Putative integral membrane protein%3B member of DUP240 gene family%3B GFP-fusion protein is induced in response to the DNA-damaging agent MMS [Source:SGD%3BAcc:S000000076];gene_id=YAR028W;logic_name=sgd
+I	sgd	mRNA	184892	185596	.	+	.	ID=transcript:YAR028W_mRNA;Parent=gene:YAR028W;biotype=protein_coding;transcript_id=YAR028W_mRNA
+I	sgd	exon	184892	185596	.	+	.	Parent=transcript:YAR028W_mRNA;Name=YAR028W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR028W_mRNA-E1;rank=1
+I	sgd	CDS	184892	185596	.	+	0	ID=CDS:YAR028W;Parent=transcript:YAR028W_mRNA;protein_id=YAR028W
+###
+I	sgd	gene	186321	186545	.	+	.	ID=gene:YAR029W;biotype=protein_coding;description=Member of DUP240 gene family but contains no transmembrane domains%3B green fluorescent protein (GFP)-fusion protein localizes to the cytoplasm in a punctate pattern [Source:SGD%3BAcc:S000000077];gene_id=YAR029W;logic_name=sgd
+I	sgd	mRNA	186321	186545	.	+	.	ID=transcript:YAR029W_mRNA;Parent=gene:YAR029W;biotype=protein_coding;transcript_id=YAR029W_mRNA
+I	sgd	exon	186321	186545	.	+	.	Parent=transcript:YAR029W_mRNA;Name=YAR029W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR029W_mRNA-E1;rank=1
+I	sgd	CDS	186321	186545	.	+	0	ID=CDS:YAR029W;Parent=transcript:YAR029W_mRNA;protein_id=YAR029W
+###
+I	sgd	gene	186512	186853	.	-	.	ID=gene:YAR030C;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps the uncharacterized ORF YAR029W and the verified gene PRM9 [Source:SGD%3BAcc:S000001821];gene_id=YAR030C;logic_name=sgd
+I	sgd	mRNA	186512	186853	.	-	.	ID=transcript:YAR030C_mRNA;Parent=gene:YAR030C;biotype=protein_coding;transcript_id=YAR030C_mRNA
+I	sgd	exon	186512	186853	.	-	.	Parent=transcript:YAR030C_mRNA;Name=YAR030C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR030C_mRNA-E1;rank=1
+I	sgd	CDS	186512	186853	.	-	0	ID=CDS:YAR030C;Parent=transcript:YAR030C_mRNA;protein_id=YAR030C
+###
+I	sgd	gene	186836	187732	.	+	.	ID=gene:YAR031W;Name=PRM9;biotype=protein_coding;description=Pheromone-regulated protein%3B contains 3 predicted transmembrane segments and an FF sequence%2C a motif involved in COPII binding%3B member of DUP240 gene family%3B PRM9 has a paralog%2C PRM8%2C that arose from a segmental duplication [Source:SGD%3BAcc:S000000078];gene_id=YAR031W;logic_name=sgd
+I	sgd	mRNA	186836	187732	.	+	.	ID=transcript:YAR031W_mRNA;Parent=gene:YAR031W;Name=PRM9;biotype=protein_coding;transcript_id=YAR031W_mRNA
+I	sgd	exon	186836	187732	.	+	.	Parent=transcript:YAR031W_mRNA;Name=YAR031W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR031W_mRNA-E1;rank=1
+I	sgd	CDS	186836	187732	.	+	0	ID=CDS:YAR031W;Parent=transcript:YAR031W_mRNA;protein_id=YAR031W
+###
+I	sgd	gene	188107	188811	.	+	.	ID=gene:YAR033W;Name=MST28;biotype=protein_coding;description=Putative integral membrane protein%2C involved in vesicle formation%3B forms complex with Mst27p%3B member of DUP240 gene family%3B binds COPI and COPII vesicles%3B MST28 has a paralog%2C MST27%2C that arose from a segmental duplication [Source:SGD%3BAcc:S000000079];gene_id=YAR033W;logic_name=sgd
+I	sgd	mRNA	188107	188811	.	+	.	ID=transcript:YAR033W_mRNA;Parent=gene:YAR033W;Name=MST28;biotype=protein_coding;transcript_id=YAR033W_mRNA
+I	sgd	exon	188107	188811	.	+	.	Parent=transcript:YAR033W_mRNA;Name=YAR033W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR033W_mRNA-E1;rank=1
+I	sgd	CDS	188107	188811	.	+	0	ID=CDS:YAR033W;Parent=transcript:YAR033W_mRNA;protein_id=YAR033W
+###
+I	sgd	gene	190193	192256	.	+	.	ID=gene:YAR035W;Name=YAT1;biotype=protein_coding;description=Outer mitochondrial carnitine acetyltransferase%3B minor ethanol-inducible enzyme involved in transport of activated acyl groups from the cytoplasm into the mitochondrial matrix%3B phosphorylated [Source:SGD%3BAcc:S000000080];gene_id=YAR035W;logic_name=sgd
+I	sgd	mRNA	190193	192256	.	+	.	ID=transcript:YAR035W_mRNA;Parent=gene:YAR035W;Name=YAT1;biotype=protein_coding;transcript_id=YAR035W_mRNA
+I	sgd	exon	190193	192256	.	+	.	Parent=transcript:YAR035W_mRNA;Name=YAR035W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR035W_mRNA-E1;rank=1
+I	sgd	CDS	190193	192256	.	+	0	ID=CDS:YAR035W;Parent=transcript:YAR035W_mRNA;protein_id=YAR035W
+###
+I	sgd	gene	192337	192417	.	-	.	ID=gene:YAR035C-A;biotype=protein_coding;description=Putative protein of unknown function%3B identified by gene-trapping%2C microarray-based expression analysis%2C and genome-wide homology searching%3B predicted to have a role in cell budding based on computational "guilt by association" analysis [Source:SGD%3BAcc:S000028595];gene_id=YAR035C-A;logic_name=sgd
+I	sgd	mRNA	192337	192417	.	-	.	ID=transcript:YAR035C-A_mRNA;Parent=gene:YAR035C-A;biotype=protein_coding;transcript_id=YAR035C-A_mRNA
+I	sgd	exon	192337	192417	.	-	.	Parent=transcript:YAR035C-A_mRNA;Name=YAR035C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR035C-A_mRNA-E1;rank=1
+I	sgd	CDS	192337	192417	.	-	0	ID=CDS:YAR035C-A;Parent=transcript:YAR035C-A_mRNA;protein_id=YAR035C-A
+###
+I	sgd	gene	192619	196185	.	+	.	ID=gene:YAR042W;Name=SWH1;biotype=protein_coding;description=Protein similar to mammalian oxysterol-binding protein%3B contains ankyrin repeats and FFAT motif%3B interacts with ER anchor Scs2p at the nucleus-vacuole junction%3B regulated by sterol binding%3B SWH1 has a paralog%2C OSH2%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000081];gene_id=YAR042W;logic_name=sgd
+I	sgd	mRNA	192619	196185	.	+	.	ID=transcript:YAR042W_mRNA;Parent=gene:YAR042W;Name=SWH1;biotype=protein_coding;transcript_id=YAR042W_mRNA
+I	sgd	exon	192619	196185	.	+	.	Parent=transcript:YAR042W_mRNA;Name=YAR042W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR042W_mRNA-E1;rank=1
+I	sgd	CDS	192619	196185	.	+	0	ID=CDS:YAR042W;Parent=transcript:YAR042W_mRNA;protein_id=YAR042W
+###
+I	sgd	gene	201467	201787	.	-	.	ID=gene:YAR047C;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000000083];gene_id=YAR047C;logic_name=sgd
+I	sgd	mRNA	201467	201787	.	-	.	ID=transcript:YAR047C_mRNA;Parent=gene:YAR047C;biotype=protein_coding;transcript_id=YAR047C_mRNA
+I	sgd	exon	201467	201787	.	-	.	Parent=transcript:YAR047C_mRNA;Name=YAR047C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR047C_mRNA-E1;rank=1
+I	sgd	CDS	201467	201787	.	-	0	ID=CDS:YAR047C;Parent=transcript:YAR047C_mRNA;protein_id=YAR047C
+###
+I	sgd	gene	203403	208016	.	+	.	ID=gene:YAR050W;Name=FLO1;biotype=protein_coding;description=Lectin-like protein involved in flocculation%3B cell wall protein that binds mannose chains on the surface of other cells%2C confers floc-forming ability that is chymotrypsin sensitive and heat resistant%3B important for co-flocculation with other yeasts%2C mediating interaction with specific species%3B FLO1 has a paralog%2C FLO5%2C that arose from a segmental duplication [Source:SGD%3BAcc:S000000084];gene_id=YAR050W;logic_name=sgd
+I	sgd	mRNA	203403	208016	.	+	.	ID=transcript:YAR050W_mRNA;Parent=gene:YAR050W;Name=FLO1;biotype=protein_coding;transcript_id=YAR050W_mRNA
+I	sgd	exon	203403	208016	.	+	.	Parent=transcript:YAR050W_mRNA;Name=YAR050W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR050W_mRNA-E1;rank=1
+I	sgd	CDS	203403	208016	.	+	0	ID=CDS:YAR050W;Parent=transcript:YAR050W_mRNA;protein_id=YAR050W
+###
+I	sgd	gene	208367	208663	.	+	.	ID=gene:YAR053W;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000000085];gene_id=YAR053W;logic_name=sgd
+I	sgd	mRNA	208367	208663	.	+	.	ID=transcript:YAR053W_mRNA;Parent=gene:YAR053W;biotype=protein_coding;transcript_id=YAR053W_mRNA
+I	sgd	exon	208367	208663	.	+	.	Parent=transcript:YAR053W_mRNA;Name=YAR053W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR053W_mRNA-E1;rank=1
+I	sgd	CDS	208367	208663	.	+	0	ID=CDS:YAR053W;Parent=transcript:YAR053W_mRNA;protein_id=YAR053W
+###
+I	sgd	gene	217157	217492	.	-	.	ID=gene:YAR060C;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B YAR060C has a paralog%2C YHR212C%2C that arose from a segmental duplication [Source:SGD%3BAcc:S000000086];gene_id=YAR060C;logic_name=sgd
+I	sgd	mRNA	217157	217492	.	-	.	ID=transcript:YAR060C_mRNA;Parent=gene:YAR060C;biotype=protein_coding;transcript_id=YAR060C_mRNA
+I	sgd	exon	217157	217492	.	-	.	Parent=transcript:YAR060C_mRNA;Name=YAR060C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAR060C_mRNA-E1;rank=1
+I	sgd	CDS	217157	217492	.	-	0	ID=CDS:YAR060C;Parent=transcript:YAR060C_mRNA;protein_id=YAR060C
+###
+I	sgd	pseudogene	218140	219145	.	+	.	ID=gene:YAR061W;biotype=pseudogene;description=Pseudogenic fragment with similarity to flocculins%3B YAR061W has a paralog%2C YHR212W-A%2C that arose from a segmental duplication [Source:SGD%3BAcc:S000000087];gene_id=YAR061W;logic_name=sgd
+I	sgd	transcript	218140	219145	.	+	.	ID=transcript:YAR061W;Parent=gene:YAR061W;biotype=pseudogene;transcript_id=YAR061W
+I	sgd	exon	218140	219145	.	+	.	Parent=transcript:YAR061W;Name=YAR061W-E1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=YAR061W-E1;rank=1
+###

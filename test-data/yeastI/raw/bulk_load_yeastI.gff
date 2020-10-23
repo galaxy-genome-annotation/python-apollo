@@ -1,0 +1,254 @@
+I	sgd	gene	335	649	.	+	.	ID=gene:YAL069W;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000002143];gene_id=YAL069W;logic_name=sgd
+I	sgd	mRNA	335	649	.	+	.	ID=transcript:YAL069W_mRNA;Parent=gene:YAL069W;biotype=protein_coding;transcript_id=YAL069W_mRNA
+I	sgd	exon	335	649	.	+	.	Parent=transcript:YAL069W_mRNA;Name=YAL069W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL069W_mRNA-E1;rank=1
+I	sgd	CDS	335	649	.	+	0	ID=CDS:YAL069W;Parent=transcript:YAL069W_mRNA;protein_id=YAL069W
+###
+I	sgd	gene	538	792	.	+	.	ID=gene:YAL068W-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B identified by gene-trapping%2C microarray-based expression analysis%2C and genome-wide homology searching [Source:SGD%3BAcc:S000028594];gene_id=YAL068W-A;logic_name=sgd
+I	sgd	mRNA	538	792	.	+	.	ID=transcript:YAL068W-A_mRNA;Parent=gene:YAL068W-A;biotype=protein_coding;transcript_id=YAL068W-A_mRNA
+I	sgd	exon	538	792	.	+	.	Parent=transcript:YAL068W-A_mRNA;Name=YAL068W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL068W-A_mRNA-E1;rank=1
+I	sgd	CDS	538	792	.	+	0	ID=CDS:YAL068W-A;Parent=transcript:YAL068W-A_mRNA;protein_id=YAL068W-A
+###
+I	sgd	gene	1807	2169	.	-	.	ID=gene:YAL068C;Name=PAU8;biotype=protein_coding;description=Protein of unknown function%3B member of the seripauperin multigene family encoded mainly in subtelomeric regions [Source:SGD%3BAcc:S000002142];gene_id=YAL068C;logic_name=sgd
+I	sgd	mRNA	1807	2169	.	-	.	ID=transcript:YAL068C_mRNA;Parent=gene:YAL068C;Name=PAU8;biotype=protein_coding;transcript_id=YAL068C_mRNA
+I	sgd	exon	1807	2169	.	-	.	Parent=transcript:YAL068C_mRNA;Name=YAL068C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL068C_mRNA-E1;rank=1
+I	sgd	CDS	1807	2169	.	-	0	ID=CDS:YAL068C;Parent=transcript:YAL068C_mRNA;protein_id=YAL068C
+###
+I	sgd	gene	2480	2707	.	+	.	ID=gene:YAL067W-A;biotype=protein_coding;description=Putative protein of unknown function%3B identified by gene-trapping%2C microarray-based expression analysis%2C and genome-wide homology searching [Source:SGD%3BAcc:S000028593];gene_id=YAL067W-A;logic_name=sgd
+I	sgd	mRNA	2480	2707	.	+	.	ID=transcript:YAL067W-A_mRNA;Parent=gene:YAL067W-A;biotype=protein_coding;transcript_id=YAL067W-A_mRNA
+I	sgd	exon	2480	2707	.	+	.	Parent=transcript:YAL067W-A_mRNA;Name=YAL067W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL067W-A_mRNA-E1;rank=1
+I	sgd	CDS	2480	2707	.	+	0	ID=CDS:YAL067W-A;Parent=transcript:YAL067W-A_mRNA;protein_id=YAL067W-A
+###
+I	sgd	gene	7235	9016	.	-	.	ID=gene:YAL067C;Name=SEO1;biotype=protein_coding;description=Putative permease%3B member of the allantoate transporter subfamily of the major facilitator superfamily%3B mutation confers resistance to ethionine sulfoxide [Source:SGD%3BAcc:S000000062];gene_id=YAL067C;logic_name=sgd
+I	sgd	mRNA	7235	9016	.	-	.	ID=transcript:YAL067C_mRNA;Parent=gene:YAL067C;Name=SEO1;biotype=protein_coding;transcript_id=YAL067C_mRNA
+I	sgd	exon	7235	9016	.	-	.	Parent=transcript:YAL067C_mRNA;Name=YAL067C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL067C_mRNA-E1;rank=1
+I	sgd	CDS	7235	9016	.	-	0	ID=CDS:YAL067C;Parent=transcript:YAL067C_mRNA;protein_id=YAL067C
+###
+I	sgd	gene	10091	10399	.	+	.	ID=gene:YAL066W;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000000061];gene_id=YAL066W;logic_name=sgd
+I	sgd	mRNA	10091	10399	.	+	.	ID=transcript:YAL066W_mRNA;Parent=gene:YAL066W;biotype=protein_coding;transcript_id=YAL066W_mRNA
+I	sgd	exon	10091	10399	.	+	.	Parent=transcript:YAL066W_mRNA;Name=YAL066W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL066W_mRNA-E1;rank=1
+I	sgd	CDS	10091	10399	.	+	0	ID=CDS:YAL066W;Parent=transcript:YAL066W_mRNA;protein_id=YAL066W
+###
+I	sgd	gene	11565	11951	.	-	.	ID=gene:YAL065C;biotype=protein_coding;description=Putative protein of unknown function%3B shows sequence similarity to FLO1 and other flocculins [Source:SGD%3BAcc:S000001817];gene_id=YAL065C;logic_name=sgd
+I	sgd	mRNA	11565	11951	.	-	.	ID=transcript:YAL065C_mRNA;Parent=gene:YAL065C;biotype=protein_coding;transcript_id=YAL065C_mRNA
+I	sgd	exon	11565	11951	.	-	.	Parent=transcript:YAL065C_mRNA;Name=YAL065C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL065C_mRNA-E1;rank=1
+I	sgd	CDS	11565	11951	.	-	0	ID=CDS:YAL065C;Parent=transcript:YAL065C_mRNA;protein_id=YAL065C
+###
+I	sgd	gene	12046	12426	.	+	.	ID=gene:YAL064W-B;biotype=protein_coding;description=Fungal-specific protein of unknown function [Source:SGD%3BAcc:S000002141];gene_id=YAL064W-B;logic_name=sgd
+I	sgd	mRNA	12046	12426	.	+	.	ID=transcript:YAL064W-B_mRNA;Parent=gene:YAL064W-B;biotype=protein_coding;transcript_id=YAL064W-B_mRNA
+I	sgd	exon	12046	12426	.	+	.	Parent=transcript:YAL064W-B_mRNA;Name=YAL064W-B_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL064W-B_mRNA-E1;rank=1
+I	sgd	CDS	12046	12426	.	+	0	ID=CDS:YAL064W-B;Parent=transcript:YAL064W-B_mRNA;protein_id=YAL064W-B
+###
+I	sgd	gene	13363	13743	.	-	.	ID=gene:YAL064C-A;Name=TDA8;biotype=protein_coding;description=Putative protein of unknown function%3B null mutant is sensitive to expression of the top1-T722A allele%3B not an essential gene [Source:SGD%3BAcc:S000002140];gene_id=YAL064C-A;logic_name=sgd
+I	sgd	mRNA	13363	13743	.	-	.	ID=transcript:YAL064C-A_mRNA;Parent=gene:YAL064C-A;Name=TDA8;biotype=protein_coding;transcript_id=YAL064C-A_mRNA
+I	sgd	exon	13363	13743	.	-	.	Parent=transcript:YAL064C-A_mRNA;Name=YAL064C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL064C-A_mRNA-E1;rank=1
+I	sgd	CDS	13363	13743	.	-	0	ID=CDS:YAL064C-A;Parent=transcript:YAL064C-A_mRNA;protein_id=YAL064C-A
+###
+I	sgd	gene	21566	21850	.	+	.	ID=gene:YAL064W;biotype=protein_coding;description=Protein of unknown function%3B may interact with ribosomes%2C based on co-purification experiments [Source:SGD%3BAcc:S000000060];gene_id=YAL064W;logic_name=sgd
+I	sgd	mRNA	21566	21850	.	+	.	ID=transcript:YAL064W_mRNA;Parent=gene:YAL064W;biotype=protein_coding;transcript_id=YAL064W_mRNA
+I	sgd	exon	21566	21850	.	+	.	Parent=transcript:YAL064W_mRNA;Name=YAL064W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL064W_mRNA-E1;rank=1
+I	sgd	CDS	21566	21850	.	+	0	ID=CDS:YAL064W;Parent=transcript:YAL064W_mRNA;protein_id=YAL064W
+###
+I	sgd	gene	22395	22685	.	-	.	ID=gene:YAL063C-A;biotype=protein_coding;description=Putative protein of unknown function%3B identified by expression profiling and mass spectrometry [Source:SGD%3BAcc:S000028813];gene_id=YAL063C-A;logic_name=sgd
+I	sgd	mRNA	22395	22685	.	-	.	ID=transcript:YAL063C-A_mRNA;Parent=gene:YAL063C-A;biotype=protein_coding;transcript_id=YAL063C-A_mRNA
+I	sgd	exon	22395	22685	.	-	.	Parent=transcript:YAL063C-A_mRNA;Name=YAL063C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL063C-A_mRNA-E1;rank=1
+I	sgd	CDS	22395	22685	.	-	0	ID=CDS:YAL063C-A;Parent=transcript:YAL063C-A_mRNA;protein_id=YAL063C-A
+###
+I	sgd	gene	24000	27968	.	-	.	ID=gene:YAL063C;Name=FLO9;biotype=protein_coding;description=Lectin-like protein with similarity to Flo1p%3B thought to be expressed and involved in flocculation [Source:SGD%3BAcc:S000000059];gene_id=YAL063C;logic_name=sgd
+I	sgd	mRNA	24000	27968	.	-	.	ID=transcript:YAL063C_mRNA;Parent=gene:YAL063C;Name=FLO9;biotype=protein_coding;transcript_id=YAL063C_mRNA
+I	sgd	exon	24000	27968	.	-	.	Parent=transcript:YAL063C_mRNA;Name=YAL063C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL063C_mRNA-E1;rank=1
+I	sgd	CDS	24000	27968	.	-	0	ID=CDS:YAL063C;Parent=transcript:YAL063C_mRNA;protein_id=YAL063C
+###
+I	sgd	gene	31567	32940	.	+	.	ID=gene:YAL062W;Name=GDH3;biotype=protein_coding;description=NADP(+)-dependent glutamate dehydrogenase%3B synthesizes glutamate from ammonia and alpha-ketoglutarate%3B rate of alpha-ketoglutarate utilization differs from Gdh1p%3B expression regulated by nitrogen and carbon sources%3B GDH3 has a paralog%2C GDH1%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000058];gene_id=YAL062W;logic_name=sgd
+I	sgd	mRNA	31567	32940	.	+	.	ID=transcript:YAL062W_mRNA;Parent=gene:YAL062W;Name=GDH3;biotype=protein_coding;transcript_id=YAL062W_mRNA
+I	sgd	exon	31567	32940	.	+	.	Parent=transcript:YAL062W_mRNA;Name=YAL062W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL062W_mRNA-E1;rank=1
+I	sgd	CDS	31567	32940	.	+	0	ID=CDS:YAL062W;Parent=transcript:YAL062W_mRNA;protein_id=YAL062W
+###
+I	sgd	gene	33448	34701	.	+	.	ID=gene:YAL061W;Name=BDH2;biotype=protein_coding;description=Putative medium-chain alcohol dehydrogenase with similarity to BDH1%3B transcription induced by constitutively active PDR1 and PDR3 [Source:SGD%3BAcc:S000000057];gene_id=YAL061W;logic_name=sgd
+I	sgd	mRNA	33448	34701	.	+	.	ID=transcript:YAL061W_mRNA;Parent=gene:YAL061W;Name=BDH2;biotype=protein_coding;transcript_id=YAL061W_mRNA
+I	sgd	exon	33448	34701	.	+	.	Parent=transcript:YAL061W_mRNA;Name=YAL061W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL061W_mRNA-E1;rank=1
+I	sgd	CDS	33448	34701	.	+	0	ID=CDS:YAL061W;Parent=transcript:YAL061W_mRNA;protein_id=YAL061W
+###
+I	sgd	gene	35155	36303	.	+	.	ID=gene:YAL060W;Name=BDH1;biotype=protein_coding;description=NAD-dependent (R%2CR)-butanediol dehydrogenase%3B catalyzes oxidation of (R%2CR)-2%2C3-butanediol to (3R)-acetoin%2C oxidation of meso-butanediol to (3S)-acetoin%2C and reduction of acetoin%3B enhances use of 2%2C3-butanediol as an aerobic carbon source [Source:SGD%3BAcc:S000000056];gene_id=YAL060W;logic_name=sgd
+I	sgd	mRNA	35155	36303	.	+	.	ID=transcript:YAL060W_mRNA;Parent=gene:YAL060W;Name=BDH1;biotype=protein_coding;transcript_id=YAL060W_mRNA
+I	sgd	exon	35155	36303	.	+	.	Parent=transcript:YAL060W_mRNA;Name=YAL060W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL060W_mRNA-E1;rank=1
+I	sgd	CDS	35155	36303	.	+	0	ID=CDS:YAL060W;Parent=transcript:YAL060W_mRNA;protein_id=YAL060W
+###
+I	sgd	gene	36496	36918	.	-	.	ID=gene:YAL059C-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps verified gene ECM1/YAL059W [Source:SGD%3BAcc:S000028734];gene_id=YAL059C-A;logic_name=sgd
+I	sgd	mRNA	36496	36918	.	-	.	ID=transcript:YAL059C-A_mRNA;Parent=gene:YAL059C-A;biotype=protein_coding;transcript_id=YAL059C-A_mRNA
+I	sgd	exon	36496	36918	.	-	.	Parent=transcript:YAL059C-A_mRNA;Name=YAL059C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL059C-A_mRNA-E1;rank=1
+I	sgd	CDS	36496	36918	.	-	0	ID=CDS:YAL059C-A;Parent=transcript:YAL059C-A_mRNA;protein_id=YAL059C-A
+###
+I	sgd	gene	36509	37147	.	+	.	ID=gene:YAL059W;Name=ECM1;biotype=protein_coding;description=Pre-ribosomal factor involved in 60S ribosomal protein subunit export%3B associates with the pre-60S particle%3B shuttles between the nucleus and cytoplasm [Source:SGD%3BAcc:S000000055];gene_id=YAL059W;logic_name=sgd
+I	sgd	mRNA	36509	37147	.	+	.	ID=transcript:YAL059W_mRNA;Parent=gene:YAL059W;Name=ECM1;biotype=protein_coding;transcript_id=YAL059W_mRNA
+I	sgd	exon	36509	37147	.	+	.	Parent=transcript:YAL059W_mRNA;Name=YAL059W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL059W_mRNA-E1;rank=1
+I	sgd	CDS	36509	37147	.	+	0	ID=CDS:YAL059W;Parent=transcript:YAL059W_mRNA;protein_id=YAL059W
+###
+I	sgd	gene	37464	38972	.	+	.	ID=gene:YAL058W;Name=CNE1;biotype=protein_coding;description=Calnexin%3B integral membrane ER chaperone involved in folding and quality control of glycoproteins%3B chaperone activity is inhibited by Mpd1p%2C with which Cne1p interacts%3B 24%25 identical to mammalian calnexin%3B Ca+ binding not yet shown in yeast [Source:SGD%3BAcc:S000000054];gene_id=YAL058W;logic_name=sgd
+I	sgd	mRNA	37464	38972	.	+	.	ID=transcript:YAL058W_mRNA;Parent=gene:YAL058W;Name=CNE1;biotype=protein_coding;transcript_id=YAL058W_mRNA
+I	sgd	exon	37464	38972	.	+	.	Parent=transcript:YAL058W_mRNA;Name=YAL058W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL058W_mRNA-E1;rank=1
+I	sgd	CDS	37464	38972	.	+	0	ID=CDS:YAL058W;Parent=transcript:YAL058W_mRNA;protein_id=YAL058W
+###
+I	sgd	gene	38696	39046	.	-	.	ID=gene:YAL056C-A;Name=YAL056C-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000002139];gene_id=YAL056C-A;logic_name=sgd
+I	sgd	mRNA	38696	39046	.	-	.	ID=transcript:YAL056C-A_mRNA;Parent=gene:YAL056C-A;biotype=protein_coding;transcript_id=YAL056C-A_mRNA
+I	sgd	exon	38696	39046	.	-	.	Parent=transcript:YAL056C-A_mRNA;Name=YAL056C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL056C-A_mRNA-E1;rank=1
+I	sgd	CDS	38696	39046	.	-	0	ID=CDS:YAL056C-A;Parent=transcript:YAL056C-A_mRNA;protein_id=YAL056C-A
+###
+I	sgd	gene	39259	41901	.	+	.	ID=gene:YAL056W;Name=GPB2;biotype=protein_coding;description=Multistep regulator of cAMP-PKA signaling%3B inhibits PKA downstream of Gpa2p and Cyr1p%2C thereby increasing cAMP dependency%3B inhibits Ras activity through direct interactions with Ira1p/2p%3B regulated by G-alpha protein Gpa2p%3B GPB2 has a paralog%2C GPB1%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000052];gene_id=YAL056W;logic_name=sgd
+I	sgd	mRNA	39259	41901	.	+	.	ID=transcript:YAL056W_mRNA;Parent=gene:YAL056W;Name=GPB2;biotype=protein_coding;transcript_id=YAL056W_mRNA
+I	sgd	exon	39259	41901	.	+	.	Parent=transcript:YAL056W_mRNA;Name=YAL056W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL056W_mRNA-E1;rank=1
+I	sgd	CDS	39259	41901	.	+	0	ID=CDS:YAL056W;Parent=transcript:YAL056W_mRNA;protein_id=YAL056W
+###
+I	sgd	gene	42177	42719	.	+	.	ID=gene:YAL055W;Name=PEX22;biotype=protein_coding;description=Putative peroxisomal membrane protein%3B required for import of peroxisomal proteins%3B functionally complements a Pichia pastoris pex22 mutation [Source:SGD%3BAcc:S000000051];gene_id=YAL055W;logic_name=sgd
+I	sgd	mRNA	42177	42719	.	+	.	ID=transcript:YAL055W_mRNA;Parent=gene:YAL055W;Name=PEX22;biotype=protein_coding;transcript_id=YAL055W_mRNA
+I	sgd	exon	42177	42719	.	+	.	Parent=transcript:YAL055W_mRNA;Name=YAL055W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL055W_mRNA-E1;rank=1
+I	sgd	CDS	42177	42719	.	+	0	ID=CDS:YAL055W;Parent=transcript:YAL055W_mRNA;protein_id=YAL055W
+###
+I	sgd	gene	42881	45022	.	-	.	ID=gene:YAL054C;Name=ACS1;biotype=protein_coding;description=Acetyl-coA synthetase isoform%3B along with Acs2p%2C acetyl-coA synthetase isoform is the nuclear source of acetyl-coA for histone acetylation%3B expressed during growth on nonfermentable carbon sources and under aerobic conditions [Source:SGD%3BAcc:S000000050];gene_id=YAL054C;logic_name=sgd
+I	sgd	mRNA	42881	45022	.	-	.	ID=transcript:YAL054C_mRNA;Parent=gene:YAL054C;Name=ACS1;biotype=protein_coding;transcript_id=YAL054C_mRNA
+I	sgd	exon	42881	45022	.	-	.	Parent=transcript:YAL054C_mRNA;Name=YAL054C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL054C_mRNA-E1;rank=1
+I	sgd	CDS	42881	45022	.	-	0	ID=CDS:YAL054C;Parent=transcript:YAL054C_mRNA;protein_id=YAL054C
+###
+I	sgd	gene	45899	48250	.	+	.	ID=gene:YAL053W;Name=FLC2;biotype=protein_coding;description=Putative calcium channel involved in calcium release under hypotonic stress%3B required for uptake of FAD into endoplasmic reticulum%3B involved in cell wall maintenance%3B FLC2 has a paralog%2C YOR365C%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000049];gene_id=YAL053W;logic_name=sgd
+I	sgd	mRNA	45899	48250	.	+	.	ID=transcript:YAL053W_mRNA;Parent=gene:YAL053W;Name=FLC2;biotype=protein_coding;transcript_id=YAL053W_mRNA
+I	sgd	exon	45899	48250	.	+	.	Parent=transcript:YAL053W_mRNA;Name=YAL053W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL053W_mRNA-E1;rank=1
+I	sgd	CDS	45899	48250	.	+	0	ID=CDS:YAL053W;Parent=transcript:YAL053W_mRNA;protein_id=YAL053W
+###
+I	sgd	gene	48564	51707	.	+	.	ID=gene:YAL051W;Name=OAF1;biotype=protein_coding;description=Oleate-activated transcription factor%3B subunit of a heterodimeric complex with Pip2p%2C which binds to oleate-response elements (ORE) in the promoter of genes involved in beta-oxidation of fatty acids%2C peroxisome organization and biogenesis%2C activating transcription in the presence of oleate%3B regulates chromatin silencing at telomeres%3B involved in diauxic shift%3B OAF1 has a paralog%2C PIP2%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000048];gene_id=YAL051W;logic_name=sgd
+I	sgd	mRNA	48564	51707	.	+	.	ID=transcript:YAL051W_mRNA;Parent=gene:YAL051W;Name=OAF1;biotype=protein_coding;transcript_id=YAL051W_mRNA
+I	sgd	exon	48564	51707	.	+	.	Parent=transcript:YAL051W_mRNA;Name=YAL051W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL051W_mRNA-E1;rank=1
+I	sgd	CDS	48564	51707	.	+	0	ID=CDS:YAL051W;Parent=transcript:YAL051W_mRNA;protein_id=YAL051W
+###
+I	sgd	gene	51855	52595	.	-	.	ID=gene:YAL049C;Name=AIM2;biotype=protein_coding;description=Cytoplasmic protein involved in mitochondrial function or organization%3B null mutant displays reduced frequency of mitochondrial genome loss%3B potential Hsp82p interactor [Source:SGD%3BAcc:S000000047];gene_id=YAL049C;logic_name=sgd
+I	sgd	mRNA	51855	52595	.	-	.	ID=transcript:YAL049C_mRNA;Parent=gene:YAL049C;Name=AIM2;biotype=protein_coding;transcript_id=YAL049C_mRNA
+I	sgd	exon	51855	52595	.	-	.	Parent=transcript:YAL049C_mRNA;Name=YAL049C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL049C_mRNA-E1;rank=1
+I	sgd	CDS	51855	52595	.	-	0	ID=CDS:YAL049C;Parent=transcript:YAL049C_mRNA;protein_id=YAL049C
+###
+I	sgd	gene	52801	54789	.	-	.	ID=gene:YAL048C;Name=GEM1;biotype=protein_coding;description=Outer mitochondrial membrane GTPase%2C subunit of the ERMES complex%3B potential regulatory subunit of the ERMES complex that links the ER to mitochondria and may promote inter-organellar calcium and phospholipid exchange as well as coordinating mitochondrial DNA replication and growth%3B cells lacking Gem1p contain collapsed%2C globular%2C or grape-like mitochondria%3B ortholog of metazoan Miro GTPases [Source:SGD%3BAcc:S000000046];gene_id=YAL048C;logic_name=sgd
+I	sgd	mRNA	52801	54789	.	-	.	ID=transcript:YAL048C_mRNA;Parent=gene:YAL048C;Name=GEM1;biotype=protein_coding;transcript_id=YAL048C_mRNA
+I	sgd	exon	52801	54789	.	-	.	Parent=transcript:YAL048C_mRNA;Name=YAL048C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL048C_mRNA-E1;rank=1
+I	sgd	CDS	52801	54789	.	-	0	ID=CDS:YAL048C;Parent=transcript:YAL048C_mRNA;protein_id=YAL048C
+###
+I	sgd	gene	54584	54913	.	+	.	ID=gene:YAL047W-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps ORF GEM1/YAL048C [Source:SGD%3BAcc:S000028733];gene_id=YAL047W-A;logic_name=sgd
+I	sgd	mRNA	54584	54913	.	+	.	ID=transcript:YAL047W-A_mRNA;Parent=gene:YAL047W-A;biotype=protein_coding;transcript_id=YAL047W-A_mRNA
+I	sgd	exon	54584	54913	.	+	.	Parent=transcript:YAL047W-A_mRNA;Name=YAL047W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL047W-A_mRNA-E1;rank=1
+I	sgd	CDS	54584	54913	.	+	0	ID=CDS:YAL047W-A;Parent=transcript:YAL047W-A_mRNA;protein_id=YAL047W-A
+###
+I	sgd	gene	54989	56857	.	-	.	ID=gene:YAL047C;Name=SPC72;biotype=protein_coding;description=Gamma-tubulin small complex (gamma-TuSC) receptor%3B recruits the gamma-TuSC complex to the cytoplasmic side of the SPB%2C connecting nuclear microtubules to the SPB%3B involved in astral microtubule formation%2C stabilization%2C and with Stu2p%2C anchoring astral MTs at the cytoplasmic face of the SPB%2C and regulating plus-end MT dynamics%3B regulated by Cdc5 kinase [Source:SGD%3BAcc:S000000045];gene_id=YAL047C;logic_name=sgd
+I	sgd	mRNA	54989	56857	.	-	.	ID=transcript:YAL047C_mRNA;Parent=gene:YAL047C;Name=SPC72;biotype=protein_coding;transcript_id=YAL047C_mRNA
+I	sgd	exon	54989	56857	.	-	.	Parent=transcript:YAL047C_mRNA;Name=YAL047C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL047C_mRNA-E1;rank=1
+I	sgd	CDS	54989	56857	.	-	0	ID=CDS:YAL047C;Parent=transcript:YAL047C_mRNA;protein_id=YAL047C
+###
+I	sgd	gene	57029	57385	.	-	.	ID=gene:YAL046C;Name=BOL3;biotype=protein_coding;description=Protein involved in Fe-S cluster transfer to mitochondrial clients%3B protects [4Fe-4S] clusters from damage due to oxidative stress by acting along with Nfu1p at a late step in the transfer of [4Fe-4S] clusters from the ISA complex to mitochondrial client proteins like lipoate synthase and succinate dehydrogenase%3B sequence similarity to human BOLA family member%2C BOLA3%2C mutations of which are associated with Multiple Mitochondria Dysfunctions Syndrome (MMDS2) [Source:SGD%3BAcc:S000000044];gene_id=YAL046C;logic_name=sgd
+I	sgd	mRNA	57029	57385	.	-	.	ID=transcript:YAL046C_mRNA;Parent=gene:YAL046C;Name=BOL3;biotype=protein_coding;transcript_id=YAL046C_mRNA
+I	sgd	exon	57029	57385	.	-	.	Parent=transcript:YAL046C_mRNA;Name=YAL046C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL046C_mRNA-E1;rank=1
+I	sgd	CDS	57029	57385	.	-	0	ID=CDS:YAL046C;Parent=transcript:YAL046C_mRNA;protein_id=YAL046C
+###
+I	sgd	gene	57488	57796	.	-	.	ID=gene:YAL045C;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B almost completely overlaps YAL044W-A [Source:SGD%3BAcc:S000000043];gene_id=YAL045C;logic_name=sgd
+I	sgd	mRNA	57488	57796	.	-	.	ID=transcript:YAL045C_mRNA;Parent=gene:YAL045C;biotype=protein_coding;transcript_id=YAL045C_mRNA
+I	sgd	exon	57488	57796	.	-	.	Parent=transcript:YAL045C_mRNA;Name=YAL045C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL045C_mRNA-E1;rank=1
+I	sgd	CDS	57488	57796	.	-	0	ID=CDS:YAL045C;Parent=transcript:YAL045C_mRNA;protein_id=YAL045C
+###
+I	sgd	gene	57518	57850	.	+	.	ID=gene:YAL044W-A;Name=BOL1;biotype=protein_coding;description=Mitochondrial matrix protein involved in Fe-S cluster biogenesis%3B facilitates [4Fe-2S] cluster inception into mitochondrial proteins such as lipoate synthase and succinate dehydrogenase%3B interacts and may function with Grx5p at an early step in Fe-S cluster biosynthesis%3B forms dimeric complexes with Grx5p and Nfu1p that alter the stability of shared Fe/S clusters%3B sequence similarity to human BOLA family member%2C BOLA1 and S. pombe uvi31%2C a putative DNA repair protein [Source:SGD%3BAcc:S000007586];gene_id=YAL044W-A;logic_name=sgd
+I	sgd	mRNA	57518	57850	.	+	.	ID=transcript:YAL044W-A_mRNA;Parent=gene:YAL044W-A;Name=BOL1;biotype=protein_coding;transcript_id=YAL044W-A_mRNA
+I	sgd	exon	57518	57850	.	+	.	Parent=transcript:YAL044W-A_mRNA;Name=YAL044W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL044W-A_mRNA-E1;rank=1
+I	sgd	CDS	57518	57850	.	+	0	ID=CDS:YAL044W-A;Parent=transcript:YAL044W-A_mRNA;protein_id=YAL044W-A
+###
+I	sgd	gene	57950	58462	.	-	.	ID=gene:YAL044C;Name=GCV3;biotype=protein_coding;description=H subunit of the mitochondrial glycine decarboxylase complex%3B glycine decarboxylase is required for the catabolism of glycine to 5%2C10-methylene-THF%3B also required for all protein lipoylation%3B expression is regulated by levels of 5%2C10-methylene-THF [Source:SGD%3BAcc:S000000042];gene_id=YAL044C;logic_name=sgd
+I	sgd	mRNA	57950	58462	.	-	.	ID=transcript:YAL044C_mRNA;Parent=gene:YAL044C;Name=GCV3;biotype=protein_coding;transcript_id=YAL044C_mRNA
+I	sgd	exon	57950	58462	.	-	.	Parent=transcript:YAL044C_mRNA;Name=YAL044C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL044C_mRNA-E1;rank=1
+I	sgd	CDS	57950	58462	.	-	0	ID=CDS:YAL044C;Parent=transcript:YAL044C_mRNA;protein_id=YAL044C
+###
+I	sgd	gene	58695	61052	.	-	.	ID=gene:YAL043C;Name=PTA1;biotype=protein_coding;description=Subunit of holo-CPF%3B holo-CPF is a multiprotein complex and functional homolog of mammalian CPSF%2C required for the cleavage and polyadenylation of mRNA and snoRNA 3' ends%3B involved in pre-tRNA processing%3B binds to the phosphorylated CTD of RNAPII [Source:SGD%3BAcc:S000000041];gene_id=YAL043C;logic_name=sgd
+I	sgd	mRNA	58695	61052	.	-	.	ID=transcript:YAL043C_mRNA;Parent=gene:YAL043C;Name=PTA1;biotype=protein_coding;transcript_id=YAL043C_mRNA
+I	sgd	exon	58695	61052	.	-	.	Parent=transcript:YAL043C_mRNA;Name=YAL043C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL043C_mRNA-E1;rank=1
+I	sgd	CDS	58695	61052	.	-	0	ID=CDS:YAL043C;Parent=transcript:YAL043C_mRNA;protein_id=YAL043C
+###
+I	sgd	gene	61231	61608	.	-	.	ID=gene:YAL042C-A;Name=YAL042C-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps verified ORF ERV46/YAL042W%3B YAL042C-A is a non-essential gene [Source:SGD%3BAcc:S000002138];gene_id=YAL042C-A;logic_name=sgd
+I	sgd	mRNA	61231	61608	.	-	.	ID=transcript:YAL042C-A_mRNA;Parent=gene:YAL042C-A;biotype=protein_coding;transcript_id=YAL042C-A_mRNA
+I	sgd	exon	61231	61608	.	-	.	Parent=transcript:YAL042C-A_mRNA;Name=YAL042C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL042C-A_mRNA-E1;rank=1
+I	sgd	CDS	61231	61608	.	-	0	ID=CDS:YAL042C-A;Parent=transcript:YAL042C-A_mRNA;protein_id=YAL042C-A
+###
+I	sgd	gene	61316	62563	.	+	.	ID=gene:YAL042W;Name=ERV46;biotype=protein_coding;description=Protein localized to COPII-coated vesicles%3B forms a complex with Erv41p%3B involved in the membrane fusion stage of transport [Source:SGD%3BAcc:S000000040];gene_id=YAL042W;logic_name=sgd
+I	sgd	mRNA	61316	62563	.	+	.	ID=transcript:YAL042W_mRNA;Parent=gene:YAL042W;Name=ERV46;biotype=protein_coding;transcript_id=YAL042W_mRNA
+I	sgd	exon	61316	62563	.	+	.	Parent=transcript:YAL042W_mRNA;Name=YAL042W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL042W_mRNA-E1;rank=1
+I	sgd	CDS	61316	62563	.	+	0	ID=CDS:YAL042W;Parent=transcript:YAL042W_mRNA;protein_id=YAL042W
+###
+I	sgd	gene	62840	65404	.	+	.	ID=gene:YAL041W;Name=CDC24;biotype=protein_coding;description=Guanine nucleotide exchange factor (GEF) for Cdc42p%3B required for polarity establishment and maintenance%2C and mutants have morphological defects in bud formation and shmooing%3B relocalizes from nucleus to cytoplasm upon DNA replication stress%3B thermosensitivity of the cdc24-4 mutant in the presence of sorbitol is functionally complemented by human CDC42 [Source:SGD%3BAcc:S000000039];gene_id=YAL041W;logic_name=sgd
+I	sgd	mRNA	62840	65404	.	+	.	ID=transcript:YAL041W_mRNA;Parent=gene:YAL041W;Name=CDC24;biotype=protein_coding;transcript_id=YAL041W_mRNA
+I	sgd	exon	62840	65404	.	+	.	Parent=transcript:YAL041W_mRNA;Name=YAL041W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL041W_mRNA-E1;rank=1
+I	sgd	CDS	62840	65404	.	+	0	ID=CDS:YAL041W;Parent=transcript:YAL041W_mRNA;protein_id=YAL041W
+###
+I	sgd	gene	65778	67520	.	-	.	ID=gene:YAL040C;Name=CLN3;biotype=protein_coding;description=G1 cyclin involved in cell cycle progression%3B activates Cdc28p kinase to promote G1 to S phase transition%3B plays a role in regulating transcription of other G1 cyclins%2C CLN1 and CLN2%3B regulated by phosphorylation and proteolysis%3B acetyl-CoA induces CLN3 transcription in response to nutrient repletion to promote cell-cycle entry%3B cell cycle arrest phenotype of the cln1 cln2 cln3 triple null mutant is complemented by any of human cyclins CCNA2%2C CCNB1%2C CCNC%2C CCND1%2C or CCNE1 [Source:SGD%3BAcc:S000000038];gene_id=YAL040C;logic_name=sgd
+I	sgd	mRNA	65778	67520	.	-	.	ID=transcript:YAL040C_mRNA;Parent=gene:YAL040C;Name=CLN3;biotype=protein_coding;transcript_id=YAL040C_mRNA
+I	sgd	exon	65778	67520	.	-	.	Parent=transcript:YAL040C_mRNA;Name=YAL040C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL040C_mRNA-E1;rank=1
+I	sgd	CDS	65778	67520	.	-	0	ID=CDS:YAL040C;Parent=transcript:YAL040C_mRNA;protein_id=YAL040C
+###
+I	sgd	gene	68716	69525	.	-	.	ID=gene:YAL039C;Name=CYC3;biotype=protein_coding;description=Cytochrome c heme lyase (holocytochrome c synthase)%3B attaches heme to apo-cytochrome c (Cyc1p or Cyc7p) in mitochondrial intermembrane space%3B human homolog HCCS implicated in microphthalmia with linear skin defects (MLS)%2C and can complement yeast null mutant [Source:SGD%3BAcc:S000000037];gene_id=YAL039C;logic_name=sgd
+I	sgd	mRNA	68716	69525	.	-	.	ID=transcript:YAL039C_mRNA;Parent=gene:YAL039C;Name=CYC3;biotype=protein_coding;transcript_id=YAL039C_mRNA
+I	sgd	exon	68716	69525	.	-	.	Parent=transcript:YAL039C_mRNA;Name=YAL039C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL039C_mRNA-E1;rank=1
+I	sgd	CDS	68716	69525	.	-	0	ID=CDS:YAL039C;Parent=transcript:YAL039C_mRNA;protein_id=YAL039C
+###
+I	sgd	gene	71786	73288	.	+	.	ID=gene:YAL038W;Name=CDC19;biotype=protein_coding;description=Pyruvate kinase%3B functions as a homotetramer in glycolysis to convert phosphoenolpyruvate to pyruvate%2C the input for aerobic (TCA cycle) or anaerobic (glucose fermentation) respiration%3B regulated via allosteric activation by fructose bisphosphate%3B CDC19 has a paralog%2C PYK2%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000036];gene_id=YAL038W;logic_name=sgd
+I	sgd	mRNA	71786	73288	.	+	.	ID=transcript:YAL038W_mRNA;Parent=gene:YAL038W;Name=CDC19;biotype=protein_coding;transcript_id=YAL038W_mRNA
+I	sgd	exon	71786	73288	.	+	.	Parent=transcript:YAL038W_mRNA;Name=YAL038W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL038W_mRNA-E1;rank=1
+I	sgd	CDS	71786	73288	.	+	0	ID=CDS:YAL038W;Parent=transcript:YAL038W_mRNA;protein_id=YAL038W
+###
+I	sgd	gene	72326	73300	.	-	.	ID=gene:YAL037C-B;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B identified by gene-trapping%2C microarray-based expression analysis%2C and genome-wide homology searching [Source:SGD%3BAcc:S000028592];gene_id=YAL037C-B;logic_name=sgd
+I	sgd	mRNA	72326	73300	.	-	.	ID=transcript:YAL037C-B_mRNA;Parent=gene:YAL037C-B;biotype=protein_coding;transcript_id=YAL037C-B_mRNA
+I	sgd	exon	72326	73300	.	-	.	Parent=transcript:YAL037C-B_mRNA;Name=YAL037C-B_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL037C-B_mRNA-E1;rank=1
+I	sgd	CDS	72326	73300	.	-	0	ID=CDS:YAL037C-B;Parent=transcript:YAL037C-B_mRNA;protein_id=YAL037C-B
+###
+I	sgd	gene	73426	73518	.	-	.	ID=gene:YAL037C-A;biotype=protein_coding;description=Putative protein of unknown function [Source:SGD%3BAcc:S000028732];gene_id=YAL037C-A;logic_name=sgd
+I	sgd	mRNA	73426	73518	.	-	.	ID=transcript:YAL037C-A_mRNA;Parent=gene:YAL037C-A;biotype=protein_coding;transcript_id=YAL037C-A_mRNA
+I	sgd	exon	73426	73518	.	-	.	Parent=transcript:YAL037C-A_mRNA;Name=YAL037C-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL037C-A_mRNA-E1;rank=1
+I	sgd	CDS	73426	73518	.	-	0	ID=CDS:YAL037C-A;Parent=transcript:YAL037C-A_mRNA;protein_id=YAL037C-A
+###
+I	sgd	gene	74020	74823	.	+	.	ID=gene:YAL037W;biotype=protein_coding;description=Putative protein of unknown function%3B YAL037W has a paralog%2C YOR342C%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000035];gene_id=YAL037W;logic_name=sgd
+I	sgd	mRNA	74020	74823	.	+	.	ID=transcript:YAL037W_mRNA;Parent=gene:YAL037W;biotype=protein_coding;transcript_id=YAL037W_mRNA
+I	sgd	exon	74020	74823	.	+	.	Parent=transcript:YAL037W_mRNA;Name=YAL037W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL037W_mRNA-E1;rank=1
+I	sgd	CDS	74020	74823	.	+	0	ID=CDS:YAL037W;Parent=transcript:YAL037W_mRNA;protein_id=YAL037W
+###
+I	sgd	gene	75043	76152	.	-	.	ID=gene:YAL036C;Name=RBG1;biotype=protein_coding;description=Member of the DRG family of GTP-binding proteins%3B associates with translating ribosomes%3B interacts with Tma46p%2C Ygr250cp%2C Gir2p and Yap1p via two-hybrid [Source:SGD%3BAcc:S000000034];gene_id=YAL036C;logic_name=sgd
+I	sgd	mRNA	75043	76152	.	-	.	ID=transcript:YAL036C_mRNA;Parent=gene:YAL036C;Name=RBG1;biotype=protein_coding;transcript_id=YAL036C_mRNA
+I	sgd	exon	75043	76152	.	-	.	Parent=transcript:YAL036C_mRNA;Name=YAL036C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL036C_mRNA-E1;rank=1
+I	sgd	CDS	75043	76152	.	-	0	ID=CDS:YAL036C;Parent=transcript:YAL036C_mRNA;protein_id=YAL036C
+###
+I	sgd	gene	76427	79435	.	+	.	ID=gene:YAL035W;Name=FUN12;biotype=protein_coding;description=Translation initiation factor eIF5B%3B GTPase that promotes Met-tRNAiMet binding to ribosomes and ribosomal subunit joining%3B promotes GTP-dependent maturation of 18S rRNA by Nob1p%3B protein abundance increases in response to DNA replication stress%3B homolog of bacterial IF2 [Source:SGD%3BAcc:S000000033];gene_id=YAL035W;logic_name=sgd
+I	sgd	mRNA	76427	79435	.	+	.	ID=transcript:YAL035W_mRNA;Parent=gene:YAL035W;Name=FUN12;biotype=protein_coding;transcript_id=YAL035W_mRNA
+I	sgd	exon	76427	79435	.	+	.	Parent=transcript:YAL035W_mRNA;Name=YAL035W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL035W_mRNA-E1;rank=1
+I	sgd	CDS	76427	79435	.	+	0	ID=CDS:YAL035W;Parent=transcript:YAL035W_mRNA;protein_id=YAL035W
+###
+I	sgd	gene	79489	79842	.	-	.	ID=gene:YAL034C-B;Name=YAL034C-B;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data [Source:SGD%3BAcc:S000002137];gene_id=YAL034C-B;logic_name=sgd
+I	sgd	mRNA	79489	79842	.	-	.	ID=transcript:YAL034C-B_mRNA;Parent=gene:YAL034C-B;biotype=protein_coding;transcript_id=YAL034C-B_mRNA
+I	sgd	exon	79489	79842	.	-	.	Parent=transcript:YAL034C-B_mRNA;Name=YAL034C-B_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL034C-B_mRNA-E1;rank=1
+I	sgd	CDS	79489	79842	.	-	0	ID=CDS:YAL034C-B;Parent=transcript:YAL034C-B_mRNA;protein_id=YAL034C-B
+###
+I	sgd	gene	79718	80587	.	+	.	ID=gene:YAL034W-A;Name=MTW1;biotype=protein_coding;description=Essential component of the MIND kinetochore complex%3B joins kinetochore subunits contacting DNA to those contacting microtubules%3B critical to kinetochore assembly%3B complex consists of Mtw1p Including Nnf1p-Nsl1p-Dsn1p (MIND) [Source:SGD%3BAcc:S000000032];gene_id=YAL034W-A;logic_name=sgd
+I	sgd	mRNA	79718	80587	.	+	.	ID=transcript:YAL034W-A_mRNA;Parent=gene:YAL034W-A;Name=MTW1;biotype=protein_coding;transcript_id=YAL034W-A_mRNA
+I	sgd	exon	79718	80587	.	+	.	Parent=transcript:YAL034W-A_mRNA;Name=YAL034W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL034W-A_mRNA-E1;rank=1
+I	sgd	CDS	79718	80587	.	+	0	ID=CDS:YAL034W-A;Parent=transcript:YAL034W-A_mRNA;protein_id=YAL034W-A
+###
+I	sgd	gene	80710	81951	.	-	.	ID=gene:YAL034C;Name=FUN19;biotype=protein_coding;description=Non-essential protein of unknown function%3B expression induced in response to heat stress%3B FUN19 has a paralog%2C YOR338W%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000002134];gene_id=YAL034C;logic_name=sgd
+I	sgd	mRNA	80710	81951	.	-	.	ID=transcript:YAL034C_mRNA;Parent=gene:YAL034C;Name=FUN19;biotype=protein_coding;transcript_id=YAL034C_mRNA
+I	sgd	exon	80710	81951	.	-	.	Parent=transcript:YAL034C_mRNA;Name=YAL034C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL034C_mRNA-E1;rank=1
+I	sgd	CDS	80710	81951	.	-	0	ID=CDS:YAL034C;Parent=transcript:YAL034C_mRNA;protein_id=YAL034C
+###
+I	sgd	gene	82706	83227	.	+	.	ID=gene:YAL033W;Name=POP5;biotype=protein_coding;description=Subunit of both RNase MRP and nuclear RNase P%3B RNase MRP cleaves pre-rRNA%2C while nuclear RNase P cleaves tRNA precursors to generate mature 5' ends and facilitates turnover of nuclear RNAs [Source:SGD%3BAcc:S000000031];gene_id=YAL033W;logic_name=sgd
+I	sgd	mRNA	82706	83227	.	+	.	ID=transcript:YAL033W_mRNA;Parent=gene:YAL033W;Name=POP5;biotype=protein_coding;transcript_id=YAL033W_mRNA
+I	sgd	exon	82706	83227	.	+	.	Parent=transcript:YAL033W_mRNA;Name=YAL033W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL033W_mRNA-E1;rank=1
+I	sgd	CDS	82706	83227	.	+	0	ID=CDS:YAL033W;Parent=transcript:YAL033W_mRNA;protein_id=YAL033W
+###
+I	sgd	gene	83335	84474	.	-	.	ID=gene:YAL032C;Name=PRP45;biotype=protein_coding;description=Protein required for pre-mRNA splicing%3B associates with the spliceosome and interacts with splicing factors Prp22p and Prp46p%3B orthologous to human transcriptional coactivator SKIP and can activate transcription of a reporter gene [Source:SGD%3BAcc:S000000030];gene_id=YAL032C;logic_name=sgd
+I	sgd	mRNA	83335	84474	.	-	.	ID=transcript:YAL032C_mRNA;Parent=gene:YAL032C;Name=PRP45;biotype=protein_coding;transcript_id=YAL032C_mRNA
+I	sgd	exon	83335	84474	.	-	.	Parent=transcript:YAL032C_mRNA;Name=YAL032C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL032C_mRNA-E1;rank=1
+I	sgd	CDS	83335	84474	.	-	0	ID=CDS:YAL032C;Parent=transcript:YAL032C_mRNA;protein_id=YAL032C
+###
+I	sgd	gene	84669	84977	.	+	.	ID=gene:YAL031W-A;biotype=protein_coding;description=Dubious open reading frame%3B unlikely to encode a functional protein%2C based on available experimental and comparative sequence data%3B partially overlaps ORF GIP4/YAL031C [Source:SGD%3BAcc:S000028731];gene_id=YAL031W-A;logic_name=sgd
+I	sgd	mRNA	84669	84977	.	+	.	ID=transcript:YAL031W-A_mRNA;Parent=gene:YAL031W-A;biotype=protein_coding;transcript_id=YAL031W-A_mRNA
+I	sgd	exon	84669	84977	.	+	.	Parent=transcript:YAL031W-A_mRNA;Name=YAL031W-A_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL031W-A_mRNA-E1;rank=1
+I	sgd	CDS	84669	84977	.	+	0	ID=CDS:YAL031W-A;Parent=transcript:YAL031W-A_mRNA;protein_id=YAL031W-A
+###
+I	sgd	gene	84749	87031	.	-	.	ID=gene:YAL031C;Name=GIP4;biotype=protein_coding;description=Cytoplasmic protein that regulates protein phosphatase 1 Glc7p%3B protein overexpression relocalizes Glc7p from the nucleus and prevents chromosome segregation%3B potential Cdc28p substrate [Source:SGD%3BAcc:S000000029];gene_id=YAL031C;logic_name=sgd
+I	sgd	mRNA	84749	87031	.	-	.	ID=transcript:YAL031C_mRNA;Parent=gene:YAL031C;Name=GIP4;biotype=protein_coding;transcript_id=YAL031C_mRNA
+I	sgd	exon	84749	87031	.	-	.	Parent=transcript:YAL031C_mRNA;Name=YAL031C_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL031C_mRNA-E1;rank=1
+I	sgd	CDS	84749	87031	.	-	0	ID=CDS:YAL031C;Parent=transcript:YAL031C_mRNA;protein_id=YAL031C

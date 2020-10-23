@@ -1,0 +1,7 @@
+###
+I	sgd	gene	87286	87752	.	+	.	ID=gene:YAL030W;Name=SNC1;biotype=protein_coding;description=Vesicle membrane receptor protein (v-SNARE)%3B involved in the fusion between Golgi-derived secretory vesicles with the plasma membrane%3B proposed to be involved in endocytosis%3B member of the synaptobrevin/VAMP family of R-type v-SNARE proteins%3B SNC1 has a paralog%2C SNC2%2C that arose from the whole genome duplication [Source:SGD%3BAcc:S000000028];gene_id=YAL030W;logic_name=sgd
+I	sgd	mRNA	87286	87752	.	+	.	ID=transcript:YAL030W_mRNA;Parent=gene:YAL030W;Name=SNC1;biotype=protein_coding;transcript_id=YAL030W_mRNA
+I	sgd	exon	87286	87387	.	+	.	Parent=transcript:YAL030W_mRNA;Name=YAL030W_mRNA-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL030W_mRNA-E1;rank=1
+I	sgd	CDS	87286	87387	.	+	0	ID=CDS:YAL030W;Parent=transcript:YAL030W_mRNA;protein_id=YAL030W
+I	sgd	exon	87501	87752	.	+	.	Parent=transcript:YAL030W_mRNA;Name=YAL030W_mRNA-E2;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=YAL030W_mRNA-E2;rank=2
+I	sgd	CDS	87501	87752	.	+	0	ID=CDS:YAL030W;Parent=transcript:YAL030W_mRNA;protein_id=YAL030W
