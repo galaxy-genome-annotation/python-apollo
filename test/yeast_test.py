@@ -50,11 +50,12 @@ class YeastLoadTest(ApolloTestCase):
         print(str(gff_content))
 
         assert '##gff-version 3' in gff_content
-        assert gff_content.count('I\t.\tgene\t') == 24
-        assert gff_content.count('I\t.\ttRNA\t') == 3
-        assert gff_content.count('I\t.\tmRNA\t') == 21
+        assert gff_content.count('I\t.\tgene\t') == 23
+        assert gff_content.count('I\t.\tmRNA\t') == 20
         assert gff_content.count('I\t.\texon\t') == 25
-        assert gff_content.count('I\t.\tCDS\t') == 21
+        assert gff_content.count('I\t.\tCDS\t') == 20
+        assert gff_content.count('I\t.\tncRNA\t') == 0
+        assert gff_content.count('I\t.\ttRNA\t') == 3
 
     def test_transposable_elements(self):
         path = 'test-data/yeastI/raw/transposable_elements.gff'
@@ -104,8 +105,8 @@ class YeastLoadTest(ApolloTestCase):
         assert 'I\t.\ttransposable_element\t160597\t164187\t.\t-\t.' in gff_content
         assert 'I\t.\ttransposable_element\t164544\t165866\t.\t-\t.' in gff_content
         # TODO: this gets cast as an ncRNA, whgich is incorrect
-        assert gff_content.count('I\t.\ttRNA\t') == 3
         assert gff_content.count('I\t.\tncRNA\t') == 0
+        assert gff_content.count('I\t.\ttRNA\t') == 3
 
     def test_bulk_mrna_yeast(self):
         path = 'test-data/yeastI/raw/bulk_load_yeastI.gff'
