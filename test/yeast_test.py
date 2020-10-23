@@ -5,6 +5,26 @@ from . import ApolloTestCase, wa
 
 class YeastLoadTest(ApolloTestCase):
 
+    def test_single_trna(self):
+        path = 'test-data/yeastI/raw/single_trna_yeastI.gff'
+        feature_data = wa.annotations.load_gff3('temp_org', path)
+
+        # Now download back the gff
+        uuid_gff = wa.io.write_downloadable('temp_org', 'GFF3')
+        if 'error' in uuid_gff or 'uuid' not in uuid_gff:
+            raise Exception("Apollo failed to prepare the GFF3 file for download: %s" % uuid_gff)
+
+        time.sleep(1)
+
+        gff_content = wa.io.download(uuid_gff['uuid'], output_format="text")
+
+        print(str(gff_content))
+        assert '##gff-version 3' in gff_content
+        assert 'I\t.\tgene\t166267\t166339\t.\t+\t.\t' in gff_content
+        assert 'I	.	tRNA	166267	166339	.	+	.	' in gff_content
+        assert 'I	.	exon	166267	166339	.	+	.	' in gff_content
+
+
     def test_single_mrna_yeast(self):
         path = 'test-data/yeastI/raw/single_mrna_yeastI.gff'
         feature_data = wa.annotations.load_gff3('temp_org', path)

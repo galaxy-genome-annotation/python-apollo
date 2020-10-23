@@ -1,0 +1,3 @@
+I	sgd	gene	166267	166339	.	+	.	ID=gene:tA(UGC)A;Name=TGA1;biotype=tRNA;description=Alanine tRNA (tRNA-Ala)%2C predicted by tRNAscan-SE analysis%3B one of 5 nuclear tRNA genes containing the tDNA-anticodon TGC (mature tRNA may be UGC or may contain modified bases)%2C decodes GCA and probably GCG codons into alanine%2C one of 16 nuclear tRNAs for alanine [Source:SGD%3BAcc:S000006521];gene_id=tA(UGC)A;logic_name=sgd
+I	sgd	tRNA	166267	166339	.	+	.	ID=transcript:tA(UGC)A_tRNA;Parent=gene:tA(UGC)A;biotype=tRNA;transcript_id=tA(UGC)A_tRNA
+I	sgd	exon	166267	166339	.	+	.	Parent=transcript:tA(UGC)A_tRNA;Name=tA(UGC)A_tRNA-E1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=tA(UGC)A_tRNA-E1;rank=1
