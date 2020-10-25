@@ -1184,7 +1184,6 @@ class AnnotationsClient(Client):
 
     def _check_write(self, batch_size, test, new_features_list=[], type=FeatureType.FEATURE, timing=False):
         if len(new_features_list) >= batch_size:
-            log.debug("writing out: " + str(new_features_list))
             returned = self._write_features(new_features_list, test, timing, type)
 
             if 'error' in returned:
@@ -1247,61 +1246,70 @@ class AnnotationsClient(Client):
     def _get_subfeature_type(self, rec):
         return rec.features[0].type
 
+    def _add_to_list(self, input_list, data):
+        if isinstance(input_list, list):
+            input_list += data
+        else:
+            input_list.append(data)
+
     def _process_gff_entry(self, rec, source=None, disable_cds_recalculation=False, use_name=False):
 
         new_feature_list = []
         new_transcript_list = []
 
-        type = self._get_type(rec)
-        log.debug("type " + str(type))
+        log.debug("processing gff entry")
+        log.debug("len features " + str(len(rec.features)))
 
         for feature in rec.features:
             feature_data = None
-            if type in util.gene_types:
+            log.debug("processing feature: " + str(feature))
+            feature_type = feature.type
+            log.debug("type in loop" + str(feature_type))
+            if feature_type in util.gene_types:
                 log.debug("is gene type")
                 if len(feature.sub_features) > 0:
                     feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                         disable_cds_recalculation=disable_cds_recalculation)
                     log.debug("sub features" + str(feature.sub_features[0].type))
                     if feature.sub_features[0].type in util.coding_transcript_types:
-                        if isinstance(feature_data, list):
-                            new_transcript_list += feature_data
-                        else:
-                            new_transcript_list.append(feature_data)
+                        self._add_to_list(new_transcript_list, feature_data)
                     else:
-                        if isinstance(feature_data, list):
-                            new_feature_list += feature_data
-                        else:
-                            new_feature_list.append(feature_data)
+                        self._add_to_list(new_feature_list, feature_data)
                 else:
-                    log.debug("NO sub features, just adding directly as an mRNA")
+                    print("NO sub features, just adding directly as an mRNA")
                     feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                         disable_cds_recalculation=disable_cds_recalculation)
                     log.debug("output feature data" + str(feature_data))
                     new_feature_list.append(feature_data)
-            elif type in util.pseudogenes_types:
+            elif feature_type in util.pseudogenes_types:
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 if isinstance(feature_data, list):
                     new_feature_list += feature_data
                 else:
                     new_feature_list.append(feature_data)
-            elif type in util.coding_transcript_types:
+            elif feature_type in util.coding_transcript_types:
+                log.debug("a coding transcript")
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_transcript_list.append(feature_data)
-            elif type in util.noncoding_transcript_types:
+            elif feature_type in util.noncoding_transcript_types:
                 log.debug("a non-coding transcript")
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_feature_list.append(feature_data)
-                log.debug("new feature list " + str(new_feature_list))
-            elif type in util.single_level_feature_types:
+            elif feature_type in util.single_level_feature_types:
+                log.debug("a single level feature")
                 feature_data = util.yieldApolloData(feature, use_name=use_name,
                                                     disable_cds_recalculation=disable_cds_recalculation)
                 new_feature_list.append(feature_data)
             else:
-                log.debug("unknown type " + type + " ")
+                log.error("unknown type " + feature_type + " ")
+
+            log.debug("a single feature type: " + str(feature_type))
+            log.debug("a single feature feature_data: " + str(feature_data))
+            log.debug("new feature list " + str(new_feature_list))
+            log.debug("new transcript list " + str(new_transcript_list))
 
         return {'top-level': new_feature_list, 'transcripts': new_transcript_list}
 
@@ -1410,7 +1418,8 @@ class AnnotationsClient(Client):
         written_top = self._check_write(0, test, all_processed['top-level'], FeatureType.FEATURE, timing)
         written_transcripts = self._check_write(0, test, all_processed['transcripts'], FeatureType.TRANSCRIPT, timing)
 
-        loading_status = self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status, quiet)
+        loading_status = self._handle_loading_status(written_top, written_transcripts, all_processed, loading_status,
+                                                     quiet)
 
         log.info("Finished loading")
         if timing:
