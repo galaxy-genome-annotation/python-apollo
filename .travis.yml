@@ -5,7 +5,7 @@ sudo: false
 python:
   - '3.7'
 env:
-  - APOLLO_VERISON=2
+#  - APOLLO_VERISON=2
   - APOLLO_VERISON=3
 
 services:
@@ -25,8 +25,8 @@ jobs:
 
     - stage: test
       script:
-        - if [ ${APOLLO_VERSION} == "2" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo2-arrow.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
-        - if [ ${APOLLO_VERSION} == "3" ]; then export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml ; ./bootstrap_apollo.sh --docker3 ; fi;
+        - if [ ${APOLLO_VERSION} == "2" ]; then echo "Running Docker Apollo2" ; export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo2-arrow.yml ; ./bootstrap_apollo.sh --docker2 ; fi;
+        - if [ ${APOLLO_VERSION} == "3" ]; then echo "Running Docker Apollo3" ; export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/docker-apollo3-arrow.yml ; ./bootstrap_apollo.sh --docker3 ; fi;
         - python setup.py nosetests
 
 #    - stage: deploy
