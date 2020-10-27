@@ -1,4 +1,5 @@
 import time
+import unittest
 
 from . import ApolloTestCase, wa
 
@@ -176,6 +177,7 @@ class YeastLoadTest(ApolloTestCase):
         assert gff_content.count('I\t.\tncRNA\t') == 0
         assert gff_content.count('I\t.\ttRNA\t') == 3
 
+    @unittest.skip("temporarily disabled")
     def test_multiexon_yeastI(self):
         path = 'test-data/yeastI/raw/multiexon_yeastI.gff'
 
