@@ -160,6 +160,9 @@ class OrganismTest(ApolloTestCase):
 
         feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
 
+        # allow time to sleep
+        time.sleep(2)
+
         assert 'features' in feats_after
         assert len(feats_after['features']) == 0
 
