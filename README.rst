@@ -125,7 +125,7 @@ History
 - 3.0.4
     - `Fixed bug <https://github.com/galaxy-genome-annotation/python-apollo/issues/4>`__ in deleteFeatures (Thanks `@NeillGibson <https://github.com/NeillGibson>`__)
 - 3.0.3
-    - findAllOrganisms works correctly, client side filtering no longer necessary.
+    - getAllOrganisms works correctly, client side filtering no longer necessary.
 - 3.0.2
     - Patch a bug discovered in io.write, thanks Morgan!
 - 3.0

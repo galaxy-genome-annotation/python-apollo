@@ -157,6 +157,7 @@ class OrganismTest(ApolloTestCase):
         assert len(feats_before['features']) > 0
 
         wa.organisms.delete_features('temp_org')
+        time.sleep(2)
 
         feats_after = wa.annotations.get_features(org_info['id'], 'Merlin')
 
