@@ -16,7 +16,7 @@ subpackages = [x.replace('/', '.') for x in glob.glob('arrow/commands/*') if not
 
 setup(
     name="apollo",
-    version='4.2.7',
+    version='4.2.9',
     description="Apollo API library",
     long_description=readme,
     author="Helena Rasche;Anthony Bretaudeau;Nathan Dunn",
@@ -35,7 +35,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering",
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.7',
     ])

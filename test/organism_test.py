@@ -119,6 +119,19 @@ class OrganismTest(ApolloTestCase):
         for org in orgs:
             assert org['commonName'] != 'temp_org'
 
+    def test_delete_organism_suppress(self):
+
+        org_info = self.waitOrgCreated('temp_org')
+
+        wa.organisms.delete_organism(org_info['id'], suppress_output=True)
+
+        self.waitOrgDeleted('temp_org')
+
+        orgs = wa.organisms.get_organisms()
+
+        for org in orgs:
+            assert org['commonName'] != 'temp_org'
+
     def test_delete_features(self):
 
         wa.annotations.load_gff3('temp_org', 'test-data/merlin.gff')
@@ -329,12 +342,61 @@ class OrganismTest(ApolloTestCase):
         assert seq['name'] == 'Merlin'
         assert seq['length'] == 172788
 
+    def test_update_organism_suppress(self):
+
+        other_org_info = wa.organisms.show_organism('test_organism')
+
+        org_info = wa.organisms.show_organism('temp_org')
+
+        wa.organisms.update_organism(org_info['id'], 'temp_org', other_org_info['directory'], species='updatedspecies', genus='updatedgenus', blatdb=other_org_info['directory'] + "/seq/genome.2bit", public=False, suppress_output=True)
+        # Returns useless stuff
+
+        time.sleep(3)
+        org_info = wa.organisms.show_organism('temp_org')
+
+        assert org_info['species'] == 'updatedspecies'
+        assert org_info['genus'] == 'updatedgenus'
+        assert org_info['blatdb'] == other_org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        assert org_info['sequences'] == 1
+
+        seqs = wa.organisms.get_sequences(org_info['id'])['sequences']
+        assert len(seqs) == 1
+
+        seq = seqs[0]
+        assert seq['name'] == 'Merlin'
+        assert seq['length'] == 172788
+
     def test_add_organism(self):
 
         org_info = wa.organisms.show_organism('test_organism')
 
         meta = {"bla": "bli"}
         res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb=org_info['directory'] + "/seq/genome.2bit", metadata=meta)
+
+        assert res['species'] == 'newspecies'
+        assert res['genus'] == 'newgenus'
+        assert res['blatdb'] == org_info['directory'] + "/seq/genome.2bit"
+        meta_back = json.loads(res['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+
+        org_info = self.waitOrgCreated('some_new_org')
+
+        wa.organisms.delete_organism(org_info['id'])
+
+        assert org_info['species'] == 'newspecies'
+        assert org_info['genus'] == 'newgenus'
+        assert org_info['blatdb'] == org_info['directory'] + "/seq/genome.2bit"
+        assert not org_info['publicMode']
+        meta_back = json.loads(org_info['metadata'])
+        assert 'bla' in meta_back and meta_back['bla'] == 'bli'
+
+    def test_add_organism_suppress(self):
+
+        org_info = wa.organisms.show_organism('test_organism')
+
+        meta = {"bla": "bli"}
+        res = wa.organisms.add_organism('some_new_org', org_info['directory'], species='newspecies', genus='newgenus', blatdb=org_info['directory'] + "/seq/genome.2bit", metadata=meta, suppress_output=True)
 
         assert res['species'] == 'newspecies'
         assert res['genus'] == 'newgenus'

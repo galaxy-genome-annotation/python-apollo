@@ -85,10 +85,14 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.9
+    - Bugfix to  update_organism when using suppress_output
+- 4.2.8
+    - Added --suppress_output to update_organism
 - 4.2.7
-    - Fix bug in command structure build.
+    - Renamed --return_all option to --suppress_output
 - 4.2.6
-    - Allows suppression of output from add and remove organism command.  Requires apollo-2.6.1-d.
+    - Added --return_all option to add_organism and delete_organism methods
 - 4.2.5
     - Prevent from displaying login/password in the logs
 - 4.2.4

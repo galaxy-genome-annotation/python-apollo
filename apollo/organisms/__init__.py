@@ -74,7 +74,7 @@ class OrganismsClient(Client):
             return data
 
     def update_organism(self, organism_id, common_name, directory, blatdb=None, species=None, genus=None, public=False,
-                        no_reload_sequences=False):
+                        no_reload_sequences=False, suppress_output=False):
         """
         Update an organism
 
@@ -102,6 +102,9 @@ class OrganismsClient(Client):
         :type no_reload_sequences: bool
         :param no_reload_sequences: Set this if you don't want Apollo to reload genome sequences (no change in genome sequence)
 
+        :type suppress_output: bool
+        :param suppress_output: Suppress output of all organisms (true / false) (default false)
+
         :rtype: dict
         :return: a dictionary with information about the updated organism
         """
@@ -119,12 +122,16 @@ class OrganismsClient(Client):
             data['genus'] = genus
         if species is not None:
             data['species'] = species
+        if suppress_output is not None and suppress_output is True:
+            data['returnAllOrganisms'] = False
 
-        response = self.post('updateOrganismInfo', data)[0]
-
-        if len(response.keys()) == 0:
-            return self.show_organism(organism_id)
-        return response
+        response = self.post('updateOrganismInfo', data)
+        if type(response) is not list:
+            return response
+        if len(response) > 0:
+            return [x for x in response if x['commonName'] == common_name][0]
+        else:
+            return self.show_organism(common_name)
 
     def get_organisms(self, common_name=None):
         """

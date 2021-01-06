@@ -1,0 +1,58 @@
+name: Test
+on: ["push", "pull_request"]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install flake8
+      run: pip install flake8 flake8-import-order
+    - name: Flake8
+      run: flake8 apollo --ignore=E501,W503 --exclude=arrow/commands/,scripts/
+
+  py_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Python install
+      run: |
+        pip install -U pip setuptools nose
+        python setup.py install
+    - name: Launch containers
+      run: |
+        export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+        ./bootstrap_apollo.sh
+    - name: Run tests
+      run: |
+        export ARROW_GLOBAL_CONFIG_PATH=`pwd`/test-data/arrow.yml
+        python setup.py nosetests
+
+  pypi:
+    runs-on: ubuntu-latest
+    name: Deploy release to Pypi
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Python install
+      run: pip install -U pip setuptools nose build
+    - name: Build a binary wheel and a source tarball
+      run: python -m build --sdist --wheel --outdir dist/ .
+    - name: Publish distribution 📦 to PyPI
+      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.pypi_password }}
