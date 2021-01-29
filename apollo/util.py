@@ -90,8 +90,9 @@ def AssertAdmin(user):
 
 def _tnType(feature):
     if feature.type in (
-    'gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region',
-    'transposable_element', 'pseudogene', 'transcript', 'Shine_Dalgarno_sequence'):
+        'gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA',
+        'repeat_region', 'transposable_element', 'pseudogene', 'transcript', 'Shine_Dalgarno_sequence',
+        'non_canonical_three_prime_splice_site', 'non_canonical_five_prime_splice_site'):
         return feature.type
     else:
         return 'exon'
