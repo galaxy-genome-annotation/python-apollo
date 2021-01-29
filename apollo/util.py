@@ -15,7 +15,7 @@ pseudogenes_types = ["pseudogene", "pseudogenic_region", "processed_pseudogene"]
 noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'mRNA', 'miRNA', 'guide_RNA',
                               'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
                               'tmRNA', 'enzymatic_RNA']
-single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence", "transposable_element"]
+single_level_feature_types = ["repeat_region", "terminator", "transposable_element"]
 
 
 def WAAuth(parser):
@@ -89,7 +89,7 @@ def AssertAdmin(user):
 
 
 def _tnType(feature):
-    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript'):
+    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript','Shine_Dalgarno_sequence'):
         return feature.type
     else:
         return 'exon'
