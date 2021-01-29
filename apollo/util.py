@@ -89,7 +89,9 @@ def AssertAdmin(user):
 
 
 def _tnType(feature):
-    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript','Shine_Dalgarno_sequence'):
+    if feature.type in (
+    'gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region',
+    'transposable_element', 'pseudogene', 'transcript', 'Shine_Dalgarno_sequence'):
         return feature.type
     else:
         return 'exon'
@@ -102,9 +104,13 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
         current['children'] = []
         for sf in gene.sub_features:
             if _tnType(sf) in coding_transcript_types:
-                current['children'].append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+                current['children'].append(
+                    _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                               use_name=use_name))
             elif _tnType(sf) in noncoding_transcript_types:
-                current['children'].append(_yieldNonCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+                current['children'].append(
+                    _yieldNonCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                                  use_name=use_name))
 
     # # TODO: handle comments
     # # TODO: handle dbxrefs
