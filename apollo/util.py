@@ -17,6 +17,10 @@ noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 
                               'tmRNA', 'enzymatic_RNA']
 single_level_feature_types = ["repeat_region", "terminator", "transposable_element"]
 
+other_genomic_feature_types = ['exon', 'CDS', 'Shine_Dalgarno_sequence', 'non_canonical_three_prime_splice_site',
+                               'non_canonical_five_prime_splice_site']
+all_feature_types = gene_types + coding_transcript_types + pseudogenes_types + noncoding_transcript_types + other_genomic_feature_types
+
 
 def WAAuth(parser):
     parser.add_argument('apollo', help='Complete Apollo URL')
@@ -89,10 +93,7 @@ def AssertAdmin(user):
 
 
 def _tnType(feature):
-    if feature.type in (
-        'gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA',
-        'repeat_region', 'transposable_element', 'pseudogene', 'transcript', 'Shine_Dalgarno_sequence',
-        'non_canonical_three_prime_splice_site', 'non_canonical_five_prime_splice_site'):
+    if feature.type in all_feature_types:
         return feature.type
     else:
         return 'exon'
