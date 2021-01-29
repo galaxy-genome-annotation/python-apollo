@@ -19,8 +19,7 @@ single_level_feature_types = ["repeat_region", "terminator", "transposable_eleme
 
 other_genomic_feature_types = ['exon', 'CDS', 'Shine_Dalgarno_sequence', 'non_canonical_three_prime_splice_site',
                                'non_canonical_five_prime_splice_site']
-all_feature_types = gene_types + coding_transcript_types + pseudogenes_types + \
-                    noncoding_transcript_types + single_level_feature_types + other_genomic_feature_types
+all_feature_types = gene_types + coding_transcript_types + pseudogenes_types + noncoding_transcript_types + single_level_feature_types + other_genomic_feature_types
 
 
 def WAAuth(parser):
