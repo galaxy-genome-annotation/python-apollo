@@ -15,7 +15,11 @@ pseudogenes_types = ["pseudogene", "pseudogenic_region", "processed_pseudogene"]
 noncoding_transcript_types = ['transcript', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'mRNA', 'miRNA', 'guide_RNA',
                               'RNase_P_RNA', 'telomerase_RNA', 'SRP_RNA', 'lnc_RNA', 'RNase_MRP_RNA', 'scRNA', 'piRNA',
                               'tmRNA', 'enzymatic_RNA']
-single_level_feature_types = ["repeat_region", "terminator", "shine_dalgarno_sequence", "transposable_element"]
+single_level_feature_types = ["repeat_region", "terminator", "transposable_element"]
+
+other_genomic_feature_types = ['exon', 'CDS', 'Shine_Dalgarno_sequence', 'non_canonical_three_prime_splice_site',
+                               'non_canonical_five_prime_splice_site']
+all_feature_types = gene_types + coding_transcript_types + pseudogenes_types + noncoding_transcript_types + single_level_feature_types + other_genomic_feature_types
 
 
 def WAAuth(parser):
@@ -89,7 +93,7 @@ def AssertAdmin(user):
 
 
 def _tnType(feature):
-    if feature.type in ('gene', 'mRNA', 'exon', 'CDS', 'terminator', 'tRNA', 'snRNA', 'snoRNA', 'ncRNA', 'rRNA', 'miRNA', 'repeat_region', 'transposable_element', 'pseudogene', 'transcript'):
+    if feature.type in all_feature_types:
         return feature.type
     else:
         return 'exon'
@@ -102,9 +106,13 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
         current['children'] = []
         for sf in gene.sub_features:
             if _tnType(sf) in coding_transcript_types:
-                current['children'].append(_yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+                current['children'].append(
+                    _yieldCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                               use_name=use_name))
             elif _tnType(sf) in noncoding_transcript_types:
-                current['children'].append(_yieldNonCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name))
+                current['children'].append(
+                    _yieldNonCodingTranscriptData(sf, disable_cds_recalculation=disable_cds_recalculation,
+                                                  use_name=use_name))
 
     # # TODO: handle comments
     # # TODO: handle dbxrefs
