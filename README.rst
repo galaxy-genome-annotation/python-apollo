@@ -85,6 +85,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.11
+    - Updated wrong version number
 - 4.2.10
     - Bugfix handling Shine-Dalgarno sequences (https://github.com/galaxy-genome-annotation/python-apollo/issues/48)
 - 4.2.9
