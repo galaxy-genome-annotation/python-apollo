@@ -103,8 +103,9 @@ class Client(object):
     @classmethod
     def _scrub_data(cls, data):
         """Remove sensitive attributes from response data"""
-        if 'username' in data:
-            del data['username']
+        # the username can be returned in the operation
+        # if 'username' in data:
+        #     del data['username']
         if 'password' in data:
             del data['password']
         return data

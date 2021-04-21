@@ -44,6 +44,7 @@ class UserTest(ApolloTestCase):
 
         meta = {"bla": "bli"}
         res = wa.users.create_user("trash@bx.psu.edu", 'Poutrelle', 'Lapinou', 'superpassword', role="user", metadata=meta)
+        assert res['username'] == 'trash@bx.psu.edu'
         self.waitUserCreated(res['userId'])
 
         res = wa.users.show_user('trash@bx.psu.edu')
