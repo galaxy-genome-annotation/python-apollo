@@ -85,6 +85,8 @@ Or with the Arrow client:
 History
 -------
 
+- 4.2.12
+    - Do not filter out username from api responses
 - 4.2.11
     - Updated wrong version number
 - 4.2.10
