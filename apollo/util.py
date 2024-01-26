@@ -121,6 +121,28 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
     # # TODO: handle description
     # # TODO: handle GO, Gene Product, Provenance
 
+    def __floc(location):
+        return f"{location['fmin']}-{location['fmax']}-{location['strand']}"
+
+    for child1 in current['children']:
+        exon_regions = []
+        for child1 in current['children']:
+            for child in child1['children']:
+                print(child)
+                if child['type']['name'] == 'exon':
+                    exon_regions.append(__floc(child['location']))
+        new_current_children = []
+        for child in child1['children']:
+            if child['type']['name'] == 'CDS':
+                continue
+                nnn = __floc(child['location'])
+                if nnn not in exon_regions:
+                    new_current_children.append(child)
+            else:
+                new_current_children.append(child)
+        child1['children'] = new_current_children
+        print(exon_regions)
+
     if 'children' in current and gene.type == 'gene':
         # Only sending mRNA level as apollo is more comfortable with orphan mRNAs
         return current['children']
