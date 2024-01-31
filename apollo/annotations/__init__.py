@@ -1302,6 +1302,7 @@ class AnnotationsClient(Client):
                   test=False,
                   use_name=False,
                   disable_cds_recalculation=False,
+                  cds_cleaning=False,
                   timing=False,
                   ):
         """
@@ -1327,6 +1328,13 @@ class AnnotationsClient(Client):
 
         :type disable_cds_recalculation: bool
         :param disable_cds_recalculation: Disable CDS recalculation and instead use the one provided
+
+        :type cds_cleaning: bool
+        :param cds_cleaning: This changes the behaviour of creating GFF3
+                             features in apollo to match more closely to what it expects. Generally
+                             you'll probably want this on if you have transcripts with multiple
+                             exons and CDSs, but we don't want to change existing scripts 
+                             so we are not defaulting this on.
 
         :type timing: bool
         :param timing: Output loading performance metrics
@@ -1360,7 +1368,8 @@ class AnnotationsClient(Client):
                 log.info("Processing %s with features: %s" % (rec.id, rec.features))
                 processed = self._process_gff_entry(rec, source=source,
                                                     disable_cds_recalculation=disable_cds_recalculation,
-                                                    use_name=use_name
+                                                    use_name=use_name,
+                                                    cds_cleaning=cds_cleaning
                                                     )
                 all_processed['top-level'].extend(processed['top-level'])
                 all_processed['transcripts'].extend(processed['transcripts'])
