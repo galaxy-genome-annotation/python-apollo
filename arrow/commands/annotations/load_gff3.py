@@ -35,7 +35,7 @@ from arrow.decorators import custom_exception, str_output
 )
 @click.option(
     "--cds_cleaning",
-    help="This changes the behaviour of creating GFF3 features in apollo to match more closely to what it expects. Generally you'll probably want this on if you have transcripts with multiple exons and CDSs, but we don't want to change existing scripts so we are not defaulting this on."
+    help="This changes the behaviour of creating GFF3 features in apollo to match more closely to what it expects. Generally you'll probably want this on if you have transcripts with multiple exons and CDSs, but we don't want to change existing scripts so we are not defaulting this on.",
     is_flag=True
 )
 @click.option(
