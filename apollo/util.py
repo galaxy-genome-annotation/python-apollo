@@ -123,24 +123,25 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
 
     if 'children' in current and gene.type == 'gene':
         # Only sending mRNA level as apollo is more comfortable with orphan mRNAs
-        for child1 in current['children']:
-            exon_regions = []
-            for child1 in current['children']:
-                for child in child1['children']:
-                    print(child)
-                    if child['type']['name'] == 'exon':
-                        exon_regions.append(__floc(child['location']))
-            new_current_children = []
-            for child in child1['children']:
-                if child['type']['name'] == 'CDS':
-                    continue
-                    nnn = __floc(child['location'])
-                    if nnn not in exon_regions:
-                        new_current_children.append(child)
+        for mRNA in current['children']:
+            new_mRNA_children = []
+            new_cds = None
+            for feature in mRNA['children']:
+                if feature['type']['name'] == 'CDS':
+                    if new_cds:
+                        new_cds_start = new_cds['location']['fmin']
+                        new_cds_end = new_cds['location']['fmax']
+                        this_cds_start = feature['location']['fmin']
+                        this_cds_end = feature['location']['fmax']
+                        new_cds['location']['fmin'] = min(new_cds_start, this_cds_start)
+                        new_cds['location']['fmax'] = max(new_cds_end, this_cds_end)
+                    else:
+                        new_cds = feature
                 else:
-                    new_current_children.append(child)
-            child1['children'] = new_current_children
-            print(exon_regions)
+                    new_mRNA_children.append(feature)
+            if new_cds:
+                mRNA['children'] = new_mRNA_children
+                mRNA['children'].append(new_cds)
 
         return current['children']
     else:
