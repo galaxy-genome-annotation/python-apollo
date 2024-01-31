@@ -228,21 +228,27 @@ def _yieldNonCodingTranscriptData(features, disable_cds_recalculation=False, use
 #     return _yieldSubFeatureData(features[0])
 
 
-def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False):
+def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False, cds_cleaning=False):
+    # manually created a kwargs so we don't lose the actual method signature on yieldApolloData
+    kwargs = {
+        'use_name': use_name,
+        'disable_cds_recalculation': disable_cds_recalculation,
+        'cds_cleaning': cds_cleaning,
+    }
     feature_type = _tnType(feature)
     if feature_type in gene_types:
-        return _yieldGeneData(feature)
+        return _yieldGeneData(feature, **kwargs)
     elif feature_type in pseudogenes_types:
-        return _yieldGeneData(feature)
+        return _yieldGeneData(feature, **kwargs)
     elif feature_type in coding_transcript_types:
-        return _yieldCodingTranscriptData(feature)
+        return _yieldCodingTranscriptData(feature, **kwargs)
     elif feature_type in noncoding_transcript_types:
-        return _yieldNonCodingTranscriptData(feature)
+        return _yieldNonCodingTranscriptData(feature, **kwargs)
     elif feature_type in single_level_feature_types:
         # return _yieldSingleLevelFeatureData(current_feature)
-        return _yieldSubFeatureData(feature)
+        return _yieldSubFeatureData(feature, **kwargs)
     else:
-        return _yieldSubFeatureData(feature)
+        return _yieldSubFeatureData(feature, **kwargs)
 
     #     # if OGS:
     #     # TODO: handle comments
@@ -311,17 +317,23 @@ def add_property_to_feature(feature, property_key, property_value):
     return feature
 
 
-def features_to_apollo_schema(features, use_name=False, disable_cds_recalculation=False):
+def features_to_apollo_schema(features, use_name=False, disable_cds_recalculation=False, cds_cleaning=False):
     """
-
     :param disable_cds_recalculation:
     :param use_name:
     :param features:
+    :param cds_cleaning:
     :return:
     """
+    kwargs = {
+        'use_name': use_name,
+        'disable_cds_recalculation': disable_cds_recalculation,
+        'cds_cleaning': cds_cleaning,
+    }
+
     compiled = []
     for f in features:
-        compiled.append(yieldApolloData(f, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation))
+        compiled.append(yieldApolloData(f, **kwargs))
     return compiled
 
 

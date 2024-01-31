@@ -1247,10 +1247,15 @@ class AnnotationsClient(Client):
     def _get_subfeature_type(self, rec):
         return rec.features[0].type
 
-    def _process_gff_entry(self, rec, source=None, disable_cds_recalculation=False, use_name=False):
+    def _process_gff_entry(self, rec, source=None, disable_cds_recalculation=False, use_name=False, cds_cleaning=False):
 
         new_feature_list = []
         new_transcript_list = []
+        kwargs = {
+            'use_name': use_name,
+            'disable_cds_recalculation': disable_cds_recalculation,
+            'cds_cleaning': cds_cleaning,
+        }
 
         type = self._get_type(rec)
         log.debug("type " + str(type))
@@ -1260,8 +1265,7 @@ class AnnotationsClient(Client):
             if type in util.gene_types:
                 log.debug("is gene type")
                 if len(feature.sub_features) > 0:
-                    feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                        disable_cds_recalculation=disable_cds_recalculation)
+                    feature_data = util.yieldApolloData(feature, **kwargs)
                     log.debug("output feature data" + str(feature_data))
                     if isinstance(feature_data, list):
                         new_transcript_list += feature_data
@@ -1269,30 +1273,25 @@ class AnnotationsClient(Client):
                         new_transcript_list.append(feature_data)
                 else:
                     log.debug("NO sub features, just adding directly")
-                    feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                        disable_cds_recalculation=disable_cds_recalculation)
+                    feature_data = util.yieldApolloData(feature, **kwargs)
                     log.debug("output feature data" + str(feature_data))
                     new_feature_list.append(feature_data)
             elif type in util.pseudogenes_types:
-                feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                    disable_cds_recalculation=disable_cds_recalculation)
+                feature_data = util.yieldApolloData(feature, **kwargs)
                 if isinstance(feature_data, list):
                     new_feature_list += feature_data
                 else:
                     new_feature_list.append(feature_data)
             elif type in util.coding_transcript_types:
-                feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                    disable_cds_recalculation=disable_cds_recalculation)
+                feature_data = util.yieldApolloData(feature, **kwargs)
                 new_transcript_list.append(feature_data)
             elif type in util.noncoding_transcript_types:
                 log.debug("a non-coding transcript")
-                feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                    disable_cds_recalculation=disable_cds_recalculation)
+                feature_data = util.yieldApolloData(feature, **kwargs)
                 new_feature_list.append(feature_data)
                 log.debug("new feature list " + str(new_feature_list))
             elif type in util.single_level_feature_types:
-                feature_data = util.yieldApolloData(feature, use_name=use_name,
-                                                    disable_cds_recalculation=disable_cds_recalculation)
+                feature_data = util.yieldApolloData(feature, **kwargs)
                 new_feature_list.append(feature_data)
             else:
                 log.debug("unknown type " + type + " ")
