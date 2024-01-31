@@ -85,6 +85,10 @@ Or with the Arrow client:
 History
 -------
 
+- 4.3.0
+    - Biopython requires are now more strict, there is a maximum that bcbio_gff supports
+    - loading GFF3 now has a new flag, --cds_cleaning, to enable more apollo conformant behaviour for multi-exon transcripts
+      (https://github.com/galaxy-genome-annotation/python-apollo/issues/60, https://github.com/galaxy-genome-annotation/python-apollo/pull/62)
 - 4.2.13
     - Relax biopython requirements
 - 4.2.12

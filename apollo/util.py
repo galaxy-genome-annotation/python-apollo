@@ -99,7 +99,7 @@ def _tnType(feature):
         return 'exon'
 
 
-def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
+def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False, cds_cleaning=False):
     current = _yieldSubFeatureData(gene, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
 
     if gene.sub_features:
@@ -122,7 +122,30 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
     # # TODO: handle GO, Gene Product, Provenance
 
     if 'children' in current and gene.type == 'gene':
+        if not cds_cleaning:
+            return current['children']
+
         # Only sending mRNA level as apollo is more comfortable with orphan mRNAs
+        for mRNA in current['children']:
+            new_mRNA_children = []
+            new_cds = None
+            for feature in mRNA['children']:
+                if feature['type']['name'] == 'CDS':
+                    if new_cds:
+                        new_cds_start = new_cds['location']['fmin']
+                        new_cds_end = new_cds['location']['fmax']
+                        this_cds_start = feature['location']['fmin']
+                        this_cds_end = feature['location']['fmax']
+                        new_cds['location']['fmin'] = min(new_cds_start, this_cds_start)
+                        new_cds['location']['fmax'] = max(new_cds_end, this_cds_end)
+                    else:
+                        new_cds = feature
+                else:
+                    new_mRNA_children.append(feature)
+            if new_cds:
+                mRNA['children'] = new_mRNA_children
+                mRNA['children'].append(new_cds)
+
         return current['children']
     else:
         # No children, return a generic gene feature
@@ -205,21 +228,27 @@ def _yieldNonCodingTranscriptData(features, disable_cds_recalculation=False, use
 #     return _yieldSubFeatureData(features[0])
 
 
-def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False):
+def yieldApolloData(feature, use_name=False, disable_cds_recalculation=False, cds_cleaning=False):
+    # manually created a kwargs so we don't lose the actual method signature on yieldApolloData
+    kwargs = {
+        'use_name': use_name,
+        'disable_cds_recalculation': disable_cds_recalculation,
+        'cds_cleaning': cds_cleaning,
+    }
     feature_type = _tnType(feature)
     if feature_type in gene_types:
-        return _yieldGeneData(feature)
+        return _yieldGeneData(feature, **kwargs)
     elif feature_type in pseudogenes_types:
-        return _yieldGeneData(feature)
+        return _yieldGeneData(feature, **kwargs)
     elif feature_type in coding_transcript_types:
-        return _yieldCodingTranscriptData(feature)
+        return _yieldCodingTranscriptData(feature, **kwargs)
     elif feature_type in noncoding_transcript_types:
-        return _yieldNonCodingTranscriptData(feature)
+        return _yieldNonCodingTranscriptData(feature, **kwargs)
     elif feature_type in single_level_feature_types:
         # return _yieldSingleLevelFeatureData(current_feature)
-        return _yieldSubFeatureData(feature)
+        return _yieldSubFeatureData(feature, **kwargs)
     else:
-        return _yieldSubFeatureData(feature)
+        return _yieldSubFeatureData(feature, **kwargs)
 
     #     # if OGS:
     #     # TODO: handle comments
@@ -288,17 +317,23 @@ def add_property_to_feature(feature, property_key, property_value):
     return feature
 
 
-def features_to_apollo_schema(features, use_name=False, disable_cds_recalculation=False):
+def features_to_apollo_schema(features, use_name=False, disable_cds_recalculation=False, cds_cleaning=False):
     """
-
     :param disable_cds_recalculation:
     :param use_name:
     :param features:
+    :param cds_cleaning:
     :return:
     """
+    kwargs = {
+        'use_name': use_name,
+        'disable_cds_recalculation': disable_cds_recalculation,
+        'cds_cleaning': cds_cleaning,
+    }
+
     compiled = []
     for f in features:
-        compiled.append(yieldApolloData(f, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation))
+        compiled.append(yieldApolloData(f, **kwargs))
     return compiled
 
 

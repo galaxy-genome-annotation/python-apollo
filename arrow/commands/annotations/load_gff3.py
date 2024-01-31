@@ -34,6 +34,11 @@ from arrow.decorators import custom_exception, str_output
     is_flag=True
 )
 @click.option(
+    "--cds_cleaning",
+    help="This changes the behaviour of creating GFF3 features in apollo to match more closely to what it expects. Generally you'll probably want this on if you have transcripts with multiple exons and CDSs, but we don't want to change existing scripts so we are not defaulting this on.",
+    is_flag=True
+)
+@click.option(
     "--timing",
     help="Output loading performance metrics",
     is_flag=True
@@ -41,11 +46,11 @@ from arrow.decorators import custom_exception, str_output
 @pass_context
 @custom_exception
 @str_output
-def cli(ctx, organism, gff3, source="", batch_size=1, test=False, use_name=False, disable_cds_recalculation=False, timing=False):
+def cli(ctx, organism, gff3, source="", batch_size=1, test=False, use_name=False, disable_cds_recalculation=False, cds_cleaning=False, timing=False):
     """Load a full GFF3 into annotation track
 
 Output:
 
     Loading report
     """
-    return ctx.gi.annotations.load_gff3(organism, gff3, source=source, batch_size=batch_size, test=test, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation, timing=timing)
+    return ctx.gi.annotations.load_gff3(organism, gff3, source=source, batch_size=batch_size, test=test, use_name=use_name, disable_cds_recalculation=disable_cds_recalculation, cds_cleaning=cds_cleaning, timing=timing)
