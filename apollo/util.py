@@ -99,7 +99,7 @@ def _tnType(feature):
         return 'exon'
 
 
-def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
+def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False, cds_cleaning=False):
     current = _yieldSubFeatureData(gene, disable_cds_recalculation=disable_cds_recalculation, use_name=use_name)
 
     if gene.sub_features:
@@ -122,6 +122,9 @@ def _yieldGeneData(gene, disable_cds_recalculation=False, use_name=False):
     # # TODO: handle GO, Gene Product, Provenance
 
     if 'children' in current and gene.type == 'gene':
+        if not cds_cleaning:
+            return current['children']
+
         # Only sending mRNA level as apollo is more comfortable with orphan mRNAs
         for mRNA in current['children']:
             new_mRNA_children = []
